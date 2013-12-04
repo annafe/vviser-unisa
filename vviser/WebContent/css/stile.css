@@ -1,0 +1,159 @@
+body {
+font: 11px/165% 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
+color: #fff;
+padding: 0;
+position: relative;
+width: 700px;
+height:520px;	
+margin: 0 auto;
+text-decoration: none;
+font: bold 12px Arial, Helvetica, sans-serif;
+}
+
+header#container-header
+{
+	position:absolute;
+	width: 700px;	
+	height: 200px;
+	top:10px;
+}		
+
+header#header-main
+{
+	position: absolute;
+	width:700px;
+	height:160px;
+	background-image: url('../images/logo.png');
+	background-repeat:no-repeat;
+	background-position:left bottom;
+	background-size:25%;
+}
+
+nav{
+position: absolute;
+width:700px;
+height:30px;
+top:160px;
+background-color:SEAGREEN;
+text-align:right;
+padding-top:10px;
+}
+
+input.pulsante {
+ outline: none;
+ cursor: pointer;
+ text-align: center;
+ text-decoration: none;
+ font: bold 12px Arial, Helvetica, sans-serif;
+ color: #fff;
+ padding: 10px 20px;
+ border: solid 1px #0076a3;
+ /*background: #0095cd;*/
+background:SEAGREEN;
+}
+
+section#container-section{
+	position:absolute;
+	width:700px;
+	height:260px;
+	top:210px;
+	text-align:center;
+	font-size:20pt;
+}
+
+section#section-login{	
+	position:absolute;
+	width:200px;
+	height:100px;
+	top:20px;
+	left:20px;
+	background-color:LIGHTGREEN;
+}
+
+section#section-search-prod{
+cursor: pointer;
+position: absolute;
+width:200px;
+height:100px;
+left:240px;
+top:20px;
+background-color:TOMATO;
+}
+
+section#catalogo-della-ricerca
+{
+cursor:pointer;
+position:absolute;
+width:200px;
+height:100px;
+left:20px;
+top:140px;
+background-color:LIMEGREEN;
+}
+
+section#bho{
+cursor:pointer;
+position:absolute;
+width:200px;
+height:100px;
+left:240px;
+top:140px;
+background-color:ORANGERED;
+}
+
+section#bho1{
+cursor:pointer;
+position:absolute;
+width:200px;
+height:100px;
+left:460px;
+top:140px;
+background-color:YELLOWGREEN;
+}
+
+section#section-search-autori{
+cursor: pointer;
+position:absolute;
+width:200px;
+height:100px;
+left:460px;
+top:20px;
+background-color:MEDIUMAQUAMARINE;
+}
+
+footer#container-footer{
+	position:absolute;
+	width:700px;
+	height:30px;
+	top:480px;
+	background-color:SEAGREEN;
+	text-align:center;
+	padding-top:10px;
+}
+
+a:link {color:white;
+	text-decoration:none;}      /* unvisited link */
+a:visited {text-decoration:none;
+	color:white;}  /* visited link */
+a:hover {cursor:pointer;
+	text-decoration:none;
+	color:white;}  /* mouse over link */
+a:active {color:white;
+	text-decoration:none;}  /* selected link */
+
+div.centro{text-align:center;}
+input.testo{color:yellowgreen;}
+
+section#search-catal{
+position:absolute;
+height:250px;
+width:150px;
+}
+
+section#mod-search{
+position:absolute;
+left:150px;
+height:250px;
+width:550px;
+}
+
