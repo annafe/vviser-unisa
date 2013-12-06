@@ -71,7 +71,7 @@ public class login extends HttpServlet {
 	ResultSet rs = null;
 
 	try {   //--------compone la query e la esegue         
-		String query="SELECT * FROM account where username=" + userid;
+		String query="SELECT * FROM utente where username='" + userid + "' and password='"+pwd+"'";
 		st = (Statement) con.createStatement();
 		rs = ((java.sql.Statement) st).executeQuery(query);
 		int id=0;
