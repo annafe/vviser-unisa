@@ -48,12 +48,12 @@ public class ControlloLogin extends HttpServlet {
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
-	String userid = null;
+	String userName = null;
 	String pwd = null;
-	userid = request.getParameter("eml"); //--raccoglie il parametro eml
+	userName = request.getParameter("username"); //--raccoglie il parametro eml
 	pwd = request.getParameter("pass");  //--raccoglie il parametro pass
-	if(userid == null || userid.equalsIgnoreCase("null") ||
-			userid.equalsIgnoreCase("")) {
+	if(userName == null || userName.equalsIgnoreCase("null") ||
+			userName.equalsIgnoreCase("")) {
 			request.getSession().setAttribute("error", "user id obbligatorio");
 			response.sendRedirect("index.jsp");
 			return;
@@ -73,12 +73,11 @@ public class ControlloLogin extends HttpServlet {
 	ResultSet rs = null;
 
 	try {   //--------compone la query e la esegue         
-		String query="SELECT * FROM utente where username=" + userid + " and password="+pwd;
+		String query="SELECT * FROM utente where username=" + userName + " and password="+pwd;
 		st = (Statement) con.createStatement();
 		rs = ((java.sql.Statement) st).executeQuery(query);
 		int id=0;
-		String userName="";
-		String password="";
+		
 		if (rs.next()){
 			Account account=new Account();
 			
@@ -93,6 +92,7 @@ public class ControlloLogin extends HttpServlet {
 			account.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
 			account.setTipologia(rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA));
 			account.setUserName(rs.getString(DBNames.ATTR_UTENTE_USERNAME));
+			account.setID(rs.getString(DBNames.ATTR_UTENTE_id));
 			
 			request.getSession().setAttribute("utenteConnesso", account);
 			request.getSession().setAttribute("account", account);
