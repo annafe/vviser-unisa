@@ -1,5 +1,10 @@
 package it.unisa.vviser.storage;
 
+/**
+ * 
+ * @author Giuseppe Sabato
+ *
+ */
 public final class DBNames {
 	
 	private DBNames()
