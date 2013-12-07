@@ -18,6 +18,7 @@ private String userName;
 private String codiceFiscale;
 private String password;
 private String email;
+private String dipartimento_Nome;
 
 /**
 DOCUMENTAZIONE:
@@ -89,5 +90,11 @@ public void setEmail (String email){
 }
 public String getemail(){
 	return this.email;
+}
+public void setDipartimento_Nome (String dipartimento_Nome ){
+	this.dipartimento_Nome =dipartimento_Nome ;
+}
+public String getDipartimento_Nome (){
+	return this.dipartimento_Nome ;
 }
 }
