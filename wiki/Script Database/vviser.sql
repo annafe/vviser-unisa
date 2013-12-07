@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Dic 07, 2013 alle 12:39
+-- Generato il: Dic 07, 2013 alle 16:27
 -- Versione del server: 5.5.32
 -- Versione PHP: 5.4.19
 
@@ -154,6 +154,20 @@ CREATE TABLE IF NOT EXISTS `prodottoinconflitto` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `prodottolista`
+--
+
+CREATE TABLE IF NOT EXISTS `prodottolista` (
+  `prodotto.isbn` char(13) NOT NULL,
+  `lista.id` int(11) NOT NULL,
+  `priorita` int(11) NOT NULL,
+  PRIMARY KEY (`prodotto.isbn`,`lista.id`),
+  KEY `lista.id` (`lista.id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `pubblicazionesurivista`
 --
 
@@ -258,6 +272,13 @@ ALTER TABLE `prodotto`
 ALTER TABLE `prodottoinconflitto`
   ADD CONSTRAINT `prodottoinconflitto_ibfk_1` FOREIGN KEY (`Prodotto.isbn`) REFERENCES `prodotto` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `prodottoinconflitto_ibfk_2` FOREIGN KEY (`Lista.id`) REFERENCES `listavalutazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limiti per la tabella `prodottolista`
+--
+ALTER TABLE `prodottolista`
+  ADD CONSTRAINT `prodottolista_ibfk_2` FOREIGN KEY (`lista.id`) REFERENCES `listavalutazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `prodottolista_ibfk_1` FOREIGN KEY (`prodotto.isbn`) REFERENCES `prodotto` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `pubblicazionesurivista`
