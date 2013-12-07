@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-
+/**
+ * Classe di prova per verificare il funzionamento della connessione al database
+ * @author Giuseppe Sabato
+ *
+ */
 
 public class Test {
 	
