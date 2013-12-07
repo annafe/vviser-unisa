@@ -19,6 +19,7 @@ private String codiceFiscale;
 private String password;
 private String email;
 private String dipartimento_Nome;
+private String tipologia;
 
 /**
 DOCUMENTAZIONE:
@@ -96,5 +97,11 @@ public void setDipartimento_Nome (String dipartimento_Nome ){
 }
 public String getDipartimento_Nome (){
 	return this.dipartimento_Nome ;
+}
+public void setTipologia (String dipartimento_Nome ){
+	this.tipologia  =tipologia  ;
+}
+public String getTipologia  (){
+	return this.tipologia  ;
 }
 }
