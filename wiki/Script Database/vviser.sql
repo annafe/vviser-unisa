@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Dic 05, 2013 alle 15:50
+-- Generato il: Dic 07, 2013 alle 12:39
 -- Versione del server: 5.5.32
 -- Versione PHP: 5.4.19
 
@@ -31,7 +31,7 @@ USE `vviser`;
 CREATE TABLE IF NOT EXISTS `categoria` (
   `nome` varchar(20) NOT NULL,
   `descrizione` text,
-  `validità` tinyint(1) NOT NULL,
+  `validita` tinyint(1) NOT NULL,
   PRIMARY KEY (`nome`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 
 CREATE TABLE IF NOT EXISTS `dipartimento` (
   `nome` varchar(20) NOT NULL,
-  `facoltà` varchar(20) NOT NULL,
+  `facolta` varchar(20) NOT NULL,
   PRIMARY KEY (`nome`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `rivista` (
   `editore` varchar(30) NOT NULL,
   `daAnno` date DEFAULT NULL,
   `adAnno` date DEFAULT NULL,
-  `validità` tinyint(1) NOT NULL,
+  `validita` tinyint(1) NOT NULL,
   PRIMARY KEY (`issn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -229,8 +229,8 @@ CREATE TABLE IF NOT EXISTS `utente` (
 -- Limiti per la tabella `listavalutazione`
 --
 ALTER TABLE `listavalutazione`
-  ADD CONSTRAINT `listavalutazione_ibfk_2` FOREIGN KEY (`eventoValutazione.id`) REFERENCES `eventovalutazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `listavalutazione_ibfk_1` FOREIGN KEY (`utente.id`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `listavalutazione_ibfk_1` FOREIGN KEY (`utente.id`) REFERENCES `utente` (`id`),
+  ADD CONSTRAINT `listavalutazione_ibfk_2` FOREIGN KEY (`eventoValutazione.id`) REFERENCES `eventovalutazione` (`id`);
 
 --
 -- Limiti per la tabella `partecipazioneavalutazione`
@@ -256,8 +256,8 @@ ALTER TABLE `prodotto`
 -- Limiti per la tabella `prodottoinconflitto`
 --
 ALTER TABLE `prodottoinconflitto`
-  ADD CONSTRAINT `prodottoinconflitto_ibfk_2` FOREIGN KEY (`Lista.id`) REFERENCES `listavalutazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `prodottoinconflitto_ibfk_1` FOREIGN KEY (`Prodotto.isbn`) REFERENCES `prodotto` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `prodottoinconflitto_ibfk_1` FOREIGN KEY (`Prodotto.isbn`) REFERENCES `prodotto` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `prodottoinconflitto_ibfk_2` FOREIGN KEY (`Lista.id`) REFERENCES `listavalutazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `pubblicazionesurivista`
