@@ -16,9 +16,9 @@ protected String psw = "";
 
 /**
 DOCUMENTAZIONE:
-- COSA RAPPRESENTA LA CLASSE
-- A COSA SERVE
-- COME SI USA
+- 
+- La classe serve a creare la connessione al DB
+- La classe restituisce l'oggetto connecition
 @author Eugenio Gigante
 @version 1.0
 */
@@ -48,8 +48,10 @@ return con;
 /**
 DOCUMENTAZIONE:
 - Libera le risorse allocate
-- COME USARLO
-@param x COSA RAPPRESENTA x?
+- Il metodo viene richiamato dandogli in ingresso la Connection, lo Statment e il ResultSet
+@param con è l'oggetto Connection al DB
+@param st è l'oggetto Stantement
+@param rs è l'oggetto ResultSet
 @return COSA RESTITUISCE
 @throws Ex QUANDO VIENE LANCIATA?
 */
