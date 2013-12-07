@@ -22,23 +22,23 @@
 	</nav>
 </header>
 <section id="container-section">
-	<section id="section-login">
+	<section id="login">
 		<a href="main/login.jsp">Accedi al sistema..</a>
 	</section>
-	<section id="section-search-prod">
+	<section id="search-prod">
 		<a href="main/search_prod.jsp">Ricerca prodotti</a>
 	</section>
-	<section id="section-search-autori">
-		<a href="doc.html">Documenti</a>
+	<section id="documenti">
+		<a href="main/doc.jsp">Documenti</a>
 	</section>
-	<section id="catalogo-della-ricerca">
-		<a href="presentazione.html">Presentazione</a>
+	<section id="presentazione">
+		<a href="main/presentazione.jsp">Presentazione</a>
 	</section>
-	<section id="bho">
-		<a href="faq.html">F.A.Q</a>
+	<section id="faq">
+		<a href="main/faq.jsp">F.A.Q</a>
 	</section>
-	<section id="bho1">
-		<a href="altro">altro..</a>		
+	<section id="altro">
+		<a href="main/altro.jsp">altro..</a>		
 	</section>
 </section>
 <footer id="container-footer">

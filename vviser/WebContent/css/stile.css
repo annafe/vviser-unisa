@@ -1,5 +1,4 @@
 body {
-font: 11px/165% 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
 color: #fff;
 padding: 0;
 position: relative;
@@ -61,7 +60,7 @@ section#container-section{
 	font-size:20pt;
 }
 
-section#section-login{	
+section#login{	
 	position:absolute;
 	width:200px;
 	height:100px;
@@ -70,8 +69,7 @@ section#section-login{
 	background-color:LIGHTGREEN;
 }
 
-section#section-search-prod{
-cursor: pointer;
+section#search-prod{
 position: absolute;
 width:200px;
 height:100px;
@@ -80,9 +78,8 @@ top:20px;
 background-color:TOMATO;
 }
 
-section#catalogo-della-ricerca
+section#presentazione
 {
-cursor:pointer;
 position:absolute;
 width:200px;
 height:100px;
@@ -91,8 +88,7 @@ top:140px;
 background-color:LIMEGREEN;
 }
 
-section#bho{
-cursor:pointer;
+section#faq{
 position:absolute;
 width:200px;
 height:100px;
@@ -101,8 +97,7 @@ top:140px;
 background-color:ORANGERED;
 }
 
-section#bho1{
-cursor:pointer;
+section#altro{
 position:absolute;
 width:200px;
 height:100px;
@@ -111,8 +106,7 @@ top:140px;
 background-color:YELLOWGREEN;
 }
 
-section#section-search-autori{
-cursor: pointer;
+section#documenti{
 position:absolute;
 width:200px;
 height:100px;
@@ -157,3 +151,19 @@ height:250px;
 width:550px;
 }
 
+section#groups{position:absolute;width:700px; height:150px;border:1px solid blue;}
+section#presnt{position:absolute;width:700px; height:250px;top:150px;border:1px solid red;}
+
+section#profilo{border:5px solid tomato;
+		position:absolute;
+		width:690px;
+	height:200px;
+	top:360px;
+	color:black;
+	}
+
+section#notifiche{position:absolute;width:150px;left:510px;height:80px;top:30px;background-color:orangered;}
+th{text-align:center;}
+section#elimina-prod{position:absolute;width:150px;left:660px;height:80px;top:30px;background-color:blue;}
+
+section#convalida{position:absolute;width:150px;left:820px;height:80px;top:30px;background-color:brown;}
