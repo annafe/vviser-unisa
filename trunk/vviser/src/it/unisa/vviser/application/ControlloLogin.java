@@ -81,10 +81,19 @@ public class ControlloLogin extends HttpServlet {
 		String password="";
 		if (rs.next()){
 			Account account=new Account();
-			account.setNome(rs.getString("nome"));
-			account.setCognome(rs.getString("cognome"));
-			account.setUserName(rs.getString("username"));
-			account.setPassword(rs.getString("password"));
+			
+			account.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
+			account.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
+			account.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
+			account.setDataDiNascita(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA));
+			account.setDipartimento_Nome(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
+			account.setEmail(rs.getString(DBNames.ATTR_UTENTE_EMAIL));
+			account.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
+			account.setPassword(rs.getString(DBNames.ATTR_UTENTE_PASSWORD));
+			account.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
+			account.setTipologia(rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA));
+			account.setUserName(rs.getString(DBNames.ATTR_UTENTE_USERNAME));
+			
 			request.getSession().setAttribute("utenteConnesso", account);
 			request.getSession().setAttribute("account", account);
 			response.sendRedirect("home.jsp");
