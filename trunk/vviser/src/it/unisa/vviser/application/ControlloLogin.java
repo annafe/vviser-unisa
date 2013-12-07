@@ -96,7 +96,7 @@ public class ControlloLogin extends HttpServlet {
 			
 			request.getSession().setAttribute("utenteConnesso", account);
 			request.getSession().setAttribute("account", account);
-			response.sendRedirect("home.jsp");
+			response.sendRedirect("loginok.jsp");
 			request.setAttribute("account", account);
 			try{
 				request.getRequestDispatcher("/home.jsp").include(request,response);
