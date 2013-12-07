@@ -7,21 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-body{color:white;height:675px; border:5px solid blue;}
+body{color:white;height:705px;}
 legend{color:ORANGERED;}
 fieldset{border:5px solid ORANGERED;}
 table{color:YELLOWGREEN;}
-section#container-section{width:700px; height:400px;
-	top:225px;}
-section#prd{position:absolute;width:400px; height:400px;left:250px;}
-
-section#menu{position:absolute;width:190px; height:390px;top:10px; left:10px;border:5px solid red;}
+section#container-section{width:700px; height:420px;top:225px;}
+section#prd{position:absolute;width:400px; height:410px;left:250px;}
+section#menu{position:absolute;width:190px; height:150px;top:10px; left:10px;}
 td{text-align:center;}
-
-
-
-footer#container-footer{border:5px solid black;
-	top:635px;}
+footer#container-footer{top:665px;}
 p{display:block;}
 p>a:link {color:yellowgreen;
 	text-decoration:none;}      /* unvisited link */
