@@ -22,6 +22,7 @@ public final class DBNames {
 	public static final String TABLE_PRODOTTIUTENTE="prodottiutente";
 	public static final String TABLE_PRODOTTO="prodotto";
 	public static final String TABLE_PRODOTTOINCONFLITTO="prodottoinconflitto";
+	public static final String TABLE_PRODOTTOLISTA="prodottolista";
 	public static final String TABLE_PUBBLICAZIONESURIVISTA="pubblicazionesurivista";
 	public static final String TABLE_RICEZIONENOTIFICA="ricezionenotifica";
 	public static final String TABLE_RIVISTA="rivista";
@@ -77,6 +78,11 @@ public final class DBNames {
 	//Attributi prodottoinconflitto
 	public static final String ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN="Prodotto.isbn";
 	public static final String ATTR_PRODOTTOINCONFLITTO_LISTA_ID="Lista.id";
+	
+	//Attributi prodottolista
+	public static final String ATTR_PRODOTTOLISTA_PRODOTTO_ISBN="prodotto.isbn";
+	public static final String ATTR_PRODOTTOLISTA_LISTA_ID="lista.id";
+	public static final String ATTR_PRODOTTOLISTA_PRIORITA="priorita";
 	
 	//Attributi pubblicazionesurivista
 	public static final String ATTR_PUBBLICAZIONESURIVISTA_RIVISTA_ISSN="rivista_issn";
