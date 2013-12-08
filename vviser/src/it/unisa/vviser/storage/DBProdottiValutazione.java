@@ -193,11 +193,17 @@ public class DBProdottiValutazione {
 		
 		st1=conn.createStatement();
 		ris1=st1.executeQuery(query1);
-		
+		ris1.next();
 		if(ris1.getInt("numeroConflitti")==0)
+		{
+			st1.close();
 			return false;
+		}
 		else 
+		{
+			st1.close();
 			return true;
+		}
 	}
 	
 	
