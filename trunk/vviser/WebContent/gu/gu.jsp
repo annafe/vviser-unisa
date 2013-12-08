@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-body{height:620px;width:850px;border:5px solid red;}
+body{height:620px;width:850px;}
 header#container-header{width:850px;}
 nav{width:850px;}
 section#container-section{height:140px;width:850px;}
