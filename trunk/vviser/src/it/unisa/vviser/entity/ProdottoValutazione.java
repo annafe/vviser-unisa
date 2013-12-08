@@ -10,7 +10,6 @@ public class ProdottoValutazione {
 	private String isbn;
 	private String title;
 	private int priority;
-	private String suggestion;
 	
 	
 	/**
@@ -25,14 +24,12 @@ public class ProdottoValutazione {
 	 * Il costruttore della classe ProdottoValutazione con parametri
 	 * @param isbn codice identificativo prodotto
 	 * @param priority del prodotto sottomesso a valutazione
-	 * @param suggestion per la risoluzione conflitti
 	 */
-	public ProdottoValutazione(String isbn, String title, int priority, String suggestion)
+	public ProdottoValutazione(String isbn, String title, int priority)
 	{
 		this.isbn=isbn;
 		this.title=title;
 		this.priority=priority;
-		this.suggestion=suggestion;
 	}
 	
 	/**
@@ -87,24 +84,6 @@ public class ProdottoValutazione {
 	public void setPriority(int priority)
 	{
 		this.priority=priority;
-	}
-	
-	/**
-	 * Metodo che restitusce il parametro suggestion
-	 * @return suggestion il parametro inserito
-	 */
-	public String getSuggestion() 
-	{
-		return this.suggestion;
-	}
-	
-	/**
-	 * Metodo che setta il parametro suggestion
-	 * @param suggestion il parametro fissato
-	 */
-	public void setSuggestion(String suggestion) 
-	{
-		this.suggestion = suggestion;
 	}
 	
 
