@@ -7,12 +7,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-body{height:620px;}
-section#container-section{height:140px;}
-footer#container-footer{top:580px;}
+body{height:620px;width:850px;border:5px solid red;}
+header#container-header{width:850px;}
+nav{width:850px;}
+section#container-section{height:140px;width:850px;}
+footer#container-footer{top:580px;width:850px;}
 section#login{width:150px;left:30px;height:80px;top:30px;}
 section#search-prod{width:150px;left:190px;height:80px;top:30px;}
 section#documenti{width:150px;left:350px;height:80px;top:30px;}
+section#logout{position:absolute;width:150px;left:670px;height:80px;top:30px;background-color:blue;}
+section#profilo{width:850px;}
 </style>
 </head>
 <body>
@@ -34,6 +38,9 @@ section#documenti{width:150px;left:350px;height:80px;top:30px;}
 	</section>
 	<section id="notifiche">
 		<a href="./notifiche.html">Notifiche</a>
+	</section>
+	<section id="logout">
+		<a href="../index.html">Logout</a>
 	</section>
 </section>
 
