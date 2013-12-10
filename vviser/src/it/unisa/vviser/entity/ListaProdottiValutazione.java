@@ -9,9 +9,8 @@ import java.util.ArrayList;
  */
 public class ListaProdottiValutazione {
 	
-	private int idLista;
 	private ArrayList<ProdottoValutazione> listaProdottiValutazione;
-	private int idUtente;
+	private String emailUtente;
 	private int idEventoValutazione;
 	private String suggestion;
 	
@@ -27,33 +26,15 @@ public class ListaProdottiValutazione {
 	/**
 	 * Il costruttore della classe ListaProdottiValutazione con parametri
 	 * @param listaProdottiValutazione prodotti sottomessi a valutazione
-	 * @param idUtente identificativo utente proprietario della lista
+	 * @param emailUtente identificativo utente proprietario della lista
 	 * @param suggestion per la risoluzione dei conflitti
 	 */
-	public ListaProdottiValutazione(ArrayList<ProdottoValutazione> listaProdottiValutazione, int idUtente, int idEventoValutazione, String suggestion)
+	public ListaProdottiValutazione(ArrayList<ProdottoValutazione> listaProdottiValutazione, String emailUtente, int idEventoValutazione, String suggestion)
 	{
 		this.listaProdottiValutazione=listaProdottiValutazione;
-		this.idUtente=idUtente;
+		this.emailUtente=emailUtente;
 		this.idEventoValutazione=idEventoValutazione;
 		this.suggestion=suggestion;
-	}
-	
-	/**
-	 * Metodo che restituisce il parametro idLista
-	 * @return idLista il parametro inserito
-	 */
-	public int getIdLista() 
-	{
-		return this.idLista;
-	}
-	
-	/**
-	 * Metodo che setta il parametro idLista
-	 * @param idLista il parametro fissato
-	 */
-	public void setIdLista(int idLista) 
-	{
-		this.idLista = idLista;
 	}
 	
 	/**
@@ -84,21 +65,21 @@ public class ListaProdottiValutazione {
 	}
 	
 	/**
-	 * Metodo che restituisce il parametro idUtente
-	 * @return idUtente il parametro inserito
+	 * Metodo che restituisce il parametro emailUtente
+	 * @return emailUtente il parametro inserito
 	 */
-	public int getIdUtente() 
+	public String getEmailUtente() 
 	{
-		return this.idUtente;
+		return this.emailUtente;
 	}
 	
 	/**
-	 * Metodo che setta il parametro idUtente
-	 * @param idUtente il parametro fissato
+	 * Metodo che setta il parametro emailUtente
+	 * @param emailUtente il parametro fissato
 	 */
-	public void setIdUtente(int idUtente) 
+	public void setEmailUtente(String emailUtente) 
 	{
-		this.idUtente = idUtente;
+		this.emailUtente = emailUtente;
 	}
 	
 	/**
