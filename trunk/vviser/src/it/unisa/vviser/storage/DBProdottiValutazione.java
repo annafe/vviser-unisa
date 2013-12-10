@@ -27,33 +27,51 @@ public class DBProdottiValutazione {
 	}
 	
 	/**
-	 * Metodo che permette di inserire nel database un prodotto per valutazione
-	 * @param p prodotto da sottomettere a valutazione
-	 * @param idLista identificativo lista prodotti sottomissione a valutazione
+	 * Metodo che permette di inserire nel database una lista di prodotti per valutazione
+	 * @param prodottiValutazione lista prodotti da sottomettere a valutazione
+	 * @param emailUtente identificativo dell'utente
+	 * @param idEvento identificativo dell'evento di valutazione
 	 * @throws SQLException
 	 */
-	public void insertProdottiVal(ListaProdottiValutazione lp,int idLista) throws SQLException
+	public void insertProdottiVal(ArrayList<ProdottoValutazione> prodottiValutazione,String emailUtente,int idEvento) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
+		
+		ListaProdottiValutazione lp=new ListaProdottiValutazione(prodottiValutazione,emailUtente, idEvento,"");
         try 
         {
             conn = DBConnectionPool.getConnection();
             
+            query="INSERT INTO "+DBNames.TABLE_LISTAVALUTAZIONE+"("
+            		+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+","
+            		+DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID+
+            		") values (?,?)";
+            
+            st=conn.prepareStatement(query);
+            st.setString(1, lp.getEmailUtente());
+            st.setInt(2, lp.getIdEventoValutazione());
+            
+            st.executeUpdate();
+            conn.commit();
+            
+
             for(int i=0;i<lp.getListaProdottiValutazione().size();i++)
             {
             	
 	            query= "INSERT INTO "+DBNames.TABLE_PRODOTTOLISTA+"("
 	            		+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
-	            		+DBNames.ATTR_PRODOTTOLISTA_LISTA_ID+","
+	            		+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+","
+	            		+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+","
 	            		+DBNames.ATTR_PRODOTTOLISTA_PRIORITA+
-	            		") values (?,?,?)";
+	            		") values (?,?,?,?)";
 	            
 	            st = conn.prepareStatement(query);
 	            st.setString(1, lp.getListaProdottiValutazione().get(i).getIsbn());
-	            st.setInt(2, idLista);
-	            st.setInt(3, lp.getListaProdottiValutazione().get(i).getPriority());
+	            st.setString(2, lp.getEmailUtente());
+	            st.setInt(3, lp.getIdEventoValutazione());
+	            st.setInt(4, lp.getListaProdottiValutazione().get(i).getPriority());
 	
 	            st.executeUpdate();
 	            conn.commit();
@@ -64,12 +82,14 @@ public class DBProdottiValutazione {
 	            {
 	            	query= "INSERT INTO "+DBNames.TABLE_PRODOTTOINCONFLITTO+"("
 		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+","
-		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_LISTA_ID+
-		            		") values (?,?)";
+		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL+","
+		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID+
+		            		") values (?,?,?)";
 		            
 		            st = conn.prepareStatement(query);
 		            st.setString(1, lp.getListaProdottiValutazione().get(i).getIsbn());
-		            st.setInt(2, idLista);
+		            st.setString(2, lp.getEmailUtente());
+		            st.setInt(3, lp.getIdEventoValutazione());
 		
 		            st.executeUpdate();
 		            conn.commit();
@@ -84,27 +104,29 @@ public class DBProdottiValutazione {
 	}
 	
 	/**
-	 *Metodo che mostra i prodotti sottomessi a valutazione dall'utente in input
-	 * @param idLista identificativo lista prodotti sottomessi a valutazione
-	 * @return listaProdVal lista prodotti sottomessi a valutazione dall'utente
+	 *Metodo che mostra i prodotti sottomessi a valutazione dell'utente in input
+	 * @param emailUtente identificativo dell'utente
+	 * @param idEvento identificativo dell'evento di valutazione
+	 * @return listaProdottiValutazione lista prodotti sottomessi a valutazione dall'utente
 	 * @throws SQLException
 	 */
-	public ListaProdottiValutazione showProdottiVal(int idLista) throws SQLException
+	public ListaProdottiValutazione showProdottiVal(String emailUtente,int idEvento) throws SQLException
 	{
 		Connection conn=null;
 		Statement st=null;
 		ResultSet ris=null;
 		String query;
-		ListaProdottiValutazione listProdVal=new ListaProdottiValutazione();
+		ListaProdottiValutazione listaProdottiValutazione=new ListaProdottiValutazione(new ArrayList<ProdottoValutazione>(),emailUtente,idEvento,"");
 		try
 		{
 			conn=DBConnectionPool.getConnection();
-			query="SELECT "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
+			query="SELECT "+DBNames.ATTR_PRODOTTO_ISBN+","
 					+DBNames.ATTR_PRODOTTO_TITOLO+","
 					+DBNames.ATTR_PRODOTTOLISTA_PRIORITA
 					+ " FROM " +DBNames.TABLE_PRODOTTO+" "+DBNames.TABLE_PRODOTTOLISTA
 					+ " WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN
-					+" and "+DBNames.ATTR_PRODOTTOLISTA_LISTA_ID+"="+idLista;
+					+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
+					+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
 			
 			st=conn.createStatement();
 			ris=st.executeQuery(query);
@@ -114,11 +136,8 @@ public class DBProdottiValutazione {
 				String title=ris.getString(DBNames.ATTR_PRODOTTO_TITOLO);
 				int priority=ris.getInt(DBNames.ATTR_PRODOTTOLISTA_PRIORITA);
 				
-				ProdottoValutazione p=new ProdottoValutazione();
-				p.setIsbn(isbn);
-				p.setTitle(title);
-				p.setPriority(priority);
-				listProdVal.addProdottoValutazione(p);
+				ProdottoValutazione p=new ProdottoValutazione(isbn,title,priority);
+				listaProdottiValutazione.addProdottoValutazione(p);
 			}
 		}
 		finally
@@ -127,49 +146,60 @@ public class DBProdottiValutazione {
 			DBConnectionPool.releaseConnection(conn);
 		}
 		
-		return listProdVal;
+		return listaProdottiValutazione;
 	}
 	
 	/**
 	 *Metodo che permette di sostituire nel database un prodotto sottomesso a valutazione
 	 *in conflitto con un altro prodotto
+	 * @param lp lista prodotti sottomessi a valutazione che contiene il prodotto in conflitto
 	 * @param pv prodotto sottomesso a valutazione in conflitto
 	 * @param p prodotto per sostituire quello in conflitto
-	 * @param idLista identificativo lista prodotti valutazione
 	 * @throws SQLException
 	 */
-	public void modifyProdVal(ProdottoValutazione pv/*, Prodotto p*/,int idLista) throws SQLException
+	public void modifyProdVal(ListaProdottiValutazione lp, ProdottoValutazione pv/*, Prodotto p*/) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
-		try
+		
+		if(!lp.getBloccato())
 		{
-			conn=DBConnectionPool.getConnection();
-			query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
-					+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"=?"
-					+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+pv.getIsbn()
-					+" and "+DBNames.ATTR_PRODOTTOLISTA_LISTA_ID+"="+idLista;
-			
-			st=conn.prepareStatement(query);
-			//st.setString(1, p.getIsbn()); //non ho ancora il beans Prodotto
-			st.executeUpdate();
-			conn.commit();
-			
-			//Cancello ex prodotto valutazione dalla tabella dei conflitti
-			query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
-					+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+pv.getIsbn()
-					+"and "+DBNames.ATTR_PRODOTTOINCONFLITTO_LISTA_ID+"="+idLista;
-			
-			st=conn.prepareStatement(query);
-			st.executeUpdate();
-			conn.commit();
+			try
+			{
+				conn=DBConnectionPool.getConnection();
+				
+				query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
+						+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"=?"
+						+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+pv.getIsbn()
+						+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
+						+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
+				
+				st=conn.prepareStatement(query);
+				//st.setString(1, p.getIsbn()); //non ho ancora il beans Prodotto
+				st.executeUpdate();
+				conn.commit();
+				
+				//Cancello ex prodotto valutazione dalla tabella dei conflitti
+				query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+						+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+pv.getIsbn()
+						+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
+						+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
+				
+				st=conn.prepareStatement(query);
+				st.executeUpdate();
+				conn.commit();
+			}
+			finally
+			{
+				st.close();
+				DBConnectionPool.releaseConnection(conn);
+			}
 		}
-		finally
+		else
 		{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}	
+			//Gestisci eccezione
+		}
 	}
 	
 	/**
@@ -199,7 +229,7 @@ public class DBProdottiValutazione {
 			st1.close();
 			return false;
 		}
-		else 
+		else
 		{
 			st1.close();
 			return true;
