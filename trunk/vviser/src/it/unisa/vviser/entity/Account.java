@@ -1,4 +1,10 @@
 package it.unisa.vviser.entity;
+
+import java.util.Date;
+
+
+
+
 /**
 DOCUMENTAZIONE:
 - COSA RAPPRESENTA LA CLASSE
@@ -12,7 +18,7 @@ public class Account {
 	private String id;	
 private String nome;
 private String cognome;
-private String dataDiNascita;
+private Date dataDiNascita;
 private String comuneDiNascita;
 private String provinciaDiNascita;
 private String userName;
@@ -45,10 +51,10 @@ public String getCognome(){
 	return this.cognome;
 }
 
-public void setDataDiNascita (String dataDiNascita){
-	this.dataDiNascita=dataDiNascita;
+public void setDataDiNascita (Date date){
+	this.dataDiNascita=date;
 }
-public String getDataDiNascita(){
+public Date getDataDiNascita(){
 	return this.dataDiNascita;
 }
 
