@@ -10,9 +10,9 @@
 <body>
 login ok
 <%
-if (account==null){
-	//String redirectURL = "http://whatever.com/myJSPFile.jsp";
-   // response.sendRedirect(redirectURL);
+if (account.getPassword()==null){
+	String redirectURL = "main/login.jsp";
+    response.sendRedirect(redirectURL);
 	%>
 	account null
 	<%
