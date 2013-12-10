@@ -49,6 +49,7 @@ public final class DBNames {
 	public static final String ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL="utente.email";
 	public static final String ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID="eventoValutazione.id";
 	public static final String ATTR_LISTAVALUTAZIONE_SUGGERIMENTO="suggerimento";
+	public static final String ATTR_LISTAVALUTAZIONE_BLOCCATO="bloccato";
 	
 	//Attributi notifica
 	public static final String ATTR_NOTIFICA_ID="id";
