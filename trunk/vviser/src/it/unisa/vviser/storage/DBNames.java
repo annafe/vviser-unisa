@@ -46,8 +46,7 @@ public final class DBNames {
 	public static final String ATTR_EVENTOVALUTAZIONE_SCADENZA="scadenza";
 	
 	//Attributi listavalutazione
-	public static final String ATTR_LISTAVALUTAZIONE_ID="id";
-	public static final String ATTR_LISTAVALUTAZIONE_UTENTE_ID="utente.id";
+	public static final String ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL="utente.email";
 	public static final String ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID="eventoValutazione.id";
 	public static final String ATTR_LISTAVALUTAZIONE_SUGGERIMENTO="suggerimento";
 	
@@ -56,11 +55,11 @@ public final class DBNames {
 	public static final String ATTR_NOTIFICA_TIPO="TIPO";
 	
 	//Attributi partecipazioneavalutazione
-	public static final String ATTR_PARTECIPAZIONEAVALUTAZIONE_UTENTE_ID="utente_id";
+	public static final String ATTR_PARTECIPAZIONEAVALUTAZIONE_UTENTE_EMAIL="utente_email";
 	public static final String ATTR_PARTECIPAZIONEAVALUTAZIONE_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
 	
 	//Attributi prodottiutente
-	public static final String ATTR_PRODOTTIUTENTE_UTENTE_ID="utente_id";
+	public static final String ATTR_PRODOTTIUTENTE_UTENTE_EMAIL="utente_email";
 	public static final String ATTR_PRODOTTIUTENTE_PRODOTTO_ISBN="prodotto_isbn";
 	
 	//Attributi prodotto
@@ -77,11 +76,14 @@ public final class DBNames {
 	
 	//Attributi prodottoinconflitto
 	public static final String ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN="Prodotto.isbn";
-	public static final String ATTR_PRODOTTOINCONFLITTO_LISTA_ID="Lista.id";
+	public static final String ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL="utente_email";
+	public static final String ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
+	
 	
 	//Attributi prodottolista
 	public static final String ATTR_PRODOTTOLISTA_PRODOTTO_ISBN="prodotto.isbn";
-	public static final String ATTR_PRODOTTOLISTA_LISTA_ID="lista.id";
+	public static final String ATTR_PRODOTTOLISTA_UTENTE_EMAIL="utente_email";
+	public static final String ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
 	public static final String ATTR_PRODOTTOLISTA_PRIORITA="priorita";
 	
 	//Attributi pubblicazionesurivista
@@ -93,7 +95,7 @@ public final class DBNames {
 	public static final String ATTR_PUBBLICAZIONESURIVISTA_TOTALEPAGINE="totalePagine";
 	
 	//Attributi ricezionenotifica
-	public static final String ATTR_RICEZIONENOTIFICA_UTENTE_ID="utente_id";
+	public static final String ATTR_RICEZIONENOTIFICA_UTENTE_EMAIL="utente_email";
 	public static final String ATTR_RICEZIONENOTIFICA_NOTIFICA_ID="notifica_id";
 	
 	//Attributi rivista
@@ -106,11 +108,9 @@ public final class DBNames {
 	public static final String ATTR_RIVISTA_VALIDITA="validita";
 	
 	//Attributi utente
-	public static final String ATTR_UTENTE_id="id";
 	public static final String ATTR_UTENTE_EMAIL="email";
 	public static final String ATTR_UTENTE_PASSWORD="password";
 	public static final String ATTR_UTENTE_CODICEFISCALE="codiceFiscale";
-	public static final String ATTR_UTENTE_USERNAME="username";
 	public static final String ATTR_UTENTE_PROVINCIADINASCITA="provinciaDiNascita";
 	public static final String ATTR_UTENTE_COMUNEDINASCITA="comuneDiNascita";
 	public static final String ATTR_UTENTE_COGNOME="cognome";
