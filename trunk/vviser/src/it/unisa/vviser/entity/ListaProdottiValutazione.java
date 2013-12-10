@@ -13,6 +13,7 @@ public class ListaProdottiValutazione {
 	private String emailUtente;
 	private int idEventoValutazione;
 	private String suggestion;
+	private boolean bloccato;
 	
 	
 	/**
@@ -28,6 +29,7 @@ public class ListaProdottiValutazione {
 	 * @param listaProdottiValutazione prodotti sottomessi a valutazione
 	 * @param emailUtente identificativo utente proprietario della lista
 	 * @param suggestion per la risoluzione dei conflitti
+	 * @param bloccato indica se la lista e'modificabile o meno
 	 */
 	public ListaProdottiValutazione(ArrayList<ProdottoValutazione> listaProdottiValutazione, String emailUtente, int idEventoValutazione, String suggestion)
 	{
@@ -35,6 +37,7 @@ public class ListaProdottiValutazione {
 		this.emailUtente=emailUtente;
 		this.idEventoValutazione=idEventoValutazione;
 		this.suggestion=suggestion;
+		this.bloccato=true;
 	}
 	
 	/**
@@ -116,6 +119,24 @@ public class ListaProdottiValutazione {
 	public void setSuggestion(String suggestion) 
 	{
 		this.suggestion = suggestion;
+	}
+	
+	/**
+	 * Metodo che restituisce il parametro bloccato
+	 * @return bloccato il parametro inserito
+	 */
+	public boolean getBloccato() 
+	{
+		return this.bloccato;
+	}
+	
+	/**
+	 * Metodo che setta il parametro bloccato
+	 * @param bloccato il parametro fissato
+	 */
+	public void setBloccato(boolean bloccato) 
+	{
+		this.bloccato = bloccato;
 	}
 
 }
