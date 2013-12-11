@@ -30,13 +30,13 @@ nav{padding-top:0px;
 	</nav>
 </header>
 <section id="container-section">
-	<form method="GET" action="#" name="modulo">
+	<form method="GET" action="../ContolloLogin" name="ControlloLogin">
 	<fieldset>
 		<legend>Accedi</legend>
 		<table>
 			<tr>
 				<td>E-mail</td>
-				<td><input type="email" name="eml" size="20" class="testo"></td>
+				<td><input type="text" name="email" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Password</td>
