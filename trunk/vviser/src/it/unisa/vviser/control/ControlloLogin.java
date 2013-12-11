@@ -1,4 +1,4 @@
-package it.unisa.vviser.application;
+package it.unisa.vviser.control;
 
 import it.unisa.vviser.entity.Account;
 import it.unisa.vviser.storage.Connessione;
