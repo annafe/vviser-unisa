@@ -1,6 +1,13 @@
 package it.unisa.vviser.entity;
 
-public class Prodotto {
+/**
+ * 
+ * @author Salvatore Angiuoli
+ * @author Antonio De Piano
+ *
+ */
+public class Prodotto
+{
 	private String Anno;
 	private String Formato;
 	private String CodiceDOI;
@@ -11,16 +18,37 @@ public class Prodotto {
 	private String title;
 	
 	
-	
-	public String getIsbn() {
+	/**
+	 * Metodo che restituisce ISBN del prodotto
+	 * @return isbn del prodotto
+	 */
+	public String getIsbn()
+	{
 		return isbn;
 	}
-	public void setIsbn(String isbn) {
+	
+	/**
+	 * Metodo che setta l'ISBN al prodotto
+	 * @param isbn da attribuire al prodotto
+	 */
+	public void setIsbn(String isbn)
+	{
 		this.isbn = isbn;
 	}
-	public String getTitle() {
+	
+	/**
+	 * Metodo che restituisce il titolo del prodotto
+	 * @return titolo del prodotto
+	 */
+	public String getTitle()
+	{
 		return title;
 	}
+	
+	/**
+	 * 
+	 * @param title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
