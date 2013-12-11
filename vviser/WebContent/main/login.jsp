@@ -30,7 +30,7 @@ nav{padding-top:0px;
 	</nav>
 </header>
 <section id="container-section">
-	<form method="GET" action="../ContolloLogin" name="ControlloLogin">
+	<form method="GET" action="../ControlloLogin" name="ControlloLogin">
 	<fieldset>
 		<legend>Accedi</legend>
 		<table>
