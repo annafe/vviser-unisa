@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
 
 
@@ -16,12 +17,14 @@ import it.unisa.vviser.entity.ProdottoValutazione;
  *
  */
 public class DBGestioneProdotto {
+	
 	/**
 	 * Metodo che permette di inserire nel database un prodotto
 	 * @param p 
 	 * @throws SQLException
 	 */
-	public void insertProdotti(Prodotto p) throws SQLException
+	
+	public void insertProdotti1(Prodotto p) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -78,9 +81,11 @@ public class DBGestioneProdotto {
 	/**
 	 * Metodo che permette di eliminare nel database un prodotto
 	 * @param pisbn
+	 * @return 
+	 * @return 
 	 * @throws SQLException
 	 */
-	public void delete Prodotti(String pisbn) throws SQLException
+	public void deleteProdotti(String pisbn) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -172,7 +177,7 @@ public class DBGestioneProdotto {
 		 * @param p 
 		 * @throws SQLException
 		 */
-		public ArrayList<Prodotto> showProdotti(int idUt) throws SQLException
+		public ArrayList<Prodotto> showProdotti11(int idUt) throws SQLException
 		{
 			Connection conn=null;
 			Statement st=null;
@@ -204,8 +209,8 @@ public class DBGestioneProdotto {
 					p.setIsbn(isbn);
 					p.setTitle(title);
 					p.setAnno(anno);
-					p.setformato(formato);
-					p.setCodice(codice);
+					p.setFormato(formato);
+					p.setCodiceDOI(codice);
 					p.setCategoria(categoria);
 					p.setNote(note);
 					p.setDiffusione(diffusione);
@@ -287,8 +292,8 @@ public class DBGestioneProdotto {
 					p.setIsbn(isbn);
 					p.setTitle(title);
 					p.setAnno(anno);
-					p.setformato(formato);
-					p.setCodice(codice);
+					p.setFormato(formato);
+					p.setCodiceDOI(codice);
 					p.setCategoria(categoria);
 					p.setNote(note);
 					p.setDiffusione(diffusione);
@@ -309,7 +314,7 @@ public class DBGestioneProdotto {
 		 * @param p 
 		 * @throws SQLException
 		 */
-		public ArrayList<Prodotto> showProdotti(String titolo) throws SQLException
+		public ArrayList<Prodotto> showProdotti1(String titolo) throws SQLException
 		{
 			Connection conn=null;
 			Statement st=null;
@@ -342,8 +347,8 @@ public class DBGestioneProdotto {
 					Prodotto p=new Prodotto();
 					p.setIsbn(isbn);
 					p.setAnno(anno);
-					p.setformato(formato);
-					p.setCodice(codice);
+					p.setFormato(formato);
+					p.setCodiceDOI(codice);
 					p.setCategoria(categoria);
 					p.setNote(note);
 					p.setDiffusione(diffusione);
@@ -370,7 +375,7 @@ public class DBGestioneProdotto {
 			ResultSet ris=null;
 			String query;
 			ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
-			tryc
+			try
 			{
 				conn=DBConnectionPool.getConnection();
 				query="SELECT DBNames.TABLE_PRODOTTO_title, DBNames.TABLE_PRODOTTO_AnnoPubblicazione, DBNames.TABLE_PRODOTTO_FormatoPubblicazione, DBNames.TABLE_PRODOTTO_CodiceDOI, DBNames.TABLE_PRODOTTO_Diffusione, DBNames.TABLE_PRODOTTO_Note, DBNames.TABLE_PRODOTTO_Categoria.nome"
@@ -396,8 +401,8 @@ public class DBGestioneProdotto {
 					Prodotto p=new Prodotto();
 					p.setIsbn(isbn);
 					p.setAnno(anno);
-					p.setformato(formato);
-					p.setCodice(codice);
+					p.setFormato(formato);
+					p.setCodiceDOI(codice);
 					p.setCategoria(categoria);
 					p.setNote(note);
 					p.setDiffusione(diffusione);
@@ -451,8 +456,8 @@ public class DBGestioneProdotto {
 					Prodotto p=new Prodotto();
 					p.setIsbn(isbn);
 					p.setAnno(anno);
-					p.setformato(formato);
-					p.setCodice(codice);
+					p.setFormato(formato);
+					p.setCodiceDOI(codice);
 					p.setCategoria(categoria);
 					p.setNote(note);
 					p.setDiffusione(diffusione);
