@@ -13,20 +13,26 @@ public final class DBNames {
 	}
 	
 	//Nomi tabelle del database
+	public static final String TABLE_AUTORICONOSCIMENTO="autoriconoscimento";
 	public static final String TABLE_CATEGORIA="categoria";
 	public static final String TABLE_DIPARTIMENTO="dipartimento";
 	public static final String TABLE_EVENTOVALUTAZIONE="eventovalutazione";
 	public static final String TABLE_LISTAVALUTAZIONE="listavalutazione";
 	public static final String TABLE_NOTIFICA="notifica";
 	public static final String TABLE_PARTECIPAZIONEAVALUTAZIONE="partecipazioneavalutazione";
-	public static final String TABLE_PRODOTTIUTENTE="prodottiutente";
 	public static final String TABLE_PRODOTTO="prodotto";
 	public static final String TABLE_PRODOTTOINCONFLITTO="prodottoinconflitto";
 	public static final String TABLE_PRODOTTOLISTA="prodottolista";
 	public static final String TABLE_PUBBLICAZIONESURIVISTA="pubblicazionesurivista";
-	public static final String TABLE_RICEZIONENOTIFICA="ricezionenotifica";
 	public static final String TABLE_RIVISTA="rivista";
+	public static final String TABLE_SOTTOMETTI="sottometti";
 	public static final String TABLE_UTENTE="utente";
+	
+	//Attributi autoriconoscimento
+	public static final String ATTR_AUTORICONOSCIMENTO_COLLABORATORE="collaboratore";
+	public static final String ATTR_AUTORICONOSCIMENTO_PRODOTTO_ISBN="prodotto_isbn";
+	public static final String ATTR_AUTORICONOSCIMENTO_PROPRIETARIO="proprietario";
+	public static final String ATTR_AUTORICONOSCIMENTO_CONVALIDATO="convalidato";
 	
 	//Attributi categoria
 	public static final String ATTR_CATEGORIA_NOME="nome";
@@ -53,15 +59,15 @@ public final class DBNames {
 	
 	//Attributi notifica
 	public static final String ATTR_NOTIFICA_ID="id";
-	public static final String ATTR_NOTIFICA_TIPO="TIPO";
+	public static final String ATTR_NOTIFICA_TIPO="tipo";
+	public static final String ATTR_NOTIFICA_STATO="stato";
+	public static final String ATTR_NOTIFICA_MESSAGGIO="messaggio";
+	public static final String ATTR_NOTIFICA_MITTENTE="mittente";
+	public static final String ATTR_NOTIFICA_DESTINATARIO="destinatario";
 	
 	//Attributi partecipazioneavalutazione
 	public static final String ATTR_PARTECIPAZIONEAVALUTAZIONE_UTENTE_EMAIL="utente_email";
 	public static final String ATTR_PARTECIPAZIONEAVALUTAZIONE_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
-	
-	//Attributi prodottiutente
-	public static final String ATTR_PRODOTTIUTENTE_UTENTE_EMAIL="utente_email";
-	public static final String ATTR_PRODOTTIUTENTE_PRODOTTO_ISBN="prodotto_isbn";
 	
 	//Attributi prodotto
 	public static final String ATTR_PRODOTTO_ISBN="isbn";
@@ -74,6 +80,7 @@ public final class DBNames {
 	public static final String ATTR_PRODOTTO_STATO="stato";
 	public static final String ATTR_PRODOTTO_BOZZA="bozza";
 	public static final String ATTR_PRODOTTO_CATEGORIA_NOME="categoria_nome";
+	public static final String ATTR_PRODOTTO_EMAILPROPRIETARIO="email_proprietario";
 	
 	//Attributi prodottoinconflitto
 	public static final String ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN="Prodotto.isbn";
@@ -95,10 +102,6 @@ public final class DBNames {
 	public static final String ATTR_PUBBLICAZIONESURIVISTA_APAGINA="aPagina";
 	public static final String ATTR_PUBBLICAZIONESURIVISTA_TOTALEPAGINE="totalePagine";
 	
-	//Attributi ricezionenotifica
-	public static final String ATTR_RICEZIONENOTIFICA_UTENTE_EMAIL="utente_email";
-	public static final String ATTR_RICEZIONENOTIFICA_NOTIFICA_ID="notifica_id";
-	
 	//Attributi rivista
 	public static final String ATTR_RIVISTA_ISSN="issn";
 	public static final String ATTR_RIVISTA_NOME="nome";
@@ -107,6 +110,10 @@ public final class DBNames {
 	public static final String ATTR_RIVISTA_DA_ANNO="daAnno";
 	public static final String ATTR_RIVISTA_AD_ANNO="adAnno";
 	public static final String ATTR_RIVISTA_VALIDITA="validita";
+	
+	//Attributi sottometti
+	public static final String ATTR_SOTTOMETTI_UTENTE_EMAIL="utente_email";
+	public static final String ATTR_SOTTOMETTI_PRODOTTO_ISBN="prodotto_isbn";
 	
 	//Attributi utente
 	public static final String ATTR_UTENTE_EMAIL="email";
