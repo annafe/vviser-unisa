@@ -1,6 +1,5 @@
-package it.unisa.vviser.application;
+package it.unisa.vviser.storage;
 
-import it.unisa.vviser.storage.DBNames;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,7 +21,7 @@ import it.unisa.vviser.entity.EventoValutazione;
  *
  */
 
-public class ControlEventiValutazione {
+public class DBEventiValutazione {
 
 	private final static String table = DBNames.TABLE_EVENTOVALUTAZIONE;
 	private final static String nomeEvento = DBNames.ATTR_EVENTOVALUTAZIONE_NOME;
@@ -38,7 +37,7 @@ public class ControlEventiValutazione {
 	
 	
 	// Costruttore vuoto
-	public ControlEventiValutazione(){}
+	public DBEventiValutazione(){}
 	
 	
 	
@@ -367,7 +366,7 @@ public class ControlEventiValutazione {
 	
 	/**
 	 * esegue la connessione al database
-	 * @return true se la connessione con il database è stata stabilita, false altrimenti
+	 * @return true se la connessione con il database ? stata stabilita, false altrimenti
 	 * @throws SQLException
 	 */
 	private boolean connettiAlDatabase() throws SQLException{
@@ -387,7 +386,7 @@ public class ControlEventiValutazione {
 	/**
 	 * esegue la query sul database
 	 * @param query stringa che contiene la query da eseguire
-	 * @return un valore diverso da null se la query è andata a buon fine
+	 * @return un valore diverso da null se la query ? andata a buon fine
 	 * @throws SQLException
 	 */
 	private ResultSet eseguiQuery(String query) throws SQLException{
