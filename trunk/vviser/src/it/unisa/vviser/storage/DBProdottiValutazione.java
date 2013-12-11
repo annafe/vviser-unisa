@@ -13,7 +13,7 @@ import it.unisa.vviser.entity.ProdottoValutazione;
 
 /**
  * 
- * @author Giuseppe Sabato
+ * @author Giuseppe Sabato 
  *
  */
 public class DBProdottiValutazione {
