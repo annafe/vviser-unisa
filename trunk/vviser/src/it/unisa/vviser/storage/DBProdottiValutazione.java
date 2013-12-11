@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.exception.InvalidModifyListaProdottiValutazione;
 
 
 /**
@@ -198,7 +199,7 @@ public class DBProdottiValutazione {
 		}
 		else
 		{
-			//Gestisci eccezione
+			throw new InvalidModifyListaProdottiValutazione("Lista prodotti sottomessi a valutazione bloccata!");
 		}
 	}
 	
