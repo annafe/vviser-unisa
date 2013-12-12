@@ -1,6 +1,7 @@
 package it.unisa.vviser.storage;
 
 import it.unisa.vviser.storage.DBNames;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -42,22 +43,27 @@ public class DBEventiValutazione {
 	 * @return true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
 	 * @throws SQLException
 	 */
-	public boolean addEvento(EventoValutazione e) throws SQLException{
+	public boolean addEvento(EventoValutazione e) throws SQLException{		
+		conn = DBConnectionPool.getConnection();
 		
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "INSERT INTO "+ DBNames.TABLE_EVENTOVALUTAZIONE+
+		try{
+			String queryParam = "INSERT INTO "+ DBNames.TABLE_EVENTOVALUTAZIONE+
 				"("+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+","+	DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+","+
 				DBNames.ATTR_EVENTOVALUTAZIONE_DADATA+","+ DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+","+
 				DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA+") "+
 				" VALUES ("+e.getNomeEvento()+","+e.getNumeroPubblicazioni()+
 				","+e.getDataInizio()+","+e.getDataFine()+","+e.getScadenza()+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+            DBConnectionPool.releaseConnection(conn);
+		}
 		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
 	}
 
 	
@@ -71,18 +77,22 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean modifyNomeEventoByID(int id, String nome) throws SQLException{
+		conn = DBConnectionPool.getConnection();
 		
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
 				" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+
 				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	/**
@@ -93,17 +103,21 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean modifyDataFineEventoByNome(String prevNome, String nuovoNome) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-				" SET "+ DBNames.ATTR_EVENTOVALUTAZIONE_NOME +" = "+nuovoNome+
-				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+prevNome+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		conn = DBConnectionPool.getConnection();
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+					" SET "+ DBNames.ATTR_EVENTOVALUTAZIONE_NOME +" = "+nuovoNome+
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+prevNome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 		
 	}
 	
@@ -115,17 +129,21 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean modifyScadenzaByNome(String nome, GregorianCalendar scadenza) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-		" SET scadenza = "+scadenza.toString()+
-		" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		conn = DBConnectionPool.getConnection();
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+			" SET scadenza = "+scadenza.toString()+
+			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	/**
@@ -136,17 +154,21 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean modifyNumPubblicazioniByNome(int num, String nome) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "UPDATE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+
-				" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+" = "+num+
-				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		conn = DBConnectionPool.getConnection();
+		try{
+			String queryParam = "UPDATE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+
+					" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+" = "+num+
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	/**
@@ -157,17 +179,21 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean modifyDataInizioByNome(GregorianCalendar inizio, String nome) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-					"SET "+DBNames.ATTR_EVENTOVALUTAZIONE_DADATA +" = "+inizio.get(Calendar.YEAR)+"/"+inizio.get(Calendar.MONTH)+"/"+inizio.get(Calendar.DAY_OF_MONTH)+
-					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		conn = DBConnectionPool.getConnection();
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+						"SET "+DBNames.ATTR_EVENTOVALUTAZIONE_DADATA +" = "+inizio.get(Calendar.YEAR)+"/"+inizio.get(Calendar.MONTH)+"/"+inizio.get(Calendar.DAY_OF_MONTH)+
+						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	/**
@@ -178,17 +204,21 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean modifyDataFineByNome(GregorianCalendar fine, String nome) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-					" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+" = "+fine.get(Calendar.YEAR)+"/"+fine.get(Calendar.MONTH)+"/"+fine.get(Calendar.DAY_OF_MONTH)+
-					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		conn=DBConnectionPool.getConnection();
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+						" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+" = "+fine.get(Calendar.YEAR)+"/"+fine.get(Calendar.MONTH)+"/"+fine.get(Calendar.DAY_OF_MONTH)+
+						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	
@@ -199,14 +229,11 @@ public class DBEventiValutazione {
 	public List<EventoValutazione> visualizzaEventiPerNome(EventoValutazione e) throws SQLException{
         List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
         
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) {
-			throw new SQLException();
-		}
-		
+        conn=DBConnectionPool.getConnection();
+		try{
 		String queryParam = "SELECT * FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+e.getDataFine()+";";
-		try{
+		
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet rs = pstm.executeQuery();
 			
@@ -221,11 +248,9 @@ public class DBEventiValutazione {
 				toReturn.add(evento);
 			}
 		}	
-		catch(SQLException exc){
-				exc.printStackTrace();
-		}
 		finally{
-			if (conn != null) conn.close();
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
 		}
 		
         return toReturn;
@@ -234,10 +259,7 @@ public class DBEventiValutazione {
 	public List<EventoValutazione> visualizzaEventiPerScadenza(EventoValutazione e) throws SQLException{
         List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
         
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) {
-			throw new SQLException();
-		}
+        conn=DBConnectionPool.getConnection();
 		
 		String queryParam = "SELECT * FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA+" = "+e.getScadenza()+";";
@@ -256,11 +278,9 @@ public class DBEventiValutazione {
 				toReturn.add(evento);
 			}
 		}	
-		catch(SQLException exc){
-				exc.printStackTrace();
-		}
 		finally{
-			if (conn != null) conn.close();
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
 		}
 		
         return toReturn;
@@ -269,10 +289,7 @@ public class DBEventiValutazione {
 	public List<EventoValutazione> visualizzaEventiPerDataFine(EventoValutazione e) throws SQLException{
         List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
         
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) {
-			throw new SQLException();
-		}
+        conn=DBConnectionPool.getConnection();
 		
 		String queryParam = "SELECT * FROM eventovalutazione"+
 					"WHERE aData = "+e.getDataFine()+";";
@@ -291,11 +308,9 @@ public class DBEventiValutazione {
 				toReturn.add(evento);
 			}
 		}	
-		catch(SQLException exc){
-				exc.printStackTrace();
-		}
 		finally{
-			if (conn != null) conn.close();
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
 		}
 		
         return toReturn;
@@ -313,17 +328,20 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean deleteEventoByID(EventoValutazione e) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "DELETE FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
-				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+e.getID()+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
-		
+		conn=DBConnectionPool.getConnection();
+		try{
+			String queryParam = "DELETE FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+e.getID()+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+			}finally{
+				pstm.close();
+		        DBConnectionPool.releaseConnection(conn);
+			}
 	}
 	
 	/**
@@ -333,16 +351,20 @@ public class DBEventiValutazione {
 	 * @throws SQLException
 	 */
 	public boolean deleteEventoByNome(String nome) throws SQLException{
-		statoConnessione = this.connettiAlDatabase();
-		if (!statoConnessione) return false;
-		
-		String queryParam = "DELETE FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
-				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
-		
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		conn=DBConnectionPool.getConnection();
+		try{
+			String queryParam = "DELETE FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	
@@ -351,16 +373,24 @@ public class DBEventiValutazione {
 	// ALTRI METODI
 	
 	public boolean invioNotificaConflitto(String tipoNotifica) throws SQLException{
-		String query = "SELECT "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+
-				" FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO;
+		conn=DBConnectionPool.getConnection();
+		try{
+//		String query = "SELECT "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+
+//				" FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO;
 		
 		String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
 				" ( "+DBNames.ATTR_NOTIFICA_TIPO+")"+
 				" VALUES ( "+tipoNotifica+" );";
-		if (this.eseguiQuery(queryParam)==null)
-			return false;
-		else
-			return true;
+		
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
 	}
 	
 	public void prodottiInStatoBozza(){
