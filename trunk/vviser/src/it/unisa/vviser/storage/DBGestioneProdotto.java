@@ -28,7 +28,7 @@ public class DBGestioneProdotto
 	}
 	
 	/**
-	 * Metodo che permette di inserire un prodtto della ricerca
+	 * Metodo che permette di inserire un prodotto della ricerca
 	 * @param p prodotto
 	 * @throws SQLException
 	 */
@@ -75,8 +75,7 @@ public class DBGestioneProdotto
         {
             st.close();
             DBConnectionPool.releaseConnection(conn);
-        }
-            
+        }   
 	}
 	
 	
@@ -144,7 +143,7 @@ public class DBGestioneProdotto
 	 * 
 	 * @throws SQLException
 	 */
-	public void modifyProdNonVal(Prodotto p) throws SQLException
+	public void modificaProdotto(Prodotto p) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -210,11 +209,168 @@ public class DBGestioneProdotto
 		
 	}
 	*/
+	
+	/**
+	 * Metodo che permette di sottomettere un prodotto al MIUR
+	 * @param proprietario proprietario del prodotto
+	 * @param isbn del prodotto da sottomettere
+	 * @throws SQLException
+	 */
+	public void sottomettiAlMIUR(String proprietario,String isbn)throws SQLException
+	{
+		Connection conn=null;
+		PreparedStatement st=null;
+		String query;
+		
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+            query="INSERT INTO "+DBNames.TABLE_PRODOTTO+"("
+            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+","
+            		+DBNames.ATTR_PRODOTTO_ISBN
+            		+") values (?,?)";
+            st=conn.prepareStatement(query);
+            st.setString(1, proprietario);
+            st.setString(2,isbn);
+            st.executeUpdate();
+            conn.commit();
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 * Metodo che permette di visualizzare i dettagli di un dato prodotto
+	 * @param isbn del prodotto
+	 * @return Il prodotto con i dettagli 
+	 * @throws SQLException 
+	 */
+	public Prodotto visualizzaDettagliProdotto(String isbn) throws SQLException
+	{
+		
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
+            
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		ris.next();
+    		Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+    				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+    				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+    				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+    				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+    				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+    		return p;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 *Metodo che permette di visualizzare tutti i prodotti personali 
+	 * @param proprietario del prodotto
+	 * @return lista dei prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> visualizzaProdotti(String proprietario)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+proprietario;
+            
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 * Metodo che permete di ricerca i prodotti in base al titolo
+	 * @param titolo del prodotto
+	 * @return
+	 */
+	public ArrayList<Prodotto> ricercaProdotto(String titolo)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_TITOLO+"="+titolo;
+            
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
 		/**
 		 * Metodo che permette di visualizzare nel database i prodotti in stato di bozza
 		 * @param p 
 		 * @throws SQLException
 		 */
+	/*
 		public ArrayList<Prodotto> showProdotti11(int idUt) throws SQLException
 		{
 			Connection conn=null;
@@ -263,7 +419,7 @@ public class DBGestioneProdotto
 			
 			return listProdVal;
 		}
-		
+		*/
 		/**
 		 * Metodo che permette di inserire nel database un prodotto salvato in bozza
 		 * @param p 
@@ -299,6 +455,7 @@ public class DBGestioneProdotto
 		 *  * @param p 
 		 * @throws SQLException
 		 */
+		/*
 		public ArrayList<Prodotto> showProdotti(int idUt) throws SQLException
 		{
 			Connection conn=null;
@@ -346,12 +503,13 @@ public class DBGestioneProdotto
 			
 			return listProdVal;
 		}	
-	
+	*/
 		/**
 		 * Metodo che permette di visualizzare nel database i prodotti per titolo
 		 * @param p 
 		 * @throws SQLException
 		 */
+		/*
 		public ArrayList<Prodotto> showProdotti1(String titolo) throws SQLException
 		{
 			Connection conn=null;
@@ -400,13 +558,13 @@ public class DBGestioneProdotto
 			}
 			
 			return listProdVal;
-		}
+		}*/
 		/**
 		 * Metodo che permette di visualizzare nel database i prodotti per isbn
 		 * @param p 
 		 * @throws SQLException
 		 */
-		public ArrayList<Prodotto> showProdotti(String pissn) throws SQLException
+		/*public ArrayList<Prodotto> showProdotti(String pissn) throws SQLException
 		{
 			Connection conn=null;
 			Statement st=null;
@@ -454,13 +612,13 @@ public class DBGestioneProdotto
 			}
 			
 			return listProdVal;
-		}
+		}*/
 		/**
 		 * Metodo che permette di visualizzare nel database i prodotti per data
 		 * @param p 
 		 * @throws SQLException
 		 */
-		public ArrayList<Prodotto> showProdotti(String annoa, String annob) throws SQLException
+		/*public ArrayList<Prodotto> showProdotti(String annoa, String annob) throws SQLException
 		{
 			Connection conn=null;
 			Statement st=null;
