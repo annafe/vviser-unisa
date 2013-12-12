@@ -53,7 +53,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_BOZZA+","
             		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+","
             		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
-            		") values (?,?,?,?,?,?,?,?,?,?,?)";
+            		+") values (?,?,?,?,?,?,?,?,?,?,?)";
             
             st=conn.prepareStatement(query);
             st.setString(1,p.getIsbn());
