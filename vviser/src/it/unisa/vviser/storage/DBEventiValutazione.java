@@ -401,49 +401,6 @@ public class DBEventiValutazione {
 	// METODI DI SUPPORTO PER LA CLASSE
 	
 	/**
-	 * esegue la connessione al database
-	 * @return true se la connessione con il database è stata stabilita, false altrimenti
-	 * @throws SQLException
-	 */
-	private boolean connettiAlDatabase() throws SQLException{
-		
-		try{
-			Class.forName("com.mysql.jdbc.Driver"); //caricamento driver
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/vviser?user=root&password=");
-			return true;
-		}
-		catch (Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		
-	}
-	
-	/**
-	 * esegue la query sul database
-	 * @param query stringa che contiene la query da eseguire
-	 * @return un valore diverso da null se la query è andata a buon fine
-	 * @throws SQLException
-	 */
-	private ResultSet eseguiQuery(String query) throws SQLException{
-		ResultSet toR=null;
-		try{
-			pstm = conn.prepareStatement(query);
-			toR = pstm.executeQuery();
-			return toR;
-		} 
-		catch(SQLException exc){
-			exc.printStackTrace();
-			return toR;
-		}
-		finally{
-			if (conn != null) conn.close();
-			pstm.close();
-			
-		}
-	}
-
-	/**
 	 * crea un GregorianCalendar data una stringa in formato "YYYY/MM/DD"
 	 * @param data stringa che contiene la data in formato "YYYY/MM/DD"
 	 * @return un GregorianCalendar contenente la data inserita in input
