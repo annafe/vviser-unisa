@@ -367,8 +367,9 @@ public class DBGestioneProdotto
 	}
 	
 	/**
-	 * Metodo che permette di ricercare i prodotti in un intervallo di anni
-	 * @param titolo
+	 * Metodo che permette di ricercare i prodotti in un intervallo di anni es. Da 1995 a 2000
+	 * @param anno della pubblicazione
+	 * @param anno della pubblicazione
 	 * @return
 	 * @throws SQLException
 	 */
