@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
+import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.exception.InvalidModifyListaProdottiValutazione;
 
@@ -154,11 +155,11 @@ public class DBProdottiValutazione {
 	 *Metodo che permette di sostituire nel database un prodotto sottomesso a valutazione
 	 *in conflitto con un altro prodotto
 	 * @param lp lista prodotti sottomessi a valutazione che contiene il prodotto in conflitto
-	 * @param pv prodotto sottomesso a valutazione in conflitto
-	 * @param p prodotto per sostituire quello in conflitto
+	 * @param prodottiValutazione prodotti sottomessi a valutazione in conflitto
+	 * @param prodotti per sostituire quelli in conflitto
 	 * @throws SQLException
 	 */
-	public void modifyProdVal(ListaProdottiValutazione lp, ProdottoValutazione pv/*, Prodotto p*/) throws SQLException
+	public void modifyProdVal(ListaProdottiValutazione lp, ArrayList<ProdottoValutazione> prodottiValutazione, ArrayList<Prodotto> prodotti) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -170,26 +171,29 @@ public class DBProdottiValutazione {
 			{
 				conn=DBConnectionPool.getConnection();
 				
-				query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
-						+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"=?"
-						+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+pv.getIsbn()
-						+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
-						+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
-				
-				st=conn.prepareStatement(query);
-				//st.setString(1, p.getIsbn()); //non ho ancora il beans Prodotto
-				st.executeUpdate();
-				conn.commit();
-				
-				//Cancello ex prodotto valutazione dalla tabella dei conflitti
-				query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
-						+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+pv.getIsbn()
-						+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
-						+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
-				
-				st=conn.prepareStatement(query);
-				st.executeUpdate();
-				conn.commit();
+				for (int i=0;i<prodottiValutazione.size();i++)
+				{
+					query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
+							+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"=?"
+							+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+prodottiValutazione.get(i).getIsbn()
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
+					
+					st=conn.prepareStatement(query);
+					st.setString(1, prodotti.get(i).getIsbn());
+					st.executeUpdate();
+					conn.commit();
+					
+					//Cancello ex prodotto valutazione dalla tabella dei conflitti
+					query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+							+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+prodottiValutazione.get(i).getIsbn()
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
+					
+					st=conn.prepareStatement(query);
+					st.executeUpdate();
+					conn.commit();
+				}
 			}
 			finally
 			{
