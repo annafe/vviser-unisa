@@ -14,47 +14,78 @@ import it.unisa.vviser.entity.ProdottoValutazione;
 /**
  * 
  * @author Angiuoli Salvatore
+ * @author Antonio De Piano
  *
  */
-public class DBGestioneProdotto {
+public class DBGestioneProdotto
+{
+	/**
+	 * Costruttore vuoto
+	 */
+	public DBGestioneProdotto()
+	{
+		
+	}
 	
 	/**
-	 * Metodo che permette di inserire nel database un prodotto
-	 * @param p 
+	 * Metodo che permette di inserire un prodtto della ricerca
+	 * @param p prodotto
 	 * @throws SQLException
 	 */
-	
-	public void insertProdotti1(Prodotto p) throws SQLException
+	public void insertProdotto(Prodotto p)throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
-        try 
-        {
-            conn = DBConnectionPool.getConnection();
-            query= "INSERT INTO DBNames.TABLE_PRODOTTO(Isbn Titolo, AnnoPubblicazione, FormatoPubblicazione, CodiceDOI, Diffusione, Note, Categoria.nome, Stato) values (?,?)"
-            		+"WHERE DBNames.TABLE_PRODOTTO_isbn=DBNames.TABLE_publicazionerivista_prodotto.isbn"
-            		+"DBNames.TABLE_PUBLICAZIONERIVISTA_rivista.issn=DBNames.TABLE_rivista_issn";
-
-            st = conn.prepareStatement(query);
-            st.setString(1, p.getIsbn());
+		
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+            query="INSERT INTO "+DBNames.TABLE_PRODOTTO+"("
+            		+DBNames.ATTR_PRODOTTO_ISBN+","
+            		+DBNames.ATTR_PRODOTTO_TITOLO+","
+            		+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+","
+            		+DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE+","
+            		+DBNames.ATTR_PRODOTTO_CODICEDOI+","
+            		+DBNames.ATTR_PRODOTTO_DIFFUSIONE+","
+            		+DBNames.ATTR_PRODOTTO_NOTE+","
+            		+DBNames.ATTR_PRODOTTO_STATO+","
+            		+DBNames.ATTR_PRODOTTO_BOZZA+","
+            		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+","
+            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
+            		") values (?,?,?,?,?,?,?,?,?,?,?)";
             
-
+            st=conn.prepareStatement(query);
+            st.setString(1,p.getIsbn());
+            st.setString(2,p.getTitolo());
+            st.setString(3,p.getAnnoPubblicazione());
+            st.setString(4,p.getFormatoPubblicazione());
+            st.setString(5,p.getCodiceDOI());
+            st.setString(6,p.getDiffusione());
+            st.setString(7,p.getNote());
+            st.setString(8,p.getStato());
+            st.setBoolean(9,p.getBozza());
+            st.setString(10,p.getCategoria());
+            st.setString(11,p.getProprietario());
+            
             st.executeUpdate();
             conn.commit();
-        } 
-        finally 
+		}
+		finally 
         {
             st.close();
             DBConnectionPool.releaseConnection(conn);
         }
+            
 	}
+	
 	
 	/**
 	 * Metodo che permette di inserire nel database un prodotto parziale
 	 * @param p 
 	 * @throws SQLException
 	 */
+	/*
 	public void insertProdottiValparz(Prodotto p) throws SQLException
 	{
 		Connection conn=null;
@@ -78,14 +109,14 @@ public class DBGestioneProdotto {
             DBConnectionPool.releaseConnection(conn);
         }
 	}
+	*/
+	
 	/**
-	 * Metodo che permette di eliminare nel database un prodotto
-	 * @param pisbn
-	 * @return 
-	 * @return 
+	 * Metodo che permette di eliminare un prodotto
+	 * @param isbn
 	 * @throws SQLException
 	 */
-	public void deleteProdotti(String pisbn) throws SQLException
+	public void deleteProdotto(String isbn) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -93,14 +124,11 @@ public class DBGestioneProdotto {
         try 
         {
             conn = DBConnectionPool.getConnection();
-            query= "DELETE INTO DBNames.TABLE_PRODOTTO"+"WHERE DBNames.TABLE_PRODOTTO_isbn=pisbm";
+            query= "DELETE FROM "+DBNames.TABLE_PRODOTTO+" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
 
-            st = conn.prepareStatement(query);
-            st.setString(1, p.getIsbn());
-            
-
-            st.executeUpdate();
-            conn.commit();
+            st=conn.prepareStatement(query);
+			st.executeUpdate();
+			conn.commit();
         } 
         finally 
         {
@@ -108,13 +136,15 @@ public class DBGestioneProdotto {
             DBConnectionPool.releaseConnection(conn);
         }
 	}
+	
+	
 	/**
-	 *Metodo che permette di modificaree nel database un prodotto publicato su rivista non validato
-	 * @param pisbn
+	 *Metodo che permette di modificare di un prodotto
+	 * @param p prodotto
 	 * 
 	 * @throws SQLException
 	 */
-	public void modifyProdNonVal(String pisbn/*, Prodotto p*/) throws SQLException
+	public void modifyProdNonVal(Prodotto p) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -122,10 +152,17 @@ public class DBGestioneProdotto {
 		try
 		{
 			conn=DBConnectionPool.getConnection();
-			query="UPDATE FROM DBNames.TABLE_PRODOTTO, DBNames.TABLE_Publicazioneivista SET DBNames.TABLE_PRODOTTO_Isbn=?,"+" DBNames.TABLE_PRODOTTO_Titolo=?,"+" DBNames.TABLE_PRODOTTO_AnnoPubblicazione=?," +"DBNames.TABLE_PRODOTTO_FormatoPubblicazione=?,"+ "DBNames.TABLE_PRODOTTO_CodiceDOI=?,"+ "DBNames.TABLE_PRODOTTO_Diffusione=?,"+ "DBNames.TABLE_PRODOTTO_Note=?," +"DBNames.TABLE_PRODOTTO_Categoria.nome=?," 	
-					+ "WHERE DBNames.TABLE_PRODOTTO_isbn=DBNames.TABLE_publicazionerivista_isbn"
-					+ "and DBNames.TABLE_PRODOTTO_isbn="+pisbn
-					+ "and DBNames.TABLE_PRODOTTO_stato= NonValidato";
+			query="UPDATE "+DBNames.TABLE_PRODOTTO+" SET "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"="+p.getAnnoPubblicazione()+","
+					+DBNames.ATTR_PRODOTTO_TITOLO+"="+p.getTitolo()+","
+            		+DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE+"="+p.getFormatoPubblicazione()+","
+            		+DBNames.ATTR_PRODOTTO_CODICEDOI+"="+p.getCodiceDOI()+","
+            		+DBNames.ATTR_PRODOTTO_DIFFUSIONE+"="+p.getDiffusione()+","
+            		+DBNames.ATTR_PRODOTTO_NOTE+"="+p.getNote()+","
+            		+DBNames.ATTR_PRODOTTO_STATO+"="+p.getStato()+","
+            		+DBNames.ATTR_PRODOTTO_BOZZA+"="+p.getBozza()+","
+            		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+"="+p.getCategoria()+","
+            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+" "
+					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+p.getIsbn();
 			
 			st=conn.prepareStatement(query);
 			
@@ -145,6 +182,7 @@ public class DBGestioneProdotto {
 		 * 
 		 * @throws SQLException
 		 */
+		/*
 		public void modifyProdVal(String pisbn) throws SQLException
 		{
 			Connection conn=null;
@@ -171,7 +209,7 @@ public class DBGestioneProdotto {
 		
 		
 	}
-	
+	*/
 		/**
 		 * Metodo che permette di visualizzare nel database i prodotti in stato di bozza
 		 * @param p 
@@ -231,7 +269,7 @@ public class DBGestioneProdotto {
 		 * @param p 
 		 * @throws SQLException
 		 */
-		public void insertProdotti(Prodotto p) throws SQLException
+		/*public void insertProdotti(Prodotto p) throws SQLException
 		{
 			Connection conn=null;
 			PreparedStatement st=null;
@@ -255,7 +293,7 @@ public class DBGestioneProdotto {
 	            DBConnectionPool.releaseConnection(conn);
 	        }
 		}
-
+*/
 		/**
 		 * Metodo che permette di visualizzare nel database i prodotti		
 		 *  * @param p 
@@ -472,6 +510,6 @@ public class DBGestioneProdotto {
 			
 			return listProdVal;
 		}
-		
+		*/
 		
 }
