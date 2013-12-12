@@ -171,7 +171,7 @@ public class Prodotto
 	 * Metodo che restituisce l'anno della pubblicazione del prodotto
 	 * @return anno della pubblicazione
 	 */
-	public String getAnno()
+	public String getAnnoPubblicazione()
 	{
 		return this.annoPubblicazione;
 	}
@@ -180,7 +180,7 @@ public class Prodotto
 	 * Metodo che setta l'anno della pubblicazione del prodotto
 	 * @param anno della pubblicazione da attribuire al prodotto
 	 */
-	public void setAnno(String annoPubblicazione)
+	public void setAnnoPubblicazione(String annoPubblicazione)
 	{
 		this.annoPubblicazione = annoPubblicazione;
 	}
@@ -189,7 +189,7 @@ public class Prodotto
 	 * Metodo che restituisce il formato della pubblicazione del prodotto
 	 * @return formato della pubblicazione
 	 */
-	public String getFormato()
+	public String getFormatoPubblicazione()
 	{
 		return this.formatoPubblicazione;
 	}
@@ -198,7 +198,7 @@ public class Prodotto
 	 * Metodo che setta il formato della pubblicazione del prodotto
 	 * @param formato della pubblicazione relativa al prodotto
 	 */
-	public void setFormato(String formatoPubblicazione)
+	public void setFormatoPubblicazione(String formatoPubblicazione)
 	{
 		this.formatoPubblicazione = formatoPubblicazione;
 	}
