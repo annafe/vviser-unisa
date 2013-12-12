@@ -43,7 +43,7 @@ public class Prodotto
 	 * @param proprietario Il proprietario del prodotto
 	 * 
 	 */
-	public Prodotto(String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String categoria,String isbn,String titolo,String proprietario,String stato,boolean bozza)
+	public Prodotto(String isbn,String titolo,String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String stato,boolean bozza,String categoria,String proprietario)
 	{
 		this.annoPubblicazione=annoPubblicazione;
 		this.formatoPubblicazione=formatoPubblicazione;
