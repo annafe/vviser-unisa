@@ -8,14 +8,17 @@ package it.unisa.vviser.entity;
  */
 public class Prodotto
 {
-	private String anno;
-	private String formato;
+	private String annoPubblicazione;
+	private String formatoPubblicazione;
 	private String codiceDOI;
 	private String diffusione;
 	private String note; 
 	private String categoria;
 	private String isbn;
-	private String title;
+	private String titolo;
+	private String proprietario;
+	private boolean bozza;
+	private String stato;
 	
 	/**
 	 * Il costruttore della classe Prodotto vuoto
@@ -28,24 +31,32 @@ public class Prodotto
 	/**
 	 * Il costruttore della classe Prodotto con parametri
 	 * @param isbn codice identificativo prodotto
-	 * @param anno anno della pubblicazione
-	 * @param formato formato della pubblicazione
+	 * @param annoPubblicazione anno della pubblicazione
+	 * @param formatoPubblicazione formato della pubblicazione
 	 * @param codiceDOI codiceDOI del prodotto
 	 * @param diffusione numero di copie del prodotto
 	 * @param note note relative al prodotto
 	 * @param categoria categoria a cui appartine il prodotto
-	 * @title titolo del prodotto
+	 * @param bozza prodotto bozza(Si/No)
+	 * @param stato stato del prodotto(Definitivo,provvisorio)
+	 * @param titolo titolo del prodotto
+	 * @param proprietario Il proprietario del prodotto
+	 * 
 	 */
-	public Prodotto(String anno,String formato,String codiceDOI,String diffusione,String note,String categoria,String isbn,String title)
+	public Prodotto(String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String categoria,String isbn,String titolo,String proprietario,String stato,boolean bozza)
 	{
-		this.anno=anno;
-		this.formato=formato;
+		this.annoPubblicazione=annoPubblicazione;
+		this.formatoPubblicazione=formatoPubblicazione;
 		this.categoria=categoria;
 		this.codiceDOI=codiceDOI;
 		this.isbn=isbn;
 		this.note=note;
-		this.title=title;
+		this.titolo=titolo;
 		this.diffusione=diffusione;
+		this.bozza=bozza;
+		this.stato=stato;
+		this.proprietario=proprietario;
+		
 	}
 	
 	/**
@@ -70,18 +81,18 @@ public class Prodotto
 	 * Metodo che restituisce il titolo del prodotto
 	 * @return titolo del prodotto
 	 */
-	public String getTitle()
+	public String getTitolo()
 	{
-		return title;
+		return titolo;
 	}
 	
 	/**
 	 * Metodo che setta il titolo al prodotto
-	 * @param title da attribuire al prodotto
+	 * @param titolo da attribuire al prodotto
 	 */
-	public void setTitle(String title)
+	public void setTitolo(String titolo)
 	{
-		this.title = title;
+		this.titolo = titolo;
 	}
 
 	/**
@@ -103,8 +114,8 @@ public class Prodotto
 	}
 	
 	/**
-	 * Metodo che restituisce la 
-	 * @return
+	 * Metodo che restituisce la diffusione
+	 * @return diffusione legata al prodotto
 	 */
 	public String getDiffusione()
 	{
@@ -112,10 +123,11 @@ public class Prodotto
 	}
 	
 	/**
-	 * 
-	 * @param diffusione
+	 * Metodo che setta la diffusione al prodotto
+	 * @param diffusione da fissare al prodotto
 	 */
-	public void setDiffusione(String diffusione) {
+	public void setDiffusione(String diffusione)
+	{
 		this.diffusione = diffusione;
 	}
 	
@@ -161,16 +173,16 @@ public class Prodotto
 	 */
 	public String getAnno()
 	{
-		return this.anno;
+		return this.annoPubblicazione;
 	}
 	
 	/**
 	 * Metodo che setta l'anno della pubblicazione del prodotto
 	 * @param anno della pubblicazione da attribuire al prodotto
 	 */
-	public void setAnno(String anno)
+	public void setAnno(String annoPubblicazione)
 	{
-		this.anno = anno;
+		this.annoPubblicazione = annoPubblicazione;
 	}
 	
 	/**
@@ -179,15 +191,69 @@ public class Prodotto
 	 */
 	public String getFormato()
 	{
-		return this.formato;
+		return this.formatoPubblicazione;
 	}
 	
 	/**
 	 * Metodo che setta il formato della pubblicazione del prodotto
 	 * @param formato della pubblicazione relativa al prodotto
 	 */
-	public void setFormato(String formato)
+	public void setFormato(String formatoPubblicazione)
 	{
-		this.formato = formato;
+		this.formatoPubblicazione = formatoPubblicazione;
+	}
+	
+	/**
+	 * Metodo che restituisce lo stato del prodotto
+	 * @return stato del prodotto
+	 */
+	public String getStato()
+	{
+		return this.stato;
+	}
+	
+	/**
+	 * Metodo che setta lo stato al prodotto
+	 * @param stato da attribuire al prodotto
+	 */
+	public void setStato(String stato)
+	{
+		this.stato=stato;
+	}
+	
+	/**
+	 * Metodo per conoscere se il prodotto è una bozza
+	 * @return bozza stato del prodotto
+	 */
+	public boolean getBozza()
+	{
+		return this.bozza;
+	}
+	
+	/**
+	 * Metodo per settare o non settare la bozza
+	 * @param bozza stato del prodotto
+	 */
+	public void setBozza(boolean bozza)
+	{
+		this.bozza=bozza;
+	}
+	
+	/**
+	 * Metodo che restituisce il proprietario del prodotto
+	 * @return proprietario del prodotto
+	 */
+	public String getProprietario()
+	{
+		return this.proprietario;
+	}
+	
+	/**
+	 * Metodo che fissa il proprietario del prodotto
+	 * @param nuovo proprietario del prodotto
+	 */
+	public void setProprietario(String proprietario)
+	{
+		this.proprietario=proprietario;
 	}
 }
