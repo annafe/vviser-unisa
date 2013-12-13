@@ -1,7 +1,7 @@
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.Account;
-import it.unisa.vviser.storage.Connessione;
+
 import it.unisa.vviser.storage.DBConnectionPool;
 import it.unisa.vviser.storage.DBNames;
 
