@@ -289,6 +289,8 @@ public class DBGestioneProdotto
 	 */
 	public ArrayList<Prodotto> visualizzaProdotti(String proprietario)throws SQLException
 	{
+		
+		//TODO aggiungere prodotti da tabella autoriconoscimento
 		Statement st=null;
 		ResultSet ris=null;
 		String query;
