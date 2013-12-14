@@ -129,6 +129,70 @@ public class DBAccount {
 		
 	}
 	
+	// METODI DI MODIFICA
+	
+	/**
+	 * Modifica il nome associato all'account
+	 * @param nome Nuovo nome da memorizzare
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException 
+	 */
+	public boolean modificaNome(Account a, String nome) throws SQLException{
+		a.setNome(nome);
+		try{
+			conn = DBConnectionPool.getConnection();
+			
+			query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_NOME+" = ? "
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ?";
+			st = conn.prepareStatement(query);
+			st.setString(1, nome);
+			st.setString(2, a.getEmail());
+			
+			if(st.executeUpdate() > 0)
+				return true;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Modifica il cognome associato all'account
+	 * @param cognome Nuovo cognome da memorizzare
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException 
+	 */
+	public boolean modificaCognome(Account a, String cognome) throws SQLException{
+		a.setCognome(cognome);
+		try{
+			conn = DBConnectionPool.getConnection();
+			
+			query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_COGNOME+" = ? "
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ?";
+			st = conn.prepareStatement(query);
+			st.setString(1, cognome);
+			st.setString(2, a.getEmail());
+			
+			if(st.executeUpdate() > 0)
+				return true;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		
+		return false;
+	}
+	
+	
+	
 	
 	// METODI DI RICERCA
 	
