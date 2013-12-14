@@ -45,7 +45,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Imposta il nome associato all'Utente col valore specificato
+	 * Imposta il nome dell'utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param nome Nome da memorizzare
 	 */
@@ -54,15 +54,15 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce il nome associato all'Utente
-	 * @return Nome associato all'Utente
+	 * Restituisce il nome dell'utente
+	 * @return Nome dell'utente
 	 */
 	public String getNome(){
 		return this.nome;
 	}
 	
 	/**
-	 * Imposta il cognome associato all'Utente col valore specificato
+	 * Imposta il cognome dell'utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param cognome Cognome da memorizzare
 	 */
@@ -71,8 +71,8 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce il cognome associato all'Utente
-	 * @return Cognome associato all'Utente
+	 * Restituisce il cognome dell'utente
+	 * @return Cognome dell'utente
 	 */
 	public String getCognome(){
 		return this.cognome;
@@ -96,7 +96,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Imposta il comune di nascita associato all'Utente col valore specificato
+	 * Imposta il comune di nascita dell'utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param comuneDiNascita Comune di nascita da memorizzare
 	 */
@@ -105,7 +105,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce il comune di nascita associato all'Utente
+	 * Restituisce il comune di nascita dell'utente
 	 * @return Comune di nascita
 	 */
 	public String getComuneDiNascita(){
@@ -130,7 +130,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Imposta il codice fiscale associato all'Utente col valore specificato
+	 * Imposta il codice fiscale dell'utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param codiceFiscale Codice fiscale da memorizzare
 	 */
@@ -139,7 +139,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce il codice fiscale associato all'Utente
+	 * Restituisce il codice fiscale dell'utente
 	 * @return Codice fiscale
 	 */
 	public String getCodiceFiscale(){
@@ -173,7 +173,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce l'indirizzo email associato all'Utente
+	 * Restituisce l'indirizzo email dell'utente
 	 * @return Indirizzo email
 	 */
 	public String getEmail(){
@@ -181,7 +181,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Imposta il nome del dipartimento associato all'Utente col valore specificato
+	 * Imposta il nome del dipartimento dell'utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param dipartimento_Nome Nome del dipartimento
 	 */
@@ -190,7 +190,7 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce il nome del dipartimento associato all'Utente
+	 * Restituisce il nome del dipartimento dell'utente
 	 * @return Nome del dipartimento
 	 */
 	public String getDipartimento(){

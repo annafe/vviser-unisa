@@ -133,7 +133,7 @@ public class DBUtente {
 	// METODI DI MODIFICA
 	
 	/**
-	 * Modifica il nome associato all'Utente
+	 * Modifica il nome dell'utente
 	 * @param nome Nuovo nome da memorizzare
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException 
@@ -163,7 +163,7 @@ public class DBUtente {
 	}
 	
 	/**
-	 * Modifica il cognome associato all'Utente
+	 * Modifica il cognome dell'utente
 	 * @param cognome Nuovo cognome da memorizzare
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException 
@@ -199,7 +199,7 @@ public class DBUtente {
 	
 	/**
 	 * Ricerca Utente in base al nome
-	 * @param name Nome associato all'Utente
+	 * @param name Nome dell'utente
 	 * @return Lista degli Utente trovati
 	 * @throws SQLException 
 	 */
@@ -227,7 +227,7 @@ public class DBUtente {
 	
 	/**
 	 * Ricerca Utente in base al cognome
-	 * @param surname Nome associato all'Utente
+	 * @param surname Nome dell'utente
 	 * @return Lista degli Utente trovati
 	 * @throws SQLException 
 	 */
@@ -254,8 +254,8 @@ public class DBUtente {
 	}
 	 /**
 	  * Ricerca Utente in base al nome o al cognome
-	  * @param name Nome associato all'Utente
-	  * @param surname Cognome associato all'Utente
+	  * @param name Nome dell'utente
+	  * @param surname Cognome dell'utente
 	  * @return Lista degli Utente trovati
 	  * @throws SQLException
 	  */
