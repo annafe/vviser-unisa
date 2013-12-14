@@ -186,7 +186,7 @@ public class Account {
 	 * sostituendo il valore precedente
 	 * @param dipartimento_Nome Nome del dipartimento
 	 */
-	public void setDipartimento_Nome (String dipartimento){
+	public void setDipartimento(String dipartimento){
 		this.dipartimento =dipartimento;
 	}
 	
@@ -194,7 +194,7 @@ public class Account {
 	 * Restituisce il nome del dipartimento associato all'account
 	 * @return Nome del dipartimento
 	 */
-	public String getDipartimento_Nome (){
+	public String getDipartimento(){
 		return this.dipartimento;
 	}
 	
