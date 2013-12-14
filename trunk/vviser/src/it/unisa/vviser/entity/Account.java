@@ -16,7 +16,7 @@ DOCUMENTAZIONE:
 
 public class Account {
 	private String id;	
-private String nome;
+	private String nome;
 private String cognome;
 private Date dataDiNascita;
 private String comuneDiNascita;
