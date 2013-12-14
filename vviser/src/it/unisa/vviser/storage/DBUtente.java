@@ -193,9 +193,15 @@ public class DBUtente {
 		return false;
 	}
 	
-	
-	public boolean modificaDataDiNascita(Utente a, GregorianCalendar dn) throws SQLException{
-		a.setDataDiNascita(dn);
+	/**
+	 * Modifica la data di nascita dell'utente
+	 * @param u Utente da modificare
+	 * @param dn Nuova data di nascita
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaDataDiNascita(Utente u, GregorianCalendar dn) throws SQLException{
+		u.setDataDiNascita(dn);
 		String nuovaData = dn.get(Calendar.YEAR)+"-"
 							+dn.get(Calendar.DAY_OF_MONTH)+"-"
 							+dn.get(Calendar.MONTH);
@@ -207,7 +213,7 @@ public class DBUtente {
 					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ? ";
 			st = conn.prepareStatement(query);
 			st.setString(1, nuovaData);
-			st.setString(2, a.getEmail());
+			st.setString(2, u.getEmail());
 			
 			if(st.executeUpdate() > 0)
 				return true;
