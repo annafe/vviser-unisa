@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  * @author Eugenio Gigante, Michele Roviello
  *
  */
-public class Account {
+public class Utente {
 	
 	private int id;	
 	private String nome;
@@ -24,15 +24,14 @@ public class Account {
 	private String tipologia;
 
 	/**
-	 * Il costruttore vuoto della classe Account
+	 * Il costruttore vuoto della classe Utente
 	 */
-	public Account(){ }
+	public Utente(){ }
 	
-	public Account(int id, String nome, String cognome, 
+	public Utente(String nome, String cognome, 
 			GregorianCalendar dataDiNascita, String comuneDiNascita, 
 			String provinciaDiNascita, String codiceFiscale, 
 			String password, String email, String dipartimento, String tipologia){
-		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
@@ -46,7 +45,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta il nome associato all'account col valore specificato
+	 * Imposta il nome associato all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param nome Nome da memorizzare
 	 */
@@ -55,15 +54,15 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce il nome associato all'account
-	 * @return Nome associato all'account
+	 * Restituisce il nome associato all'Utente
+	 * @return Nome associato all'Utente
 	 */
 	public String getNome(){
 		return this.nome;
 	}
 	
 	/**
-	 * Imposta il cognome associato all'account col valore specificato
+	 * Imposta il cognome associato all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param cognome Cognome da memorizzare
 	 */
@@ -72,15 +71,15 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce il cognome associato all'account
-	 * @return Cognome associato all'account
+	 * Restituisce il cognome associato all'Utente
+	 * @return Cognome associato all'Utente
 	 */
 	public String getCognome(){
 		return this.cognome;
 	}
 	
 	/**
-	 * Imposta la data di nascita associata all'account con la data specificata 
+	 * Imposta la data di nascita associata all'Utente con la data specificata 
 	 * sostituendo il valore precedente
 	 * @param date Data di nascita da memorizzare
 	 */
@@ -89,7 +88,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce la data di nascita associata all'account
+	 * Restituisce la data di nascita associata all'Utente
 	 * @return Data di nascita
 	 */
 	public String getDataDiNascita(){
@@ -97,7 +96,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta il comune di nascita associato all'account col valore specificato
+	 * Imposta il comune di nascita associato all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param comuneDiNascita Comune di nascita da memorizzare
 	 */
@@ -106,7 +105,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce il comune di nascita associato all'account
+	 * Restituisce il comune di nascita associato all'Utente
 	 * @return Comune di nascita
 	 */
 	public String getComuneDiNascita(){
@@ -114,7 +113,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta la provincia di nascita associata all'account col valore specificato 
+	 * Imposta la provincia di nascita associata all'Utente col valore specificato 
 	 * sostituendo il valore precedente
 	 * @param provinciaDiNascita Provincia di nascita da memorizzare
 	 */
@@ -123,7 +122,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce la provincia di nascita associata all'account
+	 * Restituisce la provincia di nascita associata all'Utente
 	 * @return Provincia di nascita
 	 */
 	public String getProvinciaDiNascita(){
@@ -131,7 +130,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta il codice fiscale associato all'account col valore specificato
+	 * Imposta il codice fiscale associato all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param codiceFiscale Codice fiscale da memorizzare
 	 */
@@ -140,7 +139,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce il codice fiscale associato all'account
+	 * Restituisce il codice fiscale associato all'Utente
 	 * @return Codice fiscale
 	 */
 	public String getCodiceFiscale(){
@@ -148,7 +147,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta la password  associata all'account col valore specificato
+	 * Imposta la password  associata all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param password Password da memorizzare
 	 */
@@ -157,7 +156,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce la password associata all'account
+	 * Restituisce la password associata all'Utente
 	 * @return Password
 	 */
 	public String getPassword(){
@@ -165,7 +164,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta l'indirizzo email asscociato all'account col valore specificato
+	 * Imposta l'indirizzo email asscociato all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param email Indirizzo Email da memorizzare
 	 */
@@ -174,7 +173,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce l'indirizzo email associato all'account
+	 * Restituisce l'indirizzo email associato all'Utente
 	 * @return Indirizzo email
 	 */
 	public String getEmail(){
@@ -182,7 +181,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta il nome del dipartimento associato all'account col valore specificato
+	 * Imposta il nome del dipartimento associato all'Utente col valore specificato
 	 * sostituendo il valore precedente
 	 * @param dipartimento_Nome Nome del dipartimento
 	 */
@@ -191,7 +190,7 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce il nome del dipartimento associato all'account
+	 * Restituisce il nome del dipartimento associato all'Utente
 	 * @return Nome del dipartimento
 	 */
 	public String getDipartimento(){
@@ -199,7 +198,7 @@ public class Account {
 	}
 	
 	/**
-	 * Imposta la tipologia di appartenenza associata all'account 
+	 * Imposta la tipologia di appartenenza associata all'Utente 
 	 * sostituendo il valore precedente
 	 * @param tipologia Tipologia da memorizzare
 	 */
@@ -208,27 +207,11 @@ public class Account {
 	}
 	
 	/**
-	 * Restituisce la tipologia associata all'account
-	 * @return Tipolodia di account
+	 * Restituisce la tipologia associata all'Utente
+	 * @return Tipolodia di Utente
 	 */
 	public String getTipologia  (){
 		return this.tipologia  ;
 	}
 	
-	/**
-	 * Imposta il codice ID associato all'account 
-	 * sostituendo il valore precedente
-	 * @param id Codice ID da memorizzare
-	 */
-	public void setID (int id ){
-		this.id = id  ;
-	}
-	
-	/**
-	 * Restituisce il codice ID associato all'account
-	 * @return Codice ID
-	 */
-	public int getID  (){
-		return this.id  ;
-	}
 }

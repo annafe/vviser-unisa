@@ -1,6 +1,6 @@
 package it.unisa.vviser.servlet;
 
-import it.unisa.vviser.entity.Account;
+import it.unisa.vviser.entity.Utente;
 
 import it.unisa.vviser.storage.DBConnectionPool;
 import it.unisa.vviser.storage.DBNames;
@@ -94,7 +94,7 @@ public class ControlloLogin extends HttpServlet {
 		rs = st.executeQuery(query);
 		if (rs.next()){
 			
-			Account account=new Account();
+			Utente account=new Utente();
 			account.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
 			account.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
 			account.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
