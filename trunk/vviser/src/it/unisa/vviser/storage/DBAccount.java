@@ -106,6 +106,30 @@ public class DBAccount {
 		return false;
 	}
 	
+	
+	//METODI DI VISUALIZZAZIONE
+	public List<Account> visualizzaAccount() throws SQLException{
+		
+		try{
+			conn = DBConnectionPool.getConnection();
+			
+			query = "SELECT * FROM "+DBNames.TABLE_UTENTE;
+			st = conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			
+			return fillResults(rs);
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		return null;
+		
+	}
+	
+	
 	// METODI DI RICERCA
 	
 	/**
@@ -115,7 +139,6 @@ public class DBAccount {
 	 * @throws SQLException 
 	 */
 	public List<Account> findByName(String name) throws SQLException{
-		
 		
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -197,7 +220,7 @@ public class DBAccount {
 	// METODI DI SUPPORTO PER LA CLASSE
 
 	/**
-	 * Riempie una lista di Account con i risultati di una ricerca
+	 * Riempie una lista di Account con i risultati di una query
 	 * @param rs ResultSet con i risultati di una query
 	 * @return Lista di Account trovati
 	 * @throws SQLException
