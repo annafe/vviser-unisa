@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -193,7 +194,32 @@ public class DBUtente {
 	}
 	
 	
-	
+	public boolean modificaDataDiNascita(Utente a, GregorianCalendar dn) throws SQLException{
+		a.setDataDiNascita(dn);
+		String nuovaData = dn.get(Calendar.YEAR)+"-"
+							+dn.get(Calendar.DAY_OF_MONTH)+"-"
+							+dn.get(Calendar.MONTH);
+		try{
+			conn = DBConnectionPool.getConnection();
+			
+			query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_DATADINASCITA+" = ? "
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ? ";
+			st = conn.prepareStatement(query);
+			st.setString(1, nuovaData);
+			st.setString(2, a.getEmail());
+			
+			if(st.executeUpdate() > 0)
+				return true;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		
+		return false;
+	}
 	
 	// METODI DI RICERCA
 	
