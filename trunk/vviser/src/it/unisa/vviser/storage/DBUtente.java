@@ -1,6 +1,6 @@
 package it.unisa.vviser.storage;
 
-import it.unisa.vviser.entity.Account;
+import it.unisa.vviser.entity.Utente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,27 +15,27 @@ import java.util.List;
  * @author Michele Roviello
  *
  */
-public class DBAccount {
+public class DBUtente {
 	
 	private Connection conn;
 	private String query;
 	private PreparedStatement st;
 	
 	/**
-	 * Costruttore vuoto della classe DBAccount
+	 * Costruttore vuoto della classe DBUtente
 	 */
-	public DBAccount(){ }
+	public DBUtente(){ }
 	
 	
 	
 	// METODI DI AGGIUNTA
 	/**
-	 * Aggiunge un nuovo account al sistema
-	 * @param a Account da aggiungere
+	 * Aggiunge un nuovo Utente al sistema
+	 * @param a Utente da aggiungere
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException
 	 */
-	public boolean addAccount(Account a) throws SQLException{
+	public boolean addUtente(Utente a) throws SQLException{
 		
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -80,19 +80,20 @@ public class DBAccount {
 	
 	// METODI DI ELIMINAZIONE
 	/**
-	 * Elimina un account dal sistema
-	 * @param a Account da eliminare
+	 * Elimina un Utente dal sistema
+	 * @param a Utente da eliminare
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException
 	 */
-	public boolean removeAccount(Account a) throws SQLException{
+	public boolean removeUtente(Utente u) throws SQLException{
 		
 		try{
 			conn = DBConnectionPool.getConnection();
 			
-			query = "DELETE FROM "+DBNames.TABLE_UTENTE+" WHERE id = ?";
+			query = "DELETE FROM "+DBNames.TABLE_UTENTE+" WHERE"
+					+DBNames.ATTR_UTENTE_EMAIL+" = ?";
 			st = conn.prepareStatement(query);
-			st.setInt(1, a.getID());
+			st.setString(1, u.getEmail());
 			
 			if(st.executeUpdate() > 0)
 				return true;
@@ -108,7 +109,7 @@ public class DBAccount {
 	
 	
 	//METODI DI VISUALIZZAZIONE
-	public List<Account> visualizzaAccount() throws SQLException{
+	public List<Utente> visualizzaUtente() throws SQLException{
 		
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -132,12 +133,12 @@ public class DBAccount {
 	// METODI DI MODIFICA
 	
 	/**
-	 * Modifica il nome associato all'account
+	 * Modifica il nome associato all'Utente
 	 * @param nome Nuovo nome da memorizzare
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException 
 	 */
-	public boolean modificaNome(Account a, String nome) throws SQLException{
+	public boolean modificaNome(Utente a, String nome) throws SQLException{
 		a.setNome(nome);
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -162,12 +163,12 @@ public class DBAccount {
 	}
 	
 	/**
-	 * Modifica il cognome associato all'account
+	 * Modifica il cognome associato all'Utente
 	 * @param cognome Nuovo cognome da memorizzare
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException 
 	 */
-	public boolean modificaCognome(Account a, String cognome) throws SQLException{
+	public boolean modificaCognome(Utente a, String cognome) throws SQLException{
 		a.setCognome(cognome);
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -197,12 +198,12 @@ public class DBAccount {
 	// METODI DI RICERCA
 	
 	/**
-	 * Ricerca account in base al nome
-	 * @param name Nome associato all'account
-	 * @return Lista degli account trovati
+	 * Ricerca Utente in base al nome
+	 * @param name Nome associato all'Utente
+	 * @return Lista degli Utente trovati
 	 * @throws SQLException 
 	 */
-	public List<Account> findByName(String name) throws SQLException{
+	public List<Utente> findByName(String name) throws SQLException{
 		
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -225,12 +226,12 @@ public class DBAccount {
 	}
 	
 	/**
-	 * Ricerca account in base al cognome
-	 * @param surname Nome associato all'account
-	 * @return Lista degli account trovati
+	 * Ricerca Utente in base al cognome
+	 * @param surname Nome associato all'Utente
+	 * @return Lista degli Utente trovati
 	 * @throws SQLException 
 	 */
-	public List<Account> findBySurname(String surname) throws SQLException{
+	public List<Utente> findBySurname(String surname) throws SQLException{
 		
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -252,13 +253,13 @@ public class DBAccount {
 		
 	}
 	 /**
-	  * Ricerca account in base al nome o al cognome
-	  * @param name Nome associato all'account
-	  * @param surname Cognome associato all'account
-	  * @return Lista degli account trovati
+	  * Ricerca Utente in base al nome o al cognome
+	  * @param name Nome associato all'Utente
+	  * @param surname Cognome associato all'Utente
+	  * @return Lista degli Utente trovati
 	  * @throws SQLException
 	  */
-	public List<Account> findByNameSurname(String name, String surname) throws SQLException{
+	public List<Utente> findByNameSurname(String name, String surname) throws SQLException{
 		
 		try{
 			conn = DBConnectionPool.getConnection();
@@ -284,16 +285,15 @@ public class DBAccount {
 	// METODI DI SUPPORTO PER LA CLASSE
 
 	/**
-	 * Riempie una lista di Account con i risultati di una query
+	 * Riempie una lista di Utente con i risultati di una query
 	 * @param rs ResultSet con i risultati di una query
-	 * @return Lista di Account trovati
+	 * @return Lista di Utente trovati
 	 * @throws SQLException
 	 */
-	private List<Account> fillResults(ResultSet rs) throws SQLException {
-		List<Account> results = new ArrayList<Account>();
+	private List<Utente> fillResults(ResultSet rs) throws SQLException {
+		List<Utente> results = new ArrayList<Utente>();
 		
 		while(rs.next()){
-			int id = rs.getInt("id");
 			String n = rs.getString(DBNames.ATTR_UTENTE_NOME);
 			String c = rs.getString(DBNames.ATTR_UTENTE_COGNOME);
 			GregorianCalendar dn = creaData(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA));
@@ -305,7 +305,7 @@ public class DBAccount {
 			String d = rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME);
 			String t = rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA);
 			
-			results.add(new Account(id, n, c, dn, cn, pn, cf, p, e, d, t)); 
+			results.add(new Utente(n, c, dn, cn, pn, cf, p, e, d, t)); 
 		}
 		
 		return results;
