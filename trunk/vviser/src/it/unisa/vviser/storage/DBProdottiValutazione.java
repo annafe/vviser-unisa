@@ -20,11 +20,25 @@ import it.unisa.vviser.exception.InvalidModifyListaProdottiValutazione;
  */
 public class DBProdottiValutazione {
 	
+	private static DBProdottiValutazione manager;
+	
 	/**
 	 * Costruttore vuoto
 	 */
-	public DBProdottiValutazione()
+	private DBProdottiValutazione()
 	{
+		
+	}
+	
+	/**
+	 * Metodo che implementa il design pattern singleton
+	 * @return manager istanza di DBProdottiValutazione
+	 */
+	public static DBProdottiValutazione getInstance()
+	{
+		if(manager==null)
+			manager=new DBProdottiValutazione();
+		return manager;
 		
 	}
 	
