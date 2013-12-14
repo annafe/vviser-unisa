@@ -1,6 +1,5 @@
 package it.unisa.vviser.entity;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 
