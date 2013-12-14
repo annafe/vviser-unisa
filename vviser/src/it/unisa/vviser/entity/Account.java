@@ -1,5 +1,6 @@
 package it.unisa.vviser.entity;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
@@ -91,8 +92,8 @@ public class Account {
 	 * Restituisce la data di nascita associata all'account
 	 * @return Data di nascita
 	 */
-	public GregorianCalendar getDataDiNascita(){
-		return this.dataDiNascita;
+	public String getDataDiNascita(){
+		return dataDiNascita.get(Calendar.YEAR)+"/"+dataDiNascita.get(Calendar.MONTH)+"/"+dataDiNascita.get(Calendar.DAY_OF_MONTH);
 	}
 	
 	/**
