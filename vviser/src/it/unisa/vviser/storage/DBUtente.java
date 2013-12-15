@@ -288,7 +288,53 @@ public class DBUtente {
 		
 		return update();
 	}
-
+	
+	// LOGIN
+	
+	/**
+	 * Effettua l'autenticazione di un utente per il login
+	 * @param email Email dell'utente
+	 * @param password Passord dell'utente
+	 * @return Utente autenticato, null se l'utente non è presente nel sistema
+	 * @throws SQLException
+	 */
+	public Utente authenticate(String email, String password) throws SQLException{
+		
+		Utente u = null;
+		
+		try{
+			conn = DBConnectionPool.getConnection();
+			query = "SELECT * FROM "+DBNames.TABLE_UTENTE
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"= ?"
+					+" AND "+DBNames.ATTR_UTENTE_PASSWORD+"=?";
+			st = conn.prepareStatement(query);
+			st.setString(1, email);
+			st.setString(2, password);
+			ResultSet rs = st.executeQuery();
+			if(rs.next()){
+				u= new Utente();
+				u.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
+				u.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
+				u.setDataDiNascita(creaData(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA)));
+				u.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
+				u.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
+				u.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
+				u.setPassword(password);
+				u.setEmail(email);
+				u.setDipartimento(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
+				u.setTipologia(rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		
+		return u;
+		
+	}
+	
 	// METODI DI RICERCA
 	
 	/**
