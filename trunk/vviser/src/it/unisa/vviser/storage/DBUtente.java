@@ -87,25 +87,10 @@ public class DBUtente {
 	 * @throws SQLException
 	 */
 	public boolean removeUtente(Utente u) throws SQLException{
+		query = "DELETE FROM "+DBNames.TABLE_UTENTE+" WHERE"
+					+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
 		
-		try{
-			conn = DBConnectionPool.getConnection();
-			
-			query = "DELETE FROM "+DBNames.TABLE_UTENTE+" WHERE"
-					+DBNames.ATTR_UTENTE_EMAIL+" = ?";
-			st = conn.prepareStatement(query);
-			st.setString(1, u.getEmail());
-			
-			if(st.executeUpdate() > 0)
-				return true;
-			
-		} catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
-		return false;
+		return update();
 	}
 	
 	
@@ -139,28 +124,14 @@ public class DBUtente {
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException 
 	 */
-	public boolean modificaNome(Utente a, String nome) throws SQLException{
-		a.setNome(nome);
-		try{
-			conn = DBConnectionPool.getConnection();
-			
-			query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_NOME+" = ? "
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ?";
-			st = conn.prepareStatement(query);
-			st.setString(1, nome);
-			st.setString(2, a.getEmail());
-			
-			if(st.executeUpdate() > 0)
-				return true;
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
+	public boolean modificaNome(Utente u, String nome) throws SQLException{
 		
-		return false;
+		u.setNome(nome);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_NOME+"="+nome
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
 	}
 	
 	/**
@@ -169,28 +140,14 @@ public class DBUtente {
 	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
 	 * @throws SQLException 
 	 */
-	public boolean modificaCognome(Utente a, String cognome) throws SQLException{
-		a.setCognome(cognome);
-		try{
-			conn = DBConnectionPool.getConnection();
-			
-			query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_COGNOME+" = ? "
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ?";
-			st = conn.prepareStatement(query);
-			st.setString(1, cognome);
-			st.setString(2, a.getEmail());
-			
-			if(st.executeUpdate() > 0)
-				return true;
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
+	public boolean modificaCognome(Utente u, String cognome) throws SQLException{
 		
-		return false;
+		u.setCognome(cognome);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_COGNOME+"="+cognome
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
 	}
 	
 	/**
@@ -201,32 +158,137 @@ public class DBUtente {
 	 * @throws SQLException
 	 */
 	public boolean modificaDataDiNascita(Utente u, GregorianCalendar dn) throws SQLException{
+		
 		u.setDataDiNascita(dn);
 		String nuovaData = dn.get(Calendar.YEAR)+"-"
 							+dn.get(Calendar.DAY_OF_MONTH)+"-"
 							+dn.get(Calendar.MONTH);
-		try{
-			conn = DBConnectionPool.getConnection();
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_DATADINASCITA+"="+nuovaData
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
 			
-			query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_DATADINASCITA+" = ? "
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+" = ? ";
-			st = conn.prepareStatement(query);
-			st.setString(1, nuovaData);
-			st.setString(2, u.getEmail());
-			
-			if(st.executeUpdate() > 0)
-				return true;
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
-		
-		return false;
+		return update();
 	}
 	
+	/**
+	 * Modifica il comune di nascita dell'utente
+	 * @param u Utente da modificare
+	 * @param c Nuovo comune di nascita
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaComuneDiNascita(Utente u, String c) throws SQLException{
+		
+		u.setComuneDiNascita(c);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_COMUNEDINASCITA+"="+c
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
+	}
+	
+	/**
+	 * Modifica la provincia di nascita dell'utente
+	 * @param u Utente da modificare
+	 * @param p Nuova provincia di nadcita
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaProvinciaDiNascita(Utente u, String p) throws SQLException{
+		
+		u.setProvinciaDiNascita(p);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_PROVINCIADINASCITA+"="+p
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
+	}
+	
+	/**
+	 * Modifica il codice fiscale dell'utente
+	 * @param u Utente da modificare
+	 * @param cf Nuovo codice fiscale
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaCodiceFiscale(Utente u, String cf) throws SQLException{
+		
+		u.setCodiceFiscale(cf);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_CODICEFISCALE+"="+cf
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
+	}
+	
+	/**
+	 * Modifica la password dell'utente
+	 * @param u Utente da modificare
+	 * @param p Nuova password
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaPassword(Utente u, String p) throws SQLException{
+		
+		u.setPassword(p);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_PASSWORD+"="+p
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
+	}
+	
+	/**
+	 * Modifica l'indirizzo email dell'utente
+	 * @param u Utente da modificare
+	 * @param e Nuovo indirizzo email
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaEmail(Utente u, String e) throws SQLException{
+		
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_EMAIL+"="+e
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		u.setEmail(e);
+		
+		return update();
+	}
+
+	/**
+	 * Modifica il dipartimento a cui afferisce l'utente
+	 * @param u Utente da modificare
+	 * @param d Nuovo dipartimento
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaDipartimento(Utente u, String d) throws SQLException{
+		
+		u.setDipartimento(d);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"="+d
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
+	}
+	
+	/**
+	 * Modifica la tipologia associata all'utente
+	 * @param u Utente da modificare
+	 * @param t Nuova tipologia
+	 * @return true se l'operazione è stata eseguita con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	public boolean modificaTipologia(Utente u, String t) throws SQLException{
+		
+		u.setTipologia(t);
+		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
+					+" SET "+DBNames.ATTR_UTENTE_TIPOLOGIA+"="+t
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		
+		return update();
+	}
+
 	// METODI DI RICERCA
 	
 	/**
@@ -343,8 +405,6 @@ public class DBUtente {
 		return results;
 	}
 	
-	
-	
 	/**
 	 * crea un GregorianCalendar data una stringa in formato "YYYY/MM/DD"
 	 * @param data stringa che contiene la data in formato "YYYY/MM/DD"
@@ -363,6 +423,28 @@ public class DBUtente {
 			
 		toReturn = new GregorianCalendar(g[0],g[1],g[2]);
 		return toReturn;
+	}
+	
+	/**
+	 * Esegue un aggiornamento al database
+	 * @return true se l'aggiornamento è stato eseguito con successo, false altrimenti
+	 * @throws SQLException
+	 */
+	private boolean update() throws SQLException {
+		try{
+			conn = DBConnectionPool.getConnection();
+			st = conn.prepareStatement(query);
+			
+			if(st.executeUpdate() > 0)
+				return true;
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		return false;
 	}
 	
 }
