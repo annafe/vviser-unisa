@@ -10,8 +10,7 @@ import java.util.GregorianCalendar;
  *
  */
 public class Utente {
-	
-	private int id;	
+		
 	private String nome;
 	private String cognome;
 	private GregorianCalendar dataDiNascita;
