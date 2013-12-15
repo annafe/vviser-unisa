@@ -99,7 +99,7 @@ public class ControlloLogin extends HttpServlet {
 			account.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
 			account.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
 			//account.setDataDiNascita(rs.getDate(DBNames.ATTR_UTENTE_DATADINASCITA));
-			account.setDipartimento_Nome(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
+			account.setDipartimento(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
 			account.setEmail(rs.getString(DBNames.ATTR_UTENTE_EMAIL));
 			account.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
 			account.setPassword(rs.getString(DBNames.ATTR_UTENTE_PASSWORD));
