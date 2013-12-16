@@ -11,31 +11,33 @@ font: bold 12px Arial, Helvetica, sans-serif;
 
 header#container-header
 {
-	position:absolute;
-	width: 700px;	
+	position: absolute;
+	width: 700px;
 	height: 200px;
-	top:10px;
+	top: 10px;
+	left: 358px;
 }		
 
 header#header-main
 {
-	position: absolute;
-	width:700px;
-	height:160px;
-	background-image: url('../images/logo.png');
-	background-repeat:no-repeat;
-	background-position:left bottom;
-	background-size:25%;
+	width: 895px;
+	height: 128px;
+	background-image: url(../images/wisernobook.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 10%;
 }
 
+
 nav{
-position: absolute;
-width:700px;
-height:30px;
-top:160px;
-background-color:SEAGREEN;
-text-align:right;
-padding-top:10px;
+	position: absolute;
+	width: 700px;
+	height: 30px;
+	top: 160px;
+	background-color: SEAGREEN;
+	text-align: right;
+	padding-top: 10px;
+	left: -337px;
 }
 
 input.pulsante {
@@ -52,12 +54,13 @@ background:SEAGREEN;
 }
 
 section#container-section{
-	position:absolute;
-	width:700px;
-	height:260px;
-	top:210px;
-	text-align:center;
-	font-size:20pt;
+	position: absolute;
+	width: 700px;
+	height: 260px;
+	top: 210px;
+	text-align: center;
+	font-size: 20pt;
+	left: 15px;
 }
 
 section#login{	
@@ -116,13 +119,14 @@ background-color:MEDIUMAQUAMARINE;
 }
 
 footer#container-footer{
-	position:absolute;
-	width:700px;
-	height:30px;
-	top:480px;
-	background-color:SEAGREEN;
-	text-align:center;
-	padding-top:10px;
+	position: absolute;
+	width: 700px;
+	height: 30px;
+	top: 480px;
+	background-color: SEAGREEN;
+	text-align: center;
+	padding-top: 10px;
+	left: 13px;
 }
 
 a:link {color:white;
@@ -154,15 +158,24 @@ width:550px;
 section#groups{position:absolute;width:700px; height:150px;border:1px solid blue;}
 section#presnt{position:absolute;width:700px; height:250px;top:150px;border:1px solid red;}
 
-section#profilo{border:5px solid tomato;
-		position:absolute;
-		width:690px;
-	height:200px;
-	top:360px;
-	color:black;
+section#profilo{
+	border: 5px solid tomato;
+	position: absolute;
+	width: 690px;
+	height: 200px;
+	top: 360px;
+	color: black;
+	left: 191px;
 	}
 
-section#notifiche{position:absolute;width:150px;left:510px;height:80px;top:30px;background-color:orangered;}
+section#notifiche{
+	position: absolute;
+	width: 150px;
+	left: 510px;
+	height: 80px;
+	top: 284px;
+	background-color: orangered;
+}
 th{text-align:center;}
 section#elimina-prod{position:absolute;width:150px;left:660px;height:80px;top:30px;background-color:blue;}
 
