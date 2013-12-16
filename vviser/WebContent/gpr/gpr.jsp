@@ -8,38 +8,85 @@
 <link href="../css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 body{width:700px;height:710px;}
-header#container-header{height:70px;
-			width:700px;
-			top:10px;}
+header#container-header{
+	height: 70px;
+	width: 700px;
+	top: 16px;
+}
 header#header-main
 {
-	width:700px;
-	height:70px;
-	background-image: url('../images/logo.png');
-	background-repeat:no-repeat;
-	background-position:left bottom;
-	background-size:10%;
+	width: 895px;
+	height: 128px;
+	background-image: url(../images/wisernobook.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 10%;
 }
 
 nav{
-width:700px;
-height:30px;
-top:80px;
-text-align:left;
+	width: 882px;
+	height: 30px;
+	top: 143px;
+	text-align: left;
 }
 
-section#container-section{top:130px;height:220px;width:700px;}
-footer#container-footer{top:670px;width:700px;}
-section#login{width:150px;left:20px;height:80px;top:30px;}
-section#search-prod{width:150px;left:180px;height:80px;top:30px;}
-section#documenti{width:150px;left:340px;height:80px;top:30px;}
-section#profilo{width:700px;top:350px;height:300px;}
+section#container-section{
+	top: 200px;
+	height: 637px;
+	width: 162px;
+}
+footer#container-footer{
+	top: 850px;
+	width: 882px;
+}
+section#login{
+	width: 150px;
+	left: 6px;
+	height: 80px;
+	top: 12px;
+}
+section#search-prod{
+	width: 150px;
+	left: 6px;
+	height: 80px;
+	top: 102px;
+}
+section#documenti{
+	width: 150px;
+	left: 6px;
+	height: 80px;
+	top: 192px;
+}
+section#profilo{
+	width: 700px;
+	top: 282px;
+	height: 300px;
+}
 section#profilo>table{text-align:center;color:black;width:700px;padding-left:40px;}
 th{background-color:tomato;color:white;}
-section#notifiche{left:500px;}
-section#elimina-prod{width:150px;left:100px;height:80px;top:120px;}
-section#convalida{width:150px;left:260px;height:80px;top:120px;}
-section#pro-utente{position:absolute;width:150px;left:420px;height:80px;top:120px;background-color:lightblue;}
+section#notifiche{
+	left: 6px;
+}
+section#elimina-prod{
+	width: 150px;
+	left: 6px;
+	height: 80px;
+	top: 552px;
+}
+section#convalida{
+	width: 150px;
+	left: 6px;
+	height: 80px;
+	top: 372px;
+}
+section#pro-utente{
+	position: absolute;
+	width: 150px;
+	left: 6px;
+	height: 80px;
+	top: 462px;
+	background-color: lightblue;
+}
 </style>
 </head>
 <body>
@@ -52,7 +99,7 @@ section#pro-utente{position:absolute;width:150px;left:420px;height:80px;top:120p
 <section id="container-section">
 	<section id="login">
 		<a href="../gpr/insert.html">Inserisci Prodotto</a>
-	</section>
+  </section>
 	<section id="search-prod">
 		<a href="main/search.html">Ricerca Prodotto</a>
 	</section>
