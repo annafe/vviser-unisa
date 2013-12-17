@@ -133,9 +133,9 @@ public class DBUtente {
 	public boolean modificaNome(Utente u, String nome) throws SQLException{
 		
 		u.setNome(nome);
-		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_NOME+"="+nome
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		query = "UPDATE "+DBNames.TABLE_UTENTE
+					+" SET "+DBNames.ATTR_UTENTE_NOME+"='"+nome+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -150,8 +150,8 @@ public class DBUtente {
 		
 		u.setCognome(cognome);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_COGNOME+"="+cognome
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_COGNOME+"='"+cognome+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -167,11 +167,11 @@ public class DBUtente {
 		
 		u.setDataDiNascita(dn);
 		String nuovaData = dn.get(Calendar.YEAR)+"-"
-							+dn.get(Calendar.DAY_OF_MONTH)+"-"
-							+dn.get(Calendar.MONTH);
+							+dn.get(Calendar.MONTH)+"-"
+							+dn.get(Calendar.DAY_OF_MONTH);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_DATADINASCITA+"="+nuovaData
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_DATADINASCITA+"='"+nuovaData+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 			
 		return update();
 	}
@@ -187,8 +187,8 @@ public class DBUtente {
 		
 		u.setComuneDiNascita(c);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_COMUNEDINASCITA+"="+c
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_COMUNEDINASCITA+"='"+c+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -204,8 +204,8 @@ public class DBUtente {
 		
 		u.setProvinciaDiNascita(p);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_PROVINCIADINASCITA+"="+p
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_PROVINCIADINASCITA+"='"+p+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -221,8 +221,8 @@ public class DBUtente {
 		
 		u.setCodiceFiscale(cf);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_CODICEFISCALE+"="+cf
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_CODICEFISCALE+"='"+cf+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -238,8 +238,8 @@ public class DBUtente {
 		
 		u.setPassword(p);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_PASSWORD+"="+p
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_PASSWORD+"='"+p+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -254,8 +254,8 @@ public class DBUtente {
 	public boolean modificaEmail(Utente u, String e) throws SQLException{
 		
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_EMAIL+"="+e
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_EMAIL+"='"+e+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		u.setEmail(e);
 		
 		return update();
@@ -272,8 +272,8 @@ public class DBUtente {
 		
 		u.setDipartimento(d);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"="+d
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"='"+d+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -289,8 +289,8 @@ public class DBUtente {
 		
 		u.setTipologia(t);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
-					+" SET "+DBNames.ATTR_UTENTE_TIPOLOGIA+"="+t
-					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+					+" SET "+DBNames.ATTR_UTENTE_TIPOLOGIA+"='"+t+"'"
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -341,93 +341,7 @@ public class DBUtente {
 		
 	}
 	
-	// METODI DI RICERCA
 	
-	/**
-	 * Ricerca Utente in base al nome
-	 * @param name Nome dell'utente
-	 * @return Lista degli Utente trovati
-	 * @throws SQLException 
-	 */
-	public List<Utente> findByName(String name) throws SQLException{
-		
-		try{
-			conn = DBConnectionPool.getConnection();
-			
-			query = "SELECT * FROM "+DBNames.TABLE_UTENTE
-					+" WHERE "+DBNames.ATTR_UTENTE_NOME+"="+name;
-			st = conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			
-			return fillResults(rs);
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
-		return null;
-		
-	}
-	
-	/**
-	 * Ricerca Utente in base al cognome
-	 * @param surname Nome dell'utente
-	 * @return Lista degli Utente trovati
-	 * @throws SQLException 
-	 */
-	public List<Utente> findBySurname(String surname) throws SQLException{
-		
-		try{
-			conn = DBConnectionPool.getConnection();
-			
-			query = "SELECT * FROM "+DBNames.TABLE_UTENTE
-					+" WHERE "+DBNames.ATTR_UTENTE_COGNOME+"="+surname;
-			st = conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			
-			return fillResults(rs);
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
-		return null;
-		
-	}
-	 /**
-	  * Ricerca Utente in base al nome o al cognome
-	  * @param name Nome dell'utente
-	  * @param surname Cognome dell'utente
-	  * @return Lista degli Utente trovati
-	  * @throws SQLException
-	  */
-	public List<Utente> findByNameSurname(String name, String surname) throws SQLException{
-		
-		try{
-			conn = DBConnectionPool.getConnection();
-			
-			query = "SELECT * FROM "+DBNames.TABLE_UTENTE
-					+" WHERE "+DBNames.ATTR_UTENTE_COGNOME+"="+surname
-					+" OR "+DBNames.ATTR_UTENTE_NOME+"="+name;
-			st = conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			
-			return fillResults(rs);
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
-		return null;
-		
-	}
-
 	// METODI DI SUPPORTO PER LA CLASSE
 
 	/**
