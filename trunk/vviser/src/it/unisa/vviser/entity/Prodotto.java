@@ -13,12 +13,13 @@ public class Prodotto
 	private String codiceDOI;
 	private String diffusione;
 	private String note; 
-	private String categoria;
+	private String tipologia;
 	private String isbn;
 	private String titolo;
 	private String proprietario;
 	private boolean bozza;
 	private String stato;
+	private String listaCollaboratori;
 	
 	/**
 	 * Il costruttore della classe Prodotto vuoto
@@ -36,18 +37,19 @@ public class Prodotto
 	 * @param codiceDOI codiceDOI del prodotto
 	 * @param diffusione numero di copie del prodotto
 	 * @param note note relative al prodotto
-	 * @param categoria categoria a cui appartine il prodotto
+	 * @param tipologia a cui appartine il prodotto
 	 * @param bozza prodotto bozza(Si/No)
 	 * @param stato stato del prodotto(Definitivo,provvisorio)
 	 * @param titolo titolo del prodotto
 	 * @param proprietario Il proprietario del prodotto
+	 * @param listaCollaboratori contiene tutti i coautori del prodotto
 	 * 
 	 */
-	public Prodotto(String isbn,String titolo,String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String stato,boolean bozza,String categoria,String proprietario)
+	public Prodotto(String isbn,String titolo,String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String stato,boolean bozza,String tipologia,String proprietario,String listaCollaboratori)
 	{
 		this.annoPubblicazione=annoPubblicazione;
 		this.formatoPubblicazione=formatoPubblicazione;
-		this.categoria=categoria;
+		this.tipologia=tipologia;
 		this.codiceDOI=codiceDOI;
 		this.isbn=isbn;
 		this.note=note;
@@ -56,7 +58,7 @@ public class Prodotto
 		this.bozza=bozza;
 		this.stato=stato;
 		this.proprietario=proprietario;
-		
+		this.listaCollaboratori=listaCollaboratori;
 	}
 	
 	/**
@@ -150,21 +152,21 @@ public class Prodotto
 	}
 	
 	/**
-	 * Metodo che restituisce la categoria a cui appartine un prodotto
-	 * @return categoria relativa al prodotto
+	 * Metodo che restituisce la tipologia del prodotto
+	 * @return  tipologia del relativa al prodotto
 	 */
-	public String getCategoria()
+	public String getTipologia()
 	{
-		return this.categoria;
+		return this.tipologia;
 	}
 	
 	/**
-	 * Metodo che setta la categoria a un prodtto
-	 * @param categoria da attribuire al prodotto
+	 * Metodo che setta la tipologia a un prodtto
+	 * @param tipologia da attribuire al prodotto
 	 */
-	public void setCategoria(String categoria)
+	public void setTipologia(String tipologia)
 	{
-		this.categoria= categoria;
+		this.tipologia=tipologia;
 	}
 	
 	/**
@@ -255,5 +257,23 @@ public class Prodotto
 	public void setProprietario(String proprietario)
 	{
 		this.proprietario=proprietario;
+	}
+	
+	/**
+	 * Metodo che restituisce la lista di utenti che collaborano al prodotto 
+	 * @return listaCollaborazioni
+	 */
+	public String getListaCollaboratori()
+	{
+		return this.listaCollaboratori;
+	}
+	
+	/**
+	 * Metodo che setta la lista di collaboratori al prodotto
+	 * @param listaCollaboratori da attribuire al prodotto
+	 */
+	public void setListaCollaboratori(String listaCollaboratori)
+	{
+		this.listaCollaboratori=listaCollaboratori;
 	}
 }
