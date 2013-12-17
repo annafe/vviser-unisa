@@ -14,7 +14,6 @@ public final class DBNames {
 	
 	//Nomi tabelle del database
 	public static final String TABLE_AUTORICONOSCIMENTO="autoriconoscimento";
-	public static final String TABLE_CATEGORIA="categoria";
 	public static final String TABLE_DIPARTIMENTO="dipartimento";
 	public static final String TABLE_EVENTOVALUTAZIONE="eventovalutazione";
 	public static final String TABLE_LISTAVALUTAZIONE="listavalutazione";
@@ -25,7 +24,8 @@ public final class DBNames {
 	public static final String TABLE_PRODOTTOLISTA="prodottolista";
 	public static final String TABLE_PUBBLICAZIONESURIVISTA="pubblicazionesurivista";
 	public static final String TABLE_RIVISTA="rivista";
-	public static final String TABLE_SOTTOMETTI="sottometti";
+	public static final String TABLE_SOTTOMETTIMIUR="sottomettiMIUR";
+	public static final String TABLE_TIPOLOGIA="tipologia";
 	public static final String TABLE_UTENTE="utente";
 	
 	//Attributi autoriconoscimento
@@ -33,11 +33,6 @@ public final class DBNames {
 	public static final String ATTR_AUTORICONOSCIMENTO_PRODOTTO_ISBN="prodotto_isbn";
 	public static final String ATTR_AUTORICONOSCIMENTO_PROPRIETARIO="proprietario";
 	public static final String ATTR_AUTORICONOSCIMENTO_CONVALIDATO="convalidato";
-	
-	//Attributi categoria
-	public static final String ATTR_CATEGORIA_NOME="nome";
-	public static final String ATTR_CATEGORIA_DESCRIZIONE="descrizione";
-	public static final String ATTR_CATEGORIA_VALIDITA="validita";
 	
 	//Attributi dipartimento
 	public static final String ATTR_DIPARTIMENTO_NOME="nome";
@@ -76,10 +71,19 @@ public final class DBNames {
 	public static final String ATTR_PRODOTTO_FORMATOPUBBLICAZIONE="formatoPubblicazione";
 	public static final String ATTR_PRODOTTO_CODICEDOI="codiceDoi";
 	public static final String ATTR_PRODOTTO_DIFFUSIONE="diffusione";
+	public static final String ATTR_PRODOTTO_LISTACOLLABORATORI="listacollaboratori";
+	public static final String ATTR_PRODOTTO_DESCRIZIONECONTENUTI="descrizionecontenuti";
+	public static final String ATTR_PRODOTTO_INDIRIZZOWEB="indirizzoweb";
+	public static final String ATTR_PRODOTTO_PAROLECHIAVI="parolechiavi";
+	public static final String ATTR_PRODOTTO_EDITORE="editore";
+	public static final String ATTR_PRODOTTO_NUMVOLUME="numvolume";
+	public static final String ATTR_PRODOTTO_TOTALEPAGINE="totalepagine";
+	public static final String ATTR_PRODOTTO_DAPAGINA="dapagina";
+	public static final String ATTR_PRODOTTO_APAGINA="apagina";
 	public static final String ATTR_PRODOTTO_NOTE="note";
 	public static final String ATTR_PRODOTTO_STATO="stato";
 	public static final String ATTR_PRODOTTO_BOZZA="bozza";
-	public static final String ATTR_PRODOTTO_CATEGORIA_NOME="categoria_nome";
+	public static final String ATTR_PRODOTTO_TIPOLOGIA="tipologia";
 	public static final String ATTR_PRODOTTO_EMAILPROPRIETARIO="email_proprietario";
 	
 	//Attributi prodottoinconflitto
@@ -111,9 +115,16 @@ public final class DBNames {
 	public static final String ATTR_RIVISTA_AD_ANNO="adAnno";
 	public static final String ATTR_RIVISTA_VALIDITA="validita";
 	
-	//Attributi sottometti
-	public static final String ATTR_SOTTOMETTI_UTENTE_EMAIL="utente_email";
-	public static final String ATTR_SOTTOMETTI_PRODOTTO_ISBN="prodotto_isbn";
+	//Attributi sottomettiMIUR
+	public static final String ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL="utente_email";
+	public static final String ATTR_SOTTOMETTIMIUR_PRODOTTO_ISBN="prodotto_isbn";
+	
+	//Attributi tipologia
+	public static final String ATTR_TIPOLOGIA_NOME="nome";
+	public static final String ATTR_TIPOLOGIA_DESCRIZIONE="descrizione";
+	public static final String ATTR_TIPOLOGIA_VALIDITA="validita";
+	public static final String ATTR_TIPOLOGIA_DA="da";
+	public static final String ATTR_TIPOLOGIA_A="a";
 	
 	//Attributi utente
 	public static final String ATTR_UTENTE_EMAIL="email";
