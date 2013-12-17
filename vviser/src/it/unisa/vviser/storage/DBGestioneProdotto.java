@@ -65,7 +65,7 @@ public class DBGestioneProdotto
             st.setString(7,p.getNote());
             st.setString(8,p.getStato());
             st.setBoolean(9,p.getBozza());
-            st.setString(10,p.getCategoria());
+            st.setString(10,p.getTipologia());
             st.setString(11,p.getProprietario());
             
             st.executeUpdate();
@@ -77,39 +77,7 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }   
 	}
-	
-	
-	/**
-	 * Metodo che permette di inserire nel database un prodotto parziale
-	 * @param p 
-	 * @throws SQLException
-	 */
-	/*
-	public void insertProdottiValparz(Prodotto p) throws SQLException
-	{
-		Connection conn=null;
-		PreparedStatement st=null;
-		String query;
-        try 
-        {
-            conn = DBConnectionPool.getConnection();
-            query= "INSERT INTO DBNames.TABLE_PRODOTTO(Isbn, Titolo, AnnoPubblicazione, Stato) values (?,?)";
 
-            st = conn.prepareStatement(query);
-            st.setString(1, p.getIsbn());
-            
-
-            st.executeUpdate();
-            conn.commit();
-        } 
-        finally 
-        {
-            st.close();
-            DBConnectionPool.releaseConnection(conn);
-        }
-	}
-	*/
-	
 	/**
 	 * Metodo che permette di eliminare un prodotto
 	 * @param isbn
@@ -135,8 +103,7 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
-	
-	
+		
 	/**
 	 *Metodo che permette di modificare di un prodotto
 	 * @param p prodotto
@@ -159,12 +126,11 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_NOTE+"="+p.getNote()+","
             		+DBNames.ATTR_PRODOTTO_STATO+"="+p.getStato()+","
             		+DBNames.ATTR_PRODOTTO_BOZZA+"="+p.getBozza()+","
-            		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+"="+p.getCategoria()+","
+            		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+"="+p.getTipologia()+","
             		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+" "
 					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+p.getIsbn();
 			
 			st=conn.prepareStatement(query);
-			
 			st.executeUpdate();
 			conn.commit();
 		}
@@ -173,43 +139,8 @@ public class DBGestioneProdotto
 			st.close();
 			DBConnectionPool.releaseConnection(conn);
 		}
-		}
-		
-		/**
-		 *Metodo che permette di modificaree nel database un prodotto publicato su rivista validato
-		 * @param pisbn
-		 * 
-		 * @throws SQLException
-		 */
-		/*
-		public void modifyProdVal(String pisbn) throws SQLException
-		{
-			Connection conn=null;
-			PreparedStatement st=null;
-			String query;
-			try
-			{
-				conn=DBConnectionPool.getConnection();
-				query="UPDATE FROM DBNames.TABLE_PRODOTTO, DBNames.TABLE_publicazioneivista SET DBNames.TABLE_PRODOTTO_nota=?"  	
-						+ "WHERE DBNames.TABLE_PRODOTTO_isbn=DBNames.TABLE_publicazionerivista_isbn"
-						+ "and DBNames.TABLE_PRODOTTO_isbn="+pisbn
-						+ "and DBNames.TABLE_PRODOTTO.stato= Validato";
-				
-				st=conn.prepareStatement(query);
-				
-				st.executeUpdate();
-				conn.commit();
-			}
-			finally
-			{
-				st.close();
-				DBConnectionPool.releaseConnection(conn);
-			}
-		
-		
 	}
-	*/
-	
+		
 	/**
 	 * Metodo che permette di sottomettere un prodotto al MIUR
 	 * @param proprietario proprietario del prodotto
@@ -266,12 +197,14 @@ public class DBGestioneProdotto
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		ris.next();
+    		
+    		//Da modificare appena peppe aggiorna la classe con gli attributi
     		Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
     				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
     				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
     				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
     				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
-    				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+    				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
     		return p;
 		}
 		finally 
@@ -282,12 +215,14 @@ public class DBGestioneProdotto
 	}
 	
 	/**
-	 *Metodo che permette di visualizzare tutti i prodotti personali 
+	 *Metodo che permette di visualizzare tutti i prodotti personali
+	 *sia quelli dove l'utente è indicato come coautore che quelli indicati come
+	 *collaboratore 
 	 * @param proprietario del prodotto
 	 * @return lista dei prodotti
 	 * @throws SQLException
 	 */
-	public ArrayList<Prodotto> visualizzaProdotti(String proprietario)throws SQLException
+	public ArrayList<Prodotto> visualizzaProdotti(String utente)throws SQLException
 	{
 		
 		//TODO aggiungere prodotti da tabella autoriconoscimento
@@ -302,8 +237,9 @@ public class DBGestioneProdotto
 			conn = DBConnectionPool.getConnection();
 			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
-            		" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+proprietario;
+            		" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+utente;
             
+            //Da modificare appena peppe aggiorna la classe per gli attributi
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
@@ -313,7 +249,26 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
         				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
+        	
+				listProdotto.add(p);
+			}
+    		
+    		//Ora prendo i prodotti dove sono indicato come coautore e ho confermato
+    		query="SELECT * FROM "+DBNames.TABLE_AUTORICONOSCIMENTO+
+            		" WHERE "+DBNames.ATTR_AUTORICONOSCIMENTO_COLLABORATORE+"="+utente+" AND "+DBNames.ATTR_AUTORICONOSCIMENTO_CONVALIDATO+"=true";
+            
+            //Da modificare appena peppe aggiorna la classe per gli attributi
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
 			}
@@ -350,12 +305,13 @@ public class DBGestioneProdotto
     		ris=st.executeQuery(query);
     		while(ris.next())
 			{
+    			//Modifica
     			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
         				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
         				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
 			}
@@ -399,7 +355,7 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
         				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO));
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
 			}
@@ -411,309 +367,4 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
-		/**
-		 * Metodo che permette di visualizzare nel database i prodotti in stato di bozza
-		 * @param p 
-		 * @throws SQLException
-		 */
-	/*
-		public ArrayList<Prodotto> showProdotti11(int idUt) throws SQLException
-		{
-			Connection conn=null;
-			Statement st=null;
-			ResultSet ris=null;
-			String query;
-			ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
-			try
-			{
-				conn=DBConnectionPool.getConnection();
-				query="SELECT Isbn, Titolo, AnnoPubblicazione, FormatoPubblicazione, CodiceDOI, Diffusione, Note, Categoria.nome"
-						+ "FROM DBNames.TABLE_PRODOTTO"
-						+ "WHERE BOZZA=true";
-				st=conn.createStatement();
-				ris=st.executeQuery(query);
-				while(ris.next())
-				{
-					String isbn=ris.getString("isbn");
-					String title=ris.getString("titolo");
-					String anno=ris.getString("AnnoPubblicazione");
-					String formato=ris.getString("FormatoPubblicazione");
-					String codice=ris.getString("CodiceDOI");
-					String categoria=ris.getString("Categoria.nome");
-					String note=ris.getString("Note");
-					String diffusione=ris.getString("Diffusione");
-					
-					
-					
-					Prodotto p=new Prodotto();
-					p.setIsbn(isbn);
-					p.setTitle(title);
-					p.setAnno(anno);
-					p.setFormato(formato);
-					p.setCodiceDOI(codice);
-					p.setCategoria(categoria);
-					p.setNote(note);
-					p.setDiffusione(diffusione);
-					listProdVal.add(p);
-				}
-			}
-			finally
-			{
-				st.close();
-				DBConnectionPool.releaseConnection(conn);
-			}
-			
-			return listProdVal;
-		}
-		*/
-		/**
-		 * Metodo che permette di inserire nel database un prodotto salvato in bozza
-		 * @param p 
-		 * @throws SQLException
-		 */
-		/*public void insertProdotti(Prodotto p) throws SQLException
-		{
-			Connection conn=null;
-			PreparedStatement st=null;
-			String query;
-	        try 
-	        {
-	            conn = DBConnectionPool.getConnection();
-	            query= "INSERT INTO DBNames.TABLE_PRODOTTO(Isbn, Titolo, AnnoPubblicazione) values (?,?)"
-	            		+"WHERE DBNames.TABLE_PRODOTTO_BOZZA=true";
-
-	            st = conn.prepareStatement(query);
-	            st.setString(1, p.getIsbn());
-	            
-
-	            st.executeUpdate();
-	            conn.commit();
-	        } 
-	        finally 
-	        {
-	            st.close();
-	            DBConnectionPool.releaseConnection(conn);
-	        }
-		}
-*/
-		/**
-		 * Metodo che permette di visualizzare nel database i prodotti		
-		 *  * @param p 
-		 * @throws SQLException
-		 */
-		/*
-		public ArrayList<Prodotto> showProdotti(int idUt) throws SQLException
-		{
-			Connection conn=null;
-			Statement st=null;
-			ResultSet ris=null;
-			String query;
-			ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
-			try
-			{
-				conn=DBConnectionPool.getConnection();
-				query="SELECT *"
-						+ "FROM DBNames.TABLE_PRODOTTO";
-				st=conn.createStatement();
-				ris=st.executeQuery(query);
-				while(ris.next())
-				{
-					String isbn=ris.getString("isbn");
-					String title=ris.getString("titolo");
-					String anno=ris.getString("AnnoPubblicazione");
-					String formato=ris.getString("FormatoPubblicazione");
-					String codice=ris.getString("CodiceDOI");
-					String categoria=ris.getString("Categoria.nome");
-					String note=ris.getString("Note");
-					String diffusione=ris.getString("Diffusione");
-					
-					
-					
-					Prodotto p=new Prodotto();
-					p.setIsbn(isbn);
-					p.setTitle(title);
-					p.setAnno(anno);
-					p.setFormato(formato);
-					p.setCodiceDOI(codice);
-					p.setCategoria(categoria);
-					p.setNote(note);
-					p.setDiffusione(diffusione);
-					listProdVal.add(p);
-				}
-			}
-			finally
-			{
-				st.close();
-				DBConnectionPool.releaseConnection(conn);
-			}
-			
-			return listProdVal;
-		}	
-	*/
-		/**
-		 * Metodo che permette di visualizzare nel database i prodotti per titolo
-		 * @param p 
-		 * @throws SQLException
-		 */
-		/*
-		public ArrayList<Prodotto> showProdotti1(String titolo) throws SQLException
-		{
-			Connection conn=null;
-			Statement st=null;
-			ResultSet ris=null;
-			String query;
-			ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
-			try
-			{
-				conn=DBConnectionPool.getConnection();
-				query="SELECT DBNames.TABLE_PRODOTTO_Isbn, DBNames.TABLE_PRODOTTO_AnnoPubblicazione, DBNames.TABLE_PRODOTTO_FormatoPubblicazione,DBNames.TABLE_PRODOTTO_CodiceDOI, DBNames.TABLE_PRODOTTO_Diffusione, DBNames.TABLE_PRODOTTO_Note, DBNames.TABLE_PRODOTTO_Categoria.nome"
-						+ "FROM DBNames.TABLE_PRODOTTO, DBNames.TABLE_prodottorivista, DBNames.TABLE_rivista"
-						+ "WHERE DBNames.TABLE_prodotto_titolo=titolo"
-						+" and DBNames.TABLE_PRODOTTO_isbn=DBNames.TABLE_prodottirivista_prodotto.isbn"
-						+"and DBNames.TABLE_prodottorivista_rivista.issn=DBNames.TABLE_rivista_issn";
-				st=conn.createStatement();
-				ris=st.executeQuery(query);
-				while(ris.next())
-				{
-					String isbn=ris.getString("DBNames.TABLE_PRODOTTO_isbn");
-					String title=ris.getString("DBNames.TABLE_PRODOTTO_titolo");
-					String anno=ris.getString("DBNames.TABLE_PRODOTTO_AnnoPubblicazione");
-					String formato=ris.getString("DBNames.TABLE_PRODOTTO_FormatoPubblicazione");
-					String codice=ris.getString("DBNames.TABLE_PRODOTTO_CodiceDOI");
-					String categoria=ris.getString("DBNames.TABLE_PRODOTTO_Categoria.nome");
-					String note=ris.getString("DBNames.TABLE_PRODOTTO_Note");
-					String diffusione=ris.getString("DBNames.TABLE_PRODOTTO_Diffusione");
-					
-					
-					
-					Prodotto p=new Prodotto();
-					p.setIsbn(isbn);
-					p.setAnno(anno);
-					p.setFormato(formato);
-					p.setCodiceDOI(codice);
-					p.setCategoria(categoria);
-					p.setNote(note);
-					p.setDiffusione(diffusione);
-					listProdVal.add(p);
-				}
-			}
-			finally
-			{
-				st.close();
-				DBConnectionPool.releaseConnection(conn);
-			}
-			
-			return listProdVal;
-		}*/
-		/**
-		 * Metodo che permette di visualizzare nel database i prodotti per isbn
-		 * @param p 
-		 * @throws SQLException
-		 */
-		/*public ArrayList<Prodotto> showProdotti(String pissn) throws SQLException
-		{
-			Connection conn=null;
-			Statement st=null;
-			ResultSet ris=null;
-			String query;
-			ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
-			try
-			{
-				conn=DBConnectionPool.getConnection();
-				query="SELECT DBNames.TABLE_PRODOTTO_title, DBNames.TABLE_PRODOTTO_AnnoPubblicazione, DBNames.TABLE_PRODOTTO_FormatoPubblicazione, DBNames.TABLE_PRODOTTO_CodiceDOI, DBNames.TABLE_PRODOTTO_Diffusione, DBNames.TABLE_PRODOTTO_Note, DBNames.TABLE_PRODOTTO_Categoria.nome"
-						+ "FROM DBNames.TABLE_PRODOTTO, DBNames.TABLE_PRODOTTOrivista, DBNames.TABLE_rivista"
-						+ "WHERE DBNames.TABLE_rivista_issn=pissn"
-						+" and DBNames.TABLE_PRODOTTO_isbn=DBNames.TABLE_PRODOTTOrivista_prodotto.isbn"
-						+"and DBNames.TABLE_PRODOTTOrivista_rivista.issn=DBNames.TABLE_rivista_issn";
-				st=conn.createStatement();
-				ris=st.executeQuery(query);
-				while(ris.next())
-				{
-					String isbn=ris.getString("DBNames.TABLE_PRODOTTO_title");
-					String title=ris.getString("DBNames.TABLE_PRODOTTO_titolo");
-					String anno=ris.getString("DBNames.TABLE_PRODOTTO_AnnoPubblicazione");
-					String formato=ris.getString("DBNames.TABLE_PRODOTTO_FormatoPubblicazione");
-					String codice=ris.getString("DBNames.TABLE_PRODOTTO_CodiceDOI");
-					String categoria=ris.getString("DBNames.TABLE_PRODOTTO_Categoria.nome");
-					String note=ris.getString("DBNames.TABLE_PRODOTTO_Note");
-					String diffusione=ris.getString("DBNames.TABLE_PRODOTTO_Diffusione");
-					
-					
-					
-					Prodotto p=new Prodotto();
-					p.setIsbn(isbn);
-					p.setAnno(anno);
-					p.setFormato(formato);
-					p.setCodiceDOI(codice);
-					p.setCategoria(categoria);
-					p.setNote(note);
-					p.setDiffusione(diffusione);
-					listProdVal.add(p);
-				}
-			}
-			finally
-			{
-				st.close();
-				DBConnectionPool.releaseConnection(conn);
-			}
-			
-			return listProdVal;
-		}*/
-		/**
-		 * Metodo che permette di visualizzare nel database i prodotti per data
-		 * @param p 
-		 * @throws SQLException
-		 */
-		/*public ArrayList<Prodotto> showProdotti(String annoa, String annob) throws SQLException
-		{
-			Connection conn=null;
-			Statement st=null;
-			ResultSet ris=null;
-			String query;
-			ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
-			try
-			{
-				conn=DBConnectionPool.getConnection();
-				query="SELECT Isbn, title, FormatoPubblicazione, CodiceDOI, Diffusione, Note, Categoria.nome"
-						+ "FROM DBNames.TABLE_PRODOTTO,DBNames.TABLE_PRODOTTOrivista, DBNames.TABLE_rivista"
-						+ "WHERE DBNames.TABLE_PRODOTTO_annopubblicazione>annoa"
-						+"and DBNames.TABLE_PRODOTTO_annopubblicazione<annob"
-						+" and DBNames.TABLE_PRODOTTO_isbn=DBNames.TABLE_PRODOTTOrivista_prodotto.isbn"
-						+"and DBNames.TABLE_PRODOTTOrivista_rivista.issn=DBNames.TABLE_rivista_issn";
-				st=conn.createStatement();
-				ris=st.executeQuery(query);
-				while(ris.next())
-				{
-					String isbn=ris.getString("isbn");
-					String title=ris.getString("titolo");
-					String anno=ris.getString("AnnoPubblicazione");
-					String formato=ris.getString("FormatoPubblicazione");
-					String codice=ris.getString("CodiceDOI");
-					String categoria=ris.getString("Categoria.nome");
-					String note=ris.getString("Note");
-					String diffusione=ris.getString("Diffusione");
-					
-					
-					
-					Prodotto p=new Prodotto();
-					p.setIsbn(isbn);
-					p.setAnno(anno);
-					p.setFormato(formato);
-					p.setCodiceDOI(codice);
-					p.setCategoria(categoria);
-					p.setNote(note);
-					p.setDiffusione(diffusione);
-					listProdVal.add(p);
-				}
-			}
-			finally
-			{
-				st.close();
-				DBConnectionPool.releaseConnection(conn);
-			}
-			
-			return listProdVal;
-		}
-		*/
-		
 }
