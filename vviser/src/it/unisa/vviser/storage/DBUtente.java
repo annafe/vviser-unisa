@@ -52,7 +52,7 @@ public class DBUtente {
 					+ DBNames.ATTR_UTENTE_EMAIL+", "
 					+ DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+", "
 					+ DBNames.ATTR_UTENTE_TIPOLOGIA+" "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			st = conn.prepareStatement(query);
 			st.setString(1, a.getNome());
@@ -66,9 +66,10 @@ public class DBUtente {
 			st.setString(9, a.getDipartimento());
 			st.setString(10, a.getTipologia());
 			
-			if(st.executeUpdate() > 0)
+			if(st.executeUpdate() > 0){
+				conn.commit();
 				return true;
-			
+			}
 		} catch(SQLException e){
 			e.printStackTrace();
 		}finally{
@@ -87,8 +88,8 @@ public class DBUtente {
 	 * @throws SQLException
 	 */
 	public boolean removeUtente(Utente u) throws SQLException{
-		query = "DELETE FROM "+DBNames.TABLE_UTENTE+" WHERE"
-					+DBNames.ATTR_UTENTE_EMAIL+"="+u.getEmail();
+		query = "DELETE FROM "+DBNames.TABLE_UTENTE+" WHERE "
+					+DBNames.ATTR_UTENTE_EMAIL+"='"+u.getEmail()+"'";
 		
 		return update();
 	}
@@ -481,9 +482,10 @@ public class DBUtente {
 			conn = DBConnectionPool.getConnection();
 			st = conn.prepareStatement(query);
 			
-			if(st.executeUpdate() > 0)
+			if(st.executeUpdate() > 0){
+				conn.commit();
 				return true;
-			
+			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
