@@ -410,7 +410,7 @@ public class DBEventiValutazione {
 		String[] tokens = new String[3];
 		int[] g=new int[3];
 		
-		tokens = data.split("/");
+		tokens = data.split("-");
 		
 		g[0]=Integer.parseInt((tokens[0])); 
 		g[1]=Integer.parseInt((tokens[1])); 
