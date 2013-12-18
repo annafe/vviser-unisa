@@ -10,7 +10,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Angiuoli Salvatore
+ *
+ */
 public class DBGestioneValidazione {
+	/**
+	 * Costruttore vuoto
+	 */
+	public DBGestioneValidazione()
+	{
+		
+	}
 	/**
 	 *Metodo che mostra i prodotti sottomessi a validazione dal ricercatore 
 	  * @param idUt
