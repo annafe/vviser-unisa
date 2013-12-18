@@ -197,8 +197,6 @@ public class DBGestioneProdotto
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		ris.next();
-    		
-    		//Da modificare appena peppe aggiorna la classe con gli attributi
     		Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
     				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
     				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
@@ -257,8 +255,6 @@ public class DBGestioneProdotto
     		//Ora prendo i prodotti dove sono indicato come coautore e ho confermato
     		query="SELECT * FROM "+DBNames.TABLE_AUTORICONOSCIMENTO+
             		" WHERE "+DBNames.ATTR_AUTORICONOSCIMENTO_COLLABORATORE+"="+utente+" AND "+DBNames.ATTR_AUTORICONOSCIMENTO_CONVALIDATO+"=true";
-            
-            //Da modificare appena peppe aggiorna la classe per gli attributi
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
@@ -305,7 +301,6 @@ public class DBGestioneProdotto
     		ris=st.executeQuery(query);
     		while(ris.next())
 			{
-    			//Modifica
     			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
         				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
