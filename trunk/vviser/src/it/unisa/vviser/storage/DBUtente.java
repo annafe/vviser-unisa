@@ -414,4 +414,42 @@ public class DBUtente {
 		return false;
 	}
 	
+	/**
+	 * @author Romano Simone
+	 * @param email	
+	 * @return Utente relativo alla email data in input o null se l'utente non è presente nel Database
+	 * @throws SQLException 
+	 */
+	public Utente getUtente(String email) throws SQLException{
+		Utente u = null;
+		
+		try{
+			conn = DBConnectionPool.getConnection();
+			query = "SELECT * FROM "+DBNames.TABLE_UTENTE
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"= ?";
+			st = conn.prepareStatement(query);
+			st.setString(1, email);
+			ResultSet rs = st.executeQuery();
+			if(rs.next()){
+				u= new Utente();
+				u.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
+				u.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
+				u.setDataDiNascita(creaData(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA)));
+				u.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
+				u.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
+				u.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
+				u.setPassword(rs.getString(DBNames.ATTR_UTENTE_PASSWORD));
+				u.setEmail(email);
+				u.setDipartimento(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
+				u.setTipologia(rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		
+		return u;
+	}
 }
