@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DBNotifica {
 	private Connection conn = null;
@@ -39,24 +40,36 @@ public class DBNotifica {
 		
 	}	
 	
-	public boolean addNotificaConflitto(String isbn) throws SQLException{
+	/**
+	 * metodo di servizio per la gestione Sottomissione a Valutazione
+	 * @param isbn
+	 * @return
+	 * @throws SQLException
+	 */
+	public void addNotificaConflitto(String isbn) throws SQLException{
+		
+		String tipo = "conflitto";
+		String amministratore="Amministratore";
+		
 		conn = DBConnectionPool.getConnection();
 		try{
 			
 			//query nella tabella prodottolista
+			//estrae tutti gli indirizzi email dei ricercatori coinvolti nel conflitto
+			//del prodotto con isbn dato
+			String query="SELECT "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+
+					" FROM "+DBNames.TABLE_PRODOTTOLISTA+" "+
+					"WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+isbn+";";
 			
-			String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
-					" ("+DBNames.ATTR_NOTIFICA_TIPO+","+DBNames.ATTR_NOTIFICA_MESSAGGIO+","+
-					DBNames.ATTR_NOTIFICA_MITTENTE+","+DBNames.ATTR_NOTIFICA_DESTINATARIO+")"+
-					" VALUES ("+e.getTipo()+","+e.getMessaggio()+","+e.getMittente()+","+
-					e.getDestinatario()+");";
+			pstm = conn.prepareStatement(query);
+			ResultSet rs = pstm.executeQuery();
 			
-			pstm = conn.prepareStatement(queryParam);
+			DBNotifica notifiche = new DBNotifica();
 			
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
-				return true;
-			else return false;
+			while(rs.next()){
+				Notifica note = new Notifica(rs.getString(DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL),tipo, amministratore);
+				notifiche.addNotifica(note);
+			}
 		}finally{
 			pstm.close();
             DBConnectionPool.releaseConnection(conn);
@@ -66,23 +79,35 @@ public class DBNotifica {
 		
 	}	
 	
+	/**
+	 * metodo di servizio per la sottogestione validazione
+	 * @param messaggio
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean addNotificaConflittoValutazione(String messaggio) throws SQLException{
-		String tipo = "";
+		String tipo = "messaggio";
+		String amministratore="Amministratore";
 		
 		conn = DBConnectionPool.getConnection();
 		try{
-			String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
-					" ("+DBNames.ATTR_NOTIFICA_TIPO+","+DBNames.ATTR_NOTIFICA_MESSAGGIO+","+
-					DBNames.ATTR_NOTIFICA_MITTENTE+","+DBNames.ATTR_NOTIFICA_DESTINATARIO+")"+
-					" VALUES ("+e.getTipo()+","+e.getMessaggio()+","+e.getMittente()+","+
-					e.getDestinatario()+");";
 			
-			pstm = conn.prepareStatement(queryParam);
+			//query nella tabella prodottolista
+			//estrae tutti gli indirizzi email dei ricercatori coinvolti nel conflitto
+			//del prodotto con isbn dato
+			String query="SELECT "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+
+					" FROM "+DBNames.TABLE_PRODOTTOLISTA+" "+
+					"WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+isbn+";";
 			
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
-				return true;
-			else return false;
+			pstm = conn.prepareStatement(query);
+			ResultSet rs = pstm.executeQuery();
+			
+			DBNotifica notifiche = new DBNotifica();
+			
+			while(rs.next()){
+				Notifica note = new Notifica(rs.getString(DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL),tipo, amministratore);
+				notifiche.addNotifica(note);
+			}
 		}finally{
 			pstm.close();
             DBConnectionPool.releaseConnection(conn);
