@@ -67,6 +67,8 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_BOZZA+","
             		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+","
             		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
+            		
+            		//altri campi
             		+") values (?,?,?,?,?,?,?,?,?,?,?)";
             
             st=conn.prepareStatement(query);
@@ -97,7 +99,7 @@ public class DBGestioneProdotto
 	 * @param isbn
 	 * @throws SQLException
 	 */
-	public void deleteProdotto(String isbn) throws SQLException
+	public void eliminaProdotto(String isbn) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -142,7 +144,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_BOZZA+"="+p.getBozza()+","
             		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+p.getTipologia()+","
             		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+" "
-					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+p.getIsbn();
+					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+"'"+p.getIsbn()+"'"; //Modificare così
 			
 			st=conn.prepareStatement(query);
 			st.executeUpdate();
@@ -217,6 +219,7 @@ public class DBGestioneProdotto
     				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
     				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
     				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
+    		//altri campi non obbligatori
     		return p;
 		}
 		finally 
