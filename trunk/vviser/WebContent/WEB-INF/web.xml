@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+      <servlet-name>ServletInsertProdottiValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletInsertProdottiValutazione</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ServletInsertProdottiValutazione</servlet-name>
+        <url-pattern>/ServletInsertProdottiValutazione</url-pattern>
+    </servlet-mapping>
+    <servlet>
+      <servlet-name>ServletVisualizzaProdotti</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletVisualizzaProdotti</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ServletVisualizzaProdotti</servlet-name>
+        <url-pattern>/ServletVisualizzaProdotti</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
