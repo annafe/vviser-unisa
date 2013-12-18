@@ -38,4 +38,12 @@
     <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     
+	<servlet>
+    <servlet-name>DeleteAccountServlet</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.DeleteAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>DeleteAccountServlet</servlet-name>
+    <url-pattern>/DeleteAccountServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
