@@ -1,5 +1,6 @@
 package it.unisa.vviser.storage;
 
+import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
 
 import java.sql.Connection;
@@ -16,70 +17,130 @@ public class DBGestioneValidazione {
 	 * @return
 	 * @throws SQLException
 	 */
-	public ArrayList<ProdottoValidazione> showProdottiVal() throws SQLException
+	public ArrayList<Prodotto> visualizzaProdotti(String utente)throws SQLException
 	{
-		Connection conn=null;
+		
+		//TODO aggiungere prodotti da tabella autoriconoscimento
 		Statement st=null;
 		ResultSet ris=null;
 		String query;
-		ArrayList<ProdottoValutazione> listProdVal=new ArrayList<ProdottoValutazione>();
+		Connection conn=null;
+		
 		try
 		{
-			conn=DBConnectionPool.getConnection();
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
 			query="SELECT *"
-					+ "FROM DBNames.TABLE_PRODOTTO";
-			st=conn.createStatement();
-			ris=st.executeQuery(query);
-			while(ris.next())
+					+ " FROM " +DBNames.TABLE_PRODOTTO
+					+ " WHERE "+DBNames.ATTR_PRODOTTO_STATO+"=NonValidato";
+			
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
 			{
-				String isbn=ris.getString("isbn");
-				String title=ris.getString("titolo");
-				String anno=ris.getString("AnnoPubblicazione");
-				String formato=ris.getString("FormatoPubblicazione");
-				String codice=ris.getString("CodiceDOI");
-				String categoria=ris.getString("Categoria.nome");
-				String note=ris.getString("Note");
-				String diffusione=ris.getString("Diffusione");
-				
-				ProdottoValutazione p=new ProdottoValutazione();
-				p.setIsbn(isbn);
-				p.setTitle(title);
-				p.setPriority(priority);
-				p.setSuggestion(suggestion);
-				listProdVal.add(p);
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
+        	
+				listProdotto.add(p);
 			}
+    		
+    		
+           
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+			
+			
+    		return listProdotto;
 		}
-		finally
-		{
-			st.close();
-			DBConnectionPool.releaseConnection(conn);
-		}
-		
-		return listProdVal;
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
 	}
 	
+	
+	
 	/**
-	 *Metodo che permette di inviare nel database una notifica
+	 *Metodo che mostra i prodotti sottomessi a validazione validati dal dipartimento 
+	  * @param idUt
+	 * @return
 	 * @throws SQLException
 	 */
-	public void invionotifica() throws SQLException
+	public ArrayList<Prodotto> visualizzaProdottivalidatiDipartimento(String utente)throws SQLException
+	{
+		
+		//TODO aggiungere prodotti da tabella autoriconoscimento
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+			query="SELECT *"
+					+ " FROM " +DBNames.TABLE_PRODOTTO
+					+ " WHERE "+DBNames.ATTR_PRODOTTO_STATO+"=ValidatoDipartimento";
+			
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
+        	
+				listProdotto.add(p);
+			}
+    		
+    		
+           
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+			
+			
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	
+	
+	/**
+	 *Metodo che permette di inviare nel database una notifica per errore
+	 * @throws SQLException
+	 */
+	public void invionotifica(String messaggio) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
 		try
+		
 		{
 			conn=DBConnectionPool.getConnection();
-			query="UPDATE notica SET tipon=?,"
-					+ "FROM DBNames.TABLE_NOTIFICA,DBNames.TABLE_RICEZIONENOTIFICA,
-					DBNames.TABLE_UTENTE,DBNames.TABLE_PRODOTTOUTENTE,DBNames.TABLE_PRODOTTO"
-					+ "WHERE ;
+			query="UPDATE "+DBNames.TABLE_NOTIFICA
+					+" SET "+DBNames.ATTR_NOTIFICA_MESSAGGIO+"="+messaggio
+					+DBNames.ATTR_NOTIFICA_DESTINATARIO+"="+DBNames.ATTR_UTENTE_EMAIL
+					+ " WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+DBNames.ATTR_UTENTE_EMAIL
+					+DBNames.ATTR_NOTIFICA_DESTINATARIO+"="+DBNames.ATTR_UTENTE_EMAIL;
 			
 			st=conn.prepareStatement(query);
-			st.setString(1, pv.getIsbn());
-			//eventovalutazione??
-			st.setInt(3, pv.getPriority());
-			st.setString(4, pv.getSuggestion());
 			st.executeUpdate();
 			conn.commit();
 		}
@@ -88,8 +149,9 @@ public class DBGestioneValidazione {
 			st.close();
 			DBConnectionPool.releaseConnection(conn);
 		}
+	}
 		/**
-		 *Metodo che permette di VALIDARE nel database un PRODOTTO	
+		 *Metodo che permette di VALIDARE dal direttore nel database un PRODOTTO	
 		 * @throws SQLException
 		 */
 		public void VALIDATODIPARTIMENTO() throws SQLException
@@ -100,14 +162,11 @@ public class DBGestioneValidazione {
 			try
 			{
 				conn=DBConnectionPool.getConnection();
-				query="UPDATE prodotto SET STATO=VALIDATODIPARTIMENTO,"
-						+ "FROM DBNames.TABLE_PRODOTTO"
+				query="UPDATE "+DBNames.TABLE_PRODOTTO
+						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoDipartimento";
+				
 				
 				st=conn.prepareStatement(query);
-				st.setString(1, pv.getIsbn());
-				//eventovalutazione??
-				st.setInt(3, pv.getPriority());
-				st.setString(4, pv.getSuggestion());
 				st.executeUpdate();
 				conn.commit();
 			}
@@ -117,4 +176,32 @@ public class DBGestioneValidazione {
 				DBConnectionPool.releaseConnection(conn);
 			}
 
+}
+		/**
+		 *Metodo che permette di VALIDARE comitato area nel database un PRODOTTO	
+		 * @throws SQLException
+		 */
+		public void ValidatoAreaScientifica() throws SQLException
+		{
+			Connection conn=null;
+			PreparedStatement st=null;
+			String query;
+			try
+			{
+				conn=DBConnectionPool.getConnection();
+				query="UPDATE "+DBNames.TABLE_PRODOTTO
+						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoComitatoArea";
+				
+				
+				st=conn.prepareStatement(query);
+				st.executeUpdate();
+				conn.commit();
+			}
+			finally
+			{
+				st.close();
+				DBConnectionPool.releaseConnection(conn);
+			}
+
+}
 }
