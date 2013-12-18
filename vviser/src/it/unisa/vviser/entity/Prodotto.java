@@ -380,9 +380,9 @@ public class Prodotto
 	 * @param numVolume
 	 * @return
 	 */
-	public int getNumVolume(int numVolume)
+	public int getNumVolume()
 	{
-		return this.numVolume=numVolume;
+		return this.numVolume;
 	}
 	
 	/**

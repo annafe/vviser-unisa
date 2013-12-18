@@ -66,10 +66,18 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_STATO+","
             		+DBNames.ATTR_PRODOTTO_BOZZA+","
             		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+","
-            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
-            		
-            		//altri campi
-            		+") values (?,?,?,?,?,?,?,?,?,?,?)";
+            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+","
+         
+            		+DBNames.ATTR_PRODOTTO_APAGINA+","
+            		+DBNames.ATTR_PRODOTTO_DAPAGINA+","
+            		+DBNames.ATTR_PRODOTTO_INDIRIZZOWEB+","
+            		+DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI+","
+            		+DBNames.ATTR_PRODOTTO_PAROLECHIAVI+","
+            		+DBNames.ATTR_PRODOTTO_EDITORE+","
+            		+DBNames.ATTR_PRODOTTO_NUMVOLUME+","
+            		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+","
+            		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI 
+            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             st=conn.prepareStatement(query);
             st.setString(1,p.getIsbn());
@@ -83,7 +91,16 @@ public class DBGestioneProdotto
             st.setBoolean(9,p.getBozza());
             st.setString(10,p.getTipologia());
             st.setString(11,p.getProprietario());
-            
+            st.setInt(12,p.getApagina());
+            st.setInt(13,p.getDaPagina());
+            st.setString(14,p.getIndirizzoWeb());
+            st.setString(15,p.getListaCollaboratori());
+            st.setString(16,p.getParoleChiavi());
+            st.setString(17,p.getEditore());
+            st.setInt(18,p.getNumVolume());
+            st.setInt(19,p.getTotalePagine());
+            st.setString(20,p.getDescrizioneContenuti());
+   
             st.executeUpdate();
             conn.commit();
 		}
@@ -107,7 +124,7 @@ public class DBGestioneProdotto
         try 
         {
             conn = DBConnectionPool.getConnection();
-            query= "DELETE FROM "+DBNames.TABLE_PRODOTTO+" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
+            query= "DELETE FROM "+DBNames.TABLE_PRODOTTO+" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"='"+isbn+"'";
 
             st=conn.prepareStatement(query);
 			st.executeUpdate();
@@ -143,8 +160,17 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_STATO+"="+p.getStato()+","
             		+DBNames.ATTR_PRODOTTO_BOZZA+"="+p.getBozza()+","
             		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+p.getTipologia()+","
-            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+" "
-					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+"'"+p.getIsbn()+"'"; //Modificare così
+            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+","
+            		+DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI+"="+p.getListaCollaboratori()+","
+            		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI+"="+p.getDescrizioneContenuti()+","
+            		+DBNames.ATTR_PRODOTTO_INDIRIZZOWEB+"="+p.getIndirizzoWeb()+","
+            		+DBNames.ATTR_PRODOTTO_PAROLECHIAVI+"="+p.getParoleChiavi()+","
+            		+DBNames.ATTR_PRODOTTO_EDITORE+"="+p.getEditore()+","
+            		+DBNames.ATTR_PRODOTTO_NUMVOLUME+"="+p.getNumVolume()+","
+            		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+"="+p.getTotalePagine()+","
+            		+DBNames.ATTR_PRODOTTO_DAPAGINA+"="+p.getDaPagina()+","
+            		+DBNames.ATTR_PRODOTTO_APAGINA+"="+p.getApagina()+" "
+					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+"'"+p.getIsbn()+"'";
 			
 			st=conn.prepareStatement(query);
 			st.executeUpdate();
@@ -218,7 +244,10 @@ public class DBGestioneProdotto
     				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
     				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
     				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
-    				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
+    				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+    				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+    				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+    				,ri);
     		//altri campi non obbligatori
     		return p;
 		}
