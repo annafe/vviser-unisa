@@ -21,15 +21,20 @@
     <position height="-1" width="-1" x="336" y="127"/>    
     <display autosize="true" stereotype="true" accessors="true"/>  
   </package>  
-  <dependency id="5">    
+  <package id="5" language="java" name="it.unisa.vviser.test" project="vviser" file="/vviser/src/it/unisa/vviser/test" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="101" y="194"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <dependency id="6">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <dependency id="6">    
+  <dependency id="7">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="7">    
+  <dependency id="8">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
