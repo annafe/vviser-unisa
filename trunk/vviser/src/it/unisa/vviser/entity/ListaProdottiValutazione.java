@@ -21,7 +21,7 @@ public class ListaProdottiValutazione {
 	 */
 	public ListaProdottiValutazione()
 	{
-	
+		
 	}
 	
 	/**
