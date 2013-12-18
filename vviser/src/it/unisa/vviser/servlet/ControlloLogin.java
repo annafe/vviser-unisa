@@ -1,6 +1,6 @@
 package it.unisa.vviser.servlet;
 
-import it.unisa.vviser.entity.Utente;
+
 
 import it.unisa.vviser.storage.DBConnectionPool;
 import it.unisa.vviser.storage.DBNames;
@@ -93,31 +93,31 @@ public class ControlloLogin extends HttpServlet {
 		st=conn.createStatement();
 		rs = st.executeQuery(query);
 		if (rs.next()){
-			
-			Utente account=new Utente();
-			account.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
-			account.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
-			account.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
-			//account.setDataDiNascita(rs.getDate(DBNames.ATTR_UTENTE_DATADINASCITA));
-			account.setDipartimento(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
-			account.setEmail(rs.getString(DBNames.ATTR_UTENTE_EMAIL));
-			account.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
-			account.setPassword(rs.getString(DBNames.ATTR_UTENTE_PASSWORD));
-			account.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
-			account.setTipologia(rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA));
-			//account.setUserName(rs.getString(DBNames.ATTR_UTENTE_USERNAME));
-			//account.setID(rs.getString(DBNames.ATTR_UTENTE_id));
-			
-			System.out.println("setNome= "+account.getNome());
-			//getServletContext().setAttribute("account", account);
-			//request.getSession().setAttribute("utenteConnesso", account);
-			request.getSession().setAttribute("account", account);
-			//response.sendRedirect("main/testLogin.jsp");
-			request.setAttribute("account", account);
-			try{
-				RequestDispatcher dispatcher =request.getRequestDispatcher("main/testok.jsp");//.include(request,response);
-				dispatcher.forward( request, response );
-				}catch(ServletException e) {}			
+//			
+//			Utente account=new Utente();
+//			account.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
+//			account.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
+//			account.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
+//			//account.setDataDiNascita(rs.getDate(DBNames.ATTR_UTENTE_DATADINASCITA));
+//			account.setDipartimento(rs.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME));
+//			account.setEmail(rs.getString(DBNames.ATTR_UTENTE_EMAIL));
+//			account.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
+//			account.setPassword(rs.getString(DBNames.ATTR_UTENTE_PASSWORD));
+//			account.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
+//			account.setTipologia(rs.getString(DBNames.ATTR_UTENTE_TIPOLOGIA));
+//			//account.setUserName(rs.getString(DBNames.ATTR_UTENTE_USERNAME));
+//			//account.setID(rs.getString(DBNames.ATTR_UTENTE_id));
+//			
+//			System.out.println("setNome= "+account.getNome());
+//			//getServletContext().setAttribute("account", account);
+//			//request.getSession().setAttribute("utenteConnesso", account);
+//			request.getSession().setAttribute("account", account);
+//			//response.sendRedirect("main/testLogin.jsp");
+//			request.setAttribute("account", account);
+//			try{
+//				RequestDispatcher dispatcher =request.getRequestDispatcher("main/testok.jsp");//.include(request,response);
+//				dispatcher.forward( request, response );
+//				}catch(ServletException e) {}			
 		}
 		else { //------------Login fallita
 			try{
