@@ -394,6 +394,57 @@ public class Prodotto
 		this.numVolume=numVolume;
 	}
 	
+	/**
+	 * Metodo che restituisce il totale delle pagine del prodotto
+	 * @return numero pagine del totale
+	 */
+	public int getTotalePagine()
+	{
+		return this.totalePagine;
+	}
 	
+	/**
+	 * Metodo che setta il totale delle pagine al prodotto
+	 * @param totalePagine numero della pagine del prodotto
+	 */
+	public void setTotalePagine(int totalePagine)
+	{
+		this.totalePagine=totalePagine;
+	}
 	
+	/**
+	 * Metodo che restuisce l'indice della prima pagina del prodotto
+	 * @return l'indice prima pagina del prodotto
+	 */
+	public int getDaPagina()
+	{
+		return this.daPagina;
+	}
+	
+	/**
+	 * Metodo che setta l'indice alla prima pagina del prodotto
+	 * @param daPagina l'indice della prima pagina del prodotto
+	 */
+	public void setDaPagina(int daPagina)
+	{
+		this.daPagina=daPagina;
+	}
+	
+	/**
+	 * Metodo che restituisce l'indice dell'ultima pagina del prodotto
+	 * @return l'indice ultima pagina del prodotto
+	 */
+	public int getApagina()
+	{
+		return this.aPagina;
+	}
+	
+	/**
+	 * Metodo che setta l'indice dell'ultima pagina del prodotto
+	 * @param aPagina l'indice ultima pagina del prodotto
+	 */
+	public void setApagina(int aPagina)
+	{
+		this.aPagina=aPagina;
+	}
 }
