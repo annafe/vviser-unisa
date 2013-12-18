@@ -1,5 +1,8 @@
 package it.unisa.vviser.entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * 
  * @author Salvatore Angiuoli
@@ -250,7 +253,7 @@ public class Prodotto
 	}
 	
 	/**
-	 * Metodo per conoscere se il prodotto è una bozza
+	 * Metodo per conoscere se il prodotto e' una bozza
 	 * @return bozza stato del prodotto
 	 */
 	public boolean getBozza()
@@ -446,5 +449,23 @@ public class Prodotto
 	public void setApagina(int aPagina)
 	{
 		this.aPagina=aPagina;
+	}
+	
+	/**
+	 * Metodo che crea la stringa json contenente isbn e titolo del prodotto
+	 * @return stringa json
+	 */
+	public String getIsbnTitleProdotto()
+	{
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("isbn",getIsbn());
+			obj.put("titolo",getTitolo());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj.toString();
 	}
 }
