@@ -46,19 +46,38 @@ public class DBProdottiValutazione {
 	 * Metodo che permette di inserire nel database una lista di prodotti per valutazione
 	 * @param prodottiValutazione lista prodotti da sottomettere a valutazione
 	 * @param emailUtente identificativo dell'utente
-	 * @param idEvento identificativo dell'evento di valutazione
 	 * @throws SQLException
 	 */
-	public void insertProdottiVal(ArrayList<ProdottoValutazione> prodottiValutazione,String emailUtente,int idEvento) throws SQLException
+	public void insertProdottiVal(ArrayList<ProdottoValutazione> prodottiValutazione,String emailUtente) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
 		
-		ListaProdottiValutazione lp=new ListaProdottiValutazione(prodottiValutazione,emailUtente, idEvento,"");
+		
         try 
         {
             conn = DBConnectionPool.getConnection();
+            
+            
+            int idEvento=getIdEventoValutazione();
+			
+			ListaProdottiValutazione lp=new ListaProdottiValutazione(prodottiValutazione,emailUtente, idEvento,"");
+			
+			//Stabilisco la partecipazione dell'utente all'evento di valutazione
+			query="INSERT INTO "+DBNames.TABLE_PARTECIPAZIONEAVALUTAZIONE+"("
+					+DBNames.ATTR_PARTECIPAZIONEAVALUTAZIONE_UTENTE_EMAIL+","
+					+DBNames.ATTR_PARTECIPAZIONEAVALUTAZIONE_EVENTOVALUTAZIONE_ID+
+					") values (?,?)";
+			
+			st=conn.prepareStatement(query);
+			st.setString(1,lp.getEmailUtente());
+			st.setInt(2, lp.getIdEventoValutazione());
+			
+			st.executeUpdate();
+			conn.commit();
+			
+            
             
             query="INSERT INTO "+DBNames.TABLE_LISTAVALUTAZIONE+"("
             		+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+","
@@ -234,16 +253,16 @@ public class DBProdottiValutazione {
 		Statement st1=null;
 		ResultSet ris1=null;
 		String query1;
-		
+		//verifico se ci sono due prodotti con lo stesso isbn
 		query1="SELECT count(*) as numeroConflitti"
-				+" FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
-				+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="
-				+p.getIsbn();
+				+" FROM "+DBNames.TABLE_PRODOTTOLISTA
+				+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="
+				+"'"+p.getIsbn()+"'";
 		
 		st1=conn.createStatement();
 		ris1=st1.executeQuery(query1);
 		ris1.next();
-		if(ris1.getInt("numeroConflitti")==0)
+		if(ris1.getInt("numeroConflitti")<=1)
 		{
 			st1.close();
 			return false;
@@ -254,6 +273,84 @@ public class DBProdottiValutazione {
 			return true;
 		}
 	}
+	
+	/**
+	 * Metodo che restituisce l'identificativo dell'evento a cui l'utente vuole partecipare
+	 * @return identificativo dell'evento di valutazione
+	 * @throws SQLException
+	 */
+	private int getIdEventoValutazione() throws SQLException
+	{
+		Connection conn=null;
+		Statement st1=null;
+		ResultSet ris=null;
+		String query1;
+		
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+			
+			//Recupero l'id dell'evento di valutazione a cui l'utente partecipa
+            //supponiamo che la query restitisca un unico risultato......
+            query1="SELECT "+DBNames.ATTR_EVENTOVALUTAZIONE_ID
+            		+" FROM "+DBNames.TABLE_EVENTOVALUTAZIONE
+            		+" WHERE NOW() BETWEEN "+DBNames.ATTR_EVENTOVALUTAZIONE_DADATA
+            		+" AND "+DBNames.ATTR_EVENTOVALUTAZIONE_ADATA;
+        
+            
+            
+            st1=conn.createStatement();
+			ris=st1.executeQuery(query1);
+			
+			int idEvento;
+			ris.next();
+			idEvento=ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_ID);
+			
+			return idEvento;
+		}
+		finally
+		{
+			st1.close();
+            DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	/**
+	 * Metodo che restituisce il numero massimo di prodotti che l'utente puo' sottomettere a valutazione
+	 * @return numero massimo di sottomissioni per quell'evento
+	 * @throws SQLException
+	 */
+	public int getNumeroSottomissioniMax() throws SQLException
+	{
+		Connection conn=null;
+		Statement st1=null;
+		ResultSet ris=null;
+		String query1;
+		
+		int idEvento=getIdEventoValutazione();
+		System.out.println(idEvento);
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+			
+			
+            query1="SELECT "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI
+            		+" FROM "+DBNames.TABLE_EVENTOVALUTAZIONE
+            		+" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+"="+idEvento;
+            
+            st1=conn.createStatement();
+			ris=st1.executeQuery(query1);
+			ris.next();
+			
+			return (ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI));
+		}
+		finally
+		{
+			st1.close();
+            DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
+	
 	
 	
 
