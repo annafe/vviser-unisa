@@ -281,17 +281,13 @@ public class DBGestioneProdotto
 	}
 	
 	/**
-	 *Metodo che permette di visualizzare tutti i prodotti personali
-	 *sia quelli dove l'utente e' indicato come coautore che quelli indicati come
-	 *collaboratore 
-	 * @param proprietario del prodotto
+	 * Metodo che restituisce la lista dei proodotti personali dove l'utente compare come proprietario
+	 * @param utente proprietario del prodotto
 	 * @return lista dei prodotti
 	 * @throws SQLException
 	 */
-	public ArrayList<Prodotto> visualizzaProdotti(String utente)throws SQLException
+	public ArrayList<Prodotto> visualizzaProdottiPersonali(String utente)throws SQLException
 	{
-		
-		//TODO aggiungere prodotti da tabella autoriconoscimento
 		Statement st=null;
 		ResultSet ris=null;
 		String query;
@@ -302,31 +298,9 @@ public class DBGestioneProdotto
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
 			
-            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
-            		" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+utente;
-            
-            //Da modificare appena peppe aggiorna la classe per gli attributi
-            st=conn.createStatement();
-    		ris=st.executeQuery(query);
-    		while(ris.next())
-			{
-    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
-        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
-        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
-        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
-        	
-				listProdotto.add(p);
-			}
-    		
-    		//Ora prendo i prodotti dove sono indicato come coautore e ho confermato
-    		query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+
-            		" WHERE "+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"="+utente+" AND "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=true";
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
+            		+" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"'";
+          
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
@@ -351,14 +325,189 @@ public class DBGestioneProdotto
             st.close();
             DBConnectionPool.releaseConnection(conn);
         }
+    
 	}
 	
 	/**
-	 * Metodo che permete di ricerca i prodotti in base al titolo
-	 * @param titolo del prodotto
-	 * @return
+	 *Metodo che permette di visualizzare tutti i prodotti personali
+	 *anche quelli dove l'utente ha confermato di essere un coautore
+	 * @param utente del prodotto
+	 * @return lista dei prodotti
+	 * @throws SQLException
 	 */
-	public ArrayList<Prodotto> ricercaProdotto(String titolo)throws SQLException
+	public ArrayList<Prodotto> visualizzaProdottiProprietarioCoautore(String utente)throws SQLException
+	{
+		Statement st=null;
+		Statement st1=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
+            		+" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"'";
+          
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		
+    		//Ora prendo i prodotti dove sono indicato come coautore e ho confermato
+    		query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
+            		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
+            		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+true;
+            
+            st1=conn.createStatement();
+    		ris=st1.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            st1.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 *Metodo che permette di visualizzare tutti i prodotti
+	 *dove l'utente non ha confermato di essere un coautore
+	 * @param utente del prodotto
+	 * @return lista dei prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> visualizzaProdottiCoautoreNonConvalidati(String utente)throws SQLException
+	{
+		Statement st1=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
+            		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
+            		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+false;
+            
+            st1=conn.createStatement();
+    		ris=st1.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st1.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 *Metodo che permette di visualizzare tutti i prodotti
+	 *dove l'utente ha confermato di essere un coautore
+	 * @param utente del prodotto
+	 * @return lista dei prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> visualizzaProdottiCoautoreConvalidato(String utente)throws SQLException
+	{
+		Statement st1=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
+            		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
+            		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+true;
+            
+            st1=conn.createStatement();
+    		ris=st1.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st1.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 * Metodo che permete di ricercare un prodotto in base al suo titolo
+	 * @param titolo del prodotto
+	 * @return lsita prodotti
+	 */
+	public ArrayList<Prodotto> ricercaProdottoPerTitoloProdotto(String titolo)throws SQLException
 	{
 		Statement st=null;
 		ResultSet ris=null;
@@ -371,7 +520,7 @@ public class DBGestioneProdotto
 			conn = DBConnectionPool.getConnection();
 			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
-            		" WHERE "+DBNames.ATTR_PRODOTTO_TITOLO+"="+titolo;
+            		" WHERE "+DBNames.ATTR_PRODOTTO_TITOLO+"='"+titolo+"'";
             
             st=conn.createStatement();
     		ris=st.executeQuery(query);
@@ -403,10 +552,10 @@ public class DBGestioneProdotto
 	 * Metodo che permette di ricercare i prodotti in un intervallo di anni es. Da 1995 a 2000
 	 * @param anno della pubblicazione
 	 * @param anno della pubblicazione
-	 * @return
+	 * @return lista prodotti
 	 * @throws SQLException
 	 */
-	public ArrayList<Prodotto> ricercaProdotto(String anno,String anno1)throws SQLException
+	public ArrayList<Prodotto> ricercaProdottoPerAnni(String anno,String anno1)throws SQLException
 	{
 		Statement st=null;
 		ResultSet ris=null;
@@ -446,4 +595,151 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
+	
+	/**
+	 * Metodo che permette di ricercare i prodotti in base al titolo della rivista
+	 * @param titoloRivista titolo della rivista su cui è pubblicato il prodotto
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaProdottoPerTitoloRivista(String titoloRivista)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PUBBLICAZIONESURIVISTA+","+DBNames.TABLE_RIVISTA+
+            		" WHERE "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_ISSN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_RIVISTA_ISSN+" AND "
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_PRODOTTO_ISBN
+            		+" AND "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_NOME+"='"+titoloRivista+"'";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 * Metodo che permette di ricercare i prodotti in base all'issn della rivista
+	 * @param issn della rivista
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaProdottoPerIssnRivista(String issn)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PUBBLICAZIONESURIVISTA+","+DBNames.TABLE_RIVISTA+
+            		" WHERE "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_ISSN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_RIVISTA_ISSN+" AND "
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_PRODOTTO_ISBN
+            		+" AND "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_ISSN+"='"+issn+"'";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+
+	/**
+	 * Metodo che permette di ricercare i prodotti in base alla tipologia
+	 * @param tipologia del prodotto
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaProdottoPerTipologia(String tipologia)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_TIPOLOGIA
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME
+            		+" AND "+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME+"='"+tipologia+"'";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+
 }
