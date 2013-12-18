@@ -35,6 +35,63 @@ public class DBNotifica {
             DBConnectionPool.releaseConnection(conn);
 		}
 		
+		
+		
 	}	
+	
+	public boolean addNotificaConflitto(String isbn) throws SQLException{
+		conn = DBConnectionPool.getConnection();
+		try{
+			
+			//query nella tabella prodottolista
+			
+			String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
+					" ("+DBNames.ATTR_NOTIFICA_TIPO+","+DBNames.ATTR_NOTIFICA_MESSAGGIO+","+
+					DBNames.ATTR_NOTIFICA_MITTENTE+","+DBNames.ATTR_NOTIFICA_DESTINATARIO+")"+
+					" VALUES ("+e.getTipo()+","+e.getMessaggio()+","+e.getMittente()+","+
+					e.getDestinatario()+");";
+			
+			pstm = conn.prepareStatement(queryParam);
+			
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+            DBConnectionPool.releaseConnection(conn);
+		}
+		
+		
+		
+	}	
+	
+	public boolean addNotificaConflittoValutazione(String messaggio) throws SQLException{
+		String tipo = "";
+		
+		conn = DBConnectionPool.getConnection();
+		try{
+			String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
+					" ("+DBNames.ATTR_NOTIFICA_TIPO+","+DBNames.ATTR_NOTIFICA_MESSAGGIO+","+
+					DBNames.ATTR_NOTIFICA_MITTENTE+","+DBNames.ATTR_NOTIFICA_DESTINATARIO+")"+
+					" VALUES ("+e.getTipo()+","+e.getMessaggio()+","+e.getMittente()+","+
+					e.getDestinatario()+");";
+			
+			pstm = conn.prepareStatement(queryParam);
+			
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+            DBConnectionPool.releaseConnection(conn);
+		}
+		
+		
+		
+	}	
+	
+	// metodo di visualizzazione delle notifiche per un determinato utente
 	
 }
