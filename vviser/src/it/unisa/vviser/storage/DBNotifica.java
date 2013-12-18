@@ -85,19 +85,15 @@ public class DBNotifica {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean addNotificaConflittoValutazione(String messaggio) throws SQLException{
+	public void addNotificaConflittoValidazione(String mittente, String isbn, String messaggio) throws SQLException{
 		String tipo = "messaggio";
-		String amministratore="Amministratore";
 		
 		conn = DBConnectionPool.getConnection();
 		try{
 			
-			//query nella tabella prodottolista
-			//estrae tutti gli indirizzi email dei ricercatori coinvolti nel conflitto
-			//del prodotto con isbn dato
-			String query="SELECT "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+
-					" FROM "+DBNames.TABLE_PRODOTTOLISTA+" "+
-					"WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+isbn+";";
+			String query="SELECT "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+
+					" FROM "+DBNames.TABLE_PRODOTTO+" "+
+					"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn+";";
 			
 			pstm = conn.prepareStatement(query);
 			ResultSet rs = pstm.executeQuery();
@@ -105,7 +101,7 @@ public class DBNotifica {
 			DBNotifica notifiche = new DBNotifica();
 			
 			while(rs.next()){
-				Notifica note = new Notifica(rs.getString(DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL),tipo, amministratore);
+				Notifica note = new Notifica(rs.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),tipo, mittente, messaggio);
 				notifiche.addNotifica(note);
 			}
 		}finally{
