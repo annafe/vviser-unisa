@@ -329,7 +329,7 @@ public class DBGestioneProdotto
 	}
 	
 	/**
-	 *Metodo che permette di visualizzare tutti i prodotti personali
+	 *Metodo che permette di visualizzare tutti i prodotti personali(proprietario)
 	 *anche quelli dove l'utente ha confermato di essere un coautore
 	 * @param utente del prodotto
 	 * @return lista dei prodotti
