@@ -231,7 +231,7 @@ public class DBGestioneProdotto
 	
 	/**
 	 *Metodo che permette di visualizzare tutti i prodotti personali
-	 *sia quelli dove l'utente � indicato come coautore che quelli indicati come
+	 *sia quelli dove l'utente e' indicato come coautore che quelli indicati come
 	 *collaboratore 
 	 * @param proprietario del prodotto
 	 * @return lista dei prodotti
@@ -270,8 +270,8 @@ public class DBGestioneProdotto
 			}
     		
     		//Ora prendo i prodotti dove sono indicato come coautore e ho confermato
-    		query="SELECT * FROM "+DBNames.TABLE_AUTORICONOSCIMENTO+
-            		" WHERE "+DBNames.ATTR_AUTORICONOSCIMENTO_COLLABORATORE+"="+utente+" AND "+DBNames.ATTR_AUTORICONOSCIMENTO_CONVALIDATO+"=true";
+    		query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+
+            		" WHERE "+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"="+utente+" AND "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=true";
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
