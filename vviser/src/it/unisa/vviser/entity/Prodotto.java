@@ -21,6 +21,15 @@ public class Prodotto
 	private String stato;
 	private String listaCollaboratori;
 	
+	private String descrizioneContenuti;
+	private String indirizzoWeb;
+	private String paroleChiavi;
+	private String editore;
+	private int numVolume;
+	private int totalePagine;
+	private int daPagina;
+	private int aPagina;
+	
 	/**
 	 * Il costruttore della classe Prodotto vuoto
 	 */
@@ -43,9 +52,17 @@ public class Prodotto
 	 * @param titolo titolo del prodotto
 	 * @param proprietario Il proprietario del prodotto
 	 * @param listaCollaboratori contiene tutti i coautori del prodotto
+	 * @param descrizioneContenuti breve descrizione del prodotto
+	 * @param indirizzoWeb del prodotto
+	 * @param paroleChiavi relative al prodotto
+	 * @param editore del prodotto
+	 * @param numVolume del prodotto
+	 * @param totalePagine del prodotto
+	 * @param daPagina indice della pagina iniziale del prodotto
+	 * @param aPagina indice della pagine finale del prodotto
 	 * 
 	 */
-	public Prodotto(String isbn,String titolo,String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String stato,boolean bozza,String tipologia,String proprietario,String listaCollaboratori)
+	public Prodotto(String isbn,String titolo,String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String stato,boolean bozza,String tipologia,String proprietario,String listaCollaboratori,String descrizioneContenuti,String indirizzoWeb,String paroleChiavi,String editore,int numVolume,int totalePagine,int daPagina,int aPagina)
 	{
 		this.annoPubblicazione=annoPubblicazione;
 		this.formatoPubblicazione=formatoPubblicazione;
@@ -59,6 +76,15 @@ public class Prodotto
 		this.stato=stato;
 		this.proprietario=proprietario;
 		this.listaCollaboratori=listaCollaboratori;
+		this.descrizioneContenuti=descrizioneContenuti;
+		this.indirizzoWeb=indirizzoWeb;
+		this.paroleChiavi=paroleChiavi;
+		this.editore=editore;
+		this.numVolume=numVolume;
+		this.totalePagine=totalePagine;
+		this.daPagina=daPagina;
+		this.aPagina=aPagina;
+		
 	}
 	
 	/**
@@ -276,4 +302,98 @@ public class Prodotto
 	{
 		this.listaCollaboratori=listaCollaboratori;
 	}
+	
+	/**
+	 * Metodo che restituisce la descrizione del prodotto
+	 * @return descrizione del prodotto
+	 */
+	public String getDescrizioneContenuti()
+	{
+		return this.descrizioneContenuti;
+	}
+	
+	/**
+	 * Metodo che setta la descrizione al prodotto
+	 * @param descrizioneContenuti descrizione da attribuire al prodotto
+	 */
+	public void setDescrizioneContenuti(String descrizioneContenuti)
+	{
+		this.descrizioneContenuti=descrizioneContenuti;
+	}
+	
+	/**
+	 * Metodo che restituisce il sito web del prodotto
+	 * @return sito web del prodotto
+	 */
+	public String getIndirizzoWeb()
+	{
+		return this.indirizzoWeb;
+	}
+	
+	/**
+	 * Metodo che setta l'indirizzo web al prodotto
+	 * @param indirizzoWeb del prodotto
+	 */
+	public void setIndirizzoWeb(String indirizzoWeb)
+	{
+		this.indirizzoWeb=indirizzoWeb;
+	}
+	
+	/**
+	 * Metodo che restituisce le parole chiavi relative al prodotto
+	 * @return parole chiavi del prodotto(Separate da ;)
+	 */
+	public String getParoleChiavi()
+	{
+		return this.paroleChiavi;
+	}
+	
+	/**
+	 * Metodo che setta le parole chiavi al prodotto
+	 * @param paroleChiavi del prodotto
+	 */
+	public void setParoleChiavi(String paroleChiavi)
+	{
+		this.paroleChiavi=paroleChiavi;
+	}
+	
+	/**
+	 * Metodo che restituisce l'editore del prodotto
+	 * @return editore del prodotto
+	 */
+	public String getEditore()
+	{
+		return this.editore;
+	}
+	
+	/**
+	 * Metodo che setta l'editore al prodotto
+	 * @param editore del prodotto
+	 */
+	public void setEditore(String editore)
+	{
+		this.editore=editore;
+	}
+	
+	/**
+	 * Metodo che restituisce il numero del volume relativo al prodotto
+	 * @param numVolume
+	 * @return
+	 */
+	public int getNumVolume(int numVolume)
+	{
+		return this.numVolume=numVolume;
+	}
+	
+	/**
+	 * Metodo che setta il numero del volume relativo al prodotto
+	 * @param numVolume numero del volume del prodotto
+	 */
+	public void setNumVolume(int numVolume)
+	{
+		this.numVolume=numVolume;
+	}
+	
+	
+	
 }
