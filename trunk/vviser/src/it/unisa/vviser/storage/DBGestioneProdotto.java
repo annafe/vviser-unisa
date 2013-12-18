@@ -19,11 +19,25 @@ import it.unisa.vviser.entity.ProdottoValutazione;
  */
 public class DBGestioneProdotto
 {
+	private static DBGestioneProdotto manager;
+	
 	/**
 	 * Costruttore vuoto
 	 */
 	public DBGestioneProdotto()
 	{
+		
+	}
+	
+	/**
+	 * Metodo che implementa il design pattern singleton
+	 * @return manager istanza di DBGestioneProdotto
+	 */
+	public static DBGestioneProdotto getInstance()
+	{
+		if(manager==null)
+			manager=new DBGestioneProdotto();
+		return manager;
 		
 	}
 	
