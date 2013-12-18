@@ -51,7 +51,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_NOTE+","
             		+DBNames.ATTR_PRODOTTO_STATO+","
             		+DBNames.ATTR_PRODOTTO_BOZZA+","
-            		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+","
+            		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+","
             		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
             		+") values (?,?,?,?,?,?,?,?,?,?,?)";
             
@@ -126,7 +126,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_NOTE+"="+p.getNote()+","
             		+DBNames.ATTR_PRODOTTO_STATO+"="+p.getStato()+","
             		+DBNames.ATTR_PRODOTTO_BOZZA+"="+p.getBozza()+","
-            		+DBNames.ATTR_PRODOTTO_CATEGORIA_NOME+"="+p.getTipologia()+","
+            		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+p.getTipologia()+","
             		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+" "
 					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+p.getIsbn();
 			
@@ -203,7 +203,7 @@ public class DBGestioneProdotto
     				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
     				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
     				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
-    				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+    				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
     				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
     		return p;
 		}
@@ -216,7 +216,7 @@ public class DBGestioneProdotto
 	
 	/**
 	 *Metodo che permette di visualizzare tutti i prodotti personali
-	 *sia quelli dove l'utente è indicato come coautore che quelli indicati come
+	 *sia quelli dove l'utente ï¿½ indicato come coautore che quelli indicati come
 	 *collaboratore 
 	 * @param proprietario del prodotto
 	 * @return lista dei prodotti
@@ -248,7 +248,7 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
-        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
         				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
@@ -267,7 +267,7 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
-        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
         				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
@@ -310,7 +310,7 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
-        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
         				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
@@ -354,7 +354,7 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
-        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_CATEGORIA_NOME)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
         				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
         	
 				listProdotto.add(p);
