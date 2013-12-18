@@ -13,7 +13,7 @@ public final class DBNames {
 	}
 	
 	//Nomi tabelle del database
-	public static final String TABLE_AUTORICONOSCIMENTO="autoriconoscimento";
+	public static final String TABLE_COLLABORAZIONI="collaborazioni";
 	public static final String TABLE_DIPARTIMENTO="dipartimento";
 	public static final String TABLE_EVENTOVALUTAZIONE="eventovalutazione";
 	public static final String TABLE_LISTAVALUTAZIONE="listavalutazione";
@@ -28,11 +28,11 @@ public final class DBNames {
 	public static final String TABLE_TIPOLOGIA="tipologia";
 	public static final String TABLE_UTENTE="utente";
 	
-	//Attributi autoriconoscimento
-	public static final String ATTR_AUTORICONOSCIMENTO_COLLABORATORE="collaboratore";
-	public static final String ATTR_AUTORICONOSCIMENTO_PRODOTTO_ISBN="prodotto_isbn";
-	public static final String ATTR_AUTORICONOSCIMENTO_PROPRIETARIO="proprietario";
-	public static final String ATTR_AUTORICONOSCIMENTO_CONVALIDATO="convalidato";
+	//Attributi collaborazioni
+	public static final String ATTR_COLLABORAZIONI_COLLABORATORE="collaboratore";
+	public static final String ATTR_COLLABORAZIONI_PRODOTTO_ISBN="prodotto_isbn";
+	public static final String ATTR_COLLABORAZIONI_PROPRIETARIO="proprietario";
+	public static final String ATTR_COLLABORAZIONI_CONVALIDATO="convalidato";
 	
 	//Attributi dipartimento
 	public static final String ATTR_DIPARTIMENTO_NOME="nome";
@@ -47,8 +47,8 @@ public final class DBNames {
 	public static final String ATTR_EVENTOVALUTAZIONE_SCADENZA="scadenza";
 	
 	//Attributi listavalutazione
-	public static final String ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL="utente.email";
-	public static final String ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID="eventoValutazione.id";
+	public static final String ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL="utente_email";
+	public static final String ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
 	public static final String ATTR_LISTAVALUTAZIONE_SUGGERIMENTO="suggerimento";
 	public static final String ATTR_LISTAVALUTAZIONE_BLOCCATO="bloccato";
 	
@@ -87,13 +87,13 @@ public final class DBNames {
 	public static final String ATTR_PRODOTTO_EMAILPROPRIETARIO="email_proprietario";
 	
 	//Attributi prodottoinconflitto
-	public static final String ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN="Prodotto.isbn";
+	public static final String ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN="Prodotto_isbn";
 	public static final String ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL="utente_email";
 	public static final String ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
 	
 	
 	//Attributi prodottolista
-	public static final String ATTR_PRODOTTOLISTA_PRODOTTO_ISBN="prodotto.isbn";
+	public static final String ATTR_PRODOTTOLISTA_PRODOTTO_ISBN="prodotto_isbn";
 	public static final String ATTR_PRODOTTOLISTA_UTENTE_EMAIL="utente_email";
 	public static final String ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID="eventoValutazione_id";
 	public static final String ATTR_PRODOTTOLISTA_PRIORITA="priorita";
