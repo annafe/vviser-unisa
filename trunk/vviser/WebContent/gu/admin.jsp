@@ -21,6 +21,7 @@
 		%>
 	</table>
  -->
+ <!--  
  <%
  	session.setAttribute("email", "prova");
  	if (session.getAttribute("email")!=null){
@@ -31,6 +32,8 @@
  		response.sendRedirect("/error.jsp");
  	}
  %>
+--> 
+ <%@include file="/gu/header.jsp" %>
  <h1>ADMIN PAGE</h1>
  <table border=1>
  	<tr><th>COGNOME</th><th>NOME</th><th>EMAIL</th><th>TIPOLOGIA</th></tr>
