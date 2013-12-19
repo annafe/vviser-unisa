@@ -23,7 +23,7 @@
  -->
  <!--  
  <%
- 	session.setAttribute("email", "prova");
+ 	//session.setAttribute("email", "prova");
  	if (session.getAttribute("email")!=null){
  		//session present
  		
@@ -44,13 +44,13 @@
 				%><tr><td><%out.println(l.get(i).getCognome());%></td><td><%out.println(l.get(i).getNome()); %></td><td><%out.println(l.get(i).getEmail()); %></td><td><%out.println(l.get(i).getTipologia()); %></td>
 				<td><!-- form modifica -->
 					<form action="/vviser/ModifyAccountServlet" method="POST">		
-						<input type="hidden" name="daModificare" value=<%l.get(i).getEmail(); %>/>			
+						<input type="hidden" name="daModificare" value="<%l.get(i).getEmail(); %>"/>			
 						<input type="submit" value="Modifica"/>
 					</form>
 				</td>
 				<td><!-- form elimina -->
 					<form action="/vviser/DeleteAccountServlet" method="POST">
-						<input type="hidden" name="daEliminare" value=<%l.get(i).getEmail(); %>/>
+						<input type="hidden" name="daEliminare" value="<%l.get(i).getEmail(); %>"/>
 						<input type="submit" value="Elimina"/>
 					</form>				
 				</td>
