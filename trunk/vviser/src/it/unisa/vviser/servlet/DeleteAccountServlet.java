@@ -67,19 +67,25 @@ public class DeleteAccountServlet extends HttpServlet {
 	private void execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
-		//amministratore; non è possibile eliminare l'account corrente
 
 		DBUtente dbUser = new DBUtente();
 		Utente amministratore = new Utente();
 		String email = (String) request.getAttribute("utente");
 		amministratore = dbUser.getUtente(email);
+		if (amministratore==null){
+			//non loggato
+			request.setAttribute("error", "Non sei loggato");
+			request.getServletContext().getRequestDispatcher("/gu/showAccount.jsp").forward(request, response);
+			return;
+		}
 		//check user's typology
 		if (amministratore.getTipologia().equalsIgnoreCase("amministratore")){		
 			Utente toDelete = new Utente();
-			toDelete = dbUser.getUtente((String) request.getAttribute("toDelete"));
+			toDelete = dbUser.getUtente((String) request.getAttribute("selected"));
 			if (toDelete==null){	//error
 				request.setAttribute("error", "Email non presente nel Database");
 				request.getServletContext().getRequestDispatcher("/gu/showAccount.jsp").forward(request, response);
+				return;
 			}
 			else{	//delete account
 				//recupero account da eliminare (setta un attributo "daEliminare->email" dalla jsp)
