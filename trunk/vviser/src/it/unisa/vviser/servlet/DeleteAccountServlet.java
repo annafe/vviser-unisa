@@ -75,7 +75,7 @@ public class DeleteAccountServlet extends HttpServlet {
 		if (amministratore==null){
 			//non loggato
 			request.setAttribute("error", "Non sei loggato");
-			request.getServletContext().getRequestDispatcher("/gu/showAccount.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/gu/login.jsp").forward(request, response);
 			return;
 		}
 		//check user's typology
@@ -84,7 +84,7 @@ public class DeleteAccountServlet extends HttpServlet {
 			toDelete = dbUser.getUtente((String) request.getAttribute("selected"));
 			if (toDelete==null){	//error
 				request.setAttribute("error", "Email non presente nel Database");
-				request.getServletContext().getRequestDispatcher("/gu/showAccount.jsp").forward(request, response);
+				request.getServletContext().getRequestDispatcher("/gu/admin.jsp").forward(request, response);
 				return;
 			}
 			else{	//delete account
@@ -94,7 +94,7 @@ public class DeleteAccountServlet extends HttpServlet {
 		}
 		else{
 			request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
-			request.getServletContext().getRequestDispatcher("/gu/showAccount.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/gu/login.jsp").forward(request, response);
 		}
 	}
 }
