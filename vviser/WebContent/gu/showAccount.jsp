@@ -38,6 +38,16 @@
 			List<Utente> l = dbUser.visualizzaUtenti();
 			for (int i=0; i<l.size(); i++){
 				%><tr><td><%out.println(l.get(i).getCognome());%></td><td><%out.println(l.get(i).getNome()); %></td><td><%out.println(l.get(i).getEmail()); %></td><td><%out.println(l.get(i).getTipologia()); %></td>
+				<td><!-- form modifica -->
+					<form action="/vviser/ModifyAccountServlet" method="POST">					
+						<input type="submit" value="Modifica"/>
+					</form>
+				</td>
+				<td><!-- form elimina -->
+					<form action="/vviser/DeleteAccountServlet" method="POST">
+						<input type="submit" value="Elimina"/>
+					</form>				
+				</td>
 				</tr> 
 				<% 
 			}
