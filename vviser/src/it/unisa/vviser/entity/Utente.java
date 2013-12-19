@@ -1,6 +1,5 @@
 package it.unisa.vviser.entity;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
@@ -87,11 +86,11 @@ public class Utente {
 	}
 	
 	/**
-	 * Restituisce la data di nascita associata all'Utente
+	 * Restituisce la data di nascita dell'Utente
 	 * @return Data di nascita
 	 */
-	public String getDataDiNascita(){
-		return dataDiNascita.get(Calendar.YEAR)+"/"+dataDiNascita.get(Calendar.MONTH)+"/"+dataDiNascita.get(Calendar.DAY_OF_MONTH);
+	public GregorianCalendar getDataDiNascita(){
+		return dataDiNascita;
 	}
 	
 	/**
@@ -202,7 +201,7 @@ public class Utente {
 	 * @param tipologia Tipologia da memorizzare
 	 */
 	public void setTipologia (String tipologia ){
-		this.tipologia  =tipologia  ;
+		this.tipologia  = tipologia;
 	}
 	
 	/**
