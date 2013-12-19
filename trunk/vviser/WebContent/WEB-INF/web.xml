@@ -55,4 +55,13 @@
     <servlet-name>DeleteAccountServlet</servlet-name>
     <url-pattern>/DeleteAccountServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>AddUtenteServlet</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.AddUtenteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>AddUtenteServlet</servlet-name>
+    <url-pattern>/AddUtenteServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
