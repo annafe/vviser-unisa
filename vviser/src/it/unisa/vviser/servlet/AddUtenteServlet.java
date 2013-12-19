@@ -2,8 +2,10 @@ package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBUtente;
+import it.vviser.common.CommonMethod;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,7 +69,7 @@ public class AddUtenteServlet extends HttpServlet {
 		Utente u = new Utente();
 		u.setNome(nome);
 		u.setCognome(cognome);
-		u.setDataDiNascita(date);
+		u.setDataDiNascita(CommonMethod.stringToDate(dataNascita));
 		u.setComuneDiNascita(comuneDiNascita);
 		u.setProvinciaDiNascita(provinciaDiNascita);
 		u.setCodiceFiscale(codiceFiscale);
@@ -77,6 +79,13 @@ public class AddUtenteServlet extends HttpServlet {
 		u.setTipologia(tipologia);
 		
 		DBUtente dbu = new DBUtente();
-		dbu.addUtente(u);
+		try {
+			if(dbu.addUtente(u))
+				request.getServletContext().getRequestDispatcher("/");
+			else
+				request.getServletContext().getRequestDispatcher("/");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
