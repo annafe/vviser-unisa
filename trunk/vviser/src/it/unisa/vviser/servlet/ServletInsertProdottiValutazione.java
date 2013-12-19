@@ -54,23 +54,12 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 		//out=response.getWriter();
 		String[] checkProduct=request.getParameterValues("selProd");
 		String[] checkPriority=request.getParameterValues("priorita");
+		//System.out.println("pri: "+checkPriority.length);
 		ArrayList<ProdottoValutazione> prodottiValutazione=new ArrayList<ProdottoValutazione>();
 		HttpSession s = request.getSession();
 		String emailUtente=(String)s.getAttribute("sessEmail");//recupero l'email utente settato nella sessione
-		System.out.println(emailUtente);
-        //String emailUtente=account.getEmail();
-        //l.setEmailUtente(emailUtente);
+        
 		
-		ArrayList<String> chPry=new ArrayList<String>();
-		//elimino le priorita' dei prodotti non selezionati
-		for(int i=0;i<checkPriority.length;i++)
-		{	int k=0;
-			if (!checkPriority[i].equals(""))
-			{
-				chPry.add(checkPriority[i]);
-				k++;
-			}
-		}
 		for(int i=0;i<checkProduct.length;i++)
 		{
 			ProdottoValutazione prodottoValutazione=new ProdottoValutazione();
@@ -80,7 +69,10 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 				o = new JSONObject(checkProduct[i]);
 				prodottoValutazione.setIsbn(o.getString("isbn"));
 				prodottoValutazione.setTitle(o.getString("titolo"));
-				prodottoValutazione.setPriority(Integer.parseInt(chPry.get(i)));
+				if(!checkPriority[i].equals(""))
+					prodottoValutazione.setPriority(Integer.parseInt(checkPriority[i]));
+				else
+					prodottoValutazione.setPriority(0);
 			} 
 			catch (JSONException e) 
 			{
