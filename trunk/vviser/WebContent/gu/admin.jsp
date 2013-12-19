@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Visualizza utenti</title>
+<title>Admin</title>
 </head>
 <body>
 <!-- 
@@ -31,6 +31,7 @@
  		response.sendRedirect("/error.jsp");
  	}
  %>
+ <h1>ADMIN PAGE</h1>
  <table border=1>
  	<tr><th>COGNOME</th><th>NOME</th><th>EMAIL</th><th>TIPOLOGIA</th></tr>
 		<% 	
