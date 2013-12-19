@@ -327,7 +327,6 @@ public class DBProdottiValutazione {
 		String query1;
 		
 		int idEvento=getIdEventoValutazione();
-		System.out.println(idEvento);
 		try
 		{
 			conn = DBConnectionPool.getConnection();
