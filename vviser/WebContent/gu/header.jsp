@@ -8,7 +8,9 @@
 		if(utente != null)
 			out.println("Benvenuto "+utente.getNome());
 		else
-			out.println("Effettua il login");
-			
+			out.println("Effettua il login");	
 	%>
+	<form action="/vviser/LogoutServlet" method="POST">
+		<input type="submit" value="Logout"/>
+	</form>
 </header>
