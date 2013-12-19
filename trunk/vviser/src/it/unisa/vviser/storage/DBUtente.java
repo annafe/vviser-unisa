@@ -1,6 +1,7 @@
 package it.unisa.vviser.storage;
 
 import it.unisa.vviser.entity.Utente;
+import it.vviser.common.CommonMethod;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,7 +58,7 @@ public class DBUtente {
 			st = conn.prepareStatement(query);
 			st.setString(1, a.getNome());
 			st.setString(2, a.getCognome());
-			st.setString(3, a.getDataDiNascita());
+			st.setString(3, CommonMethod.dateToString(a.getDataDiNascita()));
 			st.setString(4, a.getComuneDiNascita());
 			st.setString(5, a.getProvinciaDiNascita());
 			st.setString(6, a.getCodiceFiscale());
@@ -321,7 +322,7 @@ public class DBUtente {
 				u= new Utente();
 				u.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
 				u.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
-				u.setDataDiNascita(creaData(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA)));
+				u.setDataDiNascita(CommonMethod.stringToDate(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA)));
 				u.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
 				u.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
 				u.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
@@ -356,7 +357,7 @@ public class DBUtente {
 		while(rs.next()){
 			String n = rs.getString(DBNames.ATTR_UTENTE_NOME);
 			String c = rs.getString(DBNames.ATTR_UTENTE_COGNOME);
-			GregorianCalendar dn = creaData(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA));
+			GregorianCalendar dn = CommonMethod.stringToDate(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA));
 			String cn = rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA);
 			String pn = rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA);
 			String cf = rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE);
@@ -369,26 +370,6 @@ public class DBUtente {
 		}
 		
 		return results;
-	}
-	
-	/**
-	 * crea un GregorianCalendar data una stringa in formato "YYYY/MM/DD"
-	 * @param data stringa che contiene la data in formato "YYYY/MM/DD"
-	 * @return un GregorianCalendar contenente la data inserita in input
-	 */
-	private GregorianCalendar creaData(String data){
-		GregorianCalendar toReturn;
-		String[] tokens = new String[3];
-		int[] g=new int[3];
-			
-		tokens = data.split("-");
-			
-		g[0]=Integer.parseInt(tokens[0]); 
-		g[1]=Integer.parseInt(tokens[1]); 
-		g[2]=Integer.parseInt(tokens[2]);
-			
-		toReturn = new GregorianCalendar(g[0],g[1],g[2]);
-		return toReturn;
 	}
 	
 	/**
@@ -434,7 +415,7 @@ public class DBUtente {
 				u= new Utente();
 				u.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));
 				u.setCognome(rs.getString(DBNames.ATTR_UTENTE_COGNOME));
-				u.setDataDiNascita(creaData(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA)));
+				u.setDataDiNascita(CommonMethod.stringToDate(rs.getString(DBNames.ATTR_UTENTE_DATADINASCITA)));
 				u.setProvinciaDiNascita(rs.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA));
 				u.setComuneDiNascita(rs.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA));
 				u.setCodiceFiscale(rs.getString(DBNames.ATTR_UTENTE_CODICEFISCALE));
