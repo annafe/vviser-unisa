@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrazione Utente</title>
 </head>
 <body>
+	<%@include file="/gu/header.jsp" %>
 	<fieldset>
 		<legend>Registarzione Utente</legend>
 		<form action="/vviser/addUtenteServlet" method="POST">
