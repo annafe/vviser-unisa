@@ -17,6 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * 
+ * @author Giuseppe Sabato
+ *
+ */
+
 public class ServletVisualizzaProdotti extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -26,7 +32,7 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
-		prodottiManager=new DBGestioneProdotto();
+		prodottiManager=DBGestioneProdotto.getInstance();
 		prodottiValutazioneManager=DBProdottiValutazione.getInstance();
 	}
 	
@@ -44,17 +50,9 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 		{
 			HttpSession s = request.getSession();
 			String emailUtente=(String)s.getAttribute("sessEmail");
-			//System.out.println(emailUtente);
-			//System.out.println(prodottiValutazioneManager);
 			int numeroProdottiMax=prodottiValutazioneManager.getNumeroSottomissioniMax();
-			ArrayList<Prodotto> prodotti=prodottiManager.visualizzaProdotti(emailUtente);
+			ArrayList<Prodotto> prodotti=prodottiManager.visualizzaProdottiProprietarioCoautore(emailUtente);
 			
-			//prova
-			/*System.out.println(numeroProdottiMax);
-			for(int i=0;i<prodotti.size();i++)
-			{
-				System.out.println(prodotti.get(i).getTitolo());
-			}*/
 			request.setAttribute("numProdMax", numeroProdottiMax);
 			request.setAttribute("prod", prodotti);
 			
