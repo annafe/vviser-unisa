@@ -23,7 +23,7 @@
 			<p><label>Dipartimento(Provvisorio): <input type="text" name="dipartimento"/></label></p>
 			<p><label>Tipologia (Provvisorio): <input type="text" name="tipologia"/></label></p>
 			<p><label>Password: <input type="password" name="password"/></label></p>
-			<p><label>Reinserisci password (Provvisorio): <input type="text" name="password1"/></label></p>
+			<p><label>Reinserisci password (Provvisorio): <input type="password" name="password1"/></label></p>
 			
 			<p><input type="submit"/>
 			<input type="reset"/></p>
