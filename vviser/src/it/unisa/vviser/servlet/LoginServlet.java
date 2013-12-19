@@ -60,12 +60,15 @@ public class LoginServlet extends HttpServlet{
 			Utente utente = dbUtente.authenticate(email, password);
 		
 			if(utente != null){
-				request.getSession().setAttribute("utente", utente.getEmail());
+				request.getSession().setAttribute("utente", utente);
 			}
 			else{
-				request.setAttribute("error", "Verifica nome utente e password");
+				request.getServletContext().getRequestDispatcher("/error.jsp");
 			}	
-			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			if(utente.getTipologia().equalsIgnoreCase("Amministratore"))
+					request.getServletContext().getRequestDispatcher("/admin.jsp").forward(request, response);
+			else
+				request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		} catch (Exception e){
 			e.printStackTrace();
 		}	
