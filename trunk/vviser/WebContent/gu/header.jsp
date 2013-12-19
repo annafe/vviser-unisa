@@ -5,12 +5,13 @@
 	<%@page import="it.unisa.vviser.entity.Utente"%>
 	<%
 		Utente utente = (Utente) session.getAttribute("utente");
-		if(utente != null)
+		if(utente != null){
 			out.println("Benvenuto "+utente.getNome());
+			out.println("<form action=\"/vviser/LogoutServlet\" method=\"POST\">");
+			out.println("<input type=\"submit\" value=\"Logout\"/>");
+			out.println("</form>");
+		}
 		else
 			out.println("Effettua il login");	
 	%>
-	<form action="/vviser/LogoutServlet" method="POST">
-		<input type="submit" value="Logout"/>
-	</form>
 </header>
