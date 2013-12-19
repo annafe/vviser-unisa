@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet{
 				if(utente.getTipologia().equalsIgnoreCase("Amministratore"))
 					request.getServletContext().getRequestDispatcher("/admin.jsp").forward(request, response);
 				else
-					request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+					request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 			else{
 				request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
