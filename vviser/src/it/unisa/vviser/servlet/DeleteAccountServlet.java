@@ -70,8 +70,7 @@ public class DeleteAccountServlet extends HttpServlet {
 
 		DBUtente dbUser = new DBUtente();
 		Utente amministratore = new Utente();
-		String email = (String) request.getAttribute("utente");
-		amministratore = dbUser.getUtente(email);
+		amministratore = (Utente) request.getSession().getAttribute("utente");
 		if (amministratore==null){
 			//non loggato
 			request.setAttribute("error", "Non sei loggato");
@@ -81,15 +80,23 @@ public class DeleteAccountServlet extends HttpServlet {
 		//check user's typology
 		if (amministratore.getTipologia().equalsIgnoreCase("amministratore")){		
 			Utente toDelete = new Utente();
-			toDelete = dbUser.getUtente((String) request.getAttribute("selected"));
+			toDelete = dbUser.getUtente((String) request.getParameter("daEliminare"));
 			if (toDelete==null){	//error
+				log.info("email non presente nel database");
 				request.setAttribute("error", "Email non presente nel Database");
 				request.getServletContext().getRequestDispatcher("/gu/admin.jsp").forward(request, response);
 				return;
 			}
 			else{	//delete account
-				//recupero account da eliminare (setta un attributo "daEliminare->email" dalla jsp)
+				//can't remove mySelf
+				if (toDelete.getEmail().equals(amministratore.getEmail())){
+					request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+					return;
+				}
 				dbUser.removeUtente(toDelete);
+				log.info("account deleted: " + toDelete.getEmail());
+				request.getServletContext().getRequestDispatcher("/gu/admin.jsp").forward(request, response);
+				return;
 			}
 		}
 		else{
