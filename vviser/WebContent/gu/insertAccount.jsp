@@ -10,7 +10,7 @@
 	<%@include file="/gu/header.jsp" %>
 	<fieldset>
 		<legend>Registarzione Utente</legend>
-		<form action="/vviser/addUtenteServlet" method="POST">
+		<form action="/vviser/AddUtenteServlet" method="POST">
 			<p><label>Nome: <input type="text" name="nome"/></label></p>
 			<p><label>Cognome: <input type="text" name="cognome"/></label></p>
 			<p><label>Data di Nascita: <input type="date" name="datadinascita"/></label></p>
