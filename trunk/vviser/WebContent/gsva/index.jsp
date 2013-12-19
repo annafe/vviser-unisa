@@ -1,3 +1,6 @@
+<%-- 
+    Author: Giuseppe Sabato
+--%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
@@ -8,9 +11,11 @@
 </head>
 <body>
 <%
-//setto la sessione
+//setto la sessione(provvisorio per provare)
+//in realtà l'email si deve recuperare dalla 
+//sessione settata con il login
 	HttpSession sessione = request.getSession();
-	sessione.setAttribute("sessEmail","mtucci@unisa.it");
+	sessione.setAttribute("sessEmail","ivisconti@unia.it");
 	
 %>
 <form id="mod" action="ServletVisualizzaProdotti" method="POST">
