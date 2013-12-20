@@ -7,7 +7,7 @@
 <title>Gestione Eventi di Valutazione</title>
 </head>
 <body>
-	<form id="form1" action="VisualizzaEventiValutazioneServlet" method="POST">
+	<form id="form1" action="VisualizzaListaEventiValutazioneServlet" method="POST">
 	<button type="submit" name="sel">Mostra Eventi</button>
 </form>
 <form id="form2" action="AggiungiEventoValutazione" method="POST">
