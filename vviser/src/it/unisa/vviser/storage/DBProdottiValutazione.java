@@ -11,6 +11,7 @@ import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.exception.InvalidModifyListaProdottiValutazione;
+import it.unisa.vviser.exception.NotFoundListeValutazioneException;
 
 
 /**
@@ -192,14 +193,15 @@ public class DBProdottiValutazione {
 	 * @param prodotti per sostituire quelli in conflitto
 	 * @throws SQLException
 	 */
-	public void modifyProdVal(ListaProdottiValutazione lp, ArrayList<ProdottoValutazione> prodottiValutazione, ArrayList<Prodotto> prodotti) throws SQLException
+	public void modifyProdVal(ListaProdottiValutazione listaProdottiValutazione, ArrayList<Prodotto> prodotti) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
 		
-		if(!lp.getBloccato())
+		if(!listaProdottiValutazione.getBloccato())
 		{
+			ArrayList<ProdottoValutazione> prodottiValutazione=listaProdottiValutazione.getListaProdottiValutazione();
 			try
 			{
 				conn=DBConnectionPool.getConnection();
@@ -209,8 +211,8 @@ public class DBProdottiValutazione {
 					query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
 							+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"=?"
 							+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+prodottiValutazione.get(i).getIsbn()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
 					
 					st=conn.prepareStatement(query);
 					st.setString(1, prodotti.get(i).getIsbn());
@@ -220,8 +222,8 @@ public class DBProdottiValutazione {
 					//Cancello ex prodotto valutazione dalla tabella dei conflitti
 					query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
 							+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+prodottiValutazione.get(i).getIsbn()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+lp.getEmailUtente()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+lp.getIdEventoValutazione();
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
+							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
 					
 					st=conn.prepareStatement(query);
 					st.executeUpdate();
@@ -239,6 +241,100 @@ public class DBProdottiValutazione {
 			throw new InvalidModifyListaProdottiValutazione("Lista prodotti sottomessi a valutazione bloccata!");
 		}
 	}
+	
+	/**
+	 * Questo metodo restituisce tutte le liste di prodotti sottomessi a valutazione dall'utente specificato
+	 * @param emailUtente identificativo dell'utente
+	 * @return listeProdottiValutazione dell'utente specificato
+	 * @throws SQLException
+	 */
+	public ArrayList<ListaProdottiValutazione> getListeProdottiValutazione(String emailUtente) throws SQLException
+	{
+		ArrayList<ListaProdottiValutazione> listeProdottiValutazione=new ArrayList<ListaProdottiValutazione>();
+		Connection conn=null;
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		
+		try
+		{
+			conn=DBConnectionPool.getConnection();
+			
+			//Conto le liste di prodotti sottomessi a valutazione
+			//dell'utente con email dato in input
+			query="SELECT count(*) as numListe"
+					+" FROM "+DBNames.TABLE_LISTAVALUTAZIONE
+					+" WHERE "+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+"="+"'"+emailUtente+"'";
+			
+			st=conn.createStatement();
+			ris=st.executeQuery(query);
+			ris.next();
+			int numeroListe=ris.getInt("numListe");
+			
+			if(numeroListe==0)
+				throw new NotFoundListeValutazioneException("Non sono presenti liste di prodotti sottomessi a valutazione !");
+			else
+			{
+				//recupero le informazini per costruire la/e lista/e dell'utente specificato
+				query="SELECT "+DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID+","
+						+DBNames.ATTR_LISTAVALUTAZIONE_SUGGERIMENTO+","
+						+DBNames.ATTR_LISTAVALUTAZIONE_BLOCCATO
+						+" FROM "+DBNames.TABLE_LISTAVALUTAZIONE
+						+" WHERE "+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+"="+"'"+emailUtente+"'";
+				
+				st=conn.createStatement();
+				ris=st.executeQuery(query);
+				while(ris.next())
+				{
+					int idEvento=ris.getInt(DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID);
+					String suggestion=ris.getString(DBNames.ATTR_LISTAVALUTAZIONE_SUGGERIMENTO);
+					String bloccato=ris.getString(DBNames.ATTR_LISTAVALUTAZIONE_BLOCCATO);
+					boolean lock;
+					if (bloccato.equals("si"))
+						lock=true;
+					else
+						lock=false;
+						
+					ListaProdottiValutazione lista=new ListaProdottiValutazione(new ArrayList<ProdottoValutazione>(),emailUtente,idEvento,suggestion);
+					if(!lock)
+						lista.setBloccato(lock);
+					listeProdottiValutazione.add(lista);
+				}
+				
+				//ora inserisco i prodotti sottomessi a valutazione all'interno di ogni lista
+				for(int i=0;i<listeProdottiValutazione.size();i++)
+				{
+					int idEvento=listeProdottiValutazione.get(i).getIdEventoValutazione();
+					
+					query="SELECT "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
+							+DBNames.ATTR_PRODOTTO_TITOLO+","+DBNames.ATTR_PRODOTTOLISTA_PRIORITA
+							+" FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PRODOTTOLISTA
+							+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
+							+" AND "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+					
+					st=conn.createStatement();
+					ris=st.executeQuery(query);
+					while(ris.next())
+					{
+						int k=0;
+						String isbn=ris.getString(DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN);
+						String titolo=ris.getString(DBNames.ATTR_PRODOTTO_TITOLO);
+						int priorita=ris.getInt(DBNames.ATTR_PRODOTTOLISTA_PRIORITA);
+						
+						listeProdottiValutazione.get(i).getListaProdottiValutazione().add(new ProdottoValutazione(isbn,titolo,priorita));
+						k++;
+					}	
+				}
+			}
+			return listeProdottiValutazione;
+		}
+		finally
+		{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
 	
 	/**
 	 *Metodo che controlla se il prodotto sottomesso a valutazione e' in conflitto
