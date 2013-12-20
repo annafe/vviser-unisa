@@ -1,5 +1,7 @@
 package it.unisa.vviser.entity;
 
+import it.vviser.common.CommonMethod;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -27,6 +29,14 @@ public class EventoValutazione {
 		this.scadenza = scadenza;
 		this.dataInizio=dataInizio;
 		this.dataFine=dataFine;
+	}
+	
+	public EventoValutazione(String nomeEvento, String numeroPubblicazioni, String scadenza, String dataInizio, String dataFine){
+		this.nomeEvento = nomeEvento;
+		this.numeroPubblicazioni = Integer.parseInt(numeroPubblicazioni);
+		this.scadenza = CommonMethod.stringToDate(scadenza);
+		this.dataInizio=CommonMethod.stringToDate(dataInizio);
+		this.dataFine=CommonMethod.stringToDate(dataFine);
 	}
 	
 	/**
