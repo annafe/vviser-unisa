@@ -3,7 +3,6 @@ package it.unisa.vviser.storage;
 import it.unisa.vviser.storage.DBNames;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import it.unisa.vviser.entity.EventoValutazione;
+import it.unisa.vviser.entity.Notifica;
 
 /**
  * 
@@ -27,13 +27,21 @@ public class DBEventiValutazione {
 	
 	private Connection conn = null;
 	private PreparedStatement pstm = null;
-	private boolean statoConnessione;
-	
+
+	private static DBEventiValutazione manager;
 	
 	// Costruttore vuoto
 	public DBEventiValutazione(){}
-	
-	
+
+
+	public static DBEventiValutazione getInstance()
+	{
+		if(manager==null)
+			manager=new DBEventiValutazione();
+		return manager;
+		
+	}
+
 	
 	// METODI DI AGGIUNTA
 	
@@ -226,6 +234,33 @@ public class DBEventiValutazione {
 	
 	// METODI DI VISUALIZZAZIONE (?)
 	
+	public List<EventoValutazione> visualizzaEventi() throws SQLException{
+		List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
+		
+		conn=DBConnectionPool.getConnection();
+		try{
+			String queryParam = "SELECT * FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+";";
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet rs = pstm.executeQuery();
+			
+			while (rs.next()){
+				GregorianCalendar scadenza, inizio, fine;
+				
+				scadenza = creaData(rs.getString("scadenza"));
+				inizio = creaData(rs.getString("daData"));
+				fine = creaData(rs.getString("aData"));
+				
+				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+				toReturn.add(evento);
+			}
+		}
+		finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
+		return toReturn;
+	}
+	
 	public List<EventoValutazione> visualizzaEventiPerNome(EventoValutazione e) throws SQLException{
         List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
         
@@ -372,25 +407,27 @@ public class DBEventiValutazione {
 	
 	// ALTRI METODI
 	
-	public boolean invioNotificaConflitto(String tipoNotifica) throws SQLException{
-		conn=DBConnectionPool.getConnection();
+	public void invioNotificaConflitto(Notifica e) throws SQLException{
+/*		conn=DBConnectionPool.getConnection();
 		try{
-//		String query = "SELECT "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+
-//				" FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO;
-		
-		String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
-				" ( "+DBNames.ATTR_NOTIFICA_TIPO+")"+
-				" VALUES ( "+tipoNotifica+" );";
-		
-			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
-				return true;
-			else return false;
+			
+			String queryParam = "INSERT INTO "+DBNames.TABLE_NOTIFICA+
+					" ( "+DBNames.ATTR_NOTIFICA_TIPO+","
+			
+				pstm = conn.prepareStatement(queryParam);
+				ResultSet toR = pstm.executeQuery();
+				if (toR!=null)
+					return true;
+				else return false;
 		}finally{
 			pstm.close();
 	        DBConnectionPool.releaseConnection(conn);
 		}
+		*/
+		
+		//in tabella prodotto lista
+		DBNotifica n = new DBNotifica();
+		n.addNotifica(e);
 	}
 	
 	public void prodottiInStatoBozza(){
