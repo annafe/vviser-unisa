@@ -741,5 +741,34 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
+	
+	/**
+	 * Metodo che permette a un ricercatore di convalidare un prodotto quando è indicato come coautore 
+	 * @param collaboratore del prodotto
+	 * @param isb_prodotto del prodotto
+	 * @throws SQLException
+	 */
+	public void convalidaProdotto(String collaboratore,String isb_prodotto)throws SQLException
+	{
+		Connection conn=null;
+		PreparedStatement st=null;
+		String query;
+		try
+		{
+			conn=DBConnectionPool.getConnection();
+			query="UPDATE "+DBNames.TABLE_COLLABORAZIONI+" SET "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=true"
+					+"WHERE "+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"='"+isb_prodotto+"' AND "
+					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+collaboratore+"'";
+			
+			st=conn.prepareStatement(query);
+			st.executeUpdate();
+			conn.commit();
+		}
+		finally
+		{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+	}
 
 }
