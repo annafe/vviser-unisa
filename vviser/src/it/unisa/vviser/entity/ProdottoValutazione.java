@@ -1,5 +1,8 @@
 package it.unisa.vviser.entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * 
  * @author Giuseppe Sabato
@@ -84,6 +87,24 @@ public class ProdottoValutazione {
 	public void setPriority(int priority)
 	{
 		this.priority=priority;
+	}
+	
+	/**
+	 * 
+	 */
+	public String toString()
+	{
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("isbn",getIsbn());
+			obj.put("titolo",getTitle());
+			obj.put("priorita",getPriority());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj.toString();
 	}
 	
 
