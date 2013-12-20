@@ -12,6 +12,6 @@
 			out.println("</form>");
 		}
 		else
-			out.println("Effettua il login");	
+			request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 	%>
 </header>
