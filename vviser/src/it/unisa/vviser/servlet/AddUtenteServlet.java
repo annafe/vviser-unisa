@@ -57,7 +57,9 @@ public class AddUtenteServlet extends HttpServlet {
 		
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
-		String dataNascita = request.getParameter("datadinascita");
+		String giornoNascita = request.getParameter("giornoNascita");
+		String meseNascita = request.getParameter("meseNascita");
+		String annoNascita = request.getParameter("annoNascita");
 		String comuneDiNascita = request.getParameter("comunedinascita");
 		String provinciaDiNascita = request.getParameter("provinciadinascita");
 		String codiceFiscale = request.getParameter("codicefiscale");
@@ -69,7 +71,7 @@ public class AddUtenteServlet extends HttpServlet {
 		Utente u = new Utente();
 		u.setNome(nome);
 		u.setCognome(cognome);
-		u.setDataDiNascita(CommonMethod.stringToDate(dataNascita));
+		u.setDataDiNascita(CommonMethod.stringToDate(annoNascita+"-"+meseNascita+"-"+giornoNascita));
 		u.setComuneDiNascita(comuneDiNascita);
 		u.setProvinciaDiNascita(provinciaDiNascita);
 		u.setCodiceFiscale(codiceFiscale);
