@@ -12,8 +12,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registrazione Utente</title>
 <script type="text/javascript">
-	function testPass(){
-	  if (document.getElementById("p1").value != document.getElementById("p2").value) {
+	function testPass(modulo){
+	  if (modulo.password.value != modulo.password_2.value) {
 	    alert("Le password non corrispondono!");
 	    return false;
 	  }
@@ -25,17 +25,12 @@
 	<%@include file="/gu/header.jsp" %>
 	<fieldset>
 		<legend>Registarzione Utente</legend>
-		<form action="/vviser/AddUtenteServlet" method="POST">
+		<form action="/vviser/AddUtenteServlet" method="POST" onsubmit="return testPass(this)">
 			<p><label>Nome: <input type="text" name="nome" required/></label></p>
 			<p><label>Cognome: <input type="text" name="cognome" required/></label></p>
 			<p><label>Email: <input type="text" name="email" required/></label></p>
-			<!-- Provvisorio -->
-			
-			<p><label>Password: <input type="password" id="p1" name="password" required/></label></p>
-			<p><label>Conferma la password: <input type="password" id= "p2" name="password_2" 
-			onblur="testPass()"required/></label></p>
-			
-			<!-- Fine provvisorio -->
+			<p><label>Password: <input type="password" name="password" required/></label></p>
+			<p><label>Conferma la password: <input type="password" name="password_2" required/></label></p>
 			<p>Data di Nascita: 
 			<input type="text" name="giornoNascita" placeholder="Giorno"required/>
 			<select id="mese" name="meseNascita">
@@ -56,10 +51,10 @@
 			</p>
 			<p><label>Comune di nascita: <input type="text" name="comunedinascita" required/></label></p>
 			<p><label>Provincia di nascita: <input type="text" name="provinciadinascita" 
-			pattern="[a-z A-Z][a-z A-Z]"required/></label></p>
+			pattern="[a-z A-Z][a-z A-Z]" size="2" required/></label></p>
 			<p><label>Codice Fiscale: <input type="text" name="codicefiscale" 
 			pattern="[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]"
-			required/></label></p>
+			size="16" required/></label></p>
 			<p><label>Dipartimento: 
 				<select id="dipartimento" name="dipartimento">
 				<%
