@@ -49,7 +49,7 @@
 			<p><label>Nome: <input type="text" name="nome" required/></label></p>
 			<p><label>Cognome: <input type="text" name="cognome" required/></label></p>
 			<p><label>Email: <input type="text" name="email" required/></label></p>
-			<p><label>Password: <input type="password" name="password" required/></label></p>
+			<p><label>Password: <input type="password" autocomplete="off" name="password" required/></label></p>
 			<p><label>Conferma la password: <input type="password" name="password_2" required/></label></p>
 			<p>Data di Nascita: 
 			<input type="text" name="giornoNascita" placeholder="Giorno"required/>
