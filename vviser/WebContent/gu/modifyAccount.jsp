@@ -52,14 +52,14 @@
 	 	Utente admin = (Utente)session.getAttribute("utente");
 	 	if (!(admin.getTipologia().equalsIgnoreCase("amministratore"))){
 			request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
-			if(!response.isCommitted()){
+			if(!response.isCommitted()){	//header can alredy forward response
 				request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
 				return;		
 			}
 	 	}
  	}catch(Exception e){
 		request.setAttribute("error", "Sessione non settata");
-		if(!response.isCommitted()){
+		if(!response.isCommitted()){	//header can alredy forward response
 			request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
 			return;		
 		}
