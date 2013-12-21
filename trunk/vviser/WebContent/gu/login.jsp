@@ -9,17 +9,16 @@
 <style type="text/css">
 	#main{
 		position: absolute;
-		top: 50%;
 		left:50%;
 		width: 223px;
 		height: 80px;
-		margin-left: -180px;
-		margin-top: -40px;
+		margin-left: -112px;
 	}
 </style>
 </head>
 <body>
 <div id="main">
+	<image src="/vviser/images/logo.png"/ style="widht:100px;height:100px;">
 	<table border=0>
 		<form action="/vviser/LoginServlet" method="POST">
 		<tr>
