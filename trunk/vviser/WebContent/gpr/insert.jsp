@@ -58,14 +58,14 @@ today is 28 Settembre 2013
 		<table>
 			<tr>
 				<td>ISBN</td>
-				<td><input type="email" name="eml" size="20" class="testo"></td>
+				<td><input type="text" name="isbn" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Titolo</td>
-				<td><input type="password" name="pass" size="20" class="testo"></td>
+				<td><input type="text" name="titolo" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Data Pubblicazione(mod database)</td>
+				<td>Data Pubblicazione</td>
 				<td><input type="date" name="data" size="20" class="testo"></td>
 			</tr>
 			<tr>
@@ -82,7 +82,7 @@ today is 28 Settembre 2013
 			</tr>
 			<tr>
 				<td>Tipologia</td>
-				<td><select name="cat">
+				<td><select name="tipologia">
 				    <% 
 				    //Prelevare dal database (deve esssere presente in gestione sistema)
 				    %>
@@ -117,7 +117,7 @@ today is 28 Settembre 2013
 			</tr>
 			<tr>
 				<td>Indirizzo web</td>
-				<td><input type="text" name="data" size="20" class="testo"></td>
+				<td><input type="text" name="indirizzoweb" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Parole chiavi</td>
@@ -125,7 +125,7 @@ today is 28 Settembre 2013
 			</tr>
 			<tr>
 				<td>Editore</td>
-				<td><input type="text" name="doi" size="20" class="testo"></td>
+				<td><input type="text" name="editore" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Numero volume</td>
