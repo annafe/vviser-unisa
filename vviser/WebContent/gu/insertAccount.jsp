@@ -19,12 +19,13 @@
 		<form action="/vviser/AddUtenteServlet" method="POST">
 			<p><label>Nome: <input type="text" name="nome" required/></label></p>
 			<p><label>Cognome: <input type="text" name="cognome" required/></label></p>
-			<p><label>Comune di nascita: <input type="text" name="comunedinascita" required/></label></p>
-			<p><label>Provincia di nascita: <input type="text" name="provinciadinascita" required/></label></p>
-			<p><label>Codice Fiscale: <input type="text" name="codicefiscale" required/></label></p>
 			<p><label>Email: <input type="text" name="email" required/></label></p>
-			
 			<!-- Provvisorio -->
+			
+			<p><label>Password: <input type="password" name="password" required/></label></p>
+			<p><label>Reinserisci password (Provvisorio): <input type="password" name="password1" required/></label></p>
+			
+			<!-- Fine provvisorio -->
 			<p>Data di Nascita: 
 			<input type="text" name="giornoNascita" placeholder="Giorno"required/>
 			<select id="mese" name="meseNascita">
@@ -43,10 +44,12 @@
 			</select>
 			<input type="text" name="annoNascita" placeholder="Anno"required/>
 			</p>
-			<p><label>Password: <input type="password" name="password" required/></label></p>
-			<p><label>Reinserisci password (Provvisorio): <input type="password" name="password1" required/></label></p>
-			<!-- Fine provvisorio -->
-			
+			<p><label>Comune di nascita: <input type="text" name="comunedinascita" required/></label></p>
+			<p><label>Provincia di nascita: <input type="text" name="provinciadinascita" 
+			pattern="[a-z A-Z][a-z A-Z]"required/></label></p>
+			<p><label>Codice Fiscale: <input type="text" name="codicefiscale" 
+			pattern="[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]"
+			required/></label></p>
 			<p><label>Dipartimento: 
 				<select id="dipartimento" name="dipartimento">
 				<%
