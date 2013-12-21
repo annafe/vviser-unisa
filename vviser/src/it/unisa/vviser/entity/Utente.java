@@ -216,13 +216,14 @@ public class Utente {
 	}
 	
 	/**
-	 * Metodo che crea la stringa json contenente nome e cognome dell'utente
+	 * Metodo che crea la stringa json contenente email, nome e cognome dell'utente
 	 * @return stringa json
 	 */
-	public String getNomeCognomeUtente()
+	public String getEmailNomeCognomeUtente()
 	{
 		JSONObject obj = new JSONObject();
 		try {
+			obj.put("email", getEmail());
 			obj.put("nome",getNome());
 			obj.put("cognome",getCognome());
 		} catch (JSONException e) {
