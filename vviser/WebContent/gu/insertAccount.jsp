@@ -11,6 +11,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registrazione Utente</title>
+<script type="text/javascript">
+	function testPass(){
+	  if (document.getElementById("p1").value != document.getElementById("p2").value) {
+	    alert("Le password non corrispondono!");
+	    return false;
+	  }
+	  return true;
+	}
+</script>
 </head>
 <body>
 	<%@include file="/gu/header.jsp" %>
@@ -22,8 +31,9 @@
 			<p><label>Email: <input type="text" name="email" required/></label></p>
 			<!-- Provvisorio -->
 			
-			<p><label>Password: <input type="password" name="password" required/></label></p>
-			<p><label>Reinserisci password (Provvisorio): <input type="password" name="password1" required/></label></p>
+			<p><label>Password: <input type="password" id="p1" name="password" required/></label></p>
+			<p><label>Conferma la password: <input type="password" id= "p2" name="password_2" 
+			onblur="testPass()"required/></label></p>
 			
 			<!-- Fine provvisorio -->
 			<p>Data di Nascita: 
