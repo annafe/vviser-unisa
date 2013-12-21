@@ -65,8 +65,8 @@ today is 28 Settembre 2013
 				<td><input type="text" name="titolo" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Data Pubblicazione</td>
-				<td><input type="date" name="data" size="20" class="testo"></td>
+				<td>Anno pubblicazione</td>
+				<td><input type="text" name="data" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Formato Pubblicazione</td>
