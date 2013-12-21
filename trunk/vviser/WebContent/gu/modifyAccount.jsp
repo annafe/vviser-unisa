@@ -52,11 +52,17 @@
 	 	Utente admin = (Utente)session.getAttribute("utente");
 	 	if (!(admin.getTipologia().equalsIgnoreCase("amministratore"))){
 			request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
-			response.sendRedirect("/vviser/home.jsp");
+			if(!response.isCommitted()){
+				request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
+				return;		
+			}
 	 	}
  	}catch(Exception e){
 		request.setAttribute("error", "Sessione non settata");
-		response.sendRedirect("/vviser/gu/login.jsp");
+		if(!response.isCommitted()){
+			request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
+			return;		
+		}
  	}
  	
  	//get user to modify
