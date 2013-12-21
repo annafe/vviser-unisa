@@ -19,13 +19,44 @@
 </head>
 <body>
  <%@include file="/gu/header.jsp" %>
+ 
+ <script type="text/javascript">
+ 	function checkSubmit(){ 		
+ 		//check campi obbligatori
+ 		if(document.getElementById("nome").value=="" ||
+ 			document.getElementById("cognome").value=="" ||
+ 			document.getElementById("email").value=="" ||
+ 			document.getElementById("password").value=="" ||
+ 			document.getElementById("repeatPassword").value==""){
+ 			alert("Compila i campi obbligatori!");
+ 			return;
+ 		}
+ 		
+ 		//check coerenza tra password e ripetiPassword
+ 		password = document.getElementById("password").value;
+ 		repeatPassword = document.getElementById("repeatPassword").value;
+ 		if (password!=repeatPassword){
+ 			alert("Le password non coincidono!");
+ 			return;
+ 		}
+ 		//ok->submit
+ 		formModifica = document.getElementById("formModifica");
+ 		formModifica.submit();
+ 	}
+ </script>
+  
 <h1>MODIFICA ACCOUNT</h1>
  <% 
  	//check permission
- 	Utente admin = (Utente)session.getAttribute("utente");
- 	if (!(admin.getTipologia().equalsIgnoreCase("amministratore"))){
-		request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
-		response.sendRedirect("/vviser/home.jsp");
+ 	try{
+	 	Utente admin = (Utente)session.getAttribute("utente");
+	 	if (!(admin.getTipologia().equalsIgnoreCase("amministratore"))){
+			request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
+			response.sendRedirect("/vviser/home.jsp");
+	 	}
+ 	}catch(Exception e){
+		request.setAttribute("error", "Sessione non settata");
+		response.sendRedirect("/vviser/gu/login.jsp");
  	}
  	
  	//get user to modify
@@ -37,20 +68,20 @@
 		response.sendRedirect("/vviser/gu/admin.jsp");
 	}
 	else{%>
-		<form action="/vviser/ModifyAccountServlet" method="POST">
+		<form id="formModifica" action="/vviser/ModifyAccountServlet" method="POST">
 			<fieldset style="float: left;">
 				<legend>Modifica account</legend>
 					<table border=0>
 						<tr><td></td><td><input type="hidden" name="oldEmail" value="<%out.print(userToModify.getEmail());%>"/></td></tr>
-						<tr><td align="right">Nome:</td><td><input type="text" name="nome" value="<%out.print(userToModify.getNome());%>"/></td></tr>
-						<tr><td align="right">Cognome:</td><td><input type="text" name="cognome" value="<%out.print(userToModify.getCognome());%>"/></td></tr>
+						<tr><td align="right">Nome*:</td><td><input id="nome" type="text" name="nome" value="<%out.print(userToModify.getNome());%>"/></td></tr>
+						<tr><td align="right">Cognome*:</td><td><input id="cognome" type="text" name="cognome" value="<%out.print(userToModify.getCognome());%>"/></td></tr>
 						<tr><td align="right">Comune di nascita:</td><td><input type="text" name="comuneDiNascita" value="<%out.print(userToModify.getComuneDiNascita());%>"/></td></tr>
 						<tr><td align="right">Provincia di nascita:</td><td><input type="text" name="provinciaDiNascita" value="<%out.print(userToModify.getProvinciaDiNascita());%>"/></td></tr>
 						<tr><td align="right">Codice fiscale:</td><td><input type="text" name="codiceFiscale" value="<%out.print(userToModify.getCodiceFiscale());%>"/></td></tr>
-						<tr><td align="right">Email:</td><td><input type="text" name="email" value="<%out.print(userToModify.getEmail());%>"/></td></tr>
+						<tr><td align="right">Email*:</td><td><input id="email" type="text" name="email" value="<%out.print(userToModify.getEmail());%>"/></td></tr>
 						<tr><td align="right">Data di nascita(Provvisorio):</td><td><input type="text" name="dataDiNascita" value="<%out.print(CommonMethod.dateToString(userToModify.getDataDiNascita()));%>"/></td></tr>
-						<tr><td align="right">Password:</td><td><input type="password" name="password" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
-						<tr><td align="right">Reinserisci password(Provvisorio):</td><td><input type="password" name="reinserisciPassword"/></td></tr>
+						<tr><td align="right">Password*:</td><td><input id="password" type="password" name="password" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
+						<tr><td align="right">Reinserisci password(Provvisorio)*:</td><td><input id="repeatPassword" type="password" name="reinserisciPassword" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
 						<tr><td align="right">Dipartimento:</td>
 						<td>
 							<select name="dipartimento">
@@ -115,10 +146,17 @@
 								</select>
 						</td>
 						</tr>
-						<tr><td></td><td><input type="submit" value="Modifica"/></td></tr>
+						<tr><td></td><td>
+							<table border=0>
+								<tr>
+									<td><input type="button" onclick="checkSubmit()" value="Modifica"/></form></td>
+									<td><form action="/vviser/gu/admin.jsp" method="POST"><input type="submit" value="Annulla"/></form></td>
+								</tr>
+							</table>				
+							
+						</td></tr>
 					</table>
 			</fieldset>
-		</form>
 	<%}
 %>
 </body>
