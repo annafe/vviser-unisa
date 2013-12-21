@@ -69,7 +69,7 @@ public class ModifyAccountServlet extends HttpServlet {
 				log.info("modifiche in corso...");
 				dbUser.modificaNome(userToModify, request.getParameter("nome"));
 				dbUser.modificaCognome(userToModify, request.getParameter("cognome"));
-				dbUser.modificaComuneDiNascita(userToModify, request.getParameter("comuneDinascita"));
+				dbUser.modificaComuneDiNascita(userToModify, request.getParameter("comuneDiNascita"));
 				dbUser.modificaProvinciaDiNascita(userToModify, request.getParameter("provinciaDiNascita"));
 				dbUser.modificaCodiceFiscale(userToModify, request.getParameter("codiceFiscale"));
 				dbUser.modificaEmail(userToModify, request.getParameter("email"));
