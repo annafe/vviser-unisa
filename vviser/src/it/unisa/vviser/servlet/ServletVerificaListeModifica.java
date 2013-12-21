@@ -71,6 +71,7 @@ public class ServletVerificaListeModifica extends HttpServlet{
 			
 			if(listeSbloccate.size()>1)
 			{
+				s.setAttribute("operazione", "modifica");//setto la sessione per indicare alla jsp che si tratta di una modifica
 				request.setAttribute("liste", listeSbloccate);
 				ServletContext sc = getServletContext();
 				RequestDispatcher rd = sc.getRequestDispatcher("/selezListe.jsp");

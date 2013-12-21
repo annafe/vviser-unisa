@@ -1,7 +1,6 @@
 package it.unisa.vviser.servlet;
 
-import it.unisa.vviser.entity.Prodotto;
-import it.unisa.vviser.storage.DBGestioneProdotto;
+import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
 import java.io.IOException;
@@ -17,22 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * 
- * @author Giuseppe Sabato
- *
- */
-
-public class ServletVisualizzaProdotti extends HttpServlet {
+public class ServletVerificaListeVisualizza extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private DBGestioneProdotto prodottiManager;
 	private DBProdottiValutazione prodottiValutazioneManager;
 
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
-		prodottiManager=DBGestioneProdotto.getInstance();
 		prodottiValutazioneManager=DBProdottiValutazione.getInstance();
 	}
 	
@@ -50,26 +41,32 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 		{
 			HttpSession s = request.getSession();
 			String emailUtente=(String)s.getAttribute("sessEmail");
-			int numeroProdottiMax=prodottiValutazioneManager.getNumeroSottomissioniMax();
-			ArrayList<Prodotto> prodotti=prodottiManager.visualizzaProdottiProprietarioCoautore(emailUtente);
+			ArrayList<ListaProdottiValutazione> listeProdottiValutazione=prodottiValutazioneManager.getListeProdottiValutazione(emailUtente);
 			
-			request.setAttribute("numProdMax", numeroProdottiMax);
-			request.setAttribute("prod", prodotti);
 			
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/selezProdotti.jsp");
-			rd.forward(request,response); 
-			
+			if(listeProdottiValutazione.size()>1)
+			{
+				s.setAttribute("operazione", "visualizza");//setto la sessione per indicare alla jsp che si tratta di una visualizzazione
+				request.setAttribute("liste", listeProdottiValutazione);
+				ServletContext sc = getServletContext();
+				RequestDispatcher rd = sc.getRequestDispatcher("/selezListe.jsp");
+				rd.forward(request,response);
+			}
+			else
+			{
+				if(listeProdottiValutazione.size()==1)
+				{
+					request.setAttribute("lista", listeProdottiValutazione.get(0));
+					ServletContext sc = getServletContext();
+					RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaLista.jsp");
+					rd.forward(request,response);
+				}
+			}
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
 	}
 
 }
