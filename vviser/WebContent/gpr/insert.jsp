@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
+
+<%@ page import="it.unisa.vviser.storage.DBUtente"%>
+<%@ page import="it.unisa.vviser.entity.Utente"%>
 <%-- 
     Author: Antonio De Piano
 --%>
@@ -33,7 +36,11 @@ p>a:active {color:yellowgreen;
 </style>
 </head>
 <body>
- <%@include file="../gu/header.jsp" %>
+
+<% 
+/*@include file="../gu/header.jsp" */
+%>
+
 <header id="container-header">
 	
 	<nav>
@@ -76,7 +83,9 @@ today is 28 Settembre 2013
 			<tr>
 				<td>Tipologia</td>
 				<td><select name="cat">
-				    
+				    <% 
+				    //Prelevare dal database (deve esssere presente in gestione sistema)
+				    %>
 				</select></td>
 			</tr>
 			<tr>
@@ -85,7 +94,22 @@ today is 28 Settembre 2013
 			</tr>
 			<tr>
 				<td>Collaboratori</td>
-				<td><select name="collaboratori"></select></td>
+				<td><select name="collaboratori">
+				<% 	
+				DBUtente dbUser = new DBUtente();
+				List<Utente> l = dbUser.visualizzaUtenti();
+				for (int i=0; i<l.size(); i++)
+				{
+					%>
+					<option><% String utente=l.get(i).getCognome();
+						utente.concat(" "+l.get(i).getNome());
+						out.print(utente);
+								%>
+					</option>
+					<% 
+				}
+				%>
+			</select></td>
 			</tr>
 			<tr>
 				<td>Descrizione Contenuti</td>
