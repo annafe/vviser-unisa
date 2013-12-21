@@ -86,8 +86,8 @@
 						<tr><td align="right">Codice fiscale:</td><td><input type="text" name="codiceFiscale" value="<%out.print(userToModify.getCodiceFiscale());%>"/></td></tr>
 						<tr><td align="right">Email*:</td><td><input id="email" type="text" name="email" value="<%out.print(userToModify.getEmail());%>"/></td></tr>
 						<tr><td align="right">Data di nascita(Provvisorio):</td><td><input type="text" name="dataDiNascita" value="<%out.print(CommonMethod.dateToString(userToModify.getDataDiNascita()));%>"/></td></tr>
-						<tr><td align="right">Password*:</td><td><input id="password" type="password" name="password" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
-						<tr><td align="right">Reinserisci password(Provvisorio)*:</td><td><input id="repeatPassword" type="password" name="reinserisciPassword" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
+						<tr><td align="right">Password*:</td><td><input id="password" type="password" autocomplete="off" name="password" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
+						<tr><td align="right">Reinserisci password(Provvisorio)*:</td><td><input id="repeatPassword" type="password" autocomplete="off" name="reinserisciPassword" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
 						<tr><td align="right">Dipartimento:</td>
 						<td>
 							<select name="dipartimento">
