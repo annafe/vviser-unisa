@@ -44,7 +44,7 @@
  	}
 	%>
 	<fieldset>
-		<legend>Registarzione Utente</legend>
+		<legend>Registrazione Utente</legend>
 		<form action="/vviser/AddUtenteServlet" method="POST" onsubmit="return testPass(this)">
 			<p><label>Nome: <input type="text" name="nome" required/></label></p>
 			<p><label>Cognome: <input type="text" name="cognome" required/></label></p>
