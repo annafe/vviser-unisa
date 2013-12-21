@@ -52,7 +52,7 @@ today is 28 Settembre 2013
 		<p><a href="./gpr.html">Gestione prodotto</a>
 	</section>
 	<section id="prd">
-	<form method="GET" action="InserimentoProdottoServlet" name="modulo">
+	<form method="GET" action="../InserimentoProdottoServlet" name="modulo">
 	<fieldset>
 		<legend>Prodotto</legend>
 		<table>
