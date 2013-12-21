@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Antonio De Piano
  *
  */
-public class InserimentoProdottoServlet extends HttpServlet {
+public class SottomettiMIURServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBGestioneProdotto gprodotto;
@@ -62,7 +62,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
     }
 
 	/**
-	 * Inserisce un prodotto
+	 * Sottomette un prodotto al MIUR
 	 * @param request servlet request
 	 * @param response servlet response
 	 */
@@ -89,9 +89,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String daPagina = request.getParameter("daPagina");
 		String aPagina = request.getParameter("aPagina");
 		
-		System.out.println("caio");
-		System.out.println(collaboratori);
-		/*
+		System.out.println(dataPubblicazione);
 		try
 		{
 			Prodotto prod=new Prodotto();
@@ -120,7 +118,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			
 			
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.insertProdotto(prod);
+			gp.modificaProdotto(prod);
 		}
 		catch (SQLException ex)
 		{
@@ -142,6 +140,6 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}*/
+		}
 	}
 }

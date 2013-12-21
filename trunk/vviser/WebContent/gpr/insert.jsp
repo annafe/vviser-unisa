@@ -94,7 +94,7 @@ today is 28 Settembre 2013
 			</tr>
 			<tr>
 				<td>Collaboratori</td>
-				<td><select name="collaboratori">
+				<td><select name="collaboratori" multiple>
 				<% 	
 				DBUtente dbUser = new DBUtente();
 				List<Utente> l = dbUser.visualizzaUtenti();

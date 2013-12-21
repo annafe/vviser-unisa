@@ -18,6 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class VisualizzaDettaglioProdottoServlet
  */
+
+/**
+ * 
+ * @author Antonio De Piano
+ *
+ */
 @WebServlet("/VisualizzaDettaglioProdottoServlet")
 public class VisualizzaDettaglioProdottoServlet extends HttpServlet
 {
