@@ -70,76 +70,17 @@ public class SottomettiMIURServlet extends HttpServlet {
 			HttpServletResponse response) {
 		
 		String isbn = request.getParameter("isbn");
-		String titolo = request.getParameter("titolo");
-		String dataPubblicazione = request.getParameter("data");
-		String formatoPubblicazione = request.getParameter("formato_pub");
-		String codiceDoi = request.getParameter("doi");
-		String diffusione = request.getParameter("diffusione");
-		String tipologia = request.getParameter("tipologia");
-		String note = request.getParameter("note");
-		String collaboratori = request.getParameter("collaboratori");
-		String descrizione = request.getParameter("descrizione");
-
-		String indirizzoweb = request.getParameter("indirizzoweb");
-		String key = request.getParameter("key");
-		String editore = request.getParameter("editore");
-		String num_volume = request.getParameter("num_volume");
-		String totalePagine = request.getParameter("totalePagine");
-
-		String daPagina = request.getParameter("daPagina");
-		String aPagina = request.getParameter("aPagina");
+		//Recuperato dalla sessione
+		String utente = request.getParameter("utente");
 		
-		System.out.println(dataPubblicazione);
 		try
 		{
-			Prodotto prod=new Prodotto();
-			
-			prod.setIndirizzoWeb(indirizzoweb);
-			prod.setAnnoPubblicazione(dataPubblicazione);
-			prod.setApagina(Integer.parseInt(aPagina));
-			prod.setBozza(false);
-			prod.setDaPagina(Integer.parseInt(daPagina));
-			prod.setDescrizioneContenuti(descrizione);
-			prod.setCodiceDOI(codiceDoi);
-			prod.setIsbn(isbn);
-			prod.setTipologia(tipologia);
-			prod.setTitolo(titolo);
-			prod.setEditore(editore);
-			prod.setDiffusione(diffusione);
-			prod.setListaCollaboratori(collaboratori);
-			prod.setNumVolume(Integer.parseInt(num_volume));
-			prod.setParoleChiavi(key);
-			prod.setNote(note);
-			prod.setStato("NonValidato");
-			//utente sessione
-			prod.setProprietario("");
-			prod.setFormatoPubblicazione(formatoPubblicazione);
-			prod.setTotalePagine(Integer.parseInt(totalePagine));
-			
-			
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.modificaProdotto(prod);
+			gp.sottomettiAlMIUR(utente, isbn);
 		}
 		catch (SQLException ex)
 		{
 			ex.printStackTrace();
-		}
-		
-	
-		ServletContext sc = getServletContext();
-		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
-		try
-		{
-			rd.forward(request,response);
-		}
-		catch (ServletException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
 		}
 	}
 }
