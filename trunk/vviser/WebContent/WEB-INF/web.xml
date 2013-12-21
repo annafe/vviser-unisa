@@ -81,4 +81,13 @@
     <servlet-name>AddUtenteServlet</servlet-name>
     <url-pattern>/AddUtenteServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>InserimentoProdottoServlet</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.InserimentoProdottoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>InserimentoProdottoServlet</servlet-name>
+    <url-pattern>/InserimentoProdottoServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

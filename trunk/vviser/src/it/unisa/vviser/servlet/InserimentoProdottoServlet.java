@@ -78,22 +78,40 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String daPagina = request.getParameter("daPagina");
 		String aPagin = request.getParameter("aPagina");
 		
-		Prodotto prod=new Prodotto();
-		request.setAttribute("error", "Email non presente nel Database");
-		
-	/*	EventoValutazione e = new EventoValutazione(nome, num, scadenza, da, a);
-		try{
-			eventiValutazioneManager.addEvento(e);
-		} catch (SQLException ex){
+		System.out.println(dataPubblicazione);
+		/*
+		try
+		{
+			Prodotto prod=new Prodotto();
+			prod.setIndirizzoWeb(indirizzoweb);
+			prod.setAnnoPubblicazione();
+			prod.setApagina(aPagina);
+			prod.setBozza(false);
+			prod.setDaPagina(daPagina);
+			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
+			gp.insertProdotto(prod);
+		}
+		catch (SQLException ex)
+		{
 			ex.printStackTrace();
 		}
 		
 	
 		ServletContext sc = getServletContext();
-		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
-		RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaEventi.jsp");
-		rd.forward(request,response);
+		// ridirezione alla pagina con la lista di tutti i prodotti
+		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
+		try
+		{
+			rd.forward(request,response);
+		}
+		catch (ServletException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		*/
-		
 	}
 }
