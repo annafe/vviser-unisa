@@ -18,6 +18,15 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ItuoiProdotti
  */
 @WebServlet("/ItuoiProdotti")
+
+
+/**
+ * 
+ * @author Antonio De Piano
+ *
+ */
+
+
 public class ItuoiProdotti extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
