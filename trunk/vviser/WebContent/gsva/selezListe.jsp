@@ -21,8 +21,9 @@
 <%
 	ArrayList<ListaProdottiValutazione> listeProdottiValutazione=new ArrayList<ListaProdottiValutazione>();
 	listeProdottiValutazione=(ArrayList<ListaProdottiValutazione>)request.getAttribute("liste");
+	
 %>
-<form id="f1" action="ServletSelezionaListeModifica" method="POST">
+<form id="f1" action="ServletSelezionaListe" method="POST">
 	<table>
 		<tr>
 			<th colspan="2">Scegli una lista</th>
@@ -35,7 +36,7 @@
 			for(int i=0;i<listeProdottiValutazione.size();i++)
 			{
 				out.println("<tr>");
-					out.println("<td><input type=\"radio\" name=\"list\" value="+listeProdottiValutazione.get(i).toString()+"/></td>");
+					out.println("<td><input type=\"radio\" name=\"idList\" value="+listeProdottiValutazione.get(i).getIdEventoValutazione()+" /></td>");
 					out.println("<td>"+listeProdottiValutazione.get(i).getIdEventoValutazione()+"</td>");
 				out.println("<tr>");
 			}
