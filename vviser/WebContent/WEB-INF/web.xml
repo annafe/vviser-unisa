@@ -9,85 +9,76 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-      <servlet-name>ServletInsertProdottiValutazione</servlet-name>
-      <servlet-class>it.unisa.vviser.servlet.ServletInsertProdottiValutazione</servlet-class>
-    </servlet>
-	<servlet-mapping>
-        <servlet-name>ServletInsertProdottiValutazione</servlet-name>
-        <url-pattern>/ServletInsertProdottiValutazione</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-      <servlet-name>ServletVisualizzaProdotti</servlet-name>
-      <servlet-class>it.unisa.vviser.servlet.ServletVisualizzaProdotti</servlet-class>
-    </servlet>
-	<servlet-mapping>
-        <servlet-name>ServletVisualizzaProdotti</servlet-name>
-        <url-pattern>/ServletVisualizzaProdotti</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-      <servlet-name>ServletVerificaListeModifica</servlet-name>
-      <servlet-class>it.unisa.vviser.servlet.ServletVerificaListeModifica</servlet-class>
-    </servlet>
-	<servlet-mapping>
-        <servlet-name>ServletVerificaListeModifica</servlet-name>
-        <url-pattern>/ServletVerificaListeModifica</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-      <servlet-name>ServletSelezionaListeModifica</servlet-name>
-      <servlet-class>it.unisa.vviser.servlet.ServletSelezionaListeModifica</servlet-class>
-    </servlet>
-	<servlet-mapping>
-        <servlet-name>ServletSelezionaListeModifica</servlet-name>
-        <url-pattern>/ServletSelezionaListeModifica</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
+    <servlet-name>ServletInsertProdottiValutazione</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.ServletInsertProdottiValutazione</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletInsertProdottiValutazione</servlet-name>
+    <url-pattern>/ServletInsertProdottiValutazione</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServletVisualizzaProdotti</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.ServletVisualizzaProdotti</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVisualizzaProdotti</servlet-name>
+    <url-pattern>/ServletVisualizzaProdotti</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServletVerificaListeModifica</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.ServletVerificaListeModifica</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVerificaListeModifica</servlet-name>
+    <url-pattern>/ServletVerificaListeModifica</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServletSelezionaListeModifica</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.ServletSelezionaListeModifica</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletSelezionaListeModifica</servlet-name>
+    <url-pattern>/ServletSelezionaListeModifica</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.LoginServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
-    </servlet-mapping>
-    
-	<servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>DeleteAccountServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.DeleteAccountServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>DeleteAccountServlet</servlet-name>
     <url-pattern>/DeleteAccountServlet</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AddUtenteServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.AddUtenteServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>AddUtenteServlet</servlet-name>
     <url-pattern>/AddUtenteServlet</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>InserimentoProdottoServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.InserimentoProdottoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>InserimentoProdottoServlet</servlet-name>
     <url-pattern>/InserimentoProdottoServlet</url-pattern>
-    </servlet-mapping>
+  </servlet-mapping>
 </web-app>
