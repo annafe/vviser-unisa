@@ -59,7 +59,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
     }
 
 	/**
-	 * Effettua la registrazione di un nuovo utente
+	 * Inserisce un prodotto
 	 * @param request servlet request
 	 * @param response servlet response
 	 */
@@ -86,7 +86,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String daPagina = request.getParameter("daPagina");
 		String aPagin = request.getParameter("aPagina");
 		
-		System.out.println(dataPubblicazione);
+		System.out.println("ciao");
 		/*
 		try
 		{
