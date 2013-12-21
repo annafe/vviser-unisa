@@ -9,10 +9,8 @@
 <style type="text/css">
 	#main{
 		position: absolute;
-		left:50%;
 		width: 223px;
 		height: 80px;
-		margin-left: -112px;
 	}
 </style>
 </head>
