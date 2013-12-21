@@ -67,12 +67,12 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			HttpServletResponse response) {
 		
 		String isbn = request.getParameter("isbn");
-		String cognome = request.getParameter("titolo");
+		String titolo = request.getParameter("titolo");
 		String dataPubblicazione = request.getParameter("data");
 		String formatoPubblicazione = request.getParameter("formato_pub");
 		String codiceDoi = request.getParameter("doi");
 		String diffusione = request.getParameter("diffusione");
-		String tipologie = request.getParameter("tipologia");
+		String tipologia = request.getParameter("tipologia");
 		String note = request.getParameter("note");
 		String collaboratori = request.getParameter("collaboratori");
 		String descrizione = request.getParameter("descrizione");
@@ -84,18 +84,36 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String totalePagine = request.getParameter("totalePagine");
 
 		String daPagina = request.getParameter("daPagina");
-		String aPagin = request.getParameter("aPagina");
+		String aPagina = request.getParameter("aPagina");
 		
-		System.out.println("ciao");
-		/*
+		
 		try
 		{
 			Prodotto prod=new Prodotto();
+			
 			prod.setIndirizzoWeb(indirizzoweb);
-			prod.setAnnoPubblicazione();
-			prod.setApagina(aPagina);
+			prod.setAnnoPubblicazione(dataPubblicazione);
+			prod.setApagina(Integer.parseInt(aPagina));
 			prod.setBozza(false);
-			prod.setDaPagina(daPagina);
+			prod.setDaPagina(Integer.parseInt(daPagina));
+			prod.setDescrizioneContenuti(descrizione);
+			prod.setCodiceDOI(codiceDoi);
+			prod.setIsbn(isbn);
+			prod.setTipologia(tipologia);
+			prod.setTitolo(titolo);
+			prod.setEditore(editore);
+			prod.setDiffusione(diffusione);
+			prod.setListaCollaboratori(collaboratori);
+			prod.setNumVolume(Integer.parseInt(num_volume));
+			prod.setParoleChiavi(key);
+			prod.setNote(note);
+			prod.setStato("NonValidato");
+			//utente sessione
+			prod.setProprietario("");
+			prod.setFormatoPubblicazione(formatoPubblicazione);
+			prod.setTotalePagine(Integer.parseInt(totalePagine));
+			
+			
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 			gp.insertProdotto(prod);
 		}
@@ -120,6 +138,5 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		*/
 	}
 }
