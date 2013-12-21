@@ -85,7 +85,7 @@ public class AddUtenteServlet extends HttpServlet {
 		DBUtente dbu = new DBUtente();
 		try {
 			if(dbu.addUtente(u)){
-				request.getServletContext().getRequestDispatcher("/gu/admin.jsp").forward(request, response);;
+				request.getServletContext().getRequestDispatcher("/gu/admin.jsp").forward(request, response);
 				return;
 			}
 			else{
