@@ -23,6 +23,26 @@
 </head>
 <body>
 	<%@include file="/gu/header.jsp" %>
+	
+	<% 
+ 	//check permission
+ 	try{
+	 	Utente admin = (Utente)session.getAttribute("utente");
+	 	if (!(admin.getTipologia().equalsIgnoreCase("amministratore"))){
+			request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
+			if(!response.isCommitted()){	//header can alredy forward response
+				request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
+				return;		
+			}
+	 	}
+ 	}catch(Exception e){
+		request.setAttribute("error", "Sessione non settata");
+		if(!response.isCommitted()){	//header can alredy forward response
+			request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
+			return;		
+		}
+ 	}
+	%>
 	<fieldset>
 		<legend>Registarzione Utente</legend>
 		<form action="/vviser/AddUtenteServlet" method="POST" onsubmit="return testPass(this)">
