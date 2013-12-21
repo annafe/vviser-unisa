@@ -26,6 +26,9 @@ public class InserimentoProdottoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DBGestioneProdotto gprodotto;
 
+	/**
+	 * 
+	 */
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
@@ -86,7 +89,8 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String daPagina = request.getParameter("daPagina");
 		String aPagina = request.getParameter("aPagina");
 		
-		
+		System.out.println(dataPubblicazione);
+		/*
 		try
 		{
 			Prodotto prod=new Prodotto();
@@ -137,6 +141,6 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
