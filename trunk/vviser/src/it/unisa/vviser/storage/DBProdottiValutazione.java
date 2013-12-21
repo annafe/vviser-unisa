@@ -129,6 +129,8 @@ public class DBProdottiValutazione {
 		
 		            st.executeUpdate();
 		            conn.commit();
+		            //Chiamo il DB del sistema, e richiama il metodo per inviare la notifica
+		            //addNotificaConflitto(String isbn)
 	            }
             }
         } 
@@ -159,16 +161,16 @@ public class DBProdottiValutazione {
 			query="SELECT "+DBNames.ATTR_PRODOTTO_ISBN+","
 					+DBNames.ATTR_PRODOTTO_TITOLO+","
 					+DBNames.ATTR_PRODOTTOLISTA_PRIORITA
-					+ " FROM " +DBNames.TABLE_PRODOTTO+" "+DBNames.TABLE_PRODOTTOLISTA
+					+ " FROM " +DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PRODOTTOLISTA
 					+ " WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN
-					+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
+					+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+listaProdottiValutazione.getEmailUtente()+"'"
 					+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
 			
 			st=conn.createStatement();
 			ris=st.executeQuery(query);
 			while(ris.next())
 			{
-				String isbn=ris.getString(DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN);
+				String isbn=ris.getString(DBNames.ATTR_PRODOTTO_ISBN);
 				String title=ris.getString(DBNames.ATTR_PRODOTTO_TITOLO);
 				int priority=ris.getInt(DBNames.ATTR_PRODOTTOLISTA_PRIORITA);
 				
