@@ -17,17 +17,34 @@
 	<fieldset>
 		<legend>Registarzione Utente</legend>
 		<form action="/vviser/AddUtenteServlet" method="POST">
-			<p><label>Nome: <input type="text" name="nome"/></label></p>
-			<p><label>Cognome: <input type="text" name="cognome"/></label></p>
-			<p><label>Comune di nascita: <input type="text" name="comunedinascita"/></label></p>
-			<p><label>Provincia di nascita: <input type="text" name="provinciadinascita"/></label></p>
-			<p><label>Codice Fiscale: <input type="text" name="codicefiscale"/></label></p>
-			<p><label>Email: <input type="text" name="email"/></label></p>
+			<p><label>Nome: <input type="text" name="nome" required/></label></p>
+			<p><label>Cognome: <input type="text" name="cognome" required/></label></p>
+			<p><label>Comune di nascita: <input type="text" name="comunedinascita" required/></label></p>
+			<p><label>Provincia di nascita: <input type="text" name="provinciadinascita" required/></label></p>
+			<p><label>Codice Fiscale: <input type="text" name="codicefiscale" required/></label></p>
+			<p><label>Email: <input type="text" name="email" required/></label></p>
 			
 			<!-- Provvisorio -->
-			<p><label>Data di Nascita (Provvisorio): <input type="date" name="datadinascita"/></label></p>
-			<p><label>Password: <input type="password" name="password"/></label></p>
-			<p><label>Reinserisci password (Provvisorio): <input type="password" name="password1"/></label></p>
+			<p>Data di Nascita: 
+			<input type="text" name="giornoNascita" placeholder="Giorno"required/>
+			<select id="mese" name="meseNascita">
+				<option value="01">Gennaio</option>
+				<option value="02">Febbraio</option>
+				<option value="03">Marzo</option>
+				<option value="04">Aprile</option>
+				<option value="05">Maggio</option>
+				<option value="06">Giugno</option>
+				<option value="07">Luglio</option>
+				<option value="08">Agosto</option>
+				<option value="09">Settembre</option>
+				<option value="10">Ottobre</option>
+				<option value="11">Novembre</option>
+				<option value="12">Dicembre</option>
+			</select>
+			<input type="text" name="annoNascita" placeholder="Anno"required/>
+			</p>
+			<p><label>Password: <input type="password" name="password" required/></label></p>
+			<p><label>Reinserisci password (Provvisorio): <input type="password" name="password1" required/></label></p>
 			<!-- Fine provvisorio -->
 			
 			<p><label>Dipartimento: 
