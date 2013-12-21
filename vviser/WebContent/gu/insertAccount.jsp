@@ -54,7 +54,7 @@
 			<p>Data di Nascita: 
 			<input type="text" name="giornoNascita" placeholder="Giorno"required/>
 			<select id="mese" name="meseNascita">
-				<option value="01">Gennaio</option>
+				<option value="01" selected>Gennaio</option>
 				<option value="02">Febbraio</option>
 				<option value="03">Marzo</option>
 				<option value="04">Aprile</option>
