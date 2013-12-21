@@ -2,6 +2,9 @@ package it.unisa.vviser.entity;
 
 import java.util.GregorianCalendar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 /**
  * 
@@ -210,6 +213,24 @@ public class Utente {
 	 */
 	public String getTipologia  (){
 		return this.tipologia  ;
+	}
+	
+	/**
+	 * Metodo che crea la stringa json contenente nome e cognome dell'utente
+	 * @return stringa json
+	 */
+	public String getNomeCognomeUtente()
+	{
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("nome",getNome());
+			obj.put("cognome",getCognome());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj.toString();
 	}
 	
 }
