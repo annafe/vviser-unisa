@@ -72,7 +72,7 @@ public class DeleteAccountServlet extends HttpServlet {
 		Utente amministratore = new Utente();
 		amministratore = (Utente) request.getSession().getAttribute("utente");
 		if (amministratore==null){
-			//non loggato
+			//no login
 			request.setAttribute("error", "Non sei loggato");
 			request.getServletContext().getRequestDispatcher("/gu/login.jsp").forward(request, response);
 			return;
