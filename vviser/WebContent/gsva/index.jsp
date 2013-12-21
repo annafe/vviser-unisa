@@ -24,7 +24,7 @@
 <form id="mod1" action="ServletVerificaListeModifica" method="POST">
 	<button type="submit" name="sel">Modifica Prodotti Sottomessi a Valutazione</button>
 </form>
-<form id="mod2" action="ServletVerificaListeVisualizzazione" method="POST">
+<form id="mod2" action="ServletVerificaListeVisualizza" method="POST">
 	<button type="submit" name="sel">Visualizza Prodotti Sottomessi a Valutazione</button>
 </form>
 </body>
