@@ -1,3 +1,4 @@
+<!-- ROMANO SIMONE -->
 <%@page import="java.lang.ProcessBuilder.Redirect"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -15,14 +16,14 @@
  <%@include file="/gu/header.jsp" %>
  <h1>ADMIN PAGE</h1>
  <table border=1>
- 	<tr><th>COGNOME</th><th>NOME</th><th>EMAIL</th><th>TIPOLOGIA</th></tr>
+ 	<tr><th>COGNOME</th><th>NOME</th><th>EMAIL</th><th>DIPARTIMENTO</th><th>TIPOLOGIA</th></tr>
 		<% 	
 			DBUtente dbUser = new DBUtente();
 			List<Utente> l = dbUser.visualizzaUtenti();
 			for (int i=0; i<l.size(); i++){
-				%><tr><td><%out.println(l.get(i).getCognome());%></td><td><%out.println(l.get(i).getNome()); %></td><td><%out.println(l.get(i).getEmail()); %></td><td><%out.println(l.get(i).getTipologia()); %></td>
+				%><tr><td><%out.println(l.get(i).getCognome());%></td><td><%out.print(l.get(i).getNome()); %></td><td><%out.print(l.get(i).getEmail()); %></td><td><%out.print(l.get(i).getDipartimento()); %></td><td><%out.print(l.get(i).getTipologia()); %></td>
 				<td><!-- form modifica -->
-					<form action="/vviser/ModifyAccountServlet" method="POST">		
+					<form action="/vviser/gu/modifyAccount.jsp" method="POST">		
 						<input type="hidden" name="daModificare" value="<%out.print(l.get(i).getEmail());%>"/>			
 						<input type="submit" value="Modifica"/>
 					</form>
