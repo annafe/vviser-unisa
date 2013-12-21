@@ -51,9 +51,11 @@ public class AddUtenteServlet extends HttpServlet {
 	 * Effettua la registrazione di un nuovo utente
 	 * @param request servlet request
 	 * @param response servlet response
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
@@ -82,10 +84,14 @@ public class AddUtenteServlet extends HttpServlet {
 		
 		DBUtente dbu = new DBUtente();
 		try {
-			if(dbu.addUtente(u))
-				request.getServletContext().getRequestDispatcher("/");
-			else
-				request.getServletContext().getRequestDispatcher("/");
+			if(dbu.addUtente(u)){
+				request.getServletContext().getRequestDispatcher("/gu/admin.jsp").forward(request, response);;
+				return;
+			}
+			else{
+				request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+				return;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
