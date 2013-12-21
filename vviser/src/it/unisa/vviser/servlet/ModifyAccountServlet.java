@@ -48,7 +48,7 @@ public class ModifyAccountServlet extends HttpServlet {
 
 
 	private void execute(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//check permission
 		try{
@@ -85,6 +85,8 @@ public class ModifyAccountServlet extends HttpServlet {
 		}catch(Exception e){
 			log.severe("Exception: "+e.getMessage());
 			e.printStackTrace();
+			request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+			return;
 		}
 		
 	}
