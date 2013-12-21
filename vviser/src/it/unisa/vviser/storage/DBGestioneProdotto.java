@@ -555,7 +555,7 @@ public class DBGestioneProdotto
 	 * @return lista prodotti
 	 * @throws SQLException
 	 */
-	public ArrayList<Prodotto> ricercaProdottoPerAnni(String anno,String anno1)throws SQLException
+	public ArrayList<Prodotto> ricercaProdottoPerAnni(int anno,int anno1)throws SQLException
 	{
 		Statement st=null;
 		ResultSet ris=null;
