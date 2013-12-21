@@ -10,6 +10,7 @@
 <%@page import="it.unisa.vviser.storage.DBConnectionPool"%>
 <%@page import="it.unisa.vviser.storage.DBNames"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="it.vviser.common.CommonMethod"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,18 +37,19 @@
 		response.sendRedirect("/vviser/gu/admin.jsp");
 	}
 	else{%>
-		<form action="/vvsier/ModifyAccountServlet" method="POST">
+		<form action="/vviser/ModifyAccountServlet" method="POST">
 			<fieldset style="float: left;">
 				<legend>Modifica account</legend>
 					<table border=0>
-						<tr><td align="right">Nome:</td><td><input type="text" name="nome" value="<%out.println(userToModify.getNome());%>"/></td></tr>
-						<tr><td align="right">Cognome:</td><td><input type="text" name="cognome" value="<%out.println(userToModify.getCognome());%>"/></td></tr>
-						<tr><td align="right">Comune di nascita:</td><td><input type="text" name="comuneDiNascita" value="<%out.println(userToModify.getComuneDiNascita());%>"/></td></tr>
-						<tr><td align="right">Provincia di nascita:</td><td><input type="text" name="provinciaDiNascita" value="<%out.println(userToModify.getProvinciaDiNascita());%>"/></td></tr>
-						<tr><td align="right">Codice fiscale:</td><td><input type="text" name="codiceFiscale" value="<%out.println(userToModify.getCodiceFiscale());%>"/></td></tr>
-						<tr><td align="right">Email:</td><td><input type="text" name="email" value="<%out.println(userToModify.getEmail());%>"/></td></tr>
-						<tr><td align="right">Data di nascita(Provvisorio):</td><td><input type="text" name="dataDiNascita" value="<%out.println(userToModify.getDataDiNascita());%>"/></td></tr>
-						<tr><td align="right">Password:</td><td><input type="password" name="password" value="<%out.println(userToModify.getPassword());%>"/></td></tr>
+						<tr><td></td><td><input type="hidden" name="oldEmail" value="<%out.print(userToModify.getEmail());%>"/></td></tr>
+						<tr><td align="right">Nome:</td><td><input type="text" name="nome" value="<%out.print(userToModify.getNome());%>"/></td></tr>
+						<tr><td align="right">Cognome:</td><td><input type="text" name="cognome" value="<%out.print(userToModify.getCognome());%>"/></td></tr>
+						<tr><td align="right">Comune di nascita:</td><td><input type="text" name="comuneDiNascita" value="<%out.print(userToModify.getComuneDiNascita());%>"/></td></tr>
+						<tr><td align="right">Provincia di nascita:</td><td><input type="text" name="provinciaDiNascita" value="<%out.print(userToModify.getProvinciaDiNascita());%>"/></td></tr>
+						<tr><td align="right">Codice fiscale:</td><td><input type="text" name="codiceFiscale" value="<%out.print(userToModify.getCodiceFiscale());%>"/></td></tr>
+						<tr><td align="right">Email:</td><td><input type="text" name="email" value="<%out.print(userToModify.getEmail());%>"/></td></tr>
+						<tr><td align="right">Data di nascita(Provvisorio):</td><td><input type="text" name="dataDiNascita" value="<%out.print(CommonMethod.dateToString(userToModify.getDataDiNascita()));%>"/></td></tr>
+						<tr><td align="right">Password:</td><td><input type="password" name="password" value="<%out.print(userToModify.getPassword());%>"/></td></tr>
 						<tr><td align="right">Reinserisci password(Provvisorio):</td><td><input type="password" name="reinserisciPassword"/></td></tr>
 						<tr><td align="right">Dipartimento:</td>
 						<td>
