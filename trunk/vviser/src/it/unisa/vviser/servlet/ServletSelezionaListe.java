@@ -21,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ServletSelezionaListeModifica extends HttpServlet {
+public class ServletSelezionaListe extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBProdottiValutazione prodottiValutazioneManager;
@@ -44,38 +44,29 @@ public class ServletSelezionaListeModifica extends HttpServlet {
 		
 			HttpSession s = request.getSession();
 			String emailUtente=(String)s.getAttribute("sessEmail");
-			String[] radioSelected=request.getParameterValues("list");
+			String tipo=(String)s.getAttribute("operazione");//recupero se si tratta di una modifica o di una visualizzazione
+			int idEvento=Integer.parseInt(request.getParameter("idList"));//cambiare nome da list a id
+	
 			ListaProdottiValutazione listaProdottiValutazione=new ListaProdottiValutazione();
-			JSONObject o;
-			try 
-			{
-				o = new JSONObject(radioSelected[0]);
-		
-				listaProdottiValutazione.setEmailUtente(o.getString("emailUtente"));
-				listaProdottiValutazione.setIdEventoValutazione(o.getInt("idEvento"));
-				listaProdottiValutazione.setSuggestion(o.getString("suggerimento"));
-				listaProdottiValutazione.setBloccato(o.getBoolean("bloccato"));
-				JSONArray ja=o.getJSONArray("listaProdottiValutazione");
-				for(int i=0;i<ja.length();i++)
-				{
-					String stringJson=(String)ja.get(i);
-					JSONObject o1 =new JSONObject(stringJson);
-					String isbn=o1.getString("isbn");
-					String titolo=o1.getString("titolo");
-					int priorita=o1.getInt("priorita");
-					ProdottoValutazione prodottoValutazione=new ProdottoValutazione(isbn,titolo,priorita);
-					listaProdottiValutazione.addProdottoValutazione(prodottoValutazione);
-				}
-				
-			} 
-			catch (JSONException e) 
-			{
+			
+			try {
+				listaProdottiValutazione=prodottiValutazioneManager.showProdottiVal(emailUtente, idEvento);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
+			String nomeJsp="";
+			if(tipo.equals("modifica"))
+				nomeJsp="/modificaLista.jsp";
+			else
+			{
+				if(tipo.equals("visualizza"))
+					nomeJsp="/visualizzaLista.jsp";
+			}
 			request.setAttribute("lista", listaProdottiValutazione);
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/modificaLista.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher(nomeJsp);
 			rd.forward(request,response);
 			
 		
