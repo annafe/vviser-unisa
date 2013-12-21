@@ -14,6 +14,19 @@
 </head>
 <body>
  <%@include file="/gu/header.jsp" %>
+ 
+ <script type="text/javascript">
+ 	function elimina(input){
+ 		form = input.parentNode;
+ 		var r=confirm("Vuoi eliminare l'utente?");
+ 		if (r==true){
+ 			form.submit();
+ 		}
+ 		else{
+ 		  return;
+ 		}
+ 	}
+ </script>
  <h1>ADMIN PAGE</h1>
  <table border=1>
  	<tr><th>COGNOME</th><th>NOME</th><th>EMAIL</th><th>DIPARTIMENTO</th><th>TIPOLOGIA</th></tr>
@@ -31,7 +44,7 @@
 				<td><!-- form elimina -->
 					<form action="/vviser/DeleteAccountServlet" method="POST">
 						<input type="hidden" name="daEliminare" value="<%out.print(l.get(i).getEmail());%>"/>
-						<input type="submit" value="Elimina"/>
+						<input type="button" onclick="elimina(this)" value="Elimina"/>
 					</form>				
 				</td>
 				</tr> 
