@@ -18,8 +18,8 @@
 <title>Modifica Account</title>
 </head>
 <body>
-<h1>MODIFICA ACCOUNT</h1>
  <%@include file="/gu/header.jsp" %>
+<h1>MODIFICA ACCOUNT</h1>
  <% 
  	//check permission
  	Utente admin = (Utente)session.getAttribute("utente");
