@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.lang.ProcessBuilder.Redirect"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*"%>
+<%-- 
+    Author: Antonio De Piano
+--%>
 <html>
 <head>
 <title>VViSeR</title>
@@ -29,8 +33,9 @@ p>a:active {color:yellowgreen;
 </style>
 </head>
 <body>
+ <%@include file="../gu/header.jsp" %>
 <header id="container-header">
-	<header id="header-main"></header>
+	
 	<nav>
 today is 28 Settembre 2013
 	</nav>
@@ -40,7 +45,7 @@ today is 28 Settembre 2013
 		<p><a href="./gpr.html">Gestione prodotto</a>
 	</section>
 	<section id="prd">
-	<form method="GET" action="#" name="modulo">
+	<form method="GET" action="ServletInserimentoProdotto" name="modulo">
 	<fieldset>
 		<legend>Prodotto</legend>
 		<table>
@@ -69,12 +74,50 @@ today is 28 Settembre 2013
 				<td><input type="text" name="diffusione" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Categoria</td>
-				<td><select name="cat"><option>Articolo su rivista</option><option>...</option></select></td>
+				<td>Tipologia</td>
+				<td><select name="cat">
+				    
+				</select></td>
 			</tr>
 			<tr>
 				<td>Note</td>
 				<td><textarea name="note" class="testo"></textarea></td>
+			</tr>
+			<tr>
+				<td>Collaboratori</td>
+				<td><select name="collaboratori"></select></td>
+			</tr>
+			<tr>
+				<td>Descrizione Contenuti</td>
+				<td><textarea name="descrizione" class="testo"></textarea></td>
+			</tr>
+			<tr>
+				<td>Indirizzo web</td>
+				<td><input type="text" name="data" size="20" class="testo"></td>
+			</tr>
+			<tr>
+				<td>Parole chiavi</td>
+				<td><input type="text" name="key" class="testo"></td>
+			</tr>
+			<tr>
+				<td>Editore</td>
+				<td><input type="text" name="doi" size="20" class="testo"></td>
+			</tr>
+			<tr>
+				<td>Numero volume</td>
+				<td><input type="text" name="num_volume" size="10" class="testo"></td>
+			</tr>
+			<tr>
+				<td>Totale pagine</td>
+				<td><input type="text" name="totalePagine" size="10" class="testo"></td>
+			</tr>
+			<tr>
+				<td>Da Pagina</td>
+				<td><input type="text" name="daPagina" size="10" class="testo"></td>
+			</tr>
+			<tr>
+				<td>A Pagina</td>
+				<td><input type="text" name="aPagina" size="10" class="testo"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><div class="centro"><input type="submit" value=" Salva " class="pulsante"><input type="reset" value=" Annulla " class="pulsante"></div></td>
