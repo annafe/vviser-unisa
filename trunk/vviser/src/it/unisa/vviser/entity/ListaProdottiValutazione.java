@@ -143,28 +143,4 @@ public class ListaProdottiValutazione {
 		this.bloccato = bloccato;
 	}
 	
-	public String toString()
-	{
-		JSONObject obj = new JSONObject();
-		JSONArray ja=new JSONArray();
-		try {
-			
-			for(int i=0;i<getListaProdottiValutazione().size();i++)
-			{
-				ja.put(getListaProdottiValutazione().get(i).toString());
-			}
-			obj.put("listaProdottiValutazione",ja);
-			obj.put("emailUtente",getEmailUtente());
-			obj.put("idEvento",getIdEventoValutazione());
-			obj.put("suggerimento",getSuggestion());
-			obj.put("bloccato",getBloccato());
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return obj.toString();
-	}
-
 }
