@@ -2,6 +2,16 @@ package it.unisa.vviser.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import it.unisa.vviser.entity.Utente;
+import it.unisa.vviser.storage.DBConnectionPool;
+import it.unisa.vviser.storage.DBNames;
+import it.unisa.vviser.storage.DBUtente;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,9 +19,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestDBUtente {
-
+private DBUtente dbUtente ;
+private Utente utente;
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() throws Exception {	
 	}
 
 	@AfterClass
@@ -20,6 +31,11 @@ public class TestDBUtente {
 
 	@Before
 	public void setUp() throws Exception {
+		utente = new Utente();
+		dbUtente =new DBUtente();
+		utente = dbUtente.authenticate("eugenio.gigante@gmail.com", "genio");
+		
+		
 	}
 
 	@After
@@ -72,32 +88,38 @@ public class TestDBUtente {
 	}
 
 	@Test
-	public final void testModificaCodiceFiscale() {
-		fail("Not yet implemented"); // TODO
+	public final void testModificaCodiceFiscale() throws SQLException {
+		assertEquals(true,dbUtente.modificaCodiceFiscale(utente, "ggngen"));
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testModificaPassword() {
-		fail("Not yet implemented"); // TODO
+	public final void testModificaPassword() throws SQLException {
+		assertEquals(true,dbUtente.modificaPassword(utente, "geniotest"));
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testModificaEmail() {
-		fail("Not yet implemented"); // TODO
+	public final void testModificaEmail() throws SQLException {
+		assertEquals(true,dbUtente.modificaEmail(utente, "eugenio.gigante@test.it"));
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testModificaDipartimento() {
-		fail("Not yet implemented"); // TODO
+	public final void testModificaDipartimento() throws SQLException {
+		assertEquals(true,dbUtente.modificaDipartimento(utente, "informatica"));
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testModificaTipologia() {
-		fail("Not yet implemented"); // TODO
+	public final void testModificaTipologia() throws SQLException {
+		assertEquals(true,dbUtente.modificaTipologia(utente, "tipotest"));
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testAuthenticate() {
+		
 		fail("Not yet implemented"); // TODO
 	}
 
