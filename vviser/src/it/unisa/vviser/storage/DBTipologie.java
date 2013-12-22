@@ -2,6 +2,8 @@ package it.unisa.vviser.storage;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.entity.Tipologia;
+import it.vviser.common.CommonMethod;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * 
@@ -40,34 +43,44 @@ public class DBTipologie {
 		
 	}
 	
-	public ListaTipologie showProdottiVal(String emailUtente,int idEvento) throws SQLException
+	/**
+	 * Metodo per il recupero nel database di tutte le tipologie di prodotto memorizzate
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	public  ArrayList<Tipologia> getTipologie() throws SQLException
 	{
+		
 		Connection conn=null;
 		Statement st=null;
 		ResultSet ris=null;
 		String query;
-		ListaProdottiValutazione listaProdottiValutazione=new ListaProdottiValutazione(new ArrayList<ProdottoValutazione>(),emailUtente,idEvento,"");
+		ArrayList<Tipologia> listaTipologie = new ArrayList<Tipologia>();
 		try
 		{
 			conn=DBConnectionPool.getConnection();
-			query="SELECT "+DBNames.ATTR_PRODOTTO_ISBN+","
-					+DBNames.ATTR_PRODOTTO_TITOLO+","
-					+DBNames.ATTR_PRODOTTOLISTA_PRIORITA
-					+ " FROM " +DBNames.TABLE_PRODOTTO+" "+DBNames.TABLE_PRODOTTOLISTA
-					+ " WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN
-					+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
-					+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
+			query="SELECT "+DBNames.ATTR_TIPOLOGIA_NOME+","
+					+DBNames.ATTR_TIPOLOGIA_DESCRIZIONE+","
+					+DBNames.ATTR_TIPOLOGIA_DA+"," 
+					+DBNames.ATTR_TIPOLOGIA_VALIDITA+"," 
+					+DBNames.ATTR_TIPOLOGIA_A
+					+ " FROM " +DBNames.TABLE_TIPOLOGIA+" ";
 			
 			st=conn.createStatement();
 			ris=st.executeQuery(query);
 			while(ris.next())
 			{
-				String isbn=ris.getString(DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN);
-				String title=ris.getString(DBNames.ATTR_PRODOTTO_TITOLO);
-				int priority=ris.getInt(DBNames.ATTR_PRODOTTOLISTA_PRIORITA);
+				String nome=ris.getString(DBNames.ATTR_TIPOLOGIA_NOME);
+				String descrizione=ris.getString(DBNames.ATTR_TIPOLOGIA_DESCRIZIONE);
+				GregorianCalendar datainizio=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_TIPOLOGIA_DA));
+				GregorianCalendar datafine=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_TIPOLOGIA_A));
+				int val = ris.getInt(DBNames.ATTR_TIPOLOGIA_VALIDITA);
+				boolean validita = false;
+				if (val>0) validita = true;
 				
-				ProdottoValutazione p=new ProdottoValutazione(isbn,title,priority);
-				listaProdottiValutazione.addProdottoValutazione(p);
+				Tipologia tip = new Tipologia(nome,descrizione,validita,datainizio,datafine);
+				listaTipologie.add(tip);
 			}
 		}
 		finally
@@ -76,7 +89,7 @@ public class DBTipologie {
 			DBConnectionPool.releaseConnection(conn);
 		}
 		
-		return listaProdottiValutazione;
+		return listaTipologie;
 	}
 	
 }
