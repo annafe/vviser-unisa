@@ -65,7 +65,12 @@ public class Prodotto
 	 * @param aPagina indice della pagine finale del prodotto
 	 * 
 	 */
-	public Prodotto(String isbn,String titolo,String annoPubblicazione,String formatoPubblicazione,String codiceDOI,String diffusione,String note,String stato,boolean bozza,String tipologia,String proprietario,String listaCollaboratori,String descrizioneContenuti,String indirizzoWeb,String paroleChiavi,String editore,int numVolume,int totalePagine,int daPagina,int aPagina)
+	public Prodotto(String isbn,String titolo,String annoPubblicazione,
+			String formatoPubblicazione,String codiceDOI,String diffusione,
+			String note,String stato,boolean bozza,String tipologia,String proprietario,
+			String listaCollaboratori,String descrizioneContenuti,String indirizzoWeb,
+			String paroleChiavi,String editore,int numVolume,int totalePagine,
+			int daPagina,int aPagina)
 	{
 		this.annoPubblicazione=annoPubblicazione;
 		this.formatoPubblicazione=formatoPubblicazione;

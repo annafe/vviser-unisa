@@ -100,7 +100,7 @@ public class DBNotifica {
 			DBNotifica notifiche = new DBNotifica();
 			
 			while(rs.next()){
-				Notifica note = new Notifica(rs.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),tipo, mittente, messaggio);
+				Notifica note = new Notifica(rs.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),tipo, mittente);
 				notifiche.addNotifica(note);
 			}
 		}finally{

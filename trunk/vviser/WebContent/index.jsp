@@ -23,7 +23,7 @@
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="main/login.jsp">Accedi al sistema..</a>
+		<a href="gu/login.jsp">Accedi al sistema..</a>
 	</section>
 	<section id="search-prod">
 		<a href="main/search_prod.jsp">Ricerca prodotti</a>
