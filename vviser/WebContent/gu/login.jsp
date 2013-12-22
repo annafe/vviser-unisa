@@ -18,7 +18,7 @@
 <div id="main">
 	<image src="/vviser/images/logo.png"/ style="widht:100px;height:100px;">
 	<table border=0>
-		<form action="/vviser/LoginServlet" method="POST">
+		<form action="/vviser/LoginServlet" method="POST"> 
 		<tr>
 			<td style="text-align:right;">E-mail:</td><td><input type="text" name="email"/></td>
 		</tr>
