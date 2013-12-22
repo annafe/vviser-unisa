@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -318,6 +319,14 @@ public class DBUtente {
 			st.setString(1, email);
 			st.setString(2, password);
 			ResultSet rs = st.executeQuery();
+			/*Statement st = null;
+			ResultSet rs = null;
+			query="SELECT * FROM "+DBNames.TABLE_UTENTE+" where "+
+			DBNames.ATTR_UTENTE_EMAIL+"='" + email + 
+			"' and "+DBNames.ATTR_UTENTE_PASSWORD+"='"+password+"'";
+			st=conn.createStatement();
+			rs = st.executeQuery(query);
+			*/
 			if(rs.next()){
 				u= new Utente();
 				u.setNome(rs.getString(DBNames.ATTR_UTENTE_NOME));

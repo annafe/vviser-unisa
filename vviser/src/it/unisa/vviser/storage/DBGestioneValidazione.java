@@ -56,7 +56,9 @@ public class DBGestioneValidazione {
         				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
         				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
-        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),"try");
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EDITORE),"try");
         	
 				listProdotto.add(p);
 			}
