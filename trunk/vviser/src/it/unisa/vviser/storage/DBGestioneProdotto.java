@@ -788,6 +788,67 @@ public class DBGestioneProdotto
         }
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	//Sto modificando
+	
+	/**
+	 * Metodo che permette di ricercare i prodotti personali in base alla tipologia
+	 * @param tipologia del prodotto
+	 * @param utente proprietario o cautore del prodotto
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaProdottoPerTipologia(String tipologia,String utente)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI+" WHERE "
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN
+            		+" AND "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"='"+tipologia+"' AND ("
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' OR "
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"')";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	
 	/**
 	 * Metodo che permette a un ricercatore di convalidare un prodotto quando è indicato come coautore 
 	 * @param collaboratore del prodotto
