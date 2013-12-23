@@ -75,10 +75,27 @@ public class EliminaProdottoServlet extends HttpServlet {
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 			gp.eliminaProdotto(isbn);
+			
 		}
 		catch (SQLException ex)
 		{
 			ex.printStackTrace();
+		}
+		
+		ServletContext sc = getServletContext();
+		// ridirezione alla pagina con la lista di tutti i prodotti
+		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
+		try
+		{
+			rd.forward(request,response);
+		}
+		catch (ServletException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 }
