@@ -1,3 +1,7 @@
+<%-- 
+    Author: Maria Vittoria Coda
+--%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page session="true"%>
@@ -16,12 +20,12 @@
 <body>
 	<form action="InserisciNuovoEventoValutazione" method="POST">
 		<label>Nome evento:</label><input type="text" name="nomeEvento"></input><br>
-		<label>Numero pubblicazioni:</label><input type="text" name="numPubb"></input><br>
-		<label>Scadenza:</label><input type="date" name="scadenza"></input><br>
-		<label>Data Inizio:</label><input type="date" name="dataInizio"></input><br>
-		<label>Data Fine:</label><input type="date" name="dataFine"></input><br>
+		<label>Numero pubblicazioni:</label><input type="text" value="numPubb"></input><br>
+		<label>Scadenza:</label><input type="date" value="scadenza"></input><br>
+		<label>Data Inizio:</label><input type="date" value="dataInizio"></input><br>
+		<label>Data Fine:</label><input type="date" value="dataFine"></input><br>
 		
-		<input type="submit" value="Crea"></input>
+		<input type="submit" name="creaEvento" value="Crea evento"></input>
 		<input type="reset" value="Resetta"></input>
 	</form>
 </body>
