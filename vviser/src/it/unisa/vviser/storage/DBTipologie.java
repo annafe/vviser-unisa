@@ -1,12 +1,9 @@
 package it.unisa.vviser.storage;
 
-import it.unisa.vviser.entity.ListaProdottiValutazione;
-import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.entity.Tipologia;
 import it.vviser.common.CommonMethod;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,7 +23,7 @@ public class DBTipologie {
 	/**
 	 * Costruttore vuoto
 	 */
-	private DBTipologie()
+	public DBTipologie()
 	{
 		
 	}
@@ -55,6 +52,7 @@ public class DBTipologie {
 		Connection conn=null;
 		Statement st=null;
 		ResultSet ris=null;
+		GregorianCalendar datafine = null;
 		String query;
 		ArrayList<Tipologia> listaTipologie = new ArrayList<Tipologia>();
 		try
@@ -74,7 +72,8 @@ public class DBTipologie {
 				String nome=ris.getString(DBNames.ATTR_TIPOLOGIA_NOME);
 				String descrizione=ris.getString(DBNames.ATTR_TIPOLOGIA_DESCRIZIONE);
 				GregorianCalendar datainizio=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_TIPOLOGIA_DA));
-				GregorianCalendar datafine=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_TIPOLOGIA_A));
+				String date = ris.getString(DBNames.ATTR_TIPOLOGIA_A);
+				if (date!= null) {datafine=CommonMethod.stringToDate(date);}
 				int val = ris.getInt(DBNames.ATTR_TIPOLOGIA_VALIDITA);
 				boolean validita = false;
 				if (val>0) validita = true;
