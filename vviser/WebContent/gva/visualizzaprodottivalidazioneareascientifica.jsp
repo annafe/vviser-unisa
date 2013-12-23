@@ -45,7 +45,7 @@
     
    
 %>
-<form id="mod1" action="VisualizzaProdottiNonValidatiServlet" method="POST">
+<form id="mod1" action="ValidazioneAreaScientificaServlet" method="POST">
     <table>
         <tr>
             <th colspan="3">Seleziona Prodotti</th>    
