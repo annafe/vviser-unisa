@@ -4,8 +4,8 @@ import it.unisa.vviser.entity.EventoValutazione;
 import it.unisa.vviser.storage.DBEventiValutazione;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -52,13 +52,17 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 		String da = request.getParameter("dataInizio");
 		String a = request.getParameter("dataFine");
 		
+		ArrayList<EventoValutazione> lista = null;
+		
 		EventoValutazione e = new EventoValutazione(nome, num, scadenza, da, a);
 		try{
 			eventiValutazioneManager.addEvento(e);
+			lista = (ArrayList<EventoValutazione>) eventiValutazioneManager.visualizzaEventi();
 		} catch (SQLException ex){
 			ex.printStackTrace();
 		}
 		
+		request.setAttribute("listaEventi", lista);
 		
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
