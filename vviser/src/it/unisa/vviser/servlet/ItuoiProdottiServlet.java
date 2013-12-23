@@ -66,7 +66,7 @@ public class ItuoiProdottiServlet extends HttpServlet
 	private void processRequest(HttpServletRequest request,HttpServletResponse response)
 	{
 		
-
+//da modificare
 		HttpSession s = request.getSession();
 		String emailUtente=(String)s.getAttribute("sessEmail");
 		
