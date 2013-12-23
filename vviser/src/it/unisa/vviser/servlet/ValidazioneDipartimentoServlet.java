@@ -62,7 +62,7 @@ public class ValidazioneDipartimentoServlet extends HttpServlet {
     }
 
 	/**
-	 * Modifica un prodotto
+	 * validazione prodotti per dipartimento
 	 * @param request servlet request
 	 * @param response servlet response
 	 */
