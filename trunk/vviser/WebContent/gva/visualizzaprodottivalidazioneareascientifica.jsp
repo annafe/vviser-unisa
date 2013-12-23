@@ -25,8 +25,8 @@
 		
 	</tr>
 	<%
-	Prodotto prodotti;
-	ArrayList<Prodotto>prodotto =(Prodotto)request.getAttribute("lista");
+	
+	ArrayList<Prodotto>prodotto =(ArrayList<Prodotto>)request.getAttribute("listaprodottidipartimento");
 
 		for(int i=0;i<prodotto.size();i++)
 		{
