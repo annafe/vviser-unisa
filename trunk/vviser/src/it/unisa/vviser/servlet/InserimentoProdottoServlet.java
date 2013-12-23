@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -88,6 +89,9 @@ public class InserimentoProdottoServlet extends HttpServlet {
 
 		String daPagina = request.getParameter("daPagina");
 		String aPagina = request.getParameter("aPagina");
+		HttpSession s = request.getSession();
+		String emailUtente=(String)s.getAttribute("sessEmail");
+		//recupero l'email utente settato nella sessione
 		
 		try
 		{
@@ -110,12 +114,9 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			prod.setParoleChiavi(key);
 			prod.setNote(note);
 			prod.setStato("NonValidato");
-			//utente sessione
-			prod.setProprietario("");
+			prod.setProprietario(emailUtente);
 			prod.setFormatoPubblicazione(formatoPubblicazione);
 			prod.setTotalePagine(Integer.parseInt(totalePagine));
-			
-			
 			this.gprodotto.insertProdotto(prod);
 		}
 		catch (SQLException ex)
