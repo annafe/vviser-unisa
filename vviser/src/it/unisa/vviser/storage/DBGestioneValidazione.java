@@ -101,7 +101,7 @@ public class DBGestioneValidazione {
 	
 	
 	/**
-	 *Metodo che mostra i prodotti sottomessi a validazione validati dal dipartimento 
+	 *Metodo che visualizza i prodotti sottomessi a validazione validati dal dipartimento 
 	  * @param idUt
 	 * @return
 	 * @throws SQLException
