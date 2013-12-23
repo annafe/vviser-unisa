@@ -89,9 +89,6 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String daPagina = request.getParameter("daPagina");
 		String aPagina = request.getParameter("aPagina");
 		
-		System.out.println("caio");
-		System.out.println(collaboratori);
-		/*
 		try
 		{
 			Prodotto prod=new Prodotto();
@@ -119,8 +116,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			prod.setTotalePagine(Integer.parseInt(totalePagine));
 			
 			
-			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.insertProdotto(prod);
+			this.gprodotto.insertProdotto(prod);
 		}
 		catch (SQLException ex)
 		{
@@ -142,6 +138,6 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}*/
+		}
 	}
 }
