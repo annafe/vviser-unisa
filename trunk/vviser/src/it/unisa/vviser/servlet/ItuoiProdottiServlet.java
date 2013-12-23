@@ -73,7 +73,7 @@ public class ItuoiProdottiServlet extends HttpServlet
 		try
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			ArrayList<Prodotto> pr=gp.visualizzaProdottiPersonali(emailUtente);
+			ArrayList<Prodotto> pr=gp.visualizzaProdottiProprietarioCoautore(emailUtente);
 			
 
 			request.setAttribute("listprodotti",pr);
