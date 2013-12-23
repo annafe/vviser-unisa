@@ -32,6 +32,7 @@ public class Prodotto
 	private int totalePagine;
 	private int daPagina;
 	private int aPagina;
+	private String collaboratore;
 	
 	/**
 	 * Il costruttore della classe Prodotto vuoto
@@ -92,7 +93,7 @@ public class Prodotto
 		this.totalePagine=totalePagine;
 		this.daPagina=daPagina;
 		this.aPagina=aPagina;
-		
+		this.collaboratore=null;
 	}
 	
 	/**
@@ -472,5 +473,23 @@ public class Prodotto
 		}
 		
 		return obj.toString();
+	}
+	
+	/**
+	 * Metodo restituisce il coautore del prodotto
+	 * @return utente coautore
+	 */
+	public String getCollaboratore()
+	{
+		return this.collaboratore;
+	}
+	
+	/**
+	 * Metodo che setta il coautore al prodotto
+	 * @param utente coautore del prodotto
+	 */
+	public void setCollaboratore(String utente)
+	{
+		this.collaboratore=utente;
 	}
 }

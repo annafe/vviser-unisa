@@ -788,17 +788,8 @@ public class DBGestioneProdotto
         }
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	//Sto modificando
-	
 	/**
-	 * Metodo che permette di ricercare i prodotti personali in base alla tipologia
+	 * Metodo che permette di ricercare i prodotti personali dell'utente specificato e della tipologia data
 	 * @param tipologia del prodotto
 	 * @param utente proprietario o cautore del prodotto
 	 * @return lista prodotti
@@ -836,7 +827,20 @@ public class DBGestioneProdotto
         				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
         				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
         				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
-        	
+    			
+    			if(ris.getString(DBNames.ATTR_COLLABORAZIONI_COLLABORATORE)!=null)
+    			{
+    				  StringTokenizer collaboratori = new StringTokenizer(ris.getString(DBNames.ATTR_COLLABORAZIONI_COLLABORATORE),";");
+    	              
+    		      		while (collaboratori.hasMoreElements())
+    		      		{
+    		      			 if(utente.equals(collaboratori.nextElement()))
+    		      			{
+    		      				 p.setCollaboratore(utente);
+    		      			}
+    		      		}
+    		      		
+    			}
 				listProdotto.add(p);
 			}
     		return listProdotto;
@@ -847,7 +851,6 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
-	
 	
 	/**
 	 * Metodo che permette a un ricercatore di convalidare un prodotto quando è indicato come coautore 
