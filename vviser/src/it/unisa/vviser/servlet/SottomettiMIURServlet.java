@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -71,12 +72,18 @@ public class SottomettiMIURServlet extends HttpServlet {
 		
 		String isbn = request.getParameter("isbn");
 		//Recuperato dalla sessione
-		String utente = request.getParameter("utente");
+
+		HttpSession s = request.getSession();
+		String emailUtente=(String)s.getAttribute("sessEmail");
 		
 		try
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.sottomettiAlMIUR(utente, isbn);
+			gp.sottomettiAlMIUR(emailUtente, isbn);
+			
+			ServletContext sc = getServletContext();
+			// ridirezione alla pagina inziale delle gestione prodotto
+			RequestDispatcher rd = sc.getRequestDispatcher("/gpr.jsp");
 		}
 		catch (SQLException ex)
 		{

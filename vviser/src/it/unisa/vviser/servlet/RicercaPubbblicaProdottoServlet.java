@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Antonio De Piano
  *
  */
-public class RicercaProdottoServlet extends HttpServlet {
+public class RicercaPubbblicaProdottoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBGestioneProdotto gprodotto;
@@ -78,6 +78,7 @@ public class RicercaProdottoServlet extends HttpServlet {
 			if(tipo_ricerca.equals("titolo_prodotto"))
 			{
 				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo"));
+				
 			}
 			if(tipo_ricerca.equals("titolo_rivista"))
 			{

@@ -4,6 +4,7 @@ import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -58,7 +59,8 @@ public class VisualizzaDettaglioProdottoServlet extends HttpServlet
 	 * @param response servlet response
 	 */
 	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response)
+	{
 		
 		String isbn = request.getParameter("isbn");
 		
@@ -66,13 +68,26 @@ public class VisualizzaDettaglioProdottoServlet extends HttpServlet
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 			Prodotto pr=gp.visualizzaDettagliProdotto(isbn);
-			//Come faccio a inviare il prodotto a una jsp ?? 
 			
-			//help
+			
+			request.setAttribute("prodotto",pr);
+			
+			PrintWriter out = response.getWriter();
+			
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/dettaglioprodotto.jsp");
+			rd.forward(request,response);
+		
 		}
 		catch (SQLException ex)
 		{
 			ex.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
