@@ -72,6 +72,7 @@ private Utente utente;
 		List<Utente> list = dbUtente.visualizzaUtenti();
 		dbUtente.addUtente(utente);
 		assertTrue(list.size() > 0);
+		dbUtente.removeUtente(utente);
 	}
 
 	@Test
@@ -176,5 +177,6 @@ private Utente utente;
 	public final void testGetUtente() throws SQLException {
 		dbUtente.addUtente(utente);
 		assertTrue(dbUtente.getUtente("email@email.com")!=null);
+		dbUtente.removeUtente(utente);
 	}
 }
