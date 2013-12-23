@@ -45,10 +45,10 @@
     
    
 %>
-<form id="mod1" action="VisualizzaProdottiValidatiDipartimentoServlet" method="POST">
+<form id="mod1" action="ValidazioneDipartimentoServlet" method="POST">
     <table>
         <tr>
-            <th colspan="3">Seleziona Prodotti</th>    
+            <th colspan="2">Seleziona Prodotti</th>    
         </tr>
         <tr>
         	<th>Spunta</th>
