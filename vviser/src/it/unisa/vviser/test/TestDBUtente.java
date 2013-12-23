@@ -2,18 +2,11 @@ package it.unisa.vviser.test;
 
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.GregorianCalendar;
 import java.util.List;
-
 import it.unisa.vviser.entity.Utente;
-import it.unisa.vviser.storage.DBConnectionPool;
-import it.unisa.vviser.storage.DBNames;
 import it.unisa.vviser.storage.DBUtente;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
