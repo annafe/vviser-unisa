@@ -11,14 +11,6 @@
 <title>I tuoi prodotti</title>
 </head>
 <body>
-<table>
-<tr>
-<td><% 
-DBGestioneProdotto dbg=DBGestioneProdotto.getInstance();
 
-
-dbg.visualizzaProdottiPersonali(emailUtente);
-%>
-</table>
 </body>
 </html>
