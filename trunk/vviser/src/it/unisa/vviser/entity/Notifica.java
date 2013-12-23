@@ -23,6 +23,13 @@ public class Notifica {
 		this.tipo=tipologia;
 		this.mittente=mitt;
 	}
+	
+	public Notifica(String dest, String tipologia, String mitt, String messaggio){
+		this.destinatario=dest;
+		this.tipo=tipologia;
+		this.mittente=mitt;
+		this.messaggio=messaggio;
+	}
 
 	public String getMittente() {
 		return mittente;
