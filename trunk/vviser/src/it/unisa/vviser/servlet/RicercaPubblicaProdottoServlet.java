@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Antonio De Piano
  *
  */
-public class RicercaPubbblicaProdottoServlet extends HttpServlet {
+public class RicercaPubblicaProdottoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBGestioneProdotto gprodotto;
