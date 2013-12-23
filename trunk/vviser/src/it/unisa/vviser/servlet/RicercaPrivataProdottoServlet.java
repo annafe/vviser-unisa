@@ -7,6 +7,7 @@ import it.vviser.common.CommonMethod;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @author Antonio De Piano
  *
  */
-public class ConvalidaProdottoServlet extends HttpServlet {
+public class RicercaPrivataProdottoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBGestioneProdotto gprodotto;
@@ -63,43 +64,44 @@ public class ConvalidaProdottoServlet extends HttpServlet {
     }
 
 	/**
-	 *Convalida un prodotto dove compaio come coautore
+	 * Sottomette un prodotto al MIUR
 	 * @param request servlet request
 	 * @param response servlet response
 	 */
-	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void processRequest(HttpServletRequest request,HttpServletResponse response)
+	{
 		
-		String isbn = request.getParameter("isbn");
-		//Recuperato dalla sessione
+		String tipo_ricerca = request.getParameter("tipo_ricerca");
+		
 
 		HttpSession s = request.getSession();
 		String emailUtente=(String)s.getAttribute("sessEmail");
+		
 		try
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.convalidaProdotto(emailUtente,isbn);
+			if(tipo_ricerca.equals("titolo_prodotto"))
+			{
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo"));
+				
+			}
+			if(tipo_ricerca.equals("titolo_rivista"))
+			{
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo"));
+			}
+			if(tipo_ricerca.equals("issn_rivista"))
+			{
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerIssnRivista(request.getParameter("issn_rivista"));
+			}
+			if(tipo_ricerca.equals("anni"))
+			{
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")));
+			}
 			
 		}
 		catch (SQLException ex)
 		{
 			ex.printStackTrace();
-		}
-		
-		ServletContext sc = getServletContext();
-		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
-		try
-		{
-			rd.forward(request,response);
-		}
-		catch (ServletException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
 		}
 	}
 }
