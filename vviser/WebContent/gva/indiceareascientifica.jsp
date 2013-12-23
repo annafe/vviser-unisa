@@ -1,4 +1,4 @@
-<%-- 
+%-- 
     Author: Angiuoli Salvatore
 --%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
-<title>Validazione prodotti dipartimento</title>
+<title>Validazione prodotti area sceintifica</title>
 </head>
 <body>
 <%
@@ -18,7 +18,7 @@
 	
 	
 %>
-<form id="mod" action="VisualizzaProdottiNonValidatiServlet" method="POST">
+<form id="mod" action="sualizzaProdottiValidatiDipartimentoServlet" method="POST">
 	<button type="submit" name="sel">Visualizza prodotti da validare</button>
 </form>
 </body>
