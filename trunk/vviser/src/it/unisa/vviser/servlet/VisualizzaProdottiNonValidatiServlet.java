@@ -1,6 +1,7 @@
 package it.unisa.vviser.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -8,7 +9,9 @@ import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBGestioneValidazione;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,9 +74,26 @@ public class VisualizzaProdottiNonValidatiServlet extends HttpServlet {
 			{
 				DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 				ArrayList<Prodotto> pr=gp.visualizzaProdotti();
-				//Come faccio a inviare quest'output a una jsp ?? 
+				request.setAttribute("listaprodotti",pr);
 				
-				//help
+				try {
+					PrintWriter out = response.getWriter();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				ServletContext sc = getServletContext();
+				RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaprodottivalidazionedipartimento.jsp");
+				try {
+					rd.forward(request,response);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			catch (SQLException ex)
 			{
