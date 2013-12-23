@@ -195,7 +195,7 @@ public class DBGestioneValidazione {
 		 *Metodo che permette di VALIDARE dal direttore nel database un PRODOTTO	
 		 * @throws SQLException
 		 */
-		public void VALIDATODIPARTIMENTO() throws SQLException
+		public void VALIDATODIPARTIMENTO(String isbn) throws SQLException
 		{
 			Connection conn=null;
 			PreparedStatement st=null;
@@ -204,7 +204,8 @@ public class DBGestioneValidazione {
 			{
 				conn=DBConnectionPool.getConnection();
 				query="UPDATE "+DBNames.TABLE_PRODOTTO
-						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoDipartimento";
+						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoDipartimento"
+						+"WHERE"+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
 				
 				
 				st=conn.prepareStatement(query);
@@ -222,7 +223,7 @@ public class DBGestioneValidazione {
 		 *Metodo che permette di VALIDARE comitato area nel database un PRODOTTO	
 		 * @throws SQLException
 		 */
-		public void ValidatoAreaScientifica() throws SQLException
+		public void ValidatoAreaScientifica(String isbn) throws SQLException
 		{
 			Connection conn=null;
 			PreparedStatement st=null;
@@ -231,7 +232,8 @@ public class DBGestioneValidazione {
 			{
 				conn=DBConnectionPool.getConnection();
 				query="UPDATE "+DBNames.TABLE_PRODOTTO
-						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoComitatoArea";
+						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoComitatoArea"
+						+"WHERE"+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
 				
 				
 				st=conn.prepareStatement(query);
