@@ -59,7 +59,7 @@ public class VisualizzaProdottiValidatiDipartimentoServlet extends HttpServlet {
 	    }
 
 		/**
-		 * Visualizza i prodotti personali
+		 * Visualizza i prodotti per la validazione area scientifica
 		 * @param request
 		 * @param response
 		 */
