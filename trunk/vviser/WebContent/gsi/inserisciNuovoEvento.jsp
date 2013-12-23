@@ -18,7 +18,7 @@
 <title>Inserisci un nuovo evento di valutazione</title>
 </head>
 <body>
-	<form action="InserisciNuovoEventoValutazione" method="POST">
+	<form action="InserisciNuovoEventoServlet" method="POST">
 		<label>Nome evento:</label><input type="text" name="nomeEvento"></input><br>
 		<label>Numero pubblicazioni:</label><input type="text" value="numPubb"></input><br>
 		<label>Scadenza:</label><input type="date" value="scadenza"></input><br>
