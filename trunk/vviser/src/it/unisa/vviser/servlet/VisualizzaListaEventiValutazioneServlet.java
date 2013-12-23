@@ -57,18 +57,16 @@ public class VisualizzaListaEventiValutazioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			listaEventi = (ArrayList<EventoValutazione>) eventiValutazioneManager.visualizzaEventi();
-//			int numMaxEventi = listaEventi.size();
-			request.setAttribute("eventi", listaEventi);
-			
-			PrintWriter out = response.getWriter();
-			
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaEventi.jsp");
-			rd.forward(request,response);
 		} 
 		catch (SQLException e){
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("eventi", listaEventi);
+		
+		ServletContext sc = getServletContext();
+		RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaEventi.jsp");
+		rd.forward(request,response);
 	}
 
 }
