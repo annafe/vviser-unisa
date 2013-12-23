@@ -232,7 +232,7 @@ public class DBEventiValutazione {
 	
 	
 	
-	// METODI DI VISUALIZZAZIONE (?)
+	// METODI DI VISUALIZZAZIONE 
 	
 	public List<EventoValutazione> visualizzaEventi() throws SQLException{
 		List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
@@ -259,6 +259,41 @@ public class DBEventiValutazione {
 	        DBConnectionPool.releaseConnection(conn);
 		}
 		return toReturn;
+	}
+	
+	/**
+	 * restituisce l'evento che ha l'id e il nome specificati
+	 * @param id id dell'evento desiderato
+	 * @param nomeEvento nome dell'evento specificato
+	 * @return evento che ha id e nome specificati
+	 * @throws SQLException
+	 */
+	public EventoValutazione visualizzaEventoPerId(int id, String nomeEvento) throws SQLException{
+        EventoValutazione toReturn=null;
+		conn=DBConnectionPool.getConnection();
+		try{
+		String queryParam = "SELECT * FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+ "AND "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+"="+nomeEvento+";";
+		
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet rs = pstm.executeQuery();
+			
+			while (rs.next()){
+				GregorianCalendar scadenza, inizio, fine;
+				
+				scadenza = creaData(rs.getString("scadenza"));
+				inizio = creaData(rs.getString("daData"));
+				fine = creaData(rs.getString("aData"));
+				
+				toReturn = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+			}
+		}	
+		finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
+		
+        return toReturn;
 	}
 	
 	public List<EventoValutazione> visualizzaEventiPerNome(EventoValutazione e) throws SQLException{
