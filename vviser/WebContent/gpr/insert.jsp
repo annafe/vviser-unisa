@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
-
+<%@ page import="it.unisa.vviser.storage.DBTipologie"%>
+<%@ page import="it.unisa.vviser.entity.Tipologia"%>
 <%@ page import="it.unisa.vviser.storage.DBUtente"%>
 <%@ page import="it.unisa.vviser.entity.Utente"%>
 <%-- 
@@ -34,6 +35,23 @@ p>a:hover {cursor:pointer;
 p>a:active {color:yellowgreen;
 	text-decoration:none;}  /* selected link */
 </style>
+<script type="text/javascript">
+function controlla()
+{
+	document.modulo.isbn
+}
+function controlla()
+{
+	var f = document.modulo;
+	if(((f.isbn.value == "" || f.titolo.value=="")|| f.data.value=="" ) || f.tipologia.value=="")
+	{
+		alert("Attenzione\n alcuni campi non sono stati compilati")
+		f.isbn.focus();
+		return false;
+	}
+	return true;
+}
+</script>
 </head>
 <body>
 
@@ -52,20 +70,20 @@ today is 28 Settembre 2013
 		<p><a href="./gpr.html">Gestione prodotto</a>
 	</section>
 	<section id="prd">
-	<form method="GET" action="../InserimentoProdottoServlet" name="modulo">
+	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
 	<fieldset>
 		<legend>Prodotto</legend>
 		<table>
 			<tr>
-				<td>ISBN</td>
+				<td>ISBN*</td>
 				<td><input type="text" name="isbn" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Titolo</td>
+				<td>Titolo*</td>
 				<td><input type="text" name="titolo" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Anno pubblicazione</td>
+				<td>Anno pubblicazione*</td>
 				<td><input type="text" name="data" size="20" class="testo"></td>
 			</tr>
 			<tr>
@@ -81,12 +99,21 @@ today is 28 Settembre 2013
 				<td><input type="text" name="diffusione" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Tipologia</td>
+				<td>Tipologia*</td>
 				<td><select name="tipologia">
-				    <% 
-				    //Prelevare dal database (deve esssere presente in gestione sistema)
-				    %>
-				</select></td>
+				<% 	
+				DBTipologie dbt = DBTipologie.getInstance();
+				ArrayList<Tipologia> list = dbt.getTipologie();
+				for (int i=0; i<list.size(); i++)
+				{
+					%>
+					<option><% 	out.print(list.get(i).getNome());
+								%>
+					</option>
+					<% 
+				}
+				%>
+			</select></td>
 			</tr>
 			<tr>
 				<td>Note</td>
@@ -145,6 +172,9 @@ today is 28 Settembre 2013
 			</tr>
 			<tr>
 				<td colspan="2"><div class="centro"><input type="submit" value=" Salva " class="pulsante"><input type="reset" value=" Annulla " class="pulsante"></div></td>
+			</tr>
+			<tr>
+				<td colspan="2">* I campi sono obbligatori</td>
 			</tr>
 		</table>
 	</fieldset>
