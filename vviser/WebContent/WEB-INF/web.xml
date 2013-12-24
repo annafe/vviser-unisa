@@ -121,4 +121,12 @@
     <servlet-name>ValidazioneAreaScientificaServlet</servlet-name>
     <url-pattern>/ValidazioneAreaScientificaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+     <servlet-name>RicercaPubblicaProdottoServlet</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.RicercaPubblicaProdottoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RicercaPubblicaProdottoServlet</servlet-name>
+    <url-pattern>/RicercaPubblicaProdottoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
