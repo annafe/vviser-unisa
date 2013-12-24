@@ -9,38 +9,88 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
-    <servlet-name>ServletInsertProdottiValutazione</servlet-name>
-    <servlet-class>it.unisa.vviser.servlet.ServletInsertProdottiValutazione</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletInsertProdottiValutazione</servlet-name>
-    <url-pattern>/ServletInsertProdottiValutazione</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ServletVisualizzaProdotti</servlet-name>
-    <servlet-class>it.unisa.vviser.servlet.ServletVisualizzaProdotti</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletVisualizzaProdotti</servlet-name>
-    <url-pattern>/ServletVisualizzaProdotti</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ServletVerificaListeModifica</servlet-name>
-    <servlet-class>it.unisa.vviser.servlet.ServletVerificaListeModifica</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletVerificaListeModifica</servlet-name>
-    <url-pattern>/ServletVerificaListeModifica</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ServletSelezionaListeModifica</servlet-name>
-    <servlet-class>it.unisa.vviser.servlet.ServletSelezionaListeModifica</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletSelezionaListeModifica</servlet-name>
-    <url-pattern>/ServletSelezionaListeModifica</url-pattern>
-  </servlet-mapping>
+      <servlet-name>ServletInsertProdottiValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletInsertProdottiValutazione</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletInsertProdottiValutazione</servlet-name>
+        <url-pattern>/ServletInsertProdottiValutazione</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletVisualizzaProdotti</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletVisualizzaProdotti</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletVisualizzaProdotti</servlet-name>
+        <url-pattern>/ServletVisualizzaProdotti</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletSelezioneModifica</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletSelezioneModifica</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletSelezioneModifica</servlet-name>
+        <url-pattern>/ServletSelezioneModifica</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletVerificaListeVisualizza</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletVerificaListeVisualizza</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletVerificaListeVisualizza</servlet-name>
+        <url-pattern>/ServletVerificaListeVisualizza</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletSelezionaListe</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletSelezionaListe</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletSelezionaListe</servlet-name>
+        <url-pattern>/ServletSelezionaListe</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletListaUtentiValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletListaUtentiValutazione</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletListaUtentiValutazione</servlet-name>
+        <url-pattern>/ServletListaUtentiValutazione</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletModificaProdottiValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletModificaProdottiValutazione</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletModificaProdottiValutazione</servlet-name>
+        <url-pattern>/ServletModificaProdottiValutazione</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletRifiutaListaValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletRifiutaListaValutazione</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletRifiutaListaValutazione</servlet-name>
+        <url-pattern>/ServletRifiutaListaValutazione</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>ServletSuggerimentoListaValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletSuggerimentoListaValutazione</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ServletSuggerimentoListaValutazione</servlet-name>
+        <url-pattern>/ServletSuggerimentoListaValutazione</url-pattern>
+    </servlet-mapping>
+  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.LoginServlet</servlet-class>
