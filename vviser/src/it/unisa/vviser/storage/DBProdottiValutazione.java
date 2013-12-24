@@ -6,12 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
+import it.unisa.vviser.entity.EventoValutazione;
 import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.entity.Utente;
+import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.exception.InvalidModifyListaProdottiValutazione;
 import it.unisa.vviser.exception.NotFoundListeValutazioneException;
+import it.vviser.common.CommonMethod;
 
 
 /**
@@ -44,12 +49,64 @@ public class DBProdottiValutazione {
 	}
 	
 	/**
-	 * Metodo che permette di inserire nel database una lista di prodotti per valutazione
+	 * Metodo che inserisce nel database i prodotti sottomessi a valutazione
+	 * ed inserisce nell'apposita tabella anche gli eventuali conflitti
+	 * @param listaProdottiValutazione da inserire nel database
+	 * @param conn connessione al database
+	 */
+	private void inserisciProdottiValutazione(ListaProdottiValutazione listaProdottiValutazione,Connection conn) throws SQLException
+	{
+		for(int i=0;i<listaProdottiValutazione.getListaProdottiValutazione().size();i++)
+        {
+			PreparedStatement st=null;
+			String query;
+        	
+            query= "INSERT INTO "+DBNames.TABLE_PRODOTTOLISTA+"("
+            		+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
+            		+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+","
+            		+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+","
+            		+DBNames.ATTR_PRODOTTOLISTA_PRIORITA+
+            		") values (?,?,?,?)";
+            
+            st = conn.prepareStatement(query);
+            st.setString(1, listaProdottiValutazione.getListaProdottiValutazione().get(i).getIsbn());
+            st.setString(2, listaProdottiValutazione.getEmailUtente());
+            st.setInt(3, listaProdottiValutazione.getIdEventoValutazione());
+            st.setInt(4, listaProdottiValutazione.getListaProdottiValutazione().get(i).getPriority());
+
+            st.executeUpdate();
+            conn.commit();
+            
+            //Se in conflitto, inserisco il prodotto nella tabella dei prodotti in conflitto.
+            if(isInConflitto(listaProdottiValutazione.getListaProdottiValutazione().get(i),conn))
+            {
+            	query= "INSERT INTO "+DBNames.TABLE_PRODOTTOINCONFLITTO+"("
+	            		+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+","
+	            		+DBNames.ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL+","
+	            		+DBNames.ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID+
+	            		") values (?,?,?)";
+	            
+	            st = conn.prepareStatement(query);
+	            st.setString(1, listaProdottiValutazione.getListaProdottiValutazione().get(i).getIsbn());
+	            st.setString(2, listaProdottiValutazione.getEmailUtente());
+	            st.setInt(3, listaProdottiValutazione.getIdEventoValutazione());
+	
+	            st.executeUpdate();
+	            conn.commit();
+	            //Chiamo il DB del sistema, e richiama il metodo per inviare la notifica
+	            //addNotificaConflitto(String isbn)
+            }
+            
+        }
+	}
+	
+	/**
+	 * Metodo che crea ed inserisce nel database una lista di prodotti da sottomettere per valutazione
 	 * @param prodottiValutazione lista prodotti da sottomettere a valutazione
 	 * @param emailUtente identificativo dell'utente
 	 * @throws SQLException
 	 */
-	public void insertProdottiVal(ArrayList<ProdottoValutazione> prodottiValutazione,String emailUtente) throws SQLException
+	public void sottomettiListaProdottiValutazione(ArrayList<ProdottoValutazione> prodottiValutazione,String emailUtente) throws SQLException,InsertProdottiValutazioneException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -61,7 +118,7 @@ public class DBProdottiValutazione {
             conn = DBConnectionPool.getConnection();
             
             
-            int idEvento=getIdEventoValutazione();
+            int idEvento=getEventoValutazione(emailUtente).getID();
 			
 			ListaProdottiValutazione lp=new ListaProdottiValutazione(prodottiValutazione,emailUtente, idEvento,"");
 			
@@ -92,47 +149,9 @@ public class DBProdottiValutazione {
             st.executeUpdate();
             conn.commit();
             
-
-            for(int i=0;i<lp.getListaProdottiValutazione().size();i++)
-            {
-            	
-	            query= "INSERT INTO "+DBNames.TABLE_PRODOTTOLISTA+"("
-	            		+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
-	            		+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+","
-	            		+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+","
-	            		+DBNames.ATTR_PRODOTTOLISTA_PRIORITA+
-	            		") values (?,?,?,?)";
-	            
-	            st = conn.prepareStatement(query);
-	            st.setString(1, lp.getListaProdottiValutazione().get(i).getIsbn());
-	            st.setString(2, lp.getEmailUtente());
-	            st.setInt(3, lp.getIdEventoValutazione());
-	            st.setInt(4, lp.getListaProdottiValutazione().get(i).getPriority());
-	
-	            st.executeUpdate();
-	            conn.commit();
-	            
-	            //Se in conflitto, inserisco il prodotto nella tabella dei prodotti
-	            //in conflitto.
-	            if(isInConflitto(lp.getListaProdottiValutazione().get(i),conn))
-	            {
-	            	query= "INSERT INTO "+DBNames.TABLE_PRODOTTOINCONFLITTO+"("
-		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+","
-		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL+","
-		            		+DBNames.ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID+
-		            		") values (?,?,?)";
-		            
-		            st = conn.prepareStatement(query);
-		            st.setString(1, lp.getListaProdottiValutazione().get(i).getIsbn());
-		            st.setString(2, lp.getEmailUtente());
-		            st.setInt(3, lp.getIdEventoValutazione());
-		
-		            st.executeUpdate();
-		            conn.commit();
-		            //Chiamo il DB del sistema, e richiama il metodo per inviare la notifica
-		            //addNotificaConflitto(String isbn)
-	            }
-            }
+            inserisciProdottiValutazione(lp,conn);
+            
+	       
         } 
         finally 
         {
@@ -154,10 +173,42 @@ public class DBProdottiValutazione {
 		Statement st=null;
 		ResultSet ris=null;
 		String query;
-		ListaProdottiValutazione listaProdottiValutazione=new ListaProdottiValutazione(new ArrayList<ProdottoValutazione>(),emailUtente,idEvento,"");
+		ListaProdottiValutazione listaProdottiValutazione=null;
+		
 		try
 		{
 			conn=DBConnectionPool.getConnection();
+			
+			//ricavo il suggerimento relativo alla lista
+			query="SELECT "+DBNames.ATTR_LISTAVALUTAZIONE_SUGGERIMENTO+","
+					+DBNames.ATTR_LISTAVALUTAZIONE_BLOCCATO
+					+" FROM "+DBNames.TABLE_LISTAVALUTAZIONE
+					+" WHERE "+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+"="
+					+"'"+emailUtente+"'"+" AND "+DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID+"="
+					+idEvento;
+			
+			st=conn.createStatement();
+			ris=st.executeQuery(query);
+			String suggerimento=null;
+			String stato=null;
+			boolean bloccato=true;
+			while (ris.next())
+			{
+				suggerimento=ris.getString(DBNames.ATTR_LISTAVALUTAZIONE_SUGGERIMENTO);
+				stato=ris.getString(DBNames.ATTR_LISTAVALUTAZIONE_BLOCCATO);
+			}
+			
+			if(stato.equals("si"))
+				bloccato=true;
+			else
+			{
+				if(stato.equals("no"))
+					bloccato=false;
+			}
+				
+			listaProdottiValutazione=new ListaProdottiValutazione(new ArrayList<ProdottoValutazione>(),emailUtente,idEvento,suggerimento);
+			listaProdottiValutazione.setBloccato(bloccato);
+					
 			query="SELECT "+DBNames.ATTR_PRODOTTO_ISBN+","
 					+DBNames.ATTR_PRODOTTO_TITOLO+","
 					+DBNames.ATTR_PRODOTTOLISTA_PRIORITA
@@ -188,6 +239,67 @@ public class DBProdottiValutazione {
 	}
 	
 	/**
+	 * Metodo che restituisce una lista di utenti che hanno almeno una lista di
+	 * prodotti sottomessi a valutazione
+	 * @param emailUtente identificativo dell'utente
+	 * @return utenti lista di utenti
+	 * @throws SQLException
+	 */
+	public ArrayList<Utente> showListaUtenti(String emailUtente) throws SQLException
+	{
+		Connection conn=null;
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		
+		ArrayList<Utente> utenti=new ArrayList<Utente>();
+		try
+		{
+			conn=DBConnectionPool.getConnection();
+			//Seleziono tutti i ricercatori che hanno almeno una lista di prodotti
+			//sottomessi a valutazione, eccetto il ricercatore che accede alla
+			//funzionalita'
+			query="SELECT DISTINCT "+DBNames.ATTR_UTENTE_EMAIL+","//Distinct, perche' altrimenti possono presentarsi duplicati di nomi di ricercatori che hanno partecipato a piu' eventi di valutazione
+					+DBNames.ATTR_UTENTE_PASSWORD+","+DBNames.ATTR_UTENTE_CODICEFISCALE+","
+					+DBNames.ATTR_UTENTE_PROVINCIADINASCITA+","+DBNames.ATTR_UTENTE_COMUNEDINASCITA+","
+					+DBNames.ATTR_UTENTE_COGNOME+","+DBNames.ATTR_UTENTE_NOME+","
+					+DBNames.ATTR_UTENTE_DATADINASCITA+","+DBNames.ATTR_UTENTE_TIPOLOGIA+","
+					+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME
+					+" FROM "+DBNames.TABLE_UTENTE+","
+					+DBNames.TABLE_LISTAVALUTAZIONE
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="
+					+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL
+					+" AND "+DBNames.ATTR_UTENTE_EMAIL+" NOT IN("
+					+"SELECT "+DBNames.ATTR_UTENTE_EMAIL
+					+" FROM "+DBNames.TABLE_UTENTE
+					+" WHERE "+DBNames.ATTR_UTENTE_EMAIL+"="+"'"+emailUtente+"')";
+			st=conn.createStatement();
+			ris=st.executeQuery(query);
+			while(ris.next())
+			{
+				String email=ris.getString(DBNames.ATTR_UTENTE_EMAIL);
+				String password=ris.getString(DBNames.ATTR_UTENTE_PASSWORD);
+				String codiceFiscale=ris.getString(DBNames.ATTR_UTENTE_CODICEFISCALE);
+				String provinciaNascita=ris.getString(DBNames.ATTR_UTENTE_PROVINCIADINASCITA);
+				String comuneNascita=ris.getString(DBNames.ATTR_UTENTE_COMUNEDINASCITA);
+				String cognome=ris.getString(DBNames.ATTR_UTENTE_COGNOME);
+				String nome=ris.getString(DBNames.ATTR_UTENTE_NOME);
+				GregorianCalendar dataNascita=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_UTENTE_DATADINASCITA));
+				String tipologia=ris.getString(DBNames.ATTR_UTENTE_TIPOLOGIA);
+				String dipartimento=ris.getString(DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME);
+				Utente utente=new Utente(nome,cognome,dataNascita,comuneNascita,provinciaNascita,codiceFiscale,password,email,dipartimento,tipologia);
+				utenti.add(utente);
+			}
+		}
+		finally
+		{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+		return utenti;
+	}
+	
+	/**
 	 *Metodo che permette di sostituire nel database un prodotto sottomesso a valutazione
 	 *in conflitto con un altro prodotto
 	 * @param lp lista prodotti sottomessi a valutazione che contiene il prodotto in conflitto
@@ -195,42 +307,74 @@ public class DBProdottiValutazione {
 	 * @param prodotti per sostituire quelli in conflitto
 	 * @throws SQLException
 	 */
-	public void modifyProdVal(ListaProdottiValutazione listaProdottiValutazione, ArrayList<Prodotto> prodotti) throws SQLException
+	public void modifyProdottiValutazione(ArrayList<ProdottoValutazione> newProdottiSottomessi,ArrayList<ProdottoValutazione> oldProdottiSottomessi,ArrayList<ProdottoValutazione> oldProdottiSottomessiUpdate,String emailUtente,int idEvento) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
 		
-		if(!listaProdottiValutazione.getBloccato())
-		{
-			ArrayList<ProdottoValutazione> prodottiValutazione=listaProdottiValutazione.getListaProdottiValutazione();
+			
 			try
 			{
 				conn=DBConnectionPool.getConnection();
 				
-				for (int i=0;i<prodottiValutazione.size();i++)
+				
+				if(oldProdottiSottomessi.size()!=0)
 				{
-					query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
-							+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"=?"
-							+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+prodottiValutazione.get(i).getIsbn()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
 					
-					st=conn.prepareStatement(query);
-					st.setString(1, prodotti.get(i).getIsbn());
-					st.executeUpdate();
-					conn.commit();
-					
-					//Cancello ex prodotto valutazione dalla tabella dei conflitti
-					query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
-							+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+prodottiValutazione.get(i).getIsbn()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+listaProdottiValutazione.getEmailUtente()
-							+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
-					
-					st=conn.prepareStatement(query);
-					st.executeUpdate();
-					conn.commit();
+					for(int i=0;i<oldProdottiSottomessi.size();i++)
+					{
+						//cancello i prodotti di valutazione deselezionati
+						query="DELETE FROM "+DBNames.TABLE_PRODOTTOLISTA
+								+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+"'"+oldProdottiSottomessi.get(i).getIsbn()+"'"
+								+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
+								+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+						
+						st=conn.prepareStatement(query);
+						st.executeUpdate();
+						conn.commit();
+						
+						//cancello dalla taballa dei conflitti, gli eventuali conflitti risolti
+						query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+								+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+"'"+oldProdottiSottomessi.get(i).getIsbn()+"'"
+								//+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'" non lo considero perche' nella tabella dei conflitti
+								//non viene memorizzato l'email dell'utente che sottomette per primo. In ogni caso se il primo utente che ha sottomesso,
+								//decidi di rimuovere quel prodotto in conflitto dalla lista, il conflitto viene implicitamente risolto.
+								+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+						
+						st=conn.prepareStatement(query);
+						st.executeUpdate();
+						conn.commit();
+					}
 				}
+					
+				if(oldProdottiSottomessiUpdate.size()!=0)
+				{
+					for(int i=0;i<oldProdottiSottomessiUpdate.size();i++)
+					{
+						//aggiorno gli eventuali camibamenti di priorita' dei prodotti sottomessi prima della modifica
+						query="UPDATE "+DBNames.TABLE_PRODOTTOLISTA
+								+" SET "+DBNames.ATTR_PRODOTTOLISTA_PRIORITA+"=?"
+								+ " WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+"'"+oldProdottiSottomessiUpdate.get(i).getIsbn()+"'"
+								+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
+								+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+						
+						st=conn.prepareStatement(query);
+						st.setInt(1, oldProdottiSottomessiUpdate.get(i).getPriority());
+						st.executeUpdate();
+						conn.commit();
+					}
+				}	
+				
+				if(newProdottiSottomessi.size()!=0)
+				{
+					//suggerimento e blocco della lista fittizi, in quanto andiamo ad inserire i prodotti all'interno della lista, e non quest'ultima.
+					ListaProdottiValutazione listaNewProdottiValutazione=new ListaProdottiValutazione(newProdottiSottomessi,emailUtente,idEvento,"");
+					//inserisco i nuovi prodotti di valutazione selezionati e gli eventuali
+					//conflitti nell'apposita tabella
+					inserisciProdottiValutazione(listaNewProdottiValutazione, conn);
+				}
+				
 			}
 			finally
 			{
@@ -238,11 +382,7 @@ public class DBProdottiValutazione {
 				DBConnectionPool.releaseConnection(conn);
 			}
 		}
-		else
-		{
-			throw new InvalidModifyListaProdottiValutazione("Lista prodotti sottomessi a valutazione bloccata!");
-		}
-	}
+		
 	
 	/**
 	 * Questo metodo restituisce tutte le liste di prodotti sottomessi a valutazione dall'utente specificato
@@ -311,20 +451,19 @@ public class DBProdottiValutazione {
 					query="SELECT "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
 							+DBNames.ATTR_PRODOTTO_TITOLO+","+DBNames.ATTR_PRODOTTOLISTA_PRIORITA
 							+" FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PRODOTTOLISTA
-							+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
+							+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+DBNames.ATTR_PRODOTTO_ISBN
+							+" AND "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
 							+" AND "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
 					
 					st=conn.createStatement();
 					ris=st.executeQuery(query);
 					while(ris.next())
 					{
-						int k=0;
 						String isbn=ris.getString(DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN);
 						String titolo=ris.getString(DBNames.ATTR_PRODOTTO_TITOLO);
 						int priorita=ris.getInt(DBNames.ATTR_PRODOTTOLISTA_PRIORITA);
 						
 						listeProdottiValutazione.get(i).getListaProdottiValutazione().add(new ProdottoValutazione(isbn,titolo,priorita));
-						k++;
 					}	
 				}
 			}
@@ -377,7 +516,7 @@ public class DBProdottiValutazione {
 	 * @return identificativo dell'evento di valutazione
 	 * @throws SQLException
 	 */
-	private int getIdEventoValutazione() throws SQLException
+	public EventoValutazione getEventoValutazione(String emailUtente) throws SQLException,InsertProdottiValutazioneException
 	{
 		Connection conn=null;
 		Statement st1=null;
@@ -390,65 +529,191 @@ public class DBProdottiValutazione {
 			
 			//Recupero l'id dell'evento di valutazione a cui l'utente partecipa
             //supponiamo che la query restitisca un unico risultato......
-            query1="SELECT "+DBNames.ATTR_EVENTOVALUTAZIONE_ID
+            query1="SELECT "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+","
+            		+DBNames.ATTR_EVENTOVALUTAZIONE_DADATA+","
+            		+DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+","
+            		+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI
             		+" FROM "+DBNames.TABLE_EVENTOVALUTAZIONE
-            		+" WHERE NOW() BETWEEN "+DBNames.ATTR_EVENTOVALUTAZIONE_DADATA
-            		+" AND "+DBNames.ATTR_EVENTOVALUTAZIONE_ADATA;
+            		+" WHERE NOW()<="+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA;
         
             
             
             st1=conn.createStatement();
 			ris=st1.executeQuery(query1);
 			
-			int idEvento;
-			ris.next();
-			idEvento=ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_ID);
+			EventoValutazione evento=new EventoValutazione();
+			while(ris.next())//
+			{
+				int idEvento=ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_ID);
+				GregorianCalendar daData=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_EVENTOVALUTAZIONE_DADATA));
+				GregorianCalendar aData=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_EVENTOVALUTAZIONE_ADATA));
+				int numeroPubblicazioni=ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI);
+				
+				evento.setID(idEvento);
+				evento.setDataInizio(daData);
+				evento.setDataFine(aData);
+				evento.setNumeroPubblicazioni(numeroPubblicazioni);
+			}
+				
+			//controllo se l'utente ha gia' partecipato a quell'evento
+			query1="SELECT COUNT(*) as numPartecipazioni"
+					+" FROM "+DBNames.TABLE_PARTECIPAZIONEAVALUTAZIONE
+					+" WHERE "+DBNames.ATTR_PARTECIPAZIONEAVALUTAZIONE_EVENTOVALUTAZIONE_ID+"="+evento.getID()
+					+" AND "+DBNames.ATTR_PARTECIPAZIONEAVALUTAZIONE_UTENTE_EMAIL+"="+"'"+emailUtente+"'";
 			
-			return idEvento;
+			st1=conn.createStatement();
+			ris=st1.executeQuery(query1);
+			
+			int numPartecipazioni;
+			ris.next();
+			numPartecipazioni=ris.getInt("numPartecipazioni");
+			
+			if(numPartecipazioni==1)
+				throw new InsertProdottiValutazioneException("Hai gia' partecipato all'evento di valutazione !");
+			
+		return evento;
 		}
 		finally
 		{
 			st1.close();
             DBConnectionPool.releaseConnection(conn);
 		}
+		
 	}
+	
 	/**
-	 * Metodo che restituisce il numero massimo di prodotti che l'utente puo' sottomettere a valutazione
-	 * @return numero massimo di sottomissioni per quell'evento
-	 * @throws SQLException
+	 * Metodo che restituisce i prodotti che hanno la data di pubblicazione
+	 * compresa tra il range di date di un determinato evento
+	 * @param evento evento a cui l'utente partecipa
+	 * @param prodotti dell'utente specificato 
+	 * @return prodottiFiltrati idonei per essere sottomessi a quel determinato evento di valutazione
 	 */
-	public int getNumeroSottomissioniMax() throws SQLException
+	public ArrayList<Prodotto> prodottiFiltrati(EventoValutazione evento, ArrayList<Prodotto> prodotti)
+	{
+		ArrayList<Prodotto> prodottiFiltrati=new ArrayList<Prodotto>();
+		GregorianCalendar dataInizio=evento.getDataInizio();
+		GregorianCalendar dataFine=evento.getDataFine();
+		
+		
+		for(int i=0;i<prodotti.size();i++)
+		{
+			GregorianCalendar dataPubb=prodotti.get(i).getAnnoPubblicazione();
+			//se la data di pubblicazione del prodotto e' compresa tra il range di date richieste dall'evento
+			if((dataPubb.after(dataInizio)||dataPubb.equals(dataInizio)) && (dataPubb.before(dataFine)||dataPubb.equals(dataFine)))
+				prodottiFiltrati.add(prodotti.get(i));
+		}
+		
+		return prodottiFiltrati;
+	}
+	
+	public EventoValutazione ottieniEventoValutazione(int idEvento) throws SQLException
 	{
 		Connection conn=null;
-		Statement st1=null;
+		Statement st=null;
 		ResultSet ris=null;
-		String query1;
+		String query;
 		
-		int idEvento=getIdEventoValutazione();
 		try
 		{
 			conn = DBConnectionPool.getConnection();
 			
+			query=" SELECT *"
+					+" FROM "+DBNames.TABLE_EVENTOVALUTAZIONE
+					+" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+"="+idEvento;
 			
-            query1="SELECT "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI
-            		+" FROM "+DBNames.TABLE_EVENTOVALUTAZIONE
-            		+" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+"="+idEvento;
-            
-            st1=conn.createStatement();
-			ris=st1.executeQuery(query1);
-			ris.next();
+			st=conn.createStatement();
+			ris=st.executeQuery(query);
 			
-			return (ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI));
+			EventoValutazione evento=null;
+			while(ris.next())
+			{
+				String nome=ris.getString(DBNames.ATTR_EVENTOVALUTAZIONE_NOME);
+				int numPubblicazioni=ris.getInt(DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI);
+				GregorianCalendar daData=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_EVENTOVALUTAZIONE_DADATA));
+				GregorianCalendar aData=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_EVENTOVALUTAZIONE_ADATA));
+				GregorianCalendar scadenza=CommonMethod.stringToDate(ris.getString(DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA));
+				evento=new EventoValutazione(nome,numPubblicazioni,scadenza,daData,aData);
+				evento.setID(idEvento);
+			}
+		return evento;
 		}
 		finally
 		{
-			st1.close();
-            DBConnectionPool.releaseConnection(conn);
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
+	/**
+	 * Metodo che sblocca la lista di prodotti sottoposti a valutazione dall'utente
+	 * (a causa di qualche conflitto), e permette all'utente di poter modificare la lista
+	 * risolvendo l'eventuale conflitto
+	 * @param listaProdottiValutazione sottomessa dall'utente
+	 * @throws SQLException
+	 */
+	public void rifiutaListaProdottiValutazione(ListaProdottiValutazione listaProdottiValutazione) throws SQLException
+	{
+		Connection conn=null;
+		PreparedStatement st=null;
+		String query;
+		
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+			
+			query="UPDATE "+DBNames.TABLE_LISTAVALUTAZIONE
+					+" SET "+DBNames.ATTR_LISTAVALUTAZIONE_BLOCCATO+"=?"
+					+ " WHERE "+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+"="+"'"+listaProdottiValutazione.getEmailUtente()+"'"
+					+" and "+DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
+			
+			st=conn.prepareStatement(query);
+			st.setString(1, "no");
+			st.executeUpdate();
+			conn.commit();
+		}
+		finally
+		{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
 		}
 	}
 	
 	
+	/**
+	 * Metodo che permette di settare un suggerimento che per default e' a null
+	 * settare: inteso come inserimento se il suggerimento e' a null
+	 * e come modifica se il suggerimento gia'esiste
+	 * @param listaProdottiValutazione sottomessi dall'utente
+	 * @param suggestion per la risoluzione dei conflitti
+	 * @throws SQLException
+	 */
+	public void settaSuggerimentoListaValutazione(ListaProdottiValutazione listaProdottiValutazione,String suggestion)throws SQLException
+	{
+		Connection conn=null;
+		PreparedStatement st=null;
+		String query;
+		
+		try
+		{
+			conn = DBConnectionPool.getConnection();
+			
+			query="UPDATE "+DBNames.TABLE_LISTAVALUTAZIONE
+					+" SET "+DBNames.ATTR_LISTAVALUTAZIONE_SUGGERIMENTO+"=?"
+					+ " WHERE "+DBNames.ATTR_LISTAVALUTAZIONE_UTENTE_EMAIL+"="+"'"+listaProdottiValutazione.getEmailUtente()+"'"
+					+" and "+DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
+			
+			st=conn.prepareStatement(query);
+			st.setString(1, suggestion);
+			st.executeUpdate();
+			conn.commit();
+			
+			
+		}
+		finally
+		{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);
+		}
+	}
 	
-	
-
 }
