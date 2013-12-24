@@ -15,17 +15,22 @@
 //in realtà l'email si deve recuperare dalla 
 //sessione settata con il login
 	HttpSession sessione = request.getSession();
-	sessione.setAttribute("sessEmail","ivisconti@unia.it");
+	sessione.setAttribute("sessEmail","mtucci@unisa.it");
 	
 %>
 <form id="mod" action="ServletVisualizzaProdotti" method="POST">
 	<button type="submit" name="sel">Sottometti Prodotti a Valutazione</button>
 </form>
-<form id="mod1" action="ServletVerificaListeModifica" method="POST">
-	<button type="submit" name="sel">Modifica Prodotti Sottomessi a Valutazione</button>
-</form>
+
 <form id="mod2" action="ServletVerificaListeVisualizza" method="POST">
+	<%
+		sessione.setAttribute("visualizza", "personale");
+	%>
 	<button type="submit" name="sel">Visualizza Prodotti Sottomessi a Valutazione</button>
+</form>
+
+<form id="mod3" action="ServletListaUtentiValutazione" method="POST">
+	<button type="submit" name="sel">Visualizza Prodotti Valutazione Ricercatori</button>
 </form>
 </body>
 </html>
