@@ -85,14 +85,14 @@ public class EventoValutazione {
 	
 	/**
 	 * restituisce la data di inizio del periodo al quale appartengono i prodotti che possono essere sottomessi a valutazione
-	 * @return la data di inizio del periodo di validità di un prodotto
+	 * @return la data di inizio del periodo di validita' di un prodotto
 	 */
-	public String getDataInizio() {
-		return dataInizio.get(Calendar.YEAR)+"/"+dataInizio.get(Calendar.MONTH)+"/"+dataInizio.get(Calendar.DAY_OF_MONTH);
+	public GregorianCalendar getDataInizio() {
+		return dataInizio;
 	}
 
 	/**
-	 * modifica la data di inizio del periodo di validità dei prodotti che possono essere sottomessi a valutazione 
+	 * modifica la data di inizio del periodo di validita' dei prodotti che possono essere sottomessi a valutazione 
 	 * @param dataInizio la nuova data di inizio
 	 */
 	public void setDataInizio(GregorianCalendar dataInizio) {
@@ -101,14 +101,14 @@ public class EventoValutazione {
 	
 	/**
 	 * restituisce la data di inizio del periodo al quale appartengono i prodotti che possono essere sottomessi a valutazione
-	 * @return la data di inizio del periodo di validità di un prodotto
+	 * @return la data di inizio del periodo di validita' di un prodotto
 	 */
-	public String getDataFine() {
-		return dataFine.get(Calendar.YEAR)+"/"+dataFine.get(Calendar.MONTH)+"/"+dataFine.get(Calendar.DAY_OF_MONTH);
+	public GregorianCalendar getDataFine() {
+		return dataFine;
 	}
 
 	/**
-	 * modifica la data di inizio del periodo di validità dei prodotti che possono essere sottomessi a valutazione 
+	 * modifica la data di inizio del periodo di validita' dei prodotti che possono essere sottomessi a valutazione 
 	 * @param dataInizio la nuova data di inizio
 	 */
 	public void setDataFine(GregorianCalendar dataFine) {
