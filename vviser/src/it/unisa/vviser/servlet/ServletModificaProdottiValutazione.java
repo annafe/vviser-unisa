@@ -20,6 +20,11 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * 
+ * @author Giuseppe Sabato
+ *
+ */
 public class ServletModificaProdottiValutazione extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
