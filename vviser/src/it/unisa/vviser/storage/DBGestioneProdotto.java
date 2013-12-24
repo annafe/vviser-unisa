@@ -758,8 +758,8 @@ public class DBGestioneProdotto
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
 			
-            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_TIPOLOGIA
-            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+", "+DBNames.TABLE_TIPOLOGIA
+            		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME
             		+" AND "+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME+"='"+tipologia+"'";
             		
             st=conn.createStatement();
