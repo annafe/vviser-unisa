@@ -1,12 +1,10 @@
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
-import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,11 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class ServletSelezionaListe extends HttpServlet {
+public class ServletSuggerimentoListaValutazione extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBProdottiValutazione prodottiValutazioneManager;
@@ -41,29 +35,19 @@ public class ServletSelezionaListe extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-		
-			HttpSession s = request.getSession();
-			String emailUtente=(String)s.getAttribute("email");
-			int idEvento=Integer.parseInt(request.getParameter("idList"));//cambiare nome da list a id
-	
-			ListaProdottiValutazione listaProdottiValutazione=new ListaProdottiValutazione();
+		try
+		{
+			HttpSession s=request.getSession();
+			ListaProdottiValutazione listaProdottiValutazione=(ListaProdottiValutazione)s.getAttribute("listaProdottiValutazione");
+			String suggestion=request.getParameter("sugg");
+			prodottiValutazioneManager.settaSuggerimentoListaValutazione(listaProdottiValutazione, suggestion);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			
-			try {
-				listaProdottiValutazione=prodottiValutazioneManager.showProdottiVal(emailUtente, idEvento);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			request.setAttribute("lista", listaProdottiValutazione);
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaLista.jsp");
-			rd.forward(request,response);
 			
 		
 	}
 
 }
-
-
-
