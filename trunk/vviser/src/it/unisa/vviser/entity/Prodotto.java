@@ -1,5 +1,7 @@
 package it.unisa.vviser.entity;
 
+import java.util.GregorianCalendar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,7 +13,7 @@ import org.json.JSONObject;
  */
 public class Prodotto
 {
-	private String annoPubblicazione;
+	private GregorianCalendar annoPubblicazione;
 	private String formatoPubblicazione;
 	private String codiceDOI;
 	private String diffusione;
@@ -66,7 +68,7 @@ public class Prodotto
 	 * @param aPagina indice della pagine finale del prodotto
 	 * 
 	 */
-	public Prodotto(String isbn,String titolo,String annoPubblicazione,
+	public Prodotto(String isbn,String titolo,GregorianCalendar annoPubblicazione,
 			String formatoPubblicazione,String codiceDOI,String diffusione,
 			String note,String stato,boolean bozza,String tipologia,String proprietario,
 			String listaCollaboratori,String descrizioneContenuti,String indirizzoWeb,
@@ -208,7 +210,7 @@ public class Prodotto
 	 * Metodo che restituisce l'anno della pubblicazione del prodotto
 	 * @return anno della pubblicazione
 	 */
-	public String getAnnoPubblicazione()
+	public GregorianCalendar getAnnoPubblicazione()
 	{
 		return this.annoPubblicazione;
 	}
@@ -217,7 +219,7 @@ public class Prodotto
 	 * Metodo che setta l'anno della pubblicazione del prodotto
 	 * @param anno della pubblicazione da attribuire al prodotto
 	 */
-	public void setAnnoPubblicazione(String annoPubblicazione)
+	public void setAnnoPubblicazione(GregorianCalendar annoPubblicazione)
 	{
 		this.annoPubblicazione = annoPubblicazione;
 	}
