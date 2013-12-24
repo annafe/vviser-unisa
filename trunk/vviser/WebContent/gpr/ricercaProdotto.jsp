@@ -89,8 +89,8 @@
 			</div>	
 			
 			<div class="criterio" id="titolo_prodotto">
-				<label for="titolo">Titolo</label>
-				<input type="text" name="titolo" placeholder="Titolo prodotto"/>
+				<label for="titolo_prodotto">Titolo</label>
+				<input type="text" name="titolo_prodotto" placeholder="Titolo prodotto"/>
 				<input type="submit"/>
 			</div>
 			<div class="criterio" id="titolo_rivista">
