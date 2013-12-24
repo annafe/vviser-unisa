@@ -2,6 +2,7 @@ package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
 import java.io.IOException;
@@ -85,9 +86,13 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 		
 		try 
 		{
-			prodottiValutazioneManager.insertProdottiVal(prodottiValutazione, emailUtente);
+			prodottiValutazioneManager.sottomettiListaProdottiValutazione(prodottiValutazione, emailUtente);
 		} 
 		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		catch (InsertProdottiValutazioneException e) 
 		{
 			e.printStackTrace();
 		}

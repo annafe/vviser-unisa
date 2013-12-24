@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ServletVerificaListeVisualizza extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -40,13 +43,30 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 		try 
 		{
 			HttpSession s = request.getSession();
-			String emailUtente=(String)s.getAttribute("sessEmail");
+			String emailUtente="";
+			String tipoShow=(String)s.getAttribute("visualizza");
+			if(tipoShow.equals("personale"))
+			{
+				emailUtente=(String)s.getAttribute("sessEmail");
+			}
+			else
+			{
+				if(tipoShow.equals("tutti"))
+				{
+					String checkUtente=request.getParameter("utente");
+					JSONObject o=new JSONObject(checkUtente);
+					emailUtente=o.getString("email");
+				}
+			}
+			s.setAttribute("email", emailUtente);//setto la sessione con l'email dell'utente di cui vogliamo visualizzare i prodotti di val.
 			ArrayList<ListaProdottiValutazione> listeProdottiValutazione=prodottiValutazioneManager.getListeProdottiValutazione(emailUtente);
+			
+			
 			
 			
 			if(listeProdottiValutazione.size()>1)
 			{
-				s.setAttribute("operazione", "visualizza");//setto la sessione per indicare alla jsp che si tratta di una visualizzazione
+				
 				request.setAttribute("liste", listeProdottiValutazione);
 				ServletContext sc = getServletContext();
 				RequestDispatcher rd = sc.getRequestDispatcher("/selezListe.jsp");
@@ -65,6 +85,10 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (JSONException e) 
+		{
 			e.printStackTrace();
 		}
 	}
