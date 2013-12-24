@@ -12,13 +12,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Catalogo dei prodotti di ricerca</title>
+<style type="text/css">
+	.criterio{
+		display:none;
+		position:absolute;
+		left:264px;
+		top:94px;
+	}
+</style>
+
+<script type="text/javascript">
+	function show(criterio){
+		document.getElementById("tipologia").style.display="none";
+		document.getElementById("titolo_prodotto").style.display="none";
+		document.getElementById("titolo_rivista").style.display="none";
+		document.getElementById("issn_rivista").style.display="none";
+		document.getElementById("anni").style.display="none";
+		document.getElementById(criterio.value).style.display="block";
+	}
+</script>
+
+
 </head>
 <body>
 	<form action="/vviser/RicercaPubblicaProdottoServlet" method="POST">
 		<fieldset>
 			<legend>Selezionare i parametri di ricerca</legend>
-			
-			<p>
+			<div>
+				<fieldset style="width:200px;">
+					<legend>Criterio di ricerca</legend>
+					<input type="radio" name="tipo_ricerca" value="tipologia" onchange="show(this)">Tipologia<br>
+					<input type="radio" name="tipo_ricerca" value="titolo_prodotto" onchange="show(this)">Titolo prodotto<br>
+		    		<input type="radio" name="tipo_ricerca" value="titolo_rivista" onchange="show(this)">Titolo rivista<br>
+		    		<input type="radio" name="tipo_ricerca" value="issn_rivista" onchange="show(this)">ISSN rivista<br>
+		    		<input type="radio" name="tipo_ricerca" value="anni" onchange="show(this)">Periodo<br>
+				</fieldset>
+			</div>
+			<div class="criterio" id="tipologia">
 				<label for="tipologia" >Tipologia</label>
 				<select name="tipologia" id="tipologia">
 	    			<% 
@@ -29,9 +59,9 @@
 	    				
 	    			%>
 	    		</select>	
-			</p>
-			
-			<p>			
+	    		<input type="submit"/>
+			</div>
+			<div class="criterio" id="anni">			
 				<label for="anno_dal">Anno dal</label>
 				<select name="anno_dal" id="anno_dal">
 	    			<%
@@ -55,24 +85,33 @@
 	    				}
 	    			%>
 				</select>
-			</p>	
+				<input type="submit"/>
+			</div>	
 			
-			<p>
+			<div class="criterio" id="titolo_prodotto">
 				<label for="titolo">Titolo</label>
 				<input type="text" name="titolo" placeholder="Titolo prodotto"/>
-			</p>
-			<p>
+				<input type="submit"/>
+			</div>
+			<div class="criterio" id="titolo_rivista">
 				<label for="titolo_rivista">Titolo Rivista</label>
 				<input type="text" name="titolo_rivista" placeholder="Titolo rivista"/>
-			</p>
-			<p>
-				<label for="issn">ISSN rivista</label>
-				<input type="text" name="issn" placeholder="ISSN rivista"/>
-			</p>
-			<p>
 				<input type="submit"/>
-			</p>
+			</div>
+			<div class="criterio" id="issn_rivista">
+				<label for="issn_rivista">ISSN rivista</label>
+				<input type="text" name="issn_rivista" placeholder="ISSN rivista"/>
+				<input type="submit"/>
+			</div>
 		</fieldset>
 	</form>
+	<script type="text/javascript">
+	radio=document.getElementsByName("tipo_ricerca");
+	for(i=0; i<radio.length;i++)
+		if(radio[i].checked){
+			show(radio[i]);
+			break;
+		}
+	</script>
 </body>
 </html>
