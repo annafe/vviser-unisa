@@ -62,8 +62,8 @@
 	    		<input type="submit"/>
 			</div>
 			<div class="criterio" id="anni">			
-				<label for="anno_dal">Anno dal</label>
-				<select name="anno_dal" id="anno_dal">
+				<label for="da">Anno dal</label>
+				<select name="da">
 	    			<%
 	    				Calendar c = Calendar.getInstance();
 						int year = c.get(Calendar.YEAR);
@@ -74,8 +74,8 @@
 	    			%>
 				</select>
 				
-				<label for="anno_al">Anno al</label>
-				<select name="anno_al" id="anno_al">
+				<label for="a">Anno al</label>
+				<select name="a">
 	    			<%
 	    				c = Calendar.getInstance();
 						year = c.get(Calendar.YEAR);
