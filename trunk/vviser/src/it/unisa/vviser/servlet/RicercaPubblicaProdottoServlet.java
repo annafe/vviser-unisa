@@ -75,14 +75,19 @@ public class RicercaPubblicaProdottoServlet extends HttpServlet {
 		try
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
+			if(tipo_ricerca.equals("tipologia"))
+			{
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTipologia(request.getParameter("tipologia"));
+				
+			}
+			
 			if(tipo_ricerca.equals("titolo_prodotto"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo"));
-				
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo_prodotto"));
 			}
 			if(tipo_ricerca.equals("titolo_rivista"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo"));
+				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo_rivista"));
 			}
 			if(tipo_ricerca.equals("issn_rivista"))
 			{
