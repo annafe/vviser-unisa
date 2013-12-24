@@ -43,7 +43,7 @@ public class ServletModificaProdottiValutazione extends HttpServlet {
 		
 		HttpSession s=request.getSession();
 		String emailUtente=(String)s.getAttribute("emailUt");
-		int idEvento=(int)s.getAttribute("idEv");
+		int idEvento=(Integer)s.getAttribute("idEv");
 		
 		String[] uncheckProduct=request.getParameterValues("desel");//prodottidi valutazione da eliminare
 		String[] rimanentiProduct=request.getParameterValues("cbmd");//prodotti valutazione non modificati(la priorita' potrebbe essere cambiata)
