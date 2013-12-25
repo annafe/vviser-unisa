@@ -39,7 +39,7 @@ public class DBGestioneValidazione {
 	
 	/**
 	 *Metodo che mostra i prodotti sottomessi a validazione dal ricercatore 
-	  * @param idUt
+	  * @param idUt 
 	 * @return
 	 * @throws SQLException
 	 */
