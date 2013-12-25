@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 
 import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.vviser.common.CommonMethod;
 
 
 /**
@@ -83,7 +84,7 @@ public class DBGestioneProdotto
             st=conn.prepareStatement(query);
             st.setString(1,p.getIsbn());
             st.setString(2,p.getTitolo());
-            st.setString(3,p.getAnnoPubblicazione());
+            st.setString(3,CommonMethod.dateToString(p.getAnnoPubblicazione()));
             st.setString(4,p.getFormatoPubblicazione());
             st.setString(5,p.getCodiceDOI());
             st.setString(6,p.getDiffusione());
