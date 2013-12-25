@@ -15,7 +15,7 @@ header#container-header
 	width: 700px;
 	height: 200px;
 	top: 10px;
-	left: 358px;
+	left: 20px;
 }		
 
 header#header-main
@@ -37,7 +37,7 @@ nav{
 	background-color: SEAGREEN;
 	text-align: right;
 	padding-top: 10px;
-	left: -337px;
+	left: -3px;
 }
 
 input.pulsante {

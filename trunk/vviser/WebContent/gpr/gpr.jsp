@@ -9,9 +9,9 @@
 <style type="text/css">
 body{width:700px;height:710px;}
 header#container-header{
-	height: 70px;
-	width: 700px;
-	top: 16px;
+	height: 76px;
+	width: 220px;
+	top: 7px;
 }
 header#header-main
 {
@@ -59,8 +59,8 @@ section#documenti{
 }
 section#profilo{
 	width: 700px;
-	top: 282px;
-	height: 300px;
+	top: 248px;
+	height: 532px;
 }
 section#profilo>table{text-align:center;color:black;width:700px;padding-left:40px;}
 th{background-color:tomato;color:white;}
