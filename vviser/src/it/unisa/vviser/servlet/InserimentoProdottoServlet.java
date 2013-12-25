@@ -98,7 +98,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			Prodotto prod=new Prodotto();
 			
 			prod.setIndirizzoWeb(indirizzoweb);
-			prod.setAnnoPubblicazione(dataPubblicazione);
+			prod.setAnnoPubblicazione(CommonMethod.stringToDate(dataPubblicazione));
 			prod.setApagina(Integer.parseInt(aPagina));
 			prod.setBozza(false);
 			prod.setDaPagina(Integer.parseInt(daPagina));
