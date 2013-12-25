@@ -16,6 +16,7 @@ import java.util.List;
 
 import it.unisa.vviser.entity.EventoValutazione;
 import it.unisa.vviser.entity.Notifica;
+import it.vviser.common.CommonMethod;
 
 /**
  * 
@@ -78,13 +79,36 @@ public class DBEventiValutazione {
 	// METODI DI MODIFICA 
 	
 	/**
+	 * modifica tutti i dettagli relativi ad un evento con id
+	 * @param id identificativo dell'evento da modificare
+	 * @param nomeEvento nuovo nome evento
+	 * @param numeroPubblicazioni nuovo numero pubblicazioni
+	 * @param scadenza nuova data di scadenza evento
+	 * @param dataInizio nuova data inizio evento
+	 * @param dataFine nuova data fine evento
+	 * @return true true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
+	 * @throws SQLException
+	 */
+	public boolean modifyAllByID(String id, String nomeEvento, String numeroPubblicazioni, String scadenza, String dataInizio, String dataFine) throws SQLException{
+		
+		boolean resp1 = modifyNomeEventoByID(id,nomeEvento);
+		boolean resp2 = modifyNumPubblicazioniByID(id, numeroPubblicazioni);
+		boolean resp3 = modifyScadenzaByID(id, scadenza);
+		boolean resp4 = modifyDataInizioByID(id, dataInizio);
+		boolean resp5 = modifyDataFineByID(id, dataFine);
+		
+		return(resp1&&resp2&&resp3&&resp4&&resp5);
+	}
+	
+	
+	/**
 	 * modifica il nome dell'evento in base all'ID
 	 * @param id ID associato all'evento di cui modificare il nome
 	 * @param nome nuovo nome dell'evento
 	 * @return true true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
 	 * @throws SQLException
 	 */
-	public boolean modifyNomeEventoByID(int id, String nome) throws SQLException{
+	public boolean modifyNomeEventoByID(String id, String nome) throws SQLException{
 		conn = DBConnectionPool.getConnection();
 		
 		try{
@@ -155,7 +179,33 @@ public class DBEventiValutazione {
 	}
 	
 	/**
-	 * modifica il numero di pubblicazioni relative ad un evento di associazione in base al suo nome
+	 * modifica la scadenza relativa ad un evento di valutazione in base al suo ID
+	 * @param id identificatovo dell'evento di cui modificare la data di scadenza
+	 * @param scadenza nuovo valore della data di scadenza
+	 * @return true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
+	 * @throws SQLException
+	 */
+	public boolean modifyScadenzaByID(String id, String scadenza) throws SQLException{
+		conn = DBConnectionPool.getConnection();
+		GregorianCalendar scad = CommonMethod.stringToDate(scadenza);
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+			" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA +" = "+scad.get(Calendar.YEAR)+"/"+scad.get(Calendar.MONTH)+"/"+scad.get(Calendar.DAY_OF_MONTH)+
+			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
+	/**
+	 * modifica il numero di pubblicazioni relative ad un evento di valutazione in base al suo nome
 	 * @param num nuovo numero di pubblicazioni relative all'evento
 	 * @param nome nome dell'evento da modificare
 	 * @return true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
@@ -167,6 +217,32 @@ public class DBEventiValutazione {
 			String queryParam = "UPDATE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+
 					" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+" = "+num+
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
+	/**
+	 * modifica il numero di pubblicazioni relative ad un evento di valutazione in base al suo ID
+	 * @param id numero identificativo dell'evento da modificare
+	 * @param num nuovo numero di pubblicazioni
+	 * @return true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
+	 * @throws SQLException
+	 */
+	public boolean modifyNumPubblicazioniByID(String id, String num) throws SQLException{
+		conn = DBConnectionPool.getConnection();
+		
+		try{
+			String queryParam = "UPDATE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+
+					" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+" = "+num+
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet toR = pstm.executeQuery();
@@ -205,6 +281,33 @@ public class DBEventiValutazione {
 	}
 	
 	/**
+	 * modifica la data di inizio di un evento di valutazione in base all' ID
+	 * @param da nuova data di inizio
+	 * @param id identificativo dell'evento da modificare 
+	 * @return true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
+	 * @throws SQLException
+	 */
+	public boolean modifyDataInizioByID(String id,String da) throws SQLException{
+		conn = DBConnectionPool.getConnection();
+		GregorianCalendar inizio = CommonMethod.stringToDate(da);
+		
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+						"SET "+DBNames.ATTR_EVENTOVALUTAZIONE_DADATA +" = "+inizio.get(Calendar.YEAR)+"/"+inizio.get(Calendar.MONTH)+"/"+inizio.get(Calendar.DAY_OF_MONTH)+
+						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
+	/**
 	 * modifica la data di fine di un evento di valutazione in base al nome
 	 * @param fine data di fine dell'evento di valutazione
 	 * @param nome nome dell'evento di cui si vuole modificare la data di fine
@@ -228,6 +331,33 @@ public class DBEventiValutazione {
 	        DBConnectionPool.releaseConnection(conn);
 		}
 	}
+	
+	/**
+	 * modifica la data di fine di un evento di valutazione in base al nome
+	 * @param id identificativo dell'evento da modificare
+	 * @param a nuova data di fine
+	 * @return true se non si sono verificati problemi nella connesione al database o nell'esecuzione della query
+	 * @throws SQLException
+	 */
+	public boolean modifyDataFineByID(String id, String a) throws SQLException{
+		conn=DBConnectionPool.getConnection();
+		GregorianCalendar fine = CommonMethod.stringToDate(a);
+		try{
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
+						" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+" = "+fine.get(Calendar.YEAR)+"/"+fine.get(Calendar.MONTH)+"/"+fine.get(Calendar.DAY_OF_MONTH)+
+						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
+			
+			pstm = conn.prepareStatement(queryParam);
+			ResultSet toR = pstm.executeQuery();
+			if (toR!=null)
+				return true;
+			else return false;
+		}finally{
+			pstm.close();
+	        DBConnectionPool.releaseConnection(conn);
+		}
+	}
+	
 	
 	
 	
