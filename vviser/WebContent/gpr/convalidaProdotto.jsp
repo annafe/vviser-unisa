@@ -77,6 +77,7 @@ DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
 ArrayList<Prodotto> l=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato("adinofi@unisa.it");
 for(int i=0;i<l.size();i++)
 {
+	out.println("ciao");
 	%>
 	<tr>
 	<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id="+i+" value="+l.get(i).getIsbn()+"/></td>");
