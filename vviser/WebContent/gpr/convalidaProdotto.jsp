@@ -56,7 +56,7 @@ function controlla()
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="../gpr/gpr.html">Gestione Prodotto</a>
+		<a href="../gpr/gpr.jsp">Gestione Prodotto</a>
 	</section>
 	
 </section>
