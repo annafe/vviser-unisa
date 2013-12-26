@@ -26,6 +26,22 @@ section#documenti{width:150px;left:350px;height:80px;top:30px;}
 section#logout{position:absolute;width:150px;left:670px;height:80px;top:30px;background-color:blue;}
 section#profilo{width:850px;}
 </style>
+<script type="text/javascript">
+function controlla()
+{
+	 var chk = document.getElementsByTagName('input');
+	    var len = chk.length;
+
+	    for (var i = 0; i < len; i++)
+	    {
+	        if (chk[i].type === 'checkbox' && chk[i].checked==true)
+	        {
+	        	return true;
+	        }
+	    }
+	    return false;
+}
+</script>
 </head>
 <body>
 <% 
@@ -39,35 +55,39 @@ section#profilo{width:850px;}
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="../gpr/gpr.html">Ricerca Prodotto Personale</a>
-	</section>
-	<section id="search-prod">
-		<a href="main/search_prod.jsp">Gestione Prodotto</a>
+		<a href="../gpr/gpr.html">Gestione Prodotto</a>
 	</section>
 	
 </section>
 
 <section id="profilo">
-
+<form method="post" action="/SottomettiMIURServlet" name="modulo" onsubmit="return controlla();">
 <table>
 <tr>
+<th>&nbsp;</th>
 <th>Titolo</th>
 <th>Descrizione</th>
 <th>Stato</th>
 </tr>
 <%
 DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
-//Utente currentUser = (Utente) session.getAttribute("utente");
-//currentUser.getEmail()
-ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautore("deufemia@unisa.it");
+Utente currentUser = (Utente) session.getAttribute("utente");
+ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautore(currentUser.getEmail());
 for(int i=0;i<l.size();i++)
 {
 	%>
-	<tr><td><% out.print(l.get(i).getTitolo()); %></td><td><% out.print(l.get(i).getDescrizioneContenuti()); %></td><td> <% out.print(l.get(i).getStato()); %></td></tr>
+	<tr>
+	<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id="+i+" value="+l.get(i).getIsbn()+"/></td>");
+     %>      
+	<td><% out.print(l.get(i).getTitolo()); %></td><td><% out.print(l.get(i).getDescrizioneContenuti()); %></td><td> <% out.print(l.get(i).getStato()); %></td></tr>
 	<%
 }
 %>
+<tr>
+<td colspan="3"><input type="submit" value=" Invia "></td>
+</tr>
 </table>
+</form>
 </section>
 <footer id="container-footer">
 TEAM EIGHT
