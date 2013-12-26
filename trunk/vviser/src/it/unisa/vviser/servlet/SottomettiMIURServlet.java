@@ -73,14 +73,15 @@ public class SottomettiMIURServlet extends HttpServlet {
 		
 		String[] checkProduct=request.getParameterValues("selProd");
 		HttpSession s = request.getSession();
-		Utente currentUser=(Utente)s.getAttribute("utente");
+		//Utente currentUser=(Utente)s.getAttribute("utente");
 		DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 		
 		for(int i=0;i<checkProduct.length;i++)
 		{
 			try
 			{
-				gp.sottomettiAlMIUR(currentUser.getEmail(),checkProduct[i]);
+				//gp.sottomettiAlMIUR(currentUser.getEmail(),checkProduct[i]);
+				gp.sottomettiAlMIUR("deufemia@unisa.it",checkProduct[i]);
 			}
 			catch (SQLException e)
 			{
@@ -88,7 +89,7 @@ public class SottomettiMIURServlet extends HttpServlet {
 			}
 			
 		}
-
+/*
 		ServletContext sc = getServletContext();
 		// ridirezione
 		RequestDispatcher rd = sc.getRequestDispatcher("../SottomettiMIUR.jsp");
@@ -103,6 +104,6 @@ public class SottomettiMIURServlet extends HttpServlet {
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
