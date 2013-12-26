@@ -1,6 +1,7 @@
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.Prodotto;
+import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 import it.vviser.common.CommonMethod;
@@ -67,28 +68,29 @@ public class ConvalidaProdottoServlet extends HttpServlet {
 	 * @param request servlet request
 	 * @param response servlet response
 	 */
-	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
-		
-		String isbn = request.getParameter("isbn");
-		//Recuperato dalla sessione
-
+	private void processRequest(HttpServletRequest request,HttpServletResponse response)
+	{
+		String[] checkProduct=request.getParameterValues("selProd");
 		HttpSession s = request.getSession();
-		String emailUtente=(String)s.getAttribute("sessEmail");
-		try
+		Utente currentUser=(Utente)s.getAttribute("utente");
+		DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
+	
+		for(int i=0;i<checkProduct.length;i++)
 		{
-			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.convalidaProdotto(emailUtente,isbn);
+			try
+			{
+				gp.convalidaProdotto(currentUser.getEmail(),checkProduct[i]);
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
 			
 		}
-		catch (SQLException ex)
-		{
-			ex.printStackTrace();
-		}
-		
+
 		ServletContext sc = getServletContext();
-		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
+		// ridirezione
+		RequestDispatcher rd = sc.getRequestDispatcher("/convalidaProdotto.jsp");
 		try
 		{
 			rd.forward(request,response);
