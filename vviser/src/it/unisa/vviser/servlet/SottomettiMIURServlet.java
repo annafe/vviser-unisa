@@ -2,7 +2,8 @@ package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.storage.DBGestioneProdotto;
-import it.unisa.vviser.storage.DBProdottiValutazione;
+import it.unisa.vviser.entity.Utente;
+import it.unisa.vviser.storage.DBUtente;
 import it.vviser.common.CommonMethod;
 
 import java.io.IOException;
@@ -70,24 +71,26 @@ public class SottomettiMIURServlet extends HttpServlet {
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		String isbn = request.getParameter("isbn");
-		//Recuperato dalla sessione
-
+		String[] checkProduct=request.getParameterValues("selProd");
 		HttpSession s = request.getSession();
-		String emailUtente=(String)s.getAttribute("sessEmail");
+		Utente currentUser=(Utente)s.getAttribute("utente");
+		DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 		
-		try
+		for(int i=0;i<checkProduct.length;i++)
 		{
-			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
-			gp.sottomettiAlMIUR(emailUtente, isbn);
+			try
+			{
+				gp.sottomettiAlMIUR(currentUser.getEmail(),checkProduct[i]);
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
 			
-			ServletContext sc = getServletContext();
-			// ridirezione alla pagina inziale delle gestione prodotto
-			RequestDispatcher rd = sc.getRequestDispatcher("/gpr.jsp");
 		}
-		catch (SQLException ex)
-		{
-			ex.printStackTrace();
-		}
+
+		ServletContext sc = getServletContext();
+		// ridirezione
+		RequestDispatcher rd = sc.getRequestDispatcher("/SottomettiMIUR.jsp");
 	}
 }
