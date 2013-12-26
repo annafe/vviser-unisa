@@ -65,7 +65,7 @@ today is 28 Settembre 2013
 </header>
 <section id="container-section">
 	<section id="menu">
-		<p><a href="./gpr.html">Gestione prodotto</a>
+		<p><a href="./gpr.jsp">Gestione prodotto</a>
 	</section>
 	<section id="prd">
 	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
