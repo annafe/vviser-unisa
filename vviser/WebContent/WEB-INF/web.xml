@@ -28,6 +28,24 @@
         <url-pattern>/ServletVisualizzaProdotti</url-pattern>
     </servlet-mapping>
     
+     <servlet>
+      <servlet-name>ConvalidaProdottoServlet</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ConvalidaProdottoServlet</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>ConvalidaProdottoServlet</servlet-name>
+        <url-pattern>/ConvalidaProdottoServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>SottomettiMIURServlet</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.SottomettiMIURServlet</servlet-class>
+    </servlet>
+	<servlet-mapping>
+        <servlet-name>SottomettiMIURServlet</servlet-name>
+        <url-pattern>/SottomettiMIURServlet</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
       <servlet-name>ServletSelezioneModifica</servlet-name>
       <servlet-class>it.unisa.vviser.servlet.ServletSelezioneModifica</servlet-class>
