@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
-
 <%@ page import="it.unisa.vviser.storage.DBUtente"%>
 <%@ page import="it.unisa.vviser.entity.Utente"%>
 <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
@@ -29,10 +28,13 @@ section#profilo{width:850px;}
 </style>
 </head>
 <body>
+<% 
+/*@include file="../gu/header.jsp" */
+%>
 <header id="container-header">
 	<header id="header-main"></header>
 	<nav>
-		today is 28 Settembre 2013	
+			
 	</nav>
 </header>
 <section id="container-section">
@@ -42,20 +44,11 @@ section#profilo{width:850px;}
 	<section id="search-prod">
 		<a href="main/search_prod.jsp">Gestione Prodotto</a>
 	</section>
-	<!--  
-		<section id="documenti">
-			<a href="main/doc.jsp">Gestione Validazione</a>
-		</section>
-		<section id="notifiche">
-			<a href="./notifiche.html">Notifiche</a>
-		</section>
-		<section id="logout">
-			<a href="../index.html">Logout</a>
-		</section>
-	 -->
+	
 </section>
 
 <section id="profilo">
+
 <table>
 <tr>
 <th>Titolo</th>
@@ -74,7 +67,8 @@ for(int i=0;i<l.size();i++)
 	<tr><td><% l.get(i).getTitolo(); %></td><td><% l.get(i).getDescrizioneContenuti(); %></td><td> <% l.get(i).getStato(); %></td></tr>
 	<%
 }
-%></table>
+%>
+</table>
 </section>
 <footer id="container-footer">
 TEAM EIGHT
