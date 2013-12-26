@@ -840,12 +840,12 @@ public class DBGestioneProdotto
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
 			query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+" WHERE "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+emailUser+"'";
+			st=conn.createStatement();
+    		ris=st.executeQuery(query);
 			
-			st=conn.prepareStatement(query);
-            ris=st.executeQuery(query);
     		while(ris.next())
 			{
-    			System.out.println(ris.getString(DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN));
+    			System.out.println("."+ris.getString(DBNames.ATTR_COLLABORAZIONI_COLLABORATORE)+"   ==>."+emailUser+".");
     			Prodotto pr=this.ricercaProdottoISBN(ris.getString(DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN));
     			listProdotto.add(pr);
 			}
