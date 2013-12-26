@@ -3,6 +3,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 
+<%@ page import="it.unisa.vviser.storage.DBUtente"%>
+<%@ page import="it.unisa.vviser.entity.Utente"%>
 <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
 <%@ page import="it.unisa.vviser.entity.Prodotto"%>
 <%-- 
@@ -61,9 +63,17 @@ section#profilo{width:850px;}
 <th>Stato</th>
 </tr>
 <%
-DBGestioneProdotto q=DBGestioneProdotto.getInstance();
+DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
 
-q.visualizzaProdottiProprietarioCoautore();
+//Utente currentUser = (Utente) session.getAttribute("utente");
+//currentUser.getEmail()
+ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautore("deufemia@unisa.it");
+for(int i=0;i<l.size();i++)
+{
+	%>
+	<tr><td><% l.get(i).getTitolo(); %></td><td><% l.get(i).getDescrizioneContenuti(); %></td><td> <% l.get(i).getStato(); %></td></tr>
+	<%
+}
 %></table>
 </section>
 <footer id="container-footer">
