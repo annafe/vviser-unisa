@@ -7,6 +7,7 @@ import it.vviser.common.CommonMethod;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -72,7 +73,7 @@ public class ModificaProdottoServlet extends HttpServlet {
 		
 		String isbn = request.getParameter("isbn");
 		String titolo = request.getParameter("titolo");
-		String dataPubblicazione = request.getParameter("data");
+		GregorianCalendar dataPubblicazione = CommonMethod.stringToDate(request.getParameter("data"));
 		String formatoPubblicazione = request.getParameter("formato_pub");
 		String codiceDoi = request.getParameter("doi");
 		String diffusione = request.getParameter("diffusione");
