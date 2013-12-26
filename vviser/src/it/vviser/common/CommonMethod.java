@@ -18,7 +18,7 @@ public class CommonMethod {
 		tokens = data.split("-");
 			
 		g[0]=Integer.parseInt(tokens[0]); 
-		g[1]=Integer.parseInt(tokens[1]); 
+		g[1]=Integer.parseInt(tokens[1])-1; 
 		g[2]=Integer.parseInt(tokens[2]);
 			
 		toReturn = new GregorianCalendar(g[0],g[1],g[2]);
@@ -31,6 +31,6 @@ public class CommonMethod {
 	 * @return Data in formato stringa
 	 */
 	public static String dateToString(GregorianCalendar data){
-		return data.get(Calendar.YEAR)+"-"+data.get(Calendar.MONTH)+"-"+data.get(Calendar.DAY_OF_MONTH);
+		return data.get(Calendar.YEAR)+"-"+(data.get(Calendar.MONTH)+1)+"-"+data.get(Calendar.DAY_OF_MONTH);
 	}
 }
