@@ -79,7 +79,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_NUMVOLUME+","
             		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+","
             		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI 
-            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             st=conn.prepareStatement(query);
             st.setString(1,p.getIsbn());
@@ -105,20 +105,25 @@ public class DBGestioneProdotto
    
             st.executeUpdate();
             conn.commit();
-            
-            
-            //Aggiungo un entry nella tabella collaborazioni per ogni utente indicato come coautore
+           //Aggiungo un entry nella tabella collaborazioni per ogni utente indicato come coautore
             StringTokenizer collaboratori = new StringTokenizer(p.getListaCollaboratori(),";");
             
     		while (collaboratori.hasMoreElements())
     		{
+    			 StringTokenizer collaboratori_email = new StringTokenizer(collaboratori.nextToken()," ");
+    	            
     			query="INSERT INTO "+DBNames.TABLE_COLLABORAZIONI+" ("
     					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+","
     					+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+","
     					+DBNames.ATTR_COLLABORAZIONI_PROPRIETARIO+","
     					+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+") values (?,?,?,?)";
     			 st=conn.prepareStatement(query);
-    	         st.setString(1,(String) collaboratori.nextElement());
+    			String nome= (String)collaboratori_email.nextElement();
+
+    			String cognome= (String)collaboratori_email.nextElement();
+
+    			String email= (String)collaboratori_email.nextElement();
+    	         st.setString(1,email);
     	         st.setString(2,p.getIsbn());
     	         st.setString(3,p.getProprietario());
     	         st.setBoolean(4,false);
