@@ -129,7 +129,8 @@ today is 28 Settembre 2013
 				{
 					%>
 					<option><% String utente=l.get(i).getCognome();
-						utente.concat(" "+l.get(i).getNome());
+						utente.concat(" "+l.get(i).getNome()+" ");
+						utente.concat(l.get(i).getEmail());
 						out.print(utente);
 								%>
 					</option>
