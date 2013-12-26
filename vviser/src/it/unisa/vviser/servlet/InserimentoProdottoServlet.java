@@ -91,8 +91,8 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String daPagina = request.getParameter("daPagina");
 		String aPagina = request.getParameter("aPagina");
 		HttpSession session = request.getSession();
-		//Utente currentUser = (Utente) session.getAttribute("utente");
-System.out.println(dataPubblicazione);
+		Utente currentUser = (Utente) session.getAttribute("utente");
+		
 		try
 		{
 			Prodotto prod=new Prodotto();
@@ -119,8 +119,7 @@ System.out.println(dataPubblicazione);
 			prod.setStato("NonValidato");
 			
 			
-			//prod.setProprietario(currentUser.getEmail());
-			prod.setProprietario("deufemia@unisa.it");
+			prod.setProprietario(currentUser.getEmail());
 			prod.setFormatoPubblicazione(formatoPubblicazione);
 			prod.setTotalePagine(Integer.parseInt(totalePagine));
 			this.gprodotto.insertProdotto(prod);
@@ -129,7 +128,6 @@ System.out.println(dataPubblicazione);
 		{
 			ex.printStackTrace();
 		}
-		System.out.println("ok ");
 	/*
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti i prodotti

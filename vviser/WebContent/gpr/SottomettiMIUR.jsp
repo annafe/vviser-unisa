@@ -25,6 +25,7 @@ section#search-prod{width:150px;left:190px;height:80px;top:30px;}
 section#documenti{width:150px;left:350px;height:80px;top:30px;}
 section#logout{position:absolute;width:150px;left:670px;height:80px;top:30px;background-color:blue;}
 section#profilo{width:850px;color:tomato;}
+table{color:tomato;}
 </style>
 <script type="text/javascript">
 function controlla()
@@ -55,13 +56,13 @@ function controlla()
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="../gpr/gpr.html">Gestione Prodotto</a>
+		<a href="../gpr/gpr.jsp">Gestione Prodotto</a>
 	</section>
 	
 </section>
 
 <section id="profilo">
-<form method="post" action="/SottomettiMIURServlet" name="modulo" onsubmit="return controlla();">
+<form method="post" action="../SottomettiMIURServlet" name="modulo" onsubmit="return controlla();">
 <table>
 <tr>
 <th>&nbsp;</th>
