@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet{
 					return;
 				}
 				else{
-					request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+					request.getServletContext().getRequestDispatcher("/gpr/ituoiprodotti.jsp").forward(request, response);
 					return;
 				}
 			}
