@@ -72,14 +72,15 @@ public class ConvalidaProdottoServlet extends HttpServlet {
 	{
 		String[] checkProduct=request.getParameterValues("selProd");
 		HttpSession s = request.getSession();
-		Utente currentUser=(Utente)s.getAttribute("utente");
+		//Utente currentUser=(Utente)s.getAttribute("utente");
 		DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 	
 		for(int i=0;i<checkProduct.length;i++)
 		{
 			try
 			{
-				gp.convalidaProdotto(currentUser.getEmail(),checkProduct[i]);
+				//gp.convalidaProdotto(currentUser.getEmail(),checkProduct[i]);
+				gp.convalidaProdotto("adinolfi@unisa.it",checkProduct[i]);
 			}
 			catch (SQLException e)
 			{
@@ -87,7 +88,7 @@ public class ConvalidaProdottoServlet extends HttpServlet {
 			}
 			
 		}
-
+/*
 		ServletContext sc = getServletContext();
 		// ridirezione
 		RequestDispatcher rd = sc.getRequestDispatcher("/convalidaProdotto.jsp");
@@ -103,5 +104,6 @@ public class ConvalidaProdottoServlet extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
+		*/
 	}
 }

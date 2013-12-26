@@ -92,5 +92,17 @@ public class SottomettiMIURServlet extends HttpServlet {
 		ServletContext sc = getServletContext();
 		// ridirezione
 		RequestDispatcher rd = sc.getRequestDispatcher("../SottomettiMIUR.jsp");
+		try
+		{
+			rd.forward(request,response);
+		}
+		catch (ServletException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

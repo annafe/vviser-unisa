@@ -25,6 +25,7 @@ section#search-prod{width:150px;left:190px;height:80px;top:30px;}
 section#documenti{width:150px;left:350px;height:80px;top:30px;}
 section#logout{position:absolute;width:150px;left:670px;height:80px;top:30px;background-color:blue;}
 section#profilo{width:850px;}
+table{color:tomato;}
 </style>
 <script type="text/javascript">
 function controlla()
@@ -71,9 +72,9 @@ function controlla()
 </tr>
 <%
 DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
-Utente currentUser = (Utente) session.getAttribute("utente");
-ArrayList<Prodotto> list=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato(currentUser.getEmail());
-ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautore(currentUser.getEmail());
+//Utente currentUser = (Utente) session.getAttribute("utente");
+//currentUser.getEmail();
+ArrayList<Prodotto> l=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato("adinofi@unisa.it");
 for(int i=0;i<l.size();i++)
 {
 	%>
