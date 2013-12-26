@@ -1,6 +1,9 @@
 <%@ page import="java.lang.ProcessBuilder.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%-- 
+    Author: Antonio De Piano
+--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -99,7 +102,7 @@ section#pro-utente{
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="../gpr/insert.html">Inserisci Prodotto</a>
+		<a href="../gpr/insert.jsp">Inserisci Prodotto</a>
   </section>
 	<section id="search-prod">
 		<a href="main/search.html">Ricerca Prodotto</a>
@@ -108,13 +111,13 @@ section#pro-utente{
 		<a href="main/my_prod.html">I tuoi prodotti</a>
 	</section>
 	<section id="notifiche">
-		<a href="./sottometti_miur.html">Sottometti al MIUR</a>
+		<a href="./sottometti_miur.jsp">Sottometti al MIUR</a>
 	</section>
 	<section id="elimina-prod">
 		<a href="./delete.html">Elimina prodotto</a>
 	</section>
 	<section id="convalida">
-		<a href="./convalida.html">Convalida prodotto</a>
+		<a href="./convalida.jsp">Convalida prodotto</a>
 	</section>
 	<section id="pro-utente">
 		<a href="../gu/gu.html">Profilo utente</a>
