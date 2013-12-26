@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.util.List;
-import it.unisa.vviser.entity.Utente;
-import it.unisa.vviser.storage.DBUtente;
+
+import it.unisa.vviser.entity.*;
+import it.unisa.vviser.storage.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
