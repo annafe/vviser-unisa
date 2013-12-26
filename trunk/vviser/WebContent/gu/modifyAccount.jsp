@@ -18,7 +18,7 @@
 <title>Modifica Account</title>
 </head>
 <body>
- <%@include file="/gu/header.jsp" %>
+ <%//@include file="/gu/header.jsp" %>
  
  <script type="text/javascript">
  	function checkSubmit(){ 		
