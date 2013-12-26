@@ -38,11 +38,7 @@ p>a:active {color:yellowgreen;
 <script type="text/javascript">
 function controlla()
 {
-	document.modulo.isbn
-}
-function controlla()
-{
-	var f = document.modulo;
+	/*var f = document.modulo;
 	if(((f.isbn.value == "" || f.titolo.value=="")|| f.data.value=="" ) || f.tipologia.value=="")
 	{
 		alert("Attenzione\n alcuni campi non sono stati compilati")
@@ -50,6 +46,8 @@ function controlla()
 		return false;
 	}
 	return true;
+*/
+return true;
 }
 </script>
 </head>
@@ -83,8 +81,8 @@ today is 28 Settembre 2013
 				<td><input type="text" name="titolo" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Anno pubblicazione*</td>
-				<td><input type="text" name="data" size="20" class="testo"></td>
+				<td>Data Pubblicazione*</td>
+				<td><input type="date" name="data" class="testo"/></td>
 			</tr>
 			<tr>
 				<td>Formato Pubblicazione</td>

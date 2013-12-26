@@ -1,6 +1,7 @@
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.Prodotto;
+import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 import it.vviser.common.CommonMethod;
@@ -67,18 +68,18 @@ public class InserimentoProdottoServlet extends HttpServlet {
 	 * @param request servlet request
 	 * @param response servlet response
 	 */
-	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+	private void processRequest(HttpServletRequest request,HttpServletResponse response)
+	{
 		String isbn = request.getParameter("isbn");
 		String titolo = request.getParameter("titolo");
 		String dataPubblicazione = request.getParameter("data");
+		
 		String formatoPubblicazione = request.getParameter("formato_pub");
 		String codiceDoi = request.getParameter("doi");
 		String diffusione = request.getParameter("diffusione");
 		String tipologia = request.getParameter("tipologia");
 		String note = request.getParameter("note");
-		String collaboratori = request.getParameter("collaboratori");
+		String collaboratori[] = request.getParameterValues("collaboratori");
 		String descrizione = request.getParameter("descrizione");
 
 		String indirizzoweb = request.getParameter("indirizzoweb");
@@ -89,10 +90,9 @@ public class InserimentoProdottoServlet extends HttpServlet {
 
 		String daPagina = request.getParameter("daPagina");
 		String aPagina = request.getParameter("aPagina");
-		HttpSession s = request.getSession();
-		String emailUtente=(String)s.getAttribute("sessEmail");
-		//recupero l'email utente settato nella sessione
-		
+		HttpSession session = request.getSession();
+		//Utente currentUser = (Utente) session.getAttribute("utente");
+System.out.println(dataPubblicazione);
 		try
 		{
 			Prodotto prod=new Prodotto();
@@ -109,12 +109,18 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			prod.setTitolo(titolo);
 			prod.setEditore(editore);
 			prod.setDiffusione(diffusione);
-			prod.setListaCollaboratori(collaboratori);
+			for(int i=0;i<collaboratori.length;i++)
+			{
+				prod.setListaCollaboratori(collaboratori[i]);
+			}
 			prod.setNumVolume(Integer.parseInt(num_volume));
 			prod.setParoleChiavi(key);
 			prod.setNote(note);
 			prod.setStato("NonValidato");
-			prod.setProprietario(emailUtente);
+			
+			
+			//prod.setProprietario(currentUser.getEmail());
+			prod.setProprietario("deufemia@unisa.it");
 			prod.setFormatoPubblicazione(formatoPubblicazione);
 			prod.setTotalePagine(Integer.parseInt(totalePagine));
 			this.gprodotto.insertProdotto(prod);
@@ -123,11 +129,11 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		{
 			ex.printStackTrace();
 		}
-		
-	
+		System.out.println("ok ");
+	/*
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("../ituoiprodotti.jsp");
 		try
 		{
 			rd.forward(request,response);
@@ -140,5 +146,6 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
+		*/
 	}
 }
