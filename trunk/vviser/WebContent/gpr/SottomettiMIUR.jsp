@@ -11,7 +11,7 @@
 --%>
 <html>
 <head>
-    <title>VViSeR-MIUR</title>
+    <title>VViSeR</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
@@ -57,14 +57,13 @@ section#profilo{width:850px;}
 </tr>
 <%
 DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
-
 //Utente currentUser = (Utente) session.getAttribute("utente");
 //currentUser.getEmail()
 ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautore("deufemia@unisa.it");
 for(int i=0;i<l.size();i++)
 {
 	%>
-	<tr><td><% l.get(i).getTitolo(); %></td><td><% l.get(i).getDescrizioneContenuti(); %></td><td> <% l.get(i).getStato(); %></td></tr>
+	<tr><td><% out.print(l.get(i).getTitolo()); %></td><td><% out.print(l.get(i).getDescrizioneContenuti()); %></td><td> <% out.print(l.get(i).getStato()); %></td></tr>
 	<%
 }
 %>
