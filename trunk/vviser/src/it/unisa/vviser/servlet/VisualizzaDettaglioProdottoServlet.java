@@ -75,7 +75,7 @@ public class VisualizzaDettaglioProdottoServlet extends HttpServlet
 			PrintWriter out = response.getWriter();
 			
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/dettaglioprodotto.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gpr/VisualizzaDettaglioProdotto.jsp");
 			rd.forward(request,response);
 		
 		}
