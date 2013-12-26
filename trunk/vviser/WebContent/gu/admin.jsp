@@ -27,7 +27,7 @@
  		}
  	}
  </script>
- <h1>ADMIN PAGE</h1>
+ <h1>ADMIN PAGE GESTIONE UTENTI</h1>
  <table border=1>
  	<tr><th>COGNOME</th><th>NOME</th><th>EMAIL</th><th>DIPARTIMENTO</th><th>TIPOLOGIA</th></tr>
 		<% 	
