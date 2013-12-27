@@ -4,7 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
+<%@ page import="it.unisa.vviser.storage.DBTipologie"%>
 <%@ page import="it.unisa.vviser.entity.Prodotto"%>
+<%@ page import="it.unisa.vviser.entity.Tipologia"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.logging.Logger"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -71,8 +73,22 @@
 			<table border=1>
 				<tr><th align="right">Titolo*:</th><td><input id="titolo" type="text" maxlength="50" name="titolo" value="<%out.print(product.getTitolo());%>"/></td></tr>
 				<tr><th align="right">Autore*:</th><td><%out.print(product.getProprietario()); %></td></tr>
-				<tr><th align="right">Anno di pubblicazione*:</th><td><input id="data" type="text" name="data" value="<%out.print(CommonMethod.dateToString(product.getAnnoPubblicazione()));%>"/></td></tr>
-				<tr><th align="right">Tipologia*:</th><td><input id="tipologia" type="text" name="tipologia" value="<%out.print(product.getTipologia());%>"/></td></tr>				
+				<tr><th align="right">Anno di pubblicazione*:</th><td><input id="data" type="text" name="data" value="<%out.print(CommonMethod.dateToString(product.getAnnoPubblicazione()));%>"/></td></tr>		
+				<tr><th align="right">Tipologia*:</th><td>
+					<select id="tipologia" name="tipologia">
+						<option value="<%out.print(product.getTipologia()); %>"><%out.print(product.getTipologia()); %></option>
+						<%String toNotAdd = product.getTipologia(); %>
+						<%//get tipologie from database
+						DBTipologie dbT = new DBTipologie();
+						ArrayList<Tipologia> lista = new ArrayList<Tipologia>();
+						lista = dbT.getTipologie();
+						for (int i=0; i<lista.size(); i++){
+							if (!(lista.get(i).getNome().equalsIgnoreCase(toNotAdd)))
+								%><option value="<%out.print(lista.get(i).getNome());%>"><%out.print(lista.get(i).getNome());%></option><%
+						}
+						%>
+					</select>
+				</td></tr>	
 				<tr><th align="right">Formato:</th><td><input type="text" name="formato_pub" maxlength="10" value="<%out.print(product.getFormatoPubblicazione());%>"/></td></tr>
 				<tr><th align="right">Collaboratori:</th><td><textarea name="collaboratori" maxlength="100" rows="4" cols="25"><%out.print(product.getListaCollaboratori());%></textarea></td></tr>
 				<tr><th align="right">Da pagina:</th><td><input type="text" name="daPagina" value="<%out.print(product.getDaPagina());%>"/></td></tr>
@@ -93,8 +109,7 @@
 									<td><input type="button" onclick="checkSubmit()" value="Modifica"/></form></td>
 									<td><form action="/vviser/gpr/ituoiprodotti.jsp" method="POST"><input type="submit" value="Annulla"/></form></td>
 								</tr>
-							</table>				
-							
+							</table>	
 						</td></tr>
 			</table>
 		</fieldset>
