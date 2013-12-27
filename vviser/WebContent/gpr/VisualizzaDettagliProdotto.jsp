@@ -31,7 +31,7 @@
 <tr><th>FORMATO</th><td><%out.print(prodotto.getFormatoPubblicazione()); %></td></tr>
 <tr><th>DOI</th><td><%out.print(prodotto.getCodiceDOI()); %></td></tr>
 <tr><th>DIFFUSIONE</th><td><%out.print(prodotto.getDiffusione()); %></td></tr>
-<tr><th>Collaboratori</th><td><%out.print(prodotto.getListaCollaboratori()); %></td></tr>
+<tr><th>COLLABORATORI</th><td><%out.print(prodotto.getListaCollaboratori()); %></td></tr>
 <tr><th>DESCRIZIONE</th><td><%out.print(prodotto.getDescrizioneContenuti()); %></td></tr>
 <tr><th>INDIRIZZO WEB</th><td><%out.print(prodotto.getIndirizzoWeb()); %></td></tr>
 <tr><th>PAROLE CHIAVE</th><td><%out.print(prodotto.getParoleChiavi()); %></td></tr>
