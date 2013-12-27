@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
 import it.unisa.vviser.entity.Prodotto;
@@ -17,6 +18,7 @@ import it.vviser.common.CommonMethod;
  * 
  * @author Angiuoli Salvatore
  * @author Antonio De Piano
+ * @author Romano Simone 0512101343
  *
  */
 public class DBGestioneProdotto
@@ -79,7 +81,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_NUMVOLUME+","
             		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+","
             		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI 
-            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             st=conn.prepareStatement(query);
             st.setString(1,p.getIsbn());
@@ -105,25 +107,20 @@ public class DBGestioneProdotto
    
             st.executeUpdate();
             conn.commit();
-           //Aggiungo un entry nella tabella collaborazioni per ogni utente indicato come coautore
+            
+            
+            //Aggiungo un entry nella tabella collaborazioni per ogni utente indicato come coautore
             StringTokenizer collaboratori = new StringTokenizer(p.getListaCollaboratori(),";");
             
     		while (collaboratori.hasMoreElements())
     		{
-    			 StringTokenizer collaboratori_email = new StringTokenizer(collaboratori.nextToken()," ");
-    	            
     			query="INSERT INTO "+DBNames.TABLE_COLLABORAZIONI+" ("
     					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+","
     					+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+","
     					+DBNames.ATTR_COLLABORAZIONI_PROPRIETARIO+","
     					+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+") values (?,?,?,?)";
     			 st=conn.prepareStatement(query);
-    			String nome= (String)collaboratori_email.nextElement();
-
-    			String cognome= (String)collaboratori_email.nextElement();
-
-    			String email= (String)collaboratori_email.nextElement();
-    	         st.setString(1,email);
+    	         st.setString(1,(String) collaboratori.nextElement());
     	         st.setString(2,p.getIsbn());
     	         st.setString(3,p.getProprietario());
     	         st.setBoolean(4,false);
@@ -823,6 +820,59 @@ public class DBGestioneProdotto
 		}
 	}
 
+	/**Dati titolo, proprietario, anno e tipologia, restituisce
+	 * il prodotto relativo o "null" se il prodotto non è presente nel DataBase.
+	 * @author Romano Simone 0512101343
+	 * @param titolo
+	 * @param proprietario
+	 * @param anno
+	 * @param tipologia
+	 * @return
+	 * @throws SQLException
+	 */
+	public Prodotto ricercaProdottoPerTitoloProprietarioAnnoTipologia(String titolo,String proprietario, GregorianCalendar anno, String tipologia)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			Prodotto toReturn = null;
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_TITOLO+"='"+titolo+"' AND "+
+            		DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"'"+proprietario+"' AND "+
+            		DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"'"+CommonMethod.dateToString(anno)+"' AND "+
+            		DBNames.ATTR_PRODOTTO_TIPOLOGIA+"'"+tipologia+"';";
+            
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			toReturn = new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				return toReturn;
+			}
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+		return null;
+	}
 	/**
 	 * Metodo che ricerca nel catalogo pubblico tutti i prodotti dove sono stato indicato come coautore
 	 * e non ho ancora convalidato
