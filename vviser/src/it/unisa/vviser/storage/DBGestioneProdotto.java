@@ -827,7 +827,7 @@ public class DBGestioneProdotto
 	 * @param proprietario
 	 * @param anno
 	 * @param tipologia
-	 * @return
+	 * @return product or null
 	 * @throws SQLException
 	 */
 	public Prodotto ricercaProdottoPerTitoloProprietarioAnnoTipologia(String titolo,String proprietario, GregorianCalendar anno, String tipologia)throws SQLException
