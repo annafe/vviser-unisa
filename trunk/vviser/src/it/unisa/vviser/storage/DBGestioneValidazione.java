@@ -62,6 +62,7 @@ public class DBGestioneValidazione {
 					+ " FROM " +DBNames.TABLE_PRODOTTO
 					+ " WHERE "+DBNames.ATTR_PRODOTTO_STATO+"=NonValidato"
 					+"' AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_EMAIL+"='"+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
+					+"' AND "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_BOZZA+"=0"
 					+"' AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"='INFORMATICA"+"'";
 			
             st=conn.createStatement();
@@ -127,6 +128,7 @@ public class DBGestioneValidazione {
 					+ " FROM " +DBNames.TABLE_PRODOTTO
 					+ " WHERE "+DBNames.ATTR_PRODOTTO_STATO+"=ValidatoDipartimento"
 					+"' AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_EMAIL+"='"+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
+					+"' AND "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_BOZZA+"=0"
 					+"' AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"='INFORMATICA"+"'";
 			
             st=conn.createStatement();
