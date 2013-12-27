@@ -1,4 +1,5 @@
 <!-- ROMANO SIMONE -->
+<%@page import="it.vviser.common.CommonMethod"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
@@ -38,13 +39,20 @@
 				%><tr><td><%out.println(l.get(i).getTitolo());%></td>
 				<td><!-- form dettagli -->
 					<form action="/vviser/VisualizzaDettaglioProdottoServlet" method="POST">
+						<!-- la servlet prende l'isbn e, dopo aver recuperato il prodotto
+							reindirizza sulla pagina di dettagli -->
 						<input type="hidden" name="isbn" value="<%out.print(l.get(i).getIsbn());%>"/>
 						<input type="submit" value="Dettagli"/>
 					</form>				
 				</td>
 				<td><!-- form modifica -->
-					<form action="/vviser/gpr/ModificaProdotto.jsp" method="POST">		
-						<input type="hidden" name="daModificare" value="<%out.print(l.get(i).getIsbn());%>"/>			
+					<form action="/vviser/gpr/ModificaProdotto.jsp" method="POST">	
+						<!-- value contiene i campi obbligatori di "prodotto"(dovrebbe essere simile
+							per modifica -->	
+						<input type="hidden" name="titolo" value="<%out.print(l.get(i).getTitolo());%>"/>	
+						<input type="hidden" name="proprietario" value="<%out.print(l.get(i).getProprietario());%>"/>	
+						<input type="hidden" name="annoDiPubblicazione" value="<%out.print(CommonMethod.dateToString(l.get(i).getAnnoPubblicazione()));%>"/>
+						<input type="hidden" name="tipologia" value="<%out.print(l.get(i).getTipologia());%>"/>			
 						<input type="submit" value="Modifica"/>
 					</form>
 				</td>
