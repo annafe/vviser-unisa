@@ -20,7 +20,8 @@
 		top:94px;
 	}
 	
-	fieldset{
+	#searchBox{
+		position:absolute;
 		 width: 520px;
 	}
 	
@@ -40,7 +41,8 @@
 
 </head>
 <body>
-	<form action="/vviser/RicercaPubblicaProdottoServlet" method="POST">
+	<div id="searchBox">
+	<form action="/vviser/RicercaPubblicaProdottoServlet" method="POST" id="searchForm">
 		<fieldset>
 				<legend>Selezionare i parametri di ricerca</legend>
 				<input type="radio" name="tipo_ricerca" value="tipologia" onchange="show(this)">Tipologia<br>
@@ -106,6 +108,7 @@
 				</div>
 			</fieldset>
 	</form>
+	</div>
 	<script type="text/javascript">
 	radio=document.getElementsByName("tipo_ricerca");
 	for(i=0; i<radio.length;i++)
