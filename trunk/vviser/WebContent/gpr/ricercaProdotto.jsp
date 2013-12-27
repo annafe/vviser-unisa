@@ -16,9 +16,14 @@
 	.criterio{
 		display:none;
 		position:absolute;
-		left:264px;
+		left:200px;
 		top:94px;
 	}
+	
+	fieldset{
+		 width: 520px;
+	}
+	
 </style>
 
 <script type="text/javascript">
@@ -37,73 +42,69 @@
 <body>
 	<form action="/vviser/RicercaPubblicaProdottoServlet" method="POST">
 		<fieldset>
-			<legend>Selezionare i parametri di ricerca</legend>
-			<div>
-				<fieldset style="width:200px;">
-					<legend>Criterio di ricerca</legend>
-					<input type="radio" name="tipo_ricerca" value="tipologia" onchange="show(this)">Tipologia<br>
-					<input type="radio" name="tipo_ricerca" value="titolo_prodotto" onchange="show(this)">Titolo prodotto<br>
-		    		<input type="radio" name="tipo_ricerca" value="titolo_rivista" onchange="show(this)">Titolo rivista<br>
-		    		<input type="radio" name="tipo_ricerca" value="issn_rivista" onchange="show(this)">ISSN rivista<br>
-		    		<input type="radio" name="tipo_ricerca" value="anni" onchange="show(this)">Periodo<br>
-				</fieldset>
-			</div>
-			<div class="criterio" id="tipologia">
-				<label for="tipologia" >Tipologia</label>
-				<select name="tipologia" id="tipologia">
-	    			<% 
-	    				DBTipologie dbt = new DBTipologie();
-						List<Tipologia> list = dbt.getTipologie();
-						for(Tipologia t : list)
-							out.println("<option value=\""+t.getNome()+"\">"+t.getNome()+"</option>");
-	    				
-	    			%>
-	    		</select>	
-	    		<input type="submit"/>
-			</div>
-			<div class="criterio" id="anni">			
-				<label for="da">Anno dal</label>
-				<select name="da">
-	    			<%
-	    				Calendar c = Calendar.getInstance();
-						int year = c.get(Calendar.YEAR);
-	    				for(int i=0;i<30;i++){ 
-	    					out.println("<option value=\""+year+"\">"+year+"</option>");
-	    					year--;
-	    				}
-	    			%>
-				</select>
-				
-				<label for="a">Anno al</label>
-				<select name="a">
-	    			<%
-	    				c = Calendar.getInstance();
-						year = c.get(Calendar.YEAR);
-	    				for(int i=0;i<30;i++){ 
-	    					out.println("<option value=\""+year+"\">"+year+"</option>");
-	    					year--;
-	    				}
-	    			%>
-				</select>
-				<input type="submit"/>
-			</div>	
+				<legend>Selezionare i parametri di ricerca</legend>
+				<input type="radio" name="tipo_ricerca" value="tipologia" onchange="show(this)">Tipologia<br>
+				<input type="radio" name="tipo_ricerca" value="titolo_prodotto" onchange="show(this)">Titolo prodotto<br>
+		    	<input type="radio" name="tipo_ricerca" value="titolo_rivista" onchange="show(this)">Titolo rivista<br>
+		    	<input type="radio" name="tipo_ricerca" value="issn_rivista" onchange="show(this)">ISSN rivista<br>
+		    	<input type="radio" name="tipo_ricerca" value="anni" onchange="show(this)">Periodo<br>
 			
-			<div class="criterio" id="titolo_prodotto">
-				<label for="titolo_prodotto">Titolo</label>
-				<input type="text" name="titolo_prodotto" placeholder="Titolo prodotto"/>
-				<input type="submit"/>
-			</div>
-			<div class="criterio" id="titolo_rivista">
-				<label for="titolo_rivista">Titolo Rivista</label>
-				<input type="text" name="titolo_rivista" placeholder="Titolo rivista"/>
-				<input type="submit"/>
-			</div>
-			<div class="criterio" id="issn_rivista">
-				<label for="issn_rivista">ISSN rivista</label>
-				<input type="text" name="issn_rivista" placeholder="ISSN rivista"/>
-				<input type="submit"/>
-			</div>
-		</fieldset>
+				<div class="criterio" id="tipologia">
+					<label for="tipologia" >Tipologia</label>
+					<select name="tipologia" id="tipologia">
+			    		<% 
+			    			DBTipologie dbt = new DBTipologie();
+							List<Tipologia> list = dbt.getTipologie();
+							for(Tipologia t : list)
+								out.println("<option value=\""+t.getNome()+"\">"+t.getNome()+"</option>");
+			    			
+			    		%>
+			    	</select>	
+			    	<input type="submit"/>
+				</div>
+				<div class="criterio" id="anni">			
+					<label for="da">Anno dal</label>
+					<select name="da">
+			    		<%
+			    			Calendar c = Calendar.getInstance();
+							int year = c.get(Calendar.YEAR);
+			    			for(int i=0;i<30;i++){ 
+			    				out.println("<option value=\""+year+"\">"+year+"</option>");
+			    				year--;
+			    			}
+			    		%>
+					</select>
+					
+					<label for="a">Anno al</label>
+					<select name="a">
+		    			<%
+		    				c = Calendar.getInstance();
+							year = c.get(Calendar.YEAR);
+		    				for(int i=0;i<30;i++){ 
+		    					out.println("<option value=\""+year+"\">"+year+"</option>");
+		    					year--;
+		    				}
+		    			%>
+					</select>
+					<input type="submit"/>
+				</div>	
+					
+				<div class="criterio" id="titolo_prodotto">
+					<label for="titolo_prodotto">Titolo</label>
+					<input type="text" name="titolo_prodotto" placeholder="Titolo prodotto"/>
+					<input type="submit"/>
+				</div>
+				<div class="criterio" id="titolo_rivista">
+					<label for="titolo_rivista">Titolo Rivista</label>
+					<input type="text" name="titolo_rivista" placeholder="Titolo rivista"/>
+					<input type="submit"/>
+				</div>
+				<div class="criterio" id="issn_rivista">
+					<label for="issn_rivista">ISSN rivista</label>
+					<input type="text" name="issn_rivista" placeholder="ISSN rivista"/>
+					<input type="submit"/>
+				</div>
+			</fieldset>
 	</form>
 	<script type="text/javascript">
 	radio=document.getElementsByName("tipo_ricerca");
