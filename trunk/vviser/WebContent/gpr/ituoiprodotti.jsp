@@ -20,7 +20,7 @@
  <script type="text/javascript">
  	function elimina(input){
  		form = input.parentNode;
- 		var r=confirm("Vuoi eliminare l'utente?");
+ 		var r=confirm("Vuoi eliminare il prodotto?");
  		if (r==true){
  			form.submit();
  		}
