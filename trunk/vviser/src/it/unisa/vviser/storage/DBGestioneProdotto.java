@@ -830,7 +830,7 @@ public class DBGestioneProdotto
 	 * @return product or null
 	 * @throws SQLException
 	 */
-	public Prodotto ricercaProdottoPerTitoloProprietarioAnnoTipologia(String titolo,String proprietario, GregorianCalendar anno, String tipologia)throws SQLException
+	public Prodotto ricercaProdottoPerTitoloProprietarioAnnoTipologia(String titolo,String proprietario, String anno, String tipologia)throws SQLException
 	{
 		Statement st=null;
 		ResultSet ris=null;
@@ -844,9 +844,9 @@ public class DBGestioneProdotto
 			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
             		" WHERE "+DBNames.ATTR_PRODOTTO_TITOLO+"='"+titolo+"' AND "+
-            		DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"'"+proprietario+"' AND "+
-            		DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"'"+CommonMethod.dateToString(anno)+"' AND "+
-            		DBNames.ATTR_PRODOTTO_TIPOLOGIA+"'"+tipologia+"';";
+            		DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+proprietario+"' AND "+
+            		DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"='"+anno+"' AND "+
+            		DBNames.ATTR_PRODOTTO_TIPOLOGIA+"='"+tipologia+"'";
             
             st=conn.createStatement();
     		ris=st.executeQuery(query);
