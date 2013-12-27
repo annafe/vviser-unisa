@@ -260,7 +260,7 @@ public class DBGestioneProdotto
 			conn = DBConnectionPool.getConnection();
 			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
-            		" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
+            		" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"='"+isbn+"'";
             
             st=conn.createStatement();
     		ris=st.executeQuery(query);
