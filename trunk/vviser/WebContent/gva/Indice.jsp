@@ -12,8 +12,7 @@
 <body>
 <%
 //setto la sessione(provvisorio per provare)
-//in realtà l'email si deve recuperare dalla 
-//sessione settata con il login
+
 	HttpSession sessione = request.getSession();
 	
 	
