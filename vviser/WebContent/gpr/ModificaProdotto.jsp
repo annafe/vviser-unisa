@@ -70,7 +70,7 @@
 	<form id="formModifica" action="/vviser/ModificaProdottoServlet" method="POST">
 		<fieldset style="float: left;">
 		<legend>Modifica prodotto</legend>
-			<table border=1>
+			<table border=0>
 				<tr><th align="right">Titolo*:</th><td><input id="titolo" type="text" maxlength="50" name="titolo" value="<%out.print(product.getTitolo());%>"/></td></tr>
 				<tr><th align="right">Autore*:</th><td><%out.print(product.getProprietario()); %></td></tr>
 				<tr><th align="right">Anno di pubblicazione*:</th><td><input id="data" type="text" name="data" value="<%out.print(CommonMethod.dateToString(product.getAnnoPubblicazione()));%>"/></td></tr>		
