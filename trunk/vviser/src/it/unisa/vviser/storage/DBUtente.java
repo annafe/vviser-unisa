@@ -169,7 +169,7 @@ public class DBUtente {
 		
 		u.setDataDiNascita(dn);
 		String nuovaData = dn.get(Calendar.YEAR)+"-"
-							+dn.get(Calendar.MONTH)+"-"
+							+(dn.get(Calendar.MONTH)+1)+"-"
 							+dn.get(Calendar.DAY_OF_MONTH);
 		query = "UPDATE "+DBNames.TABLE_UTENTE+" "
 					+" SET "+DBNames.ATTR_UTENTE_DATADINASCITA+"='"+nuovaData+"'"
