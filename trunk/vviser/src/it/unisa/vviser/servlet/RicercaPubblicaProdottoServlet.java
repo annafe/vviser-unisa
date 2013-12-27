@@ -6,8 +6,10 @@ import it.unisa.vviser.storage.DBProdottiValutazione;
 import it.vviser.common.CommonMethod;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -65,38 +67,46 @@ public class RicercaPubblicaProdottoServlet extends HttpServlet {
 	/**
 	 * Sottomette un prodotto al MIUR
 	 * @param request servlet request
-	 * @param response servlet response
+	 * @param response servlet response 
+	 * @throws ServletException 
+	 * @throws IOException 
 	 */
 	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setContentType("text/html");
 		String tipo_ricerca = request.getParameter("tipo_ricerca");
 		
 		try
 		{
 			DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
+			ArrayList<Prodotto> pr = new ArrayList<Prodotto>();
+			
 			if(tipo_ricerca.equals("tipologia"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTipologia(request.getParameter("tipologia"));
-				
+				pr=gp.ricercaProdottoPerTipologia(request.getParameter("tipologia"));
 			}
 			
 			if(tipo_ricerca.equals("titolo_prodotto"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo_prodotto"));
+				pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo_prodotto"));
 			}
 			if(tipo_ricerca.equals("titolo_rivista"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo_rivista"));
+				pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo_rivista"));
 			}
 			if(tipo_ricerca.equals("issn_rivista"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerIssnRivista(request.getParameter("issn_rivista"));
+				pr=gp.ricercaProdottoPerIssnRivista(request.getParameter("issn_rivista"));
 			}
 			if(tipo_ricerca.equals("anni"))
 			{
-				ArrayList<Prodotto> pr=gp.ricercaProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")));
+				pr=gp.ricercaProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")));
 			}
+			
+			request.setAttribute("results", pr);
+			request.getServletContext().getRequestDispatcher("/gpr/risultatiRicerca.jsp").forward(request, response);
+			
 			
 		}
 		catch (SQLException ex)
