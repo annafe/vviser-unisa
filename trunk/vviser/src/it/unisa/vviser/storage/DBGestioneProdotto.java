@@ -172,28 +172,30 @@ public class DBGestioneProdotto
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
+		int bozza = 0;
+		if(p.getBozza())	bozza=1;
 		try
 		{
 			conn=DBConnectionPool.getConnection();
-			query="UPDATE "+DBNames.TABLE_PRODOTTO+" SET "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"="+p.getAnnoPubblicazione()+","
-					+DBNames.ATTR_PRODOTTO_TITOLO+"="+p.getTitolo()+","
-            		+DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE+"="+p.getFormatoPubblicazione()+","
-            		+DBNames.ATTR_PRODOTTO_CODICEDOI+"="+p.getCodiceDOI()+","
-            		+DBNames.ATTR_PRODOTTO_DIFFUSIONE+"="+p.getDiffusione()+","
-            		+DBNames.ATTR_PRODOTTO_NOTE+"="+p.getNote()+","
-            		+DBNames.ATTR_PRODOTTO_STATO+"="+p.getStato()+","
-            		+DBNames.ATTR_PRODOTTO_BOZZA+"="+p.getBozza()+","
-            		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+p.getTipologia()+","
-            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+p.getProprietario()+","
-            		+DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI+"="+p.getListaCollaboratori()+","
-            		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI+"="+p.getDescrizioneContenuti()+","
-            		+DBNames.ATTR_PRODOTTO_INDIRIZZOWEB+"="+p.getIndirizzoWeb()+","
-            		+DBNames.ATTR_PRODOTTO_PAROLECHIAVI+"="+p.getParoleChiavi()+","
-            		+DBNames.ATTR_PRODOTTO_EDITORE+"="+p.getEditore()+","
-            		+DBNames.ATTR_PRODOTTO_NUMVOLUME+"="+p.getNumVolume()+","
-            		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+"="+p.getTotalePagine()+","
-            		+DBNames.ATTR_PRODOTTO_DAPAGINA+"="+p.getDaPagina()+","
-            		+DBNames.ATTR_PRODOTTO_APAGINA+"="+p.getApagina()+" "
+			query="UPDATE "+DBNames.TABLE_PRODOTTO+" SET "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"='"+CommonMethod.dateToString(p.getAnnoPubblicazione())+"',"
+					+DBNames.ATTR_PRODOTTO_TITOLO+"='"+p.getTitolo()+"',"
+            		+DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE+"='"+p.getFormatoPubblicazione()+"',"
+            		+DBNames.ATTR_PRODOTTO_CODICEDOI+"='"+p.getCodiceDOI()+"',"
+            		+DBNames.ATTR_PRODOTTO_DIFFUSIONE+"='"+p.getDiffusione()+"',"
+            		+DBNames.ATTR_PRODOTTO_NOTE+"='"+p.getNote()+"',"
+            		+DBNames.ATTR_PRODOTTO_STATO+"='"+p.getStato()+"',"
+            		+DBNames.ATTR_PRODOTTO_BOZZA+"='"+bozza+"',"
+            		+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"='"+p.getTipologia()+"',"
+            		//+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+p.getProprietario()+"',"
+            		+DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI+"='"+p.getListaCollaboratori()+"',"
+            		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI+"='"+p.getDescrizioneContenuti()+"',"
+            		+DBNames.ATTR_PRODOTTO_INDIRIZZOWEB+"='"+p.getIndirizzoWeb()+"',"
+            		+DBNames.ATTR_PRODOTTO_PAROLECHIAVI+"='"+p.getParoleChiavi()+"',"
+            		+DBNames.ATTR_PRODOTTO_EDITORE+"='"+p.getEditore()+"',"
+            		+DBNames.ATTR_PRODOTTO_NUMVOLUME+"='"+p.getNumVolume()+"',"
+            		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+"='"+p.getTotalePagine()+"',"
+            		+DBNames.ATTR_PRODOTTO_DAPAGINA+"='"+p.getDaPagina()+"',"
+            		+DBNames.ATTR_PRODOTTO_APAGINA+"='"+p.getApagina()+"' "
 					+"WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"="+"'"+p.getIsbn()+"'";
 			
 			st=conn.prepareStatement(query);
