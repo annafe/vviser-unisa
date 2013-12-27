@@ -12,6 +12,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Antonio De Piano
  *
  */
+@WebServlet("/EliminaProdottoServlet")
 public class EliminaProdottoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -84,7 +86,7 @@ public class EliminaProdottoServlet extends HttpServlet {
 		
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("/ituoiprodotti.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/gpr/ituoiprodotti.jsp");
 		try
 		{
 			rd.forward(request,response);
