@@ -80,7 +80,7 @@ for(int i=0;i<l.size();i++)
 	out.println("ciao");
 	%>
 	<tr>
-	<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id="+i+" value="+l.get(i).getIsbn()+"/></td>");
+	<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id='"+i+"' value='"+l.get(i).getIsbn()+"' /></td>");
      %>      
 	<td><% out.print(l.get(i).getTitolo()); %></td><td><% out.print(l.get(i).getDescrizioneContenuti()); %></td><td> <% out.print(l.get(i).getStato()); %></td></tr>
 	<%

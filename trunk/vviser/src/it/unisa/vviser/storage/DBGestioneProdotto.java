@@ -811,10 +811,11 @@ public class DBGestioneProdotto
 		try
 		{
 			conn=DBConnectionPool.getConnection();
-			query="UPDATE "+DBNames.TABLE_COLLABORAZIONI+" SET "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1"
+			query="UPDATE "+DBNames.TABLE_COLLABORAZIONI+" SET "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1 "
 					+"WHERE "+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"='"+isb_prodotto+"' AND "
 					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+collaboratore+"'";
 			
+			System.out.println(query);
 			st=conn.prepareStatement(query);
 			st.executeUpdate();
 			conn.commit();
@@ -896,7 +897,8 @@ public class DBGestioneProdotto
 		{
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
-			query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+" WHERE "+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+emailUser+"'";
+			query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+" WHERE "+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+emailUser+"' AND "
+			+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=0";
 			st=conn.createStatement();
     		ris=st.executeQuery(query);
 			

@@ -81,6 +81,8 @@ public class SottomettiMIURServlet extends HttpServlet {
 			try
 			{
 				//gp.sottomettiAlMIUR(currentUser.getEmail(),checkProduct[i]);
+
+				System.out.println("deufemia@unisa.it "+checkProduct[i]);
 				gp.sottomettiAlMIUR("deufemia@unisa.it",checkProduct[i]);
 			}
 			catch (SQLException e)
