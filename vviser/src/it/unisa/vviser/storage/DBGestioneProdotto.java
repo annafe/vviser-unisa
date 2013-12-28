@@ -811,7 +811,7 @@ public class DBGestioneProdotto
 		try
 		{
 			conn=DBConnectionPool.getConnection();
-			query="UPDATE "+DBNames.TABLE_COLLABORAZIONI+" SET "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=true"
+			query="UPDATE "+DBNames.TABLE_COLLABORAZIONI+" SET "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1"
 					+"WHERE "+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"='"+isb_prodotto+"' AND "
 					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+collaboratore+"'";
 			
@@ -879,6 +879,7 @@ public class DBGestioneProdotto
         }
 		return null;
 	}
+	
 	/**
 	 * Metodo che ricerca nel catalogo pubblico tutti i prodotti dove sono stato indicato come coautore
 	 * e non ho ancora convalidato
