@@ -619,8 +619,11 @@ public class DBGestioneProdotto
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
 			
+			String y1=anno+"-01-01";
+			String y2=anno1+"-12-31";
+			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
-            		" WHERE "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+">="+anno+" AND "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+"<="+anno1;
+            		" WHERE "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+" BETWEEN '"+y1+"' AND '"+y2+"'";
             
             st=conn.createStatement();
     		ris=st.executeQuery(query);
@@ -1027,10 +1030,13 @@ public class DBGestioneProdotto
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
 			
+			String y1=anno+"-01-01";
+			String y2=anno1+"-12-31";
+			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
-            		" WHERE "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+" BETWEEN "+anno+" AND "+anno1+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+" BETWEEN '"+y1+"' AND '"+y2+"'"+
             		" AND "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+u.getEmail()+"'";
-            System.out.println(query);
+            
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
