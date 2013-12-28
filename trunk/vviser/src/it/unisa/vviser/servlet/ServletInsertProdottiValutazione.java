@@ -27,7 +27,6 @@ import org.json.JSONObject;
  * @author Giuseppe Sabato
  *
  */
-
 public class ServletInsertProdottiValutazione extends HttpServlet {
 	
 	/**
