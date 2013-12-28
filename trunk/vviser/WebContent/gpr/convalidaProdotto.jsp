@@ -62,7 +62,7 @@ function controlla()
 </section>
 
 <section id="profilo">
-<form method="post" action="/ConvalidaProdottoServlet" name="modulo" onsubmit="return controlla();">
+<form method="post" action="../ConvalidaProdottoServlet" name="modulo" onsubmit="return controlla();">
 <table>
 <tr>
 <th>&nbsp;</th>
