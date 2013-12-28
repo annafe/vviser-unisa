@@ -197,4 +197,12 @@
     <servlet-name>RicercaPubblicaProdottoServlet</servlet-name>
     <url-pattern>/RicercaPubblicaProdottoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+     <servlet-name>RicercaPrivataProdottoServlet</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.RicercaPrivataProdottoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RicercaPrivataProdottoServlet</servlet-name>
+    <url-pattern>/RicercaPrivataProdottoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
