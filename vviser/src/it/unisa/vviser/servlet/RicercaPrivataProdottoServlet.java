@@ -1,6 +1,7 @@
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.Prodotto;
+import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 import it.vviser.common.CommonMethod;
@@ -74,10 +75,11 @@ public class RicercaPrivataProdottoServlet extends HttpServlet {
 	{
 		
 		String tipo_ricerca = request.getParameter("tipo_ricerca");
+		String catalogo = request.getParameter("catalogo");
 		
 
 		HttpSession s = request.getSession();
-		String emailUtente=(String)s.getAttribute("sessEmail");
+		Utente u = (Utente)s.getAttribute("utente");
 		
 		try
 		{
@@ -86,24 +88,39 @@ public class RicercaPrivataProdottoServlet extends HttpServlet {
 			
 			if(tipo_ricerca.equals("tipologia"))
 			{
-				pr=gp.ricercaProdottoPerTipologia(request.getParameter("tipologia"));
+				if(catalogo.equalsIgnoreCase("pubblico"))
+					pr=gp.ricercaProdottoPerTipologia(request.getParameter("tipologia"));
+				else
+					pr=gp.ricercaPrivataProdottoPerTipologia(request.getParameter("tipologia"), u);
 			}
 			if(tipo_ricerca.equals("titolo_prodotto"))
 			{
-				pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo_prodotto"));
+				if(catalogo.equalsIgnoreCase("pubblico"))
+					pr=gp.ricercaProdottoPerTitoloProdotto(request.getParameter("titolo_prodotto"));
+				else
+					pr=gp.ricercaPrivataProdottoPerTitoloProdotto(request.getParameter("titolo_prodotto"), u);
 				
 			}
 			if(tipo_ricerca.equals("titolo_rivista"))
 			{
-				pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo_rivista"));
+				if(catalogo.equalsIgnoreCase("pubblico"))
+					pr=gp.ricercaProdottoPerTitoloRivista(request.getParameter("titolo_rivista"));
+				else
+					pr=gp.ricercaPrivataProdottoPerTitoloRivista(request.getParameter("titolo_rivista"), u);
 			}
 			if(tipo_ricerca.equals("issn_rivista"))
 			{
-				pr=gp.ricercaProdottoPerIssnRivista(request.getParameter("issn_rivista"));
+				if(catalogo.equalsIgnoreCase("pubblico"))
+					pr=gp.ricercaProdottoPerIssnRivista(request.getParameter("issn_rivista"));
+				else
+					pr=gp.ricercaPrivataProdottoPerIssnRivista(request.getParameter("issn_rivista"), u);
 			}
 			if(tipo_ricerca.equals("anni"))
 			{
-				pr=gp.ricercaProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")));
+				if(catalogo.equalsIgnoreCase("catalogo"))
+					pr=gp.ricercaProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")));
+				else
+					pr=gp.ricercaPrivataProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")), u);
 			}
 			
 			request.setAttribute("results", pr);
