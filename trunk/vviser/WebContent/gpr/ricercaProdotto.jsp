@@ -16,7 +16,7 @@
 	.criterio{
 		display:none;
 		position:absolute;
-		left:200px;
+		left:155px;
 		top:94px;
 	}
 	
