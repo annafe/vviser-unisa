@@ -218,6 +218,7 @@ public class DBGestioneProdotto
 	 */
 	public void sottomettiAlMIUR(String proprietario,String isbn)throws SQLException
 	{
+		System.out.println("Entro");
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
@@ -225,9 +226,9 @@ public class DBGestioneProdotto
 		try
 		{
 			conn = DBConnectionPool.getConnection();
-            query="INSERT INTO "+DBNames.TABLE_PRODOTTO+"("
-            		+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+","
-            		+DBNames.ATTR_PRODOTTO_ISBN
+            query="INSERT INTO "+DBNames.TABLE_SOTTOMETTIMIUR+"("
+            		+DBNames.ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL+","
+            		+DBNames.ATTR_SOTTOMETTIMIUR_PRODOTTO_ISBN
             		+") values (?,?)";
             st=conn.prepareStatement(query);
             st.setString(1, proprietario);
