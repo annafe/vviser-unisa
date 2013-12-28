@@ -895,7 +895,7 @@ public class DBGestioneProdotto
 		{
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
-			query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+" WHERE "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+emailUser+"'";
+			query="SELECT * FROM "+DBNames.TABLE_COLLABORAZIONI+" WHERE "+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+emailUser+"'";
 			st=conn.createStatement();
     		ris=st.executeQuery(query);
 			
