@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * @author Giuseppe Sabato
  *
  */
-public class ServletRifiutaListaValutazione extends HttpServlet {
+public class ServletConvalidaORifiutaListaValutazione extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBProdottiValutazione prodottiValutazioneManager;
@@ -45,7 +45,8 @@ public class ServletRifiutaListaValutazione extends HttpServlet {
 		{
 			HttpSession s=request.getSession();
 			ListaProdottiValutazione listaProdottiValutazione=(ListaProdottiValutazione)s.getAttribute("listaProdottiValutazione");
-			prodottiValutazioneManager.rifiutaListaProdottiValutazione(listaProdottiValutazione);
+			String bloccato=(String)request.getParameter("bloccato");
+			prodottiValutazioneManager.convalidaORifiutaListaProdottiValutazione(listaProdottiValutazione,bloccato);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

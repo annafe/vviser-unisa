@@ -1,6 +1,8 @@
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
+import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
 import java.io.IOException;
@@ -48,8 +50,16 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 		try 
 		{
 			HttpSession s = request.getSession();
+			Utente utente=(Utente)s.getAttribute("utente");
 			String emailUtente="";
-			String tipoShow=(String)s.getAttribute("visualizza");
+			String tipoShow;
+			if(request.getParameter("utente")==null)
+			{
+				tipoShow="personale";
+				s.setAttribute("visualizza", "personale");
+			}
+			else
+				tipoShow=(String)s.getAttribute("visualizza");
 			if(tipoShow.equals("personale"))
 			{
 				emailUtente=(String)s.getAttribute("sessEmail");
@@ -81,6 +91,13 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 			{
 				if(listeProdottiValutazione.size()==1)
 				{
+					s.setAttribute("segnalaConflitti", "off");
+					if((utente.getTipologia().equals("direttoreDiDipartimento") || utente.getTipologia().equals("membroDelComitatoDiAreaDidattica")) && tipoShow.equals("tutti"))
+					{
+						s.setAttribute("segnalaConflitti", "on");
+						ArrayList<ProdottoValutazione> conflitti=prodottiValutazioneManager.getProdottiValutazioneInConflitto(listeProdottiValutazione.get(0).getEmailUtente(), listeProdottiValutazione.get(0).getIdEventoValutazione());
+						request.setAttribute("conflitti", conflitti);
+					}
 					request.setAttribute("lista", listeProdottiValutazione.get(0));
 					ServletContext sc = getServletContext();
 					RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaLista.jsp");

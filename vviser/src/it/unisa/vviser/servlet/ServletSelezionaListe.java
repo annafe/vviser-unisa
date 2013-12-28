@@ -2,6 +2,7 @@ package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
 import java.io.IOException;
@@ -49,12 +50,21 @@ public class ServletSelezionaListe extends HttpServlet {
 		
 			HttpSession s = request.getSession();
 			String emailUtente=(String)s.getAttribute("email");
-			int idEvento=Integer.parseInt(request.getParameter("idList"));//cambiare nome da list a id
+			int idEvento=Integer.parseInt(request.getParameter("idList"));
+			Utente utente=(Utente)s.getAttribute("utente");
+			String tipoShow=(String)s.getAttribute("visualizza");
 	
 			ListaProdottiValutazione listaProdottiValutazione=new ListaProdottiValutazione();
 			
 			try {
 				listaProdottiValutazione=prodottiValutazioneManager.showProdottiVal(emailUtente, idEvento);
+				s.setAttribute("segnalaConflitti", "off");
+				if((utente.getTipologia().equals("direttoreDiDipartimento") || utente.getTipologia().equals("membroDelComitatoDiAreaDidattica")) && tipoShow.equals("tutti"))
+				{
+					s.setAttribute("segnalaConflitti", "on");
+					ArrayList<ProdottoValutazione> conflitti=prodottiValutazioneManager.getProdottiValutazioneInConflitto(listaProdottiValutazione.getEmailUtente(), listaProdottiValutazione.getIdEventoValutazione());
+					request.setAttribute("conflitti", conflitti);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -27,7 +27,6 @@ import javax.servlet.http.HttpSession;
  * @author Giuseppe Sabato
  *
  */
-
 public class ServletVisualizzaProdotti extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
