@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 
 import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
+import it.unisa.vviser.entity.Utente;
 import it.vviser.common.CommonMethod;
 
 
@@ -952,4 +953,259 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
+	
+	
+	
+	//METODI PER LA RICERCA NEL CATALOGO PERSONALE
+	
+	/**
+	 * Metodo che permette di ricercare un prodotto nel catalogo personale in base al suo titolo
+	 * @param titolo del prodotto
+	 * @param u utente proprietario del catalogo su cui si effettua la ricerca 
+	 * @return lista prodotti
+	 */
+	public ArrayList<Prodotto> ricercaPrivataProdottoPerTitoloProdotto(String titolo, Utente u)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_TITOLO+"='"+titolo+"'"+
+            		" AND "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+u.getEmail()+"'";
+            
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	
+	/**
+	 * Metodo che permette di ricercare i prodotti nel catalogo personale in un intervallo di anni es. Da 1995 a 2000
+	 * @param anno della pubblicazione
+	 * @param anno della pubblicazione
+	 * @param u utente proprietario del catalogo su cui effettuare la ricerca
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaPrivataProdottoPerAnni(int anno,int anno1, Utente u)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+
+            		" WHERE "+DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE+" BETWEEN "+anno+" AND "+anno1+
+            		" AND "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+u.getEmail()+"'";
+            System.out.println(query);
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+	
+	/**
+	 * Metodo che permette di ricercare i prodotti nel catalogo personale in base al titolo della rivista
+	 * @param titoloRivista titolo della rivista su cui è pubblicato il prodotto
+	 * @param u utente proprietario del catalogo su cui effettuare la ricerca
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaPrivataProdottoPerTitoloRivista(String titoloRivista, Utente u)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PUBBLICAZIONESURIVISTA+","+DBNames.TABLE_RIVISTA+
+            		" WHERE "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_ISSN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_RIVISTA_ISSN+" AND "
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_PRODOTTO_ISBN
+            		+" AND "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_NOME+"='"+titoloRivista+"'"+
+            		" AND "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+u.getEmail()+"'";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+
+	/**
+	 * Metodo che permette di ricercare i prodotti nel catalogo personale in base all'issn della rivista
+	 * @param issn della rivista
+	 * @param u utente proprietario del catalogo su cui effettuare la ricerca
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaPrivataProdottoPerIssnRivista(String issn, Utente u)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_PUBBLICAZIONESURIVISTA+","+DBNames.TABLE_RIVISTA+
+            		" WHERE "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_ISSN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_RIVISTA_ISSN+" AND "
+            		+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"="+DBNames.TABLE_PUBBLICAZIONESURIVISTA+"."+DBNames.ATTR_PUBBLICAZIONESURIVISTA_PRODOTTO_ISBN
+            		+" AND "+DBNames.TABLE_RIVISTA+"."+DBNames.ATTR_RIVISTA_ISSN+"='"+issn+"'"+
+            		" AND "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+u.getEmail()+"'";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}
+
+	/**
+	 * Metodo che permette di ricercare i prodotti nel catalogo personale in base alla tipologia
+	 * @param tipologia del prodotto
+	 * @param u utente proprietario del catalogo su cui effettuare la ricerca
+	 * @return lista prodotti
+	 * @throws SQLException
+	 */
+	public ArrayList<Prodotto> ricercaPrivataProdottoPerTipologia(String tipologia, Utente u)throws SQLException
+	{
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		Connection conn=null;
+		
+		try
+		{
+			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+			conn = DBConnectionPool.getConnection();
+			
+            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+", "+DBNames.TABLE_TIPOLOGIA
+            		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_TIPOLOGIA+"="+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME
+            		+" AND "+DBNames.TABLE_TIPOLOGIA+"."+DBNames.ATTR_TIPOLOGIA_NOME+"='"+tipologia+"'"+
+            		" AND "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+u.getEmail()+"'";
+            		
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
+    		while(ris.next())
+			{
+    			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
+        				,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)),ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
+        				,ris.getBoolean(DBNames.ATTR_PRODOTTO_BOZZA),ris.getString(DBNames.ATTR_PRODOTTO_TIPOLOGIA)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO),ris.getString(DBNames.ATTR_PRODOTTO_LISTACOLLABORATORI)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI),ris.getString(DBNames.ATTR_PRODOTTO_INDIRIZZOWEB)
+        				,ris.getString(DBNames.ATTR_PRODOTTO_PAROLECHIAVI),ris.getString(DBNames.ATTR_PRODOTTO_EDITORE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_NUMVOLUME),ris.getInt(DBNames.ATTR_PRODOTTO_TOTALEPAGINE)
+        				,ris.getInt(DBNames.ATTR_PRODOTTO_DAPAGINA),ris.getInt(DBNames.ATTR_PRODOTTO_APAGINA));
+        	
+				listProdotto.add(p);
+			}
+    		return listProdotto;
+		}
+		finally 
+        {
+            st.close();
+            DBConnectionPool.releaseConnection(conn);
+        }
+	}	
 }
