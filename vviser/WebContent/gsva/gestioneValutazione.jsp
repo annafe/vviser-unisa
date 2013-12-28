@@ -19,7 +19,7 @@
 </script>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="/gu/header.jsp" %>
 <%
 	HttpSession s= request.getSession();
 	s.setAttribute("sessEmail",utente.getEmail());
