@@ -117,7 +117,7 @@ public class RicercaPrivataProdottoServlet extends HttpServlet {
 			}
 			if(tipo_ricerca.equals("anni"))
 			{
-				if(catalogo.equalsIgnoreCase("catalogo"))
+				if(catalogo.equalsIgnoreCase("pubblico"))
 					pr=gp.ricercaProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")));
 				else
 					pr=gp.ricercaPrivataProdottoPerAnni(Integer.parseInt(request.getParameter("da")),Integer.parseInt(request.getParameter("a")), u);
