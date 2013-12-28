@@ -61,24 +61,8 @@ public class DBProdottiValutazione {
 			PreparedStatement st=null;
 			String query;
         	
-            query= "INSERT INTO "+DBNames.TABLE_PRODOTTOLISTA+"("
-            		+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
-            		+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+","
-            		+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+","
-            		+DBNames.ATTR_PRODOTTOLISTA_PRIORITA+
-            		") values (?,?,?,?)";
-            
-            st = conn.prepareStatement(query);
-            st.setString(1, listaProdottiValutazione.getListaProdottiValutazione().get(i).getIsbn());
-            st.setString(2, listaProdottiValutazione.getEmailUtente());
-            st.setInt(3, listaProdottiValutazione.getIdEventoValutazione());
-            st.setInt(4, listaProdottiValutazione.getListaProdottiValutazione().get(i).getPriority());
-
-            st.executeUpdate();
-            conn.commit();
-            
             //Se in conflitto, inserisco il prodotto nella tabella dei prodotti in conflitto.
-            if(isInConflitto(listaProdottiValutazione.getListaProdottiValutazione().get(i),conn))
+            if(isInConflitto(listaProdottiValutazione.getListaProdottiValutazione().get(i),listaProdottiValutazione.getIdEventoValutazione(),conn))
             {
             	query= "INSERT INTO "+DBNames.TABLE_PRODOTTOINCONFLITTO+"("
 	            		+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+","
@@ -96,6 +80,23 @@ public class DBProdottiValutazione {
 	            //Chiamo il DB del sistema, e richiama il metodo per inviare la notifica
 	            //addNotificaConflitto(String isbn)
             }
+            
+            
+            query= "INSERT INTO "+DBNames.TABLE_PRODOTTOLISTA+"("
+            		+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+","
+            		+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+","
+            		+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+","
+            		+DBNames.ATTR_PRODOTTOLISTA_PRIORITA+
+            		") values (?,?,?,?)";
+            
+            st = conn.prepareStatement(query);
+            st.setString(1, listaProdottiValutazione.getListaProdottiValutazione().get(i).getIsbn());
+            st.setString(2, listaProdottiValutazione.getEmailUtente());
+            st.setInt(3, listaProdottiValutazione.getIdEventoValutazione());
+            st.setInt(4, listaProdottiValutazione.getListaProdottiValutazione().get(i).getPriority());
+
+            st.executeUpdate();
+            conn.commit();
             
         }
 	}
@@ -312,6 +313,9 @@ public class DBProdottiValutazione {
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
+		Statement st1=null;
+		ResultSet ris=null;
+		String query1;
 		
 			
 			try
@@ -334,17 +338,42 @@ public class DBProdottiValutazione {
 						st.executeUpdate();
 						conn.commit();
 						
-						//cancello dalla taballa dei conflitti, gli eventuali conflitti risolti
-						query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+						query1="SELECT count(*) as numero"
+								+" FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
 								+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+"'"+oldProdottiSottomessi.get(i).getIsbn()+"'"
-								//+" and "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'" non lo considero perche' nella tabella dei conflitti
-								//non viene memorizzato l'email dell'utente che sottomette per primo. In ogni caso se il primo utente che ha sottomesso,
-								//decidi di rimuovere quel prodotto in conflitto dalla lista, il conflitto viene implicitamente risolto.
-								+" and "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+								+" AND "+DBNames.ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID+"="+idEvento;
 						
-						st=conn.prepareStatement(query);
-						st.executeUpdate();
-						conn.commit();
+						st1=conn.createStatement();
+						ris=st1.executeQuery(query1);
+						ris.next();
+						int numProdottiValutazione=ris.getInt("numero");
+						
+						if(numProdottiValutazione==2)//se uno dei due utenti toglie dalla lista il prodotto sottomesso a valutazione, il conflitto si risolve e quindi 
+						{							//i due prodotti presenti nella tabella dei conflitti vanno eliminati.
+							
+							
+							query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+									+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+"'"+oldProdottiSottomessi.get(i).getIsbn()+"'"
+									+" AND "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+							
+							st=conn.prepareStatement(query);
+							st.executeUpdate();
+							conn.commit();
+						}
+						else
+						{
+							if(numProdottiValutazione>2)//elimino il prodotto dalla tabella, ma il conflitto non e'ancora risolto
+							{
+								query="DELETE FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+										+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+"="+"'"+oldProdottiSottomessi.get(i).getIsbn()+"'"
+										+" AND "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
+										+" AND "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+								
+								st=conn.prepareStatement(query);
+								st.executeUpdate();
+								conn.commit();
+							}
+						}
 					}
 				}
 					
@@ -378,6 +407,8 @@ public class DBProdottiValutazione {
 			}
 			finally
 			{
+				if(oldProdottiSottomessi.size()!=0)
+					st1.close();
 				st.close();
 				DBConnectionPool.releaseConnection(conn);
 			}
@@ -485,27 +516,64 @@ public class DBProdottiValutazione {
 	 * @return true se il prodotto e' in conflitto, false altrimenti
 	 * @throws SQLException
 	 */
-	private boolean isInConflitto(ProdottoValutazione p, Connection conn) throws SQLException
+	private boolean isInConflitto(ProdottoValutazione p, int idEvento,Connection conn) throws SQLException
 	{
 		Statement st1=null;
 		ResultSet ris1=null;
 		String query1;
 		//verifico se ci sono due prodotti con lo stesso isbn
-		query1="SELECT count(*) as numeroConflitti"
+		query1="SELECT count(*) as numero"
 				+" FROM "+DBNames.TABLE_PRODOTTOLISTA
-				+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="
-				+"'"+p.getIsbn()+"'";
+				+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+"'"+p.getIsbn()+"'"
+				+" AND "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
 		
 		st1=conn.createStatement();
 		ris1=st1.executeQuery(query1);
 		ris1.next();
-		if(ris1.getInt("numeroConflitti")<=1)
+		int numProdottiValutazione=ris1.getInt("numero");
+		if(numProdottiValutazione<1)
 		{
 			st1.close();
 			return false;
 		}
 		else
 		{
+			if(numProdottiValutazione==1)
+			{
+				//ottengo l'email dell'utente che ha precedentemente sottomesso
+				//il prodotto a valutazione (utente che ha sottomesso per primo)
+				query1="SELECT "+DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL
+						+" FROM "+DBNames.TABLE_PRODOTTOLISTA
+						+" WHERE "+DBNames.ATTR_PRODOTTOLISTA_PRODOTTO_ISBN+"="+"'"+p.getIsbn()+"'"
+						+" AND "+DBNames.ATTR_PRODOTTOLISTA_EVENTOVALUTAZIONE_ID+"="+idEvento;
+				
+				st1=conn.createStatement();
+				ris1=st1.executeQuery(query1);
+				ris1.next();
+				String emailUtente=ris1.getString(DBNames.ATTR_PRODOTTOLISTA_UTENTE_EMAIL);
+				
+				PreparedStatement st=null;
+				String query;
+				//inserisco l'utente precedentemente ottuenuto nella tabella dei conflitti
+				//altrimenti si perde il riferimento ad esso, perche' quando ha sottomesso 
+				//il prodotto non c'era nessun conflitto.
+				query="INSERT INTO "+DBNames.TABLE_PRODOTTOINCONFLITTO+"("
+						+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN+","
+						+DBNames.ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL+","
+						+DBNames.ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID
+						+") values (?,?,?)";
+				
+				st=conn.prepareStatement(query);
+				st.setString(1,p.getIsbn());
+				st.setString(2, emailUtente);
+				st.setInt(3, idEvento);
+				
+				st.executeUpdate();
+				conn.commit();
+				
+				st.close();
+			}
+			
 			st1.close();
 			return true;
 		}
@@ -651,7 +719,7 @@ public class DBProdottiValutazione {
 	 * @param listaProdottiValutazione sottomessa dall'utente
 	 * @throws SQLException
 	 */
-	public void rifiutaListaProdottiValutazione(ListaProdottiValutazione listaProdottiValutazione) throws SQLException
+	public void convalidaORifiutaListaProdottiValutazione(ListaProdottiValutazione listaProdottiValutazione, String bloccato) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -667,7 +735,7 @@ public class DBProdottiValutazione {
 					+" and "+DBNames.ATTR_LISTAVALUTAZIONE_EVENTOVALUTAZIONE_ID+"="+listaProdottiValutazione.getIdEventoValutazione();
 			
 			st=conn.prepareStatement(query);
-			st.setString(1, "no");
+			st.setString(1, bloccato);
 			st.executeUpdate();
 			conn.commit();
 		}
@@ -714,6 +782,52 @@ public class DBProdottiValutazione {
 			st.close();
 			DBConnectionPool.releaseConnection(conn);
 		}
+	}
+	
+	/**
+	 * Metodo che restituisce una lista di prodotti in conflitto dell'utente e dell'evento specificati
+	 * @param emailUtente identificativo dell'utente
+	 * @param idEvento identificativo dell'evento
+	 * @return prodottiValutazioneConflitto lista prodotti sottomessi a valutazione in conflitto
+	 * @throws SQLException
+	 */
+	public ArrayList<ProdottoValutazione> getProdottiValutazioneInConflitto(String emailUtente, int idEvento) throws SQLException
+	{
+		Connection conn=null;
+		Statement st=null;
+		ResultSet ris=null;
+		String query;
+		ArrayList<ProdottoValutazione> prodottiValutazioneConflitto=new ArrayList<ProdottoValutazione>();
+		
+		try
+		{
+			conn=DBConnectionPool.getConnection();
+			
+			//ottengo gli isbn dei prodotti sottomessi a valutazione in conflitto
+			query="SELECT "+DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN
+					+" FROM "+DBNames.TABLE_PRODOTTOINCONFLITTO
+					+" WHERE "+DBNames.ATTR_PRODOTTOINCONFLITTO_UTENTE_EMAIL+"="+"'"+emailUtente+"'"
+					+" AND "+DBNames.ATTR_PRODOTTOINCONFLITTO_EVENTOVALUTAZIONE_ID+"="+idEvento;
+			
+			st=conn.createStatement();
+			ris=st.executeQuery(query);
+			
+			
+			while (ris.next())
+			{
+				ProdottoValutazione prodottoValutazione=new ProdottoValutazione();
+				String isbn=ris.getString(DBNames.ATTR_PRODOTTOINCONFLITTO_PRODOTTO_ISBN);
+				prodottoValutazione.setIsbn(isbn);
+				prodottiValutazioneConflitto.add(prodottoValutazione);
+			}
+		}
+		finally
+		{
+			st.close();
+			DBConnectionPool.releaseConnection(conn);	
+		}
+		
+		return prodottiValutazioneConflitto;
 	}
 	
 }
