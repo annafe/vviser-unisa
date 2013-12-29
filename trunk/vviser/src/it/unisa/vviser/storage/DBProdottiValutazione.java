@@ -14,7 +14,7 @@ import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.exception.InsertProdottiValutazioneException;
-import it.unisa.vviser.exception.InvalidModifyListaProdottiValutazione;
+import it.unisa.vviser.exception.NotAvailableProdottiPerValutazioneException;
 import it.unisa.vviser.exception.NotFoundListeValutazioneException;
 import it.vviser.common.CommonMethod;
 
@@ -421,7 +421,7 @@ public class DBProdottiValutazione {
 	 * @return listeProdottiValutazione dell'utente specificato
 	 * @throws SQLException
 	 */
-	public ArrayList<ListaProdottiValutazione> getListeProdottiValutazione(String emailUtente) throws SQLException
+	public ArrayList<ListaProdottiValutazione> getListeProdottiValutazione(String emailUtente) throws SQLException,NotFoundListeValutazioneException
 	{
 		ArrayList<ListaProdottiValutazione> listeProdottiValutazione=new ArrayList<ListaProdottiValutazione>();
 		Connection conn=null;
@@ -655,8 +655,9 @@ public class DBProdottiValutazione {
 	 * @param evento evento a cui l'utente partecipa
 	 * @param prodotti dell'utente specificato 
 	 * @return prodottiFiltrati idonei per essere sottomessi a quel determinato evento di valutazione
+	 * @throws NotAvailableProdottiPerValutazioneException
 	 */
-	public ArrayList<Prodotto> prodottiFiltrati(EventoValutazione evento, ArrayList<Prodotto> prodotti)
+	public ArrayList<Prodotto> prodottiFiltrati(EventoValutazione evento, ArrayList<Prodotto> prodotti) throws NotAvailableProdottiPerValutazioneException
 	{
 		ArrayList<Prodotto> prodottiFiltrati=new ArrayList<Prodotto>();
 		GregorianCalendar dataInizio=evento.getDataInizio();
@@ -670,6 +671,9 @@ public class DBProdottiValutazione {
 			if((dataPubb.after(dataInizio)||dataPubb.equals(dataInizio)) && (dataPubb.before(dataFine)||dataPubb.equals(dataFine)))
 				prodottiFiltrati.add(prodotti.get(i));
 		}
+		
+		if(prodottiFiltrati.size()==0)
+			throw new NotAvailableProdottiPerValutazioneException("Nessun prodotto disponibile per sottomissione a valutazione !!");
 		
 		return prodottiFiltrati;
 	}
