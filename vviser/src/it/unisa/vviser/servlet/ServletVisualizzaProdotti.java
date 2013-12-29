@@ -3,6 +3,7 @@ package it.unisa.vviser.servlet;
 import it.unisa.vviser.entity.EventoValutazione;
 import it.unisa.vviser.entity.Prodotto;
 import it.unisa.vviser.exception.InsertProdottiValutazioneException;
+import it.unisa.vviser.exception.NotAvailableProdottiPerValutazioneException;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
@@ -80,6 +81,12 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher("/sottomissioneImpossibile.jsp");
 			rd.forward(request,response); 
+		}
+		catch (NotAvailableProdottiPerValutazioneException e) 
+		{
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaProdottiPerSottomissioneImpossibile.jsp");
+			rd.forward(request,response);
 		}
 		
 		
