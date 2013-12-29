@@ -380,7 +380,7 @@ public class DBGestioneProdotto
     		query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
             		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
             		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
-            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+true;
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1";
             
             st1=conn.createStatement();
     		ris=st1.executeQuery(query);
@@ -409,11 +409,6 @@ public class DBGestioneProdotto
         }
 	}
 	
-	
-	
-	
-	
-	
 	/**
 	 *Metodo che permette di visualizzare tutti i prodotti personali(proprietario)
 	 *anche quelli dove l'utente ha confermato di essere un coautore e che non ha ancora
@@ -422,30 +417,23 @@ public class DBGestioneProdotto
 	 * @return lista dei prodotti
 	 * @throws SQLException
 	 */
-	
-	
-	
-	//STO MODIFICANDO ANTONIO DE PIANO !! 28/12/2013 19.09
 	public ArrayList<Prodotto> visualizzaProdottiProprietarioCoautoreMIUR(String utente)throws SQLException
 	{
-		System.out.println("ciao");
 		Statement st=null;
 		Statement st1=null;
 		ResultSet ris=null;
-		String query;
+		String query=null;
 		Connection conn=null;
-		
+		System.out.println(utente);
 		try
 		{
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
-			
-            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
+			 query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
             		+" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"' AND ("+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+","+DBNames.ATTR_PRODOTTO_ISBN+")"
             				+ " NOT IN (SELECT "+DBNames.ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL+","+DBNames.ATTR_SOTTOMETTIMIUR_PRODOTTO_ISBN
             				+" FROM "+DBNames.TABLE_SOTTOMETTIMIUR+")";
-          System.out.println(query);
-            st=conn.createStatement();
+			st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
 			{
@@ -471,7 +459,6 @@ public class DBGestioneProdotto
             		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+","+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+")"
     				+ " NOT IN (SELECT "+DBNames.ATTR_SOTTOMETTIMIUR_PRODOTTO_ISBN+","+DBNames.ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL
     				+" FROM "+DBNames.TABLE_SOTTOMETTIMIUR+")";
-            System.out.println(query);
             st1=conn.createStatement();
     		ris=st1.executeQuery(query);
     		while(ris.next())
@@ -500,8 +487,6 @@ public class DBGestioneProdotto
         }
 	}
 	
-	
-	
 	/**
 	 *Metodo che permette di visualizzare tutti i prodotti
 	 *dove l'utente non ha confermato di essere un coautore
@@ -524,7 +509,7 @@ public class DBGestioneProdotto
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
             		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
             		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
-            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+false;
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=0";
             
             st1=conn.createStatement();
     		ris=st1.executeQuery(query);
@@ -574,7 +559,7 @@ public class DBGestioneProdotto
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
             		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
             		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
-            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+true;
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1";
             
             st1=conn.createStatement();
     		ris=st1.executeQuery(query);
@@ -1054,10 +1039,7 @@ public class DBGestioneProdotto
         }
 	}
 	
-	
-	
 	//METODI PER LA RICERCA NEL CATALOGO PERSONALE
-	
 	/**
 	 * Metodo che permette di ricercare un prodotto nel catalogo personale in base al suo titolo
 	 * @param titolo del prodotto
@@ -1105,7 +1087,6 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
-	
 	
 	/**
 	 * Metodo che permette di ricercare i prodotti nel catalogo personale in un intervallo di anni es. Da 1995 a 2000

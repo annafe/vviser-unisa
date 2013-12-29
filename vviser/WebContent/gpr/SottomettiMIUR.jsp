@@ -72,9 +72,8 @@ function controlla()
 </tr>
 <%
 DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
-//Utente currentUser = (Utente) session.getAttribute("utente");
-//ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautore(currentUser.getEmail());
-ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR("deufemia@unisa.it");
+Utente currentUser = (Utente) session.getAttribute("utente");
+ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR(currentUser.getEmail());
 for(int i=0;i<l.size();i++)
 {
 	%>
