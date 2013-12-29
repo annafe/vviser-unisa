@@ -428,6 +428,7 @@ public class DBGestioneProdotto
 	//STO MODIFICANDO ANTONIO DE PIANO !! 28/12/2013 19.09
 	public ArrayList<Prodotto> visualizzaProdottiProprietarioCoautoreMIUR(String utente)throws SQLException
 	{
+		System.out.println("ciao");
 		Statement st=null;
 		Statement st1=null;
 		ResultSet ris=null;
@@ -440,9 +441,10 @@ public class DBGestioneProdotto
 			conn = DBConnectionPool.getConnection();
 			
             query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
-            		+" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"' AND '"+utente+"' NOT IN (SELECT "
-            		+DBNames.ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL+" FROM "+DBNames.TABLE_SOTTOMETTIMIUR+")";
-          
+            		+" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"' AND ("+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+","+DBNames.ATTR_PRODOTTO_ISBN+")"
+            				+ " NOT IN (SELECT "+DBNames.ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL+","+DBNames.ATTR_SOTTOMETTIMIUR_PRODOTTO_ISBN
+            				+" FROM "+DBNames.TABLE_SOTTOMETTIMIUR+")";
+          System.out.println(query);
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
@@ -465,8 +467,11 @@ public class DBGestioneProdotto
     		query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
             		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
             		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
-            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"="+true;
-            
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1 AND ("
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+","+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+")"
+    				+ " NOT IN (SELECT "+DBNames.ATTR_SOTTOMETTIMIUR_PRODOTTO_ISBN+","+DBNames.ATTR_SOTTOMETTIMIUR_UTENTE_EMAIL
+    				+" FROM "+DBNames.TABLE_SOTTOMETTIMIUR+")";
+            System.out.println(query);
             st1=conn.createStatement();
     		ris=st1.executeQuery(query);
     		while(ris.next())
