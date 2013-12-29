@@ -3,6 +3,7 @@ package it.unisa.vviser.servlet;
 import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.entity.Utente;
+import it.unisa.vviser.exception.NotFoundListeValutazioneException;
 import it.unisa.vviser.storage.DBProdottiValutazione;
 
 import java.io.IOException;
@@ -112,6 +113,12 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 		catch (JSONException e) 
 		{
 			e.printStackTrace();
+		}
+		catch (NotFoundListeValutazioneException e) 
+		{
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaImpossibile.jsp");
+			rd.forward(request,response);
 		}
 	}
 
