@@ -73,17 +73,14 @@ public class SottomettiMIURServlet extends HttpServlet {
 		
 		String[] checkProduct=request.getParameterValues("selProd");
 		HttpSession s = request.getSession();
-		//Utente currentUser=(Utente)s.getAttribute("utente");
+		Utente currentUser=(Utente)s.getAttribute("utente");
 		DBGestioneProdotto gp=DBGestioneProdotto.getInstance();
 		
 		for(int i=0;i<checkProduct.length;i++)
 		{
 			try
 			{
-				//gp.sottomettiAlMIUR(currentUser.getEmail(),checkProduct[i]);
-
-				System.out.println("deufemia@unisa.it "+checkProduct[i]);
-				gp.sottomettiAlMIUR("deufemia@unisa.it",checkProduct[i]);
+				gp.sottomettiAlMIUR(currentUser.getEmail(),checkProduct[i]);
 			}
 			catch (SQLException e)
 			{
