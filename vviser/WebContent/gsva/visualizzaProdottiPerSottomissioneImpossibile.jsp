@@ -13,13 +13,13 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Modifica Impossibile</title>
+    <title>Visualizzazione Impossibile</title>
 </head>
 
 <body>
 
 <%
-		out.println("<p>Impossibile Modificare la/e lista/e bloccata/e!!<p>");
+		out.println("<p>Non e' disponibile alcun prodotto per sottomissione a valutazione !!<p>");
 %>
 
 
