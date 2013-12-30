@@ -1,0 +1,182 @@
+body {
+color: #fff;
+padding: 0;
+position: relative;
+width: 700px;
+height:520px;	
+margin: 0 auto;
+text-decoration: none;
+font: bold 12px Arial, Helvetica, sans-serif;
+}
+
+header#container-header
+{
+	position: absolute;
+	width: 700px;
+	height: 200px;
+	top: 10px;
+	left: 20px;
+}		
+
+header#header-main
+{
+	width: 895px;
+	height: 128px;
+	background-image: url(../images/wisernobook.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 10%;
+}
+
+
+nav{
+	position: absolute;
+	width: 700px;
+	height: 30px;
+	top: 160px;
+	background-color: SEAGREEN;
+	text-align: right;
+	padding-top: 10px;
+	left: -3px;
+}
+
+input.pulsante {
+ outline: none;
+ cursor: pointer;
+ text-align: center;
+ text-decoration: none;
+ font: bold 12px Arial, Helvetica, sans-serif;
+ color: #fff;
+ padding: 10px 20px;
+ border: solid 1px #0076a3;
+ /*background: #0095cd;*/
+background:SEAGREEN;
+}
+
+section#container-section{
+	position: absolute;
+	width: 700px;
+	height: 260px;
+	top: 210px;
+	text-align: center;
+	font-size: 20pt;
+	left: 15px;
+}
+
+section#login{	
+	position:absolute;
+	width:200px;
+	height:100px;
+	top:20px;
+	left:20px;
+	background-color:LIGHTGREEN;
+}
+
+section#search-prod{
+position: absolute;
+width:200px;
+height:100px;
+left:240px;
+top:20px;
+background-color:TOMATO;
+}
+
+section#presentazione
+{
+position:absolute;
+width:200px;
+height:100px;
+left:20px;
+top:140px;
+background-color:LIMEGREEN;
+}
+
+section#faq{
+position:absolute;
+width:200px;
+height:100px;
+left:240px;
+top:140px;
+background-color:ORANGERED;
+}
+
+section#altro{
+position:absolute;
+width:200px;
+height:100px;
+left:460px;
+top:140px;
+background-color:YELLOWGREEN;
+}
+
+section#documenti{
+position:absolute;
+width:200px;
+height:100px;
+left:460px;
+top:20px;
+background-color:MEDIUMAQUAMARINE;
+}
+
+footer#container-footer{
+	position: absolute;
+	width: 700px;
+	height: 30px;
+	top: 480px;
+	background-color: SEAGREEN;
+	text-align: center;
+	padding-top: 10px;
+	left: 13px;
+}
+
+a:link {color:white;
+	text-decoration:none;}      /* unvisited link */
+a:visited {text-decoration:none;
+	color:white;}  /* visited link */
+a:hover {cursor:pointer;
+	text-decoration:none;
+	color:white;}  /* mouse over link */
+a:active {color:white;
+	text-decoration:none;}  /* selected link */
+
+div.centro{text-align:center;}
+input.testo{color:yellowgreen;}
+
+section#search-catal{
+position:absolute;
+height:250px;
+width:150px;
+}
+
+section#mod-search{
+position:absolute;
+left:150px;
+height:250px;
+width:550px;
+}
+
+section#groups{position:absolute;width:700px; height:150px;border:1px solid blue;}
+section#presnt{position:absolute;width:700px; height:250px;top:150px;border:1px solid red;}
+
+section#profilo{
+	border: 5px solid tomato;
+	position: absolute;
+	width: 690px;
+	height: 200px;
+	top: 356px;
+	color: black;
+	left: 20px;
+	}
+
+section#notifiche{
+	position: absolute;
+	width: 150px;
+	left: 512px;
+	height: 80px;
+	top: 32px;
+	background-color: orangered;
+}
+th{text-align:center;}
+section#elimina-prod{position:absolute;width:150px;left:660px;height:80px;top:30px;background-color:blue;}
+
+section#convalida{position:absolute;width:150px;left:820px;height:80px;top:30px;background-color:brown;}
