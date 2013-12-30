@@ -2,6 +2,11 @@ package it.unisa.vviser.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
+import it.unisa.vviser.entity.Notifica;
+import it.unisa.vviser.storage.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,6 +14,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestDBNotifica {
+	private DBNotifica dbNotifica;
+	private Notifica notifica;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -20,6 +27,13 @@ public class TestDBNotifica {
 
 	@Before
 	public void setUp() throws Exception {
+		String mittente="eugenio.gigante@gmail.com";
+		String destinatario="eugenio.gigante@gmail.com";
+		String messaggio="testNotifica";
+		String tipo="test";
+		int id=1;
+		this.notifica =new Notifica(destinatario,tipo, mittente,messaggio);
+		this.dbNotifica=new DBNotifica();
 	}
 
 	@After
@@ -32,8 +46,9 @@ public class TestDBNotifica {
 	}
 
 	@Test
-	public final void testAddNotifica() {
-		fail("Not yet implemented"); // TODO
+	public final void testAddNotifica() throws SQLException {
+		assertTrue(dbNotifica.addNotifica(notifica));
+		
 	}
 
 	@Test
@@ -46,64 +61,5 @@ public class TestDBNotifica {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
-	public final void testObject() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetClass() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testEquals() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testToString() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testNotify() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testNotifyAll() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWaitLong() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWaitLongInt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWait() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testFinalize() {
-		fail("Not yet implemented"); // TODO
-	}
 
 }
