@@ -2,13 +2,18 @@ package it.unisa.vviser.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import it.unisa.vviser.storage.*;
+
 public class TestDBTipologie {
+	private DBTipologie dbTipologie;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -20,6 +25,7 @@ public class TestDBTipologie {
 
 	@Before
 	public void setUp() throws Exception {
+		dbTipologie = new DBTipologie();
 	}
 
 	@After
@@ -28,72 +34,15 @@ public class TestDBTipologie {
 
 	@Test
 	public final void testGetInstance() {
-		fail("Not yet implemented"); // TODO
+		assertTrue(dbTipologie.getInstance() != null);
 	}
 
 	@Test
-	public final void testGetTipologie() {
-		fail("Not yet implemented"); // TODO
+	public final void testGetTipologie() throws SQLException {
+		assertTrue(dbTipologie.getTipologie() != null);
 	}
 
-	@Test
-	public final void testObject() {
-		fail("Not yet implemented"); // TODO
-	}
 
-	@Test
-	public final void testGetClass() {
-		fail("Not yet implemented"); // TODO
-	}
 
-	@Test
-	public final void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testEquals() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testToString() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testNotify() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testNotifyAll() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWaitLong() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWaitLongInt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWait() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testFinalize() {
-		fail("Not yet implemented"); // TODO
-	}
 
 }
