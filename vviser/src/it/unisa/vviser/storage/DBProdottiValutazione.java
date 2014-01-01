@@ -31,7 +31,7 @@ public class DBProdottiValutazione {
 	/**
 	 * Costruttore vuoto
 	 */
-	private DBProdottiValutazione()
+	public DBProdottiValutazione()
 	{
 		
 	}
