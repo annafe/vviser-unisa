@@ -16,6 +16,12 @@ import org.junit.Test;
 public class TestDBNotifica {
 	private DBNotifica dbNotifica;
 	private Notifica notifica;
+	private String isbn="1234asd56789";
+	private String mittente="eugenio.gigante@gmail.com";
+	private String destinatario="eugenio.gigante@gmail.com";
+	private String messaggio="testNotifica";
+	private String tipo="test";
+	private int id=1;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,11 +33,7 @@ public class TestDBNotifica {
 
 	@Before
 	public void setUp() throws Exception {
-		String mittente="eugenio.gigante@gmail.com";
-		String destinatario="eugenio.gigante@gmail.com";
-		String messaggio="testNotifica";
-		String tipo="test";
-		int id=1;
+		
 		this.notifica =new Notifica(destinatario,tipo, mittente,messaggio);
 		this.dbNotifica=new DBNotifica();
 	}
@@ -41,24 +43,22 @@ public class TestDBNotifica {
 	}
 
 	@Test
-	public final void testDBNotifica() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
+	
 	public final void testAddNotifica() throws SQLException {
 		assertTrue(dbNotifica.addNotifica(notifica));
 		
 	}
 
 	@Test
-	public final void testAddNotificaConflitto() {
-		fail("Not yet implemented"); // TODO
+	public final void testAddNotificaConflitto() throws SQLException {
+		dbNotifica.addNotificaConflitto(isbn);//la chiamata al metodo non ristituisce nulla,
+											//e non ci sono chiamate per verificare se il conflitto è stato aggiunt
 	}
 
 	@Test
-	public final void testAddNotificaConflittoValidazione() {
-		fail("Not yet implemented"); // TODO
+	public final void testAddNotificaConflittoValidazione() throws SQLException {
+		dbNotifica.addNotificaConflittoValidazione(mittente, isbn, messaggio);//la chiamata al metodo non ristituisce nulla,
+																			//e non ci sono chiamate per verificare se il conflitto è stato aggiunt
 	}
 
 
