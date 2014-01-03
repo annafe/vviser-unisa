@@ -10,6 +10,7 @@
     <title>VViSeR</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/stile.css" rel="stylesheet" type="text/css"/>
+<!-- 
 <style type="text/css">
 body{width:700px;height:710px;}
 header#container-header{
@@ -92,17 +93,16 @@ section#pro-utente{
 	background-color: lightblue;
 }
 </style>
+-->
 </head>
 <body>
-<% 
-/*@include file="../gu/header.jsp" */
-%>
-<header id="container-header">
-	<header id="header-main"></header>
-	<nav>
-			
-	</nav>
+
+<header id="header-main">
 </header>
+	
+<nav>
+</nav>
+
 <section id="container-section">
 	<section id="login">
 		<a href="../gpr/insert.jsp">Inserisci Prodotto</a>
@@ -128,6 +128,9 @@ section#pro-utente{
 </section>
 
 <section id="profilo">
+</section>
+
+<section id="testo">
 <table>
 <tr>
 	<th>Prodotto</th>
@@ -139,8 +142,10 @@ section#pro-utente{
 </tr>
 </table>
 </section>
+
 <footer id="container-footer">
 TEAM EIGHT
 </footer>
+
 </body>
 </html>
