@@ -3,8 +3,10 @@ package it.unisa.vviser.test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import it.unisa.vviser.entity.Prodotto;
+import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 
 import org.junit.After;
@@ -86,6 +88,7 @@ public class TestDBGestioneProdotto {
 
 	@Test
 	public final void testVisualizzaProdottiCoautoreConvalidato() {
+		
 		fail("Not yet implemented"); // TODO
 	}
 	
@@ -100,28 +103,47 @@ public class TestDBGestioneProdotto {
 		
 	}
 	@Test
-	public final void testRicercaProdottoPerTitoloProdotto() {
+	public final void testRicercaProdottoPerTitoloProdotto() throws SQLException {
+		dbGestioneProdotto = new DBGestioneProdotto();
+		ArrayList<Prodotto> listaProdotto = dbGestioneProdotto.ricercaProdottoPerTipologia("tipotest");
+		if (listaProdotto==null)	fail("Not yet implemented");
+		assertFalse(listaProdotto==null);
+		assertTrue("ok", !(listaProdotto==null));
+	}
+
+	@Test
+	public final void testRicercaProdottoPerAnni() throws SQLException {
+		Utente utente=new Utente();
+		ArrayList<Prodotto> listaProdotto = dbGestioneProdotto.ricercaPrivataProdottoPerAnni(2000, 2013, utente);
+		if (listaProdotto==null)	fail("Not yet implemented");
+		assertFalse(listaProdotto==null);
+		assertTrue("ok", !(listaProdotto==null));
+	}
+
+	@Test
+	public final void testRicercaProdottoPerTitoloRivista() throws SQLException {
+		ArrayList<Prodotto> listaProdotto = dbGestioneProdotto.ricercaProdottoPerTitoloRivista("titolorivista");
+		if (listaProdotto==null)	fail("Not yet implemented");
+		assertFalse(listaProdotto==null);
+		assertTrue("ok", !(listaProdotto==null));
 		
-		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testRicercaProdottoPerAnni() {
-		fail("Not yet implemented"); // TODO
+	public final void testRicercaProdottoPerIssnRivista() throws SQLException {
+		Prodotto prodotto = dbGestioneProdotto.ricercaProdottoISBN("isbn_prodotto");
+		if (prodotto==null)	fail("Not yet implemented");
+		assertFalse(prodotto==null);
+		assertTrue("ok", !(prodotto==null));
 	}
 
 	@Test
-	public final void testRicercaProdottoPerTitoloRivista() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testRicercaProdottoPerIssnRivista() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testRicercaProdottoPerTipologia() {
+	public final void testRicercaProdottoPerTipologia() throws SQLException {
+		ArrayList<Prodotto> listaProdotto = dbGestioneProdotto.ricercaProdottoPerTipologia("tipologia");
+		if (listaProdotto==null)	fail("Not yet implemented");
+		assertFalse(listaProdotto==null);
+		assertTrue("ok", !(listaProdotto==null));
+		
 		fail("Not yet implemented"); // TODO
 	}
 
