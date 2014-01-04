@@ -63,12 +63,14 @@ section#documenti{
 }
 section#profilo{
 	width: 700px;
-	top: 248px;
+	top: 212px;
 	height: 532px;
+	left: 186px;
 }
 section#profilo>table{text-align:center;color:black;width:700px;padding-left:40px;}
 th{background-color:tomato;color:white;}
 section#notifiche{
+	top: 282px;
 	left: 6px;
 }
 section#elimina-prod{
