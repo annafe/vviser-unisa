@@ -12,5 +12,6 @@
 		<input type="button" value="Validazione" class="pulsante" onclick="document.location.href='./faq.jsp';">
 		<input type="button" value="Valutazione" class="pulsante" onclick="document.location.href='./altro.jsp';">
 		<input type="button" value="Miur" class="pulsante" onclick="document.location.href='./altro.jsp';">
+		<input type="button" value="Guida" class="pulsante" onclick="document.location.href='./altro.jsp';">
 </body>
 </html>
