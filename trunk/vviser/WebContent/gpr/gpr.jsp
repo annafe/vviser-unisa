@@ -13,26 +13,31 @@
 <body>
 
 <header id="container-header">
-	
+<!--  contiene il logo  -->
 </header>	
 
 <nav>
 		<!-- Pagina contenente i bottoni del menu -->
-		<%@ include file="menu.jsp" %>
+		<%@ include file="../layout/gpr_menu.jsp" %>
 </nav>
 
 <section id="container-section">
+
 	<section id="section-menu"> 
-	<!-- Pagina contenente le funzionalità -->
+		<!-- Pagina contenente le funzionalità -->
+		<%@ include file="../layout/gpr_funz.jsp" %>
     </section>
+
     <section id="section-main">
-    <!--  Pagina contenente il contenuto -->
+    	<!--  Pagina contenente il contenuto -->
+    	<%@ include file="../layout/gpr_content.jsp" %>
     </section>
+
 </section>
 
 <footer id="container-footer">
-<!--  Pagina contenete il messaggio da inglobare nel footer -->
-TEAM EIGHT
+		<!--  Pagina contenete il messaggio da inglobare nel footer -->
+		<%@ include file="../layout/footer.jsp" %>
 </footer>
 
 </body>
