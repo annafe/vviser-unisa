@@ -18,19 +18,19 @@
 
 <nav>
 		<!-- Pagina contenente i bottoni del menu -->
-		<%@ include file="../layout/direttore_menu.jsp" %>
+		<%@ include file="direttore_menu.jsp" %>
 </nav>
 
 <section id="container-section">
 
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalità -->
-		<%@ include file="../layout/direttore_funz.jsp" %>
+		<%@ include file="direttore_funz.jsp" %>
     </section>
 
     <section id="section-main">
     	<!--  Pagina contenente il contenuto -->
-    	<%@ include file="../layout/direttore_content.jsp" %>
+    	<%@ include file="direttore_content.jsp" %>
     </section>
 
 </section>
