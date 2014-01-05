@@ -29,8 +29,15 @@
     </section>
 
     <section id="section-main">
-    	<!--  Pagina contenente il contenuto -->
-    	<%@ include file="gpr_content.jsp" %>
+	    	
+	    	<section id="gpr_content">
+		    	<!--  Pagina contenente il contenuto -->
+		    	<%@ include file="gpr_content.jsp" %>
+	    	</section>
+	    	
+	    	<section id="gpr_fast_menu">
+    		</section>
+    
     </section>
 
 </section>
