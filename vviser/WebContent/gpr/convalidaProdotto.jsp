@@ -45,9 +45,11 @@ function controlla()
 </script>
 </head>
 <body>
+
 <% 
 /*@include file="../gu/header.jsp" */
 %>
+
 <header id="container-header">
 	<header id="header-main"></header>
 	<nav>
