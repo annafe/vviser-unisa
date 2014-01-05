@@ -17,23 +17,21 @@
 </header>	
 
 <nav>
-		<!--  dopo devo importare una pagina qui -->
-		<input type="button" value="Profilo" class="pulsante" onclick="document.location.href='../index.jsp';">
-		<input type="button" value="Prodotti" class="pulsante" onclick="document.location.href='./doc.jsp';">
-		<input type="button" value="Ricerca" class="pulsante" onclick="document.location.href='./presentazione.jsp';">
-		<input type="button" value="Validazione" class="pulsante" onclick="document.location.href='./faq.jsp';">
-		<input type="button" value="Valutazione" class="pulsante" onclick="document.location.href='./altro.jsp';">
-		<input type="button" value="Miur" class="pulsante" onclick="document.location.href='./altro.jsp';">
+		<!-- Pagina contenente i bottoni del menu -->
+		<%@ include file="menu.jsp" %>
 </nav>
 
 <section id="container-section">
-	<section id="section-menu">
+	<section id="section-menu"> 
+	<!-- Pagina contenente le funzionalità -->
     </section>
     <section id="section-main">
+    <!--  Pagina contenente il contenuto -->
     </section>
 </section>
 
 <footer id="container-footer">
+<!--  Pagina contenete il messaggio da inglobare nel footer -->
 TEAM EIGHT
 </footer>
 
