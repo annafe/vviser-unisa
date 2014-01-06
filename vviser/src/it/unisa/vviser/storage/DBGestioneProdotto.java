@@ -1313,12 +1313,12 @@ public class DBGestioneProdotto
 		{
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
-			
-            query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
+			query="SELECT * FROM "+DBNames.TABLE_PRODOTTO
             		+" WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"='"+utente+"' AND bozza=1";
-          
-            st=conn.createStatement();
+			
+			st=conn.createStatement();
     		ris=st.executeQuery(query);
+    		
     		while(ris.next())
 			{
     			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
