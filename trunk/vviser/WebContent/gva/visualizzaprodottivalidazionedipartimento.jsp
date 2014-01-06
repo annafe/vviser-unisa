@@ -15,23 +15,19 @@
     <meta charset="UTF-8"/>
     <title>Seleziona prodotti</title>
     <script type="text/javascript">
-    	i=0;
-    	function attivaP(check)
+    	function controlla()
     	{
-    		id=check.getAttribute('id');
-    		n=document.getElementById("tn").value;
-    		if(document.getElementById(id).checked==true)
-    		{
-    			document.getElementById("t"+id).disabled=false;
-    			
-    		}
-    		else
-    		{
-    			i--;
-    			document.getElementById("t"+id).disabled=true;
-    		}
-    		
+    		 var chk = document.getElementsByTagName('input');
+    		    var len = chk.length;
 
+    		    for (var i = 0; i < len; i++)
+    		    {
+    		        if (chk[i].type === 'checkbox' && chk[i].checked==true)
+    		        {
+    		        	return true;
+    		        }
+    		    }
+    		    return false;
     	}
     </script>
 </head>
@@ -40,12 +36,12 @@
 
 <%
 	ArrayList<Prodotto> prodotti=new ArrayList<Prodotto>();
-	prodotti=(ArrayList<Prodotto>)request.getAttribute("prod");
+	prodotti=(ArrayList<Prodotto>)request.getAttribute("listaprodotti");
     
     
    
 %>
-<form id="mod1" action="ValidazioneDipartimentoServlet" method="POST">
+<form id="mod1" action="../ValidazioneDipartimentoServlet" method="POST" onsubmit="return controlla();">
     <table>
         <tr>
             <th colspan="2">Seleziona Prodotti</th>    
@@ -58,17 +54,16 @@
         for(int i=0;i<prodotti.size();i++)
         {
         out.println("<tr>");
-            out.println("<td><input type=\"checkbox\" name=\"selProd\" id="+i+" value="+prodotti.get(i).getIsbnTitleProdotto()+" onclick=\"attivaP(this)\""+"/></td>");
+            out.println("<td><input type=\"checkbox\" name=\"selProd\" id='"+i+"' value='"+prodotti.get(i).getIsbn()+"' /></td>");
             out.println("<td>"+prodotti.get(i).getTitolo()+"</td>");
-            String idInput="t"+i;
-            //System.out.println(idInput);
-            out.println("<td><input id="+idInput+" type=\"text\" name=\"priorita\" disabled=\"true\" /></td>");
+        
         out.println("<tr>");
         }
         
         %>
     </table>
     <button type="submit" name="sottometti">Validazione</button>
+    <button type="submit" name="sottometti" formaction="../InvioNotificaValidazioneServlet">Notifica</button>
 </form>
 
 
