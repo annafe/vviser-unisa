@@ -6,7 +6,7 @@
 <title>menu</title>
 </head>
 <body>
-<input type="button" value="Profilo" class="pulsante" onclick="document.location.href='../index.jsp';">
+<input type="button" value="Profilo" class="pulsante" onclick="document.location.href='../gu/gu.jsp';">
 		<input type="button" value="Prodotti" class="pulsante" onclick="document.location.href='../gpr/ituoiprodotti.jsp';">
 		<input type="button" value="Ricerca" class="pulsante" onclick="document.location.href='../gpr/presentazione.jsp';">
 		<input type="button" value="Validazione" class="pulsante" onclick="document.location.href='./faq.jsp';">
