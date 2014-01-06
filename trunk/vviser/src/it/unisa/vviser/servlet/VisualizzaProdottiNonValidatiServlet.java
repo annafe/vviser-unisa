@@ -82,8 +82,8 @@ public class VisualizzaProdottiNonValidatiServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				ServletContext sc = getServletContext();
+				System.out.println("ciao");
+				/*ServletContext sc = getServletContext();
 				RequestDispatcher rd = sc.getRequestDispatcher("../gva/visualizzaprodottivalidazionedipartimento.jsp");
 				try {
 					rd.forward(request,response);
@@ -93,7 +93,8 @@ public class VisualizzaProdottiNonValidatiServlet extends HttpServlet {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
+				
 			}
 			catch (SQLException ex)
 			{
