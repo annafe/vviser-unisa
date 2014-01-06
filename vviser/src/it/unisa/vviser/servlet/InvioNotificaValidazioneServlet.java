@@ -10,8 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.unisa.vviser.entity.Prodotto;
+import it.unisa.vviser.entity.Utente;
+import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBGestioneValidazione;
 
 
@@ -70,14 +73,32 @@ public class InvioNotificaValidazioneServlet extends HttpServlet {
 			HttpServletResponse response) {
 		String messaggio = request.getParameter("messaggio");
 		DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
+		DBGestioneProdotto gpr=DBGestioneProdotto.getInstance();
+		
+		String[] checkProduct=request.getParameterValues("selProd");
+		HttpSession s = request.getSession();
+		Utente currentUser=(Utente)s.getAttribute("utente");
 		
 		try
 		{
-			gp.invionotifica(messaggio);
-			
+			for(int i=0;i<checkProduct.length;i++)
+			{
+				Prodotto p=gpr.ricercaProdottoISBN(checkProduct[i]);
+				gp.invionotifica(messaggio,p.getProprietario(),currentUser.getEmail(),"messaggio");
+				
+			}
 			ServletContext sc = getServletContext();
-			// ridirezione alla pagina inziale delle gestione validazione
-			RequestDispatcher rd = sc.getRequestDispatcher("/gpr.jsp");
+			
+			if(currentUser.getTipologia().equals("direttoreDiDipartimento"))
+			{
+					// ridirezione alla pagina inziale delle gestione validazione
+					RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazionedipartimento.jsp");
+			}
+			if(currentUser.getTipologia().equals("membroDelComitatoDiAreaDidattica"))
+			{
+				// ridirezione alla pagina inziale delle gestione validazione
+				RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazioneareascientifica.jsp");
+			}
 		}
 		catch (SQLException ex)
 		{

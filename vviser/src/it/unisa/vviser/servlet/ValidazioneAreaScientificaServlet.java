@@ -77,7 +77,7 @@ public class ValidazioneAreaScientificaServlet extends HttpServlet {
 			
 			ServletContext sc = getServletContext();
 			// ridirezione alla pagina inziale delle gestione validazione
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaprodottivalidazioneareascientificajsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("../gva/visualizzaprodottivalidazioneareascientificajsp");
 		}
 		catch (SQLException ex)
 		{
