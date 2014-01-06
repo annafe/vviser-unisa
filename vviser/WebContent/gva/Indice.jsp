@@ -13,7 +13,7 @@
 <%
 //setto la sessione(provvisorio per provare)
 
-	HttpSession sessione = request.getSession();
+	//HttpSession sessione = request.getSession();
 	
 	
 %>
