@@ -84,7 +84,7 @@ public class VisualizzaProdottiValidatiDipartimentoServlet extends HttpServlet {
 				}
 				
 				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaprodottivalidazioneareascientifica.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("../gva/visualizzaprodottivalidazioneareascientifica.jsp");
 				try {
 					rd.forward(request,response);
 				} catch (ServletException e) {

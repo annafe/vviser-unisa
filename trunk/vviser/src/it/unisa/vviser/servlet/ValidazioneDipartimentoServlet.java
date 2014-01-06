@@ -77,7 +77,7 @@ public class ValidazioneDipartimentoServlet extends HttpServlet {
 			
 			ServletContext sc = getServletContext();
 			// ridirezione alla pagina inziale delle gestione validazione
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaprodottivalidazionedipartimento.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazionedipartimento.jsp");
 		}
 		catch (SQLException ex)
 		{
