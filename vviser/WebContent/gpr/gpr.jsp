@@ -36,6 +36,7 @@
 	    	</section>
 	    	
 	    	<section id="gpr_fast_menu">
+	    	<%@ include file="gpr_fast_menu.jsp" %>
     		</section>
     
     </section>
