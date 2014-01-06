@@ -173,7 +173,7 @@ public class DBGestioneValidazione {
 	 *Metodo che permette di inviare nel database una notifica per errore
 	 * @throws SQLException
 	 */
-	public void invionotifica(String messaggio) throws SQLException
+	public void invionotifica(String messaggio,String destinatario,String mittente,String oggetto) throws SQLException
 	{
 		Connection conn=null;
 		PreparedStatement st=null;
@@ -182,13 +182,18 @@ public class DBGestioneValidazione {
 		
 		{
 			conn=DBConnectionPool.getConnection();
-			query="UPDATE "+DBNames.TABLE_NOTIFICA
-					+" SET "+DBNames.ATTR_NOTIFICA_MESSAGGIO+"="+messaggio
-					+DBNames.ATTR_NOTIFICA_DESTINATARIO+"="+DBNames.ATTR_UTENTE_EMAIL
-					+ " WHERE "+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO+"="+DBNames.ATTR_UTENTE_EMAIL
-					+DBNames.ATTR_NOTIFICA_DESTINATARIO+"="+DBNames.ATTR_UTENTE_EMAIL;
+			query="INSERT INTO "+DBNames.TABLE_NOTIFICA+"("+
+			DBNames.ATTR_NOTIFICA_ID+","+DBNames.ATTR_NOTIFICA_TIPO+","+DBNames.ATTR_NOTIFICA_STATO+","+DBNames.ATTR_NOTIFICA_MESSAGGIO+","+
+			DBNames.ATTR_NOTIFICA_MITTENTE+","+DBNames.ATTR_NOTIFICA_DESTINATARIO+") value (?,?,?,?,?,?)";
+					
+					
 			
 			st=conn.prepareStatement(query);
+			st.setString(2,oggetto);
+			st.setString(3,"nonletto");
+			st.setString(4,messaggio);
+			st.setString(5,mittente);
+			st.setString(6,destinatario);
 			st.executeUpdate();
 			conn.commit();
 		}
