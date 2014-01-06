@@ -15,24 +15,21 @@
     <meta charset="UTF-8"/>
     <title>Seleziona prodotti</title>
     <script type="text/javascript">
-    	i=0;
-    	function attivaP(check)
-    	{
-    		id=check.getAttribute('id');
-    		n=document.getElementById("tn").value;
-    		if(document.getElementById(id).checked==true)
-    		{
-    			document.getElementById("t"+id).disabled=false;
-    			
-    		}
-    		else
-    		{
-    			i--;
-    			document.getElementById("t"+id).disabled=true;
-    		}
-    		
+ 
+    function controlla()
+	{
+		 var chk = document.getElementsByTagName('input');
+		    var len = chk.length;
 
-    	}
+		    for (var i = 0; i < len; i++)
+		    {
+		        if (chk[i].type === 'checkbox' && chk[i].checked==true)
+		        {
+		        	return true;
+		        }
+		    }
+		    return false;
+	}
     </script>
 </head>
 
@@ -45,7 +42,7 @@
     
    
 %>
-<form id="mod1" action="ValidazioneAreaScientificaServlet" method="POST">
+<form id="mod1" action="ValidazioneAreaScientificaServlet" method="POST" onsubmit="return controlla();">
     <table>
         <tr>
             <th colspan="3">Seleziona Prodotti</th>    
@@ -68,7 +65,9 @@
         
         %>
     </table>
-    <button type="submit" name="sottometti">Validazione</button>
+ 
+    <button type="submit" name="sottometti">Validazione area scientifica</button>
+    <button type="submit" name="sottometti" formaction="../InvioNotificaValidazioneServlet">Notifica</button>
 </form>
 
 

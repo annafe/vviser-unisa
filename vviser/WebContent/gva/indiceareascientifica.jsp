@@ -18,7 +18,7 @@
 	
 	
 %>
-<form id="mod" action="/VisualizzaProdottiValidatiDipartimentoServlet" method="POST">
+<form id="mod" action="../VisualizzaProdottiValidatiDipartimentoServlet" method="POST">
 	<button type="submit" name="sel">Visualizza prodotti da validare</button>
 </form>
 </body>
