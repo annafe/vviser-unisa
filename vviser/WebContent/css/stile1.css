@@ -117,6 +117,7 @@ section#gpr_content{
 	width:80%;
 	height:100%;
 	border:1px solid white;
+	overflow:auto;
 }
 
 section#gpr_fast_menu{
