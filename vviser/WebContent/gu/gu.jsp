@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   <%-- 
+    Author: Antonio De Piano
+--%>
 <html>
 <head>
     <title>VViSeR</title>
@@ -26,32 +28,32 @@ section#profilo{width:850px;}
 <header id="container-header">
 	<header id="header-main"></header>
 	<nav>
-		today is 28 Settembre 2013	
 	</nav>
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="../gpr/gpr.html">Gestione Prodotto</a>
+		<a href="../gpr/gpr.jsp">Gestione Prodotto</a>
 	</section>
 	<section id="search-prod">
-		<a href="main/search_prod.jsp">Gestione Valutazione</a>
+		<a href="main/gva.jsp">Gestione Valutazione</a>
 	</section>
 	<section id="documenti">
-		<a href="main/doc.jsp">Gestione Validazione</a>
+		<a href="main/gv.jsp">Gestione Validazione</a>
 	</section>
 	<section id="notifiche">
-		<a href="./notifiche.html">Notifiche</a>
+		<a href="./notifiche.jsp">Notifiche</a>
 	</section>
 	<section id="logout">
-		<a href="../index.html">Logout</a>
+		<a href="../main/login.jsp">Logout</a>
 	</section>
 </section>
 
 <section id="profilo">
-Informazioni del ricercatore
+	<%@ include file="gu_info.jsp" %>
 </section>
+
 <footer id="container-footer">
-TEAM EIGHT
+	<%@ include file="../layout/footer.jsp" %>
 </footer>
 </body>
 </html>

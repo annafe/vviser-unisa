@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>VViSeR</title>
@@ -30,7 +29,7 @@ nav{padding-top:0px;
 	</nav>
 </header>
 <section id="container-section">
-	<form method="GET" action="../ControlloLogin" name="ControlloLogin">
+	<form method="GET" action="../LoginServlet" name="ControlloLogin">
 	<fieldset>
 		<legend>Accedi</legend>
 		<table>
@@ -40,7 +39,7 @@ nav{padding-top:0px;
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" name="pass" size="20" class="testo"></td>
+				<td><input type="password" name="password" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><div class="centro"><input type="submit" value=" Accedi.. " class="pulsante"><input type="reset" value=" Annulla " class="pulsante"></div></td>
