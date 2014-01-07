@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%-- 
+    Author: Antonio De Piano
+--%>
     <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
 <%@ page import="it.unisa.vviser.entity.Prodotto"%>
 <%@ page import="java.util.*"%>
