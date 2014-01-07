@@ -7,7 +7,7 @@
 <head>
     <title>VViSeR</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="stile.css" rel="stylesheet" type="text/css"/>
+<link href="../css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 body{height:620px;width:850px;}
 header#container-header{width:850px;}
