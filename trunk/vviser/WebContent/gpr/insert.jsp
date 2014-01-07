@@ -15,8 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-table{margin:0 auto;
-	padding-top:5%;}
+table{padding-top:5%;}
 </style>
 <script type="text/javascript">
 function controlla()
