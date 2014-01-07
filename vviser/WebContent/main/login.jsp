@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%-- 
+    Author: Antonio De Piano
+--%>
 <html>
 <head>
 <title>VViSeR</title>
@@ -16,6 +19,14 @@ nav{padding-top:0px;
 	background-color:white;
 	text-align:left;}
 </style>
+<script type="text/javascript">
+function controlla()
+{
+	if(document.ControlloLogin.email.value== "" && document.ControlloLogin.password.value== "")
+		return false;
+	return true;
+}
+</script>
 </head>
 <body>
 <header id="container-header">
@@ -29,7 +40,7 @@ nav{padding-top:0px;
 	</nav>
 </header>
 <section id="container-section">
-	<form method="GET" action="../LoginServlet" name="ControlloLogin">
+	<form method="GET" action="../LoginServlet" name="ControlloLogin" onsubmit="return controlla();">
 	<fieldset>
 		<legend>Accedi</legend>
 		<table>
@@ -52,7 +63,8 @@ nav{padding-top:0px;
 	</form>
 </section>
 <footer id="container-footer">
-TEAM EIGHT
+		<!--  Pagina contenete il messaggio da inglobare nel footer -->
+		<%@ include file="../layout/footer.jsp" %>
 </footer>
 </body>
 </html>
