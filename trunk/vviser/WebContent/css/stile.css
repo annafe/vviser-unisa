@@ -163,9 +163,9 @@ section#profilo{
 	position: absolute;
 	width: 690px;
 	height: 200px;
-	top: 360px;
+	top: 354px;
 	color: black;
-	left: 191px;
+	left: 8px;
 	}
 
 section#notifiche{
@@ -173,7 +173,7 @@ section#notifiche{
 	width: 150px;
 	left: 510px;
 	height: 80px;
-	top: 284px;
+	top: 30px;
 	background-color: orangered;
 }
 th{text-align:center;}
