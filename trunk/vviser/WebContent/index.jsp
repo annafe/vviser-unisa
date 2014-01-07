@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+       <%-- 
+    Author: Antonio De Piano
+--%>
 <html>
 <head>
     <title>VViSeR</title>
@@ -11,7 +13,6 @@
 <header id="container-header">
 	<header id="header-main"></header>
 	<nav>
-		today is 28 Settembre 2013
 	<!--
 		<input type="button" value="Home" class="pulsante">
 		<input type="button" value="Contatti" class="pulsante">
@@ -23,7 +24,7 @@
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="gu/login.jsp">Accedi al sistema..</a>
+		<a href="main/login.jsp">Accedi al sistema..</a>
 	</section>
 	<section id="search-prod">
 		<a href="main/search_prod.jsp">Ricerca prodotti</a>
@@ -42,7 +43,8 @@
 	</section>
 </section>
 <footer id="container-footer">
-TEAM EIGHT
+		<!--  Pagina contenete il messaggio da inglobare nel footer -->
+		<%@ include file="../layout/footer.jsp" %>
 </footer>
 </body>
 </html>
