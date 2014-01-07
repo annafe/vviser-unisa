@@ -1,6 +1,6 @@
 <%@ page import="java.lang.ProcessBuilder.*"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="it.unisa.vviser.storage.DBTipologie"%>
 <%@ page import="it.unisa.vviser.entity.Tipologia"%>
@@ -13,27 +13,10 @@
 <head>
 <title>VViSeR</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/stile.css" rel="stylesheet" type="text/css"/>
+<link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-body{color:white;height:670px;}
-legend{color:ORANGERED;}
-fieldset{border:5px solid ORANGERED;font-size:10pt;}
-table{color:YELLOWGREEN;}
-section#container-section{width:700px; height:380px;top:225px;}
-section#prd{position:absolute;width:400px; height:410px;left:250px;}
-section#menu{position:absolute;width:190px; height:150px;top:10px; left:10px;}
-td{text-align:center;}
-footer#container-footer{top:625px;}
-p{display:block;}
-p>a:link {color:yellowgreen;
-	text-decoration:none;}      /* unvisited link */
-p>a:visited {text-decoration:none;
-	color:yellowgreen;}  /* visited link */
-p>a:hover {cursor:pointer;
-	text-decoration:none;
-	color:yellowgreen;}  /* mouse over link */
-p>a:active {color:yellowgreen;
-	text-decoration:none;}  /* selected link */
+table{margin:0 auto;
+	padding-top:5%;}
 </style>
 <script type="text/javascript">
 function controlla()
@@ -56,22 +39,9 @@ return true;
 <% 
 /*@include file="../gu/header.jsp" */
 %>
-
-<header id="container-header">
-	
-	<nav>
-today is 28 Settembre 2013
-	</nav>
-</header>
-<section id="container-section">
-	<section id="menu">
-		<p><a href="./gpr.jsp">Gestione prodotto</a>
-	</section>
-	<section id="prd">
 	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
-	<fieldset>
-		<legend>Prodotto</legend>
 		<table>
+			<caption>Prodotto</caption>
 			<tr>
 				<td>ISBN*</td>
 				<td><input type="text" name="isbn" size="20" class="testo"></td>
@@ -176,12 +146,6 @@ today is 28 Settembre 2013
 				<td colspan="2">* I campi sono obbligatori</td>
 			</tr>
 		</table>
-	</fieldset>
 	</form>
-	</section>
-</section>
-<footer id="container-footer">
-TEAM EIGHT
-</footer>
 </body>
 </html>

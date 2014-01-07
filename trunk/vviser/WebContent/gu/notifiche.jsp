@@ -26,7 +26,6 @@ a.not:link {color:yellow;
 <header id="container-header">
 	<header id="header-main"></header>
 	<nav>
-		today is 28 Settembre 2013	
 	</nav>
 </header>
 <section id="container-section">
@@ -58,7 +57,8 @@ a.not:link {color:yellow;
 	</section>
 </section>
 <footer id="container-footer">
-TEAM EIGHT
+		<!--  Pagina contenete il messaggio da inglobare nel footer -->
+		<%@ include file="../layout/footer.jsp" %>
 </footer>
 </body>
 </html>
