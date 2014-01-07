@@ -13,7 +13,7 @@
 		<input type="button" value="Valutazione" class="pulsante" onclick="document.location.href='./altro.jsp';">
 		<input type="button" value="Miur" class="pulsante" onclick="document.location.href='./altro.jsp';">
 		<input type="button" value="Guida" class="pulsante" onclick="document.location.href='./altro.jsp';">
-		<input type="button" value="Logout" class="pulsante" onclick="document.location.href='./altro.jsp';" style="background-color:tomato;">
+		<input type="button" value="Logout" class="pulsante" onclick="document.location.href='../main/login.jsp';" style="background-color:tomato;">
 		
 </body>
 </html>
