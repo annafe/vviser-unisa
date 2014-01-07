@@ -60,8 +60,10 @@ function funz(e){
 			EventoValutazione e=lista.get(i);
 			
 			out.println("<tr><form name=\"formVisualizza\" action\"visualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
-			out.println("<td name=\"idEvento\">"+e.getID()+"</td>");
-			out.println("<td name=\"nomeEvento\">"+e.getNomeEvento()+"</td>");				
+			//out.println("<td name=\"idEvento\">"+e.getID()+"</td>");
+			out.println("<td name=\"nomeEvento\">"+e.getNomeEvento()+"</td>");
+			out.println("<td name=\"datainizio\">"+e.getDataInizio()+"</td>");
+			out.println("<td name=\"datafine\">"+e.getDataFine()+"</td>");
 			out.println("<td><input type=\"submit\" name=\"modificaEvento\" value=\"Modifica\"/></td>");
 			out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"Rimuovi\"/></td>");
 			out.println("</tr>");
