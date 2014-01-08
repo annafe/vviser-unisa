@@ -16,6 +16,9 @@
 <link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 table{padding-top:5%;}
+legend{color:ORANGERED;}
+fieldset{border:5px solid ORANGERED;font-size:10pt;}
+div.centro{text-align:center;}
 </style>
 <script type="text/javascript">
 function controlla()
@@ -39,8 +42,9 @@ return true;
 /*@include file="../gu/header.jsp" */
 %>
 	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
+	<fieldset>
+		<legend>Prodotto</legend>
 		<table>
-			<caption>Prodotto</caption>
 			<tr>
 				<td>ISBN*</td>
 				<td><input type="text" name="isbn" size="20" class="testo"></td>
@@ -124,19 +128,19 @@ return true;
 			</tr>
 			<tr>
 				<td>Numero volume</td>
-				<td><input type="text" name="num_volume" size="10" class="testo"></td>
+				<td><input type="text" name="num_volume" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Totale pagine</td>
-				<td><input type="text" name="totalePagine" size="10" class="testo"></td>
+				<td><input type="text" name="totalePagine" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>Da Pagina</td>
-				<td><input type="text" name="daPagina" size="10" class="testo"></td>
+				<td><input type="text" name="daPagina" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td>A Pagina</td>
-				<td><input type="text" name="aPagina" size="10" class="testo"></td>
+				<td><input type="text" name="aPagina" size="20" class="testo"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><div class="centro"><input type="submit" value=" Salva " class="pulsante"><input type="reset" value=" Annulla " class="pulsante"></div></td>
@@ -145,6 +149,7 @@ return true;
 				<td colspan="2">* I campi sono obbligatori</td>
 			</tr>
 		</table>
+		</fieldset>
 	</form>
 </body>
 </html>
