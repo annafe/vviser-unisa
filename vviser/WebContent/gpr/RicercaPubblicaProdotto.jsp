@@ -233,7 +233,7 @@
 				List<Prodotto> pr = (ArrayList<Prodotto>) request.getAttribute("results"); 
 				for(Prodotto p : pr){
 					out.println("<tr>");
-					out.print("<td>"+p.getAnnoPubblicazione().get(Calendar.YEAR)+"</td><td>"+p.getTitolo() +"</td><td>"+p.getDescrizioneContenuti()+"</td>");
+					out.print("<td>"+p.getAnnoPubblicazione().get(Calendar.YEAR)+"</td><td>"+p.getTitolo() +"</td>");
 					out.println("<td>");
 					out.println("<form action=\"/vviser/VisualizzaDettaglioProdottoServlet\" method=\"POST\">");
 					out.println("<input type=\"hidden\" name=\"isbn\" value=\""+p.getIsbn()+"\"/>");
