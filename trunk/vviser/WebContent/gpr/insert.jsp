@@ -19,6 +19,8 @@ table{padding-top:5%;}
 legend{color:ORANGERED;}
 fieldset{border:5px solid ORANGERED;font-size:10pt;}
 div.centro{text-align:center;}
+td{font-weight:bold;}
+td.color{color:orangered;}
 </style>
 <script type="text/javascript">
 function controlla()
@@ -46,15 +48,15 @@ return true;
 		<legend>Prodotto</legend>
 		<table>
 			<tr>
-				<td>ISBN*</td>
+				<td class="color">ISBN*</td>
 				<td><input type="text" name="isbn" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Titolo*</td>
+				<td class="color">Titolo*</td>
 				<td><input type="text" name="titolo" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Data Pubblicazione*</td>
+				<td class="color">Data Pubblicazione*</td>
 				<td><input type="date" name="data" class="testo"/></td>
 			</tr>
 			<tr>
@@ -70,7 +72,7 @@ return true;
 				<td><input type="text" name="diffusione" size="20" class="testo"></td>
 			</tr>
 			<tr>
-				<td>Tipologia*</td>
+				<td class="color">Tipologia*</td>
 				<td><select name="tipologia">
 				<% 	
 				DBTipologie dbt = DBTipologie.getInstance();
@@ -146,7 +148,7 @@ return true;
 				<td colspan="2"><div class="centro"><input type="submit" value=" Salva " class="pulsante"><input type="reset" value=" Annulla " class="pulsante"></div></td>
 			</tr>
 			<tr>
-				<td colspan="2">* I campi sono obbligatori</td>
+				<td colspan="2"><div class="centro">* I campi sono obbligatori</div></td>
 			</tr>
 		</table>
 		</fieldset>
