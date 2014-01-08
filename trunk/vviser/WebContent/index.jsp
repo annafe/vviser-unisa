@@ -27,7 +27,7 @@
 		<a href="main/login.jsp">Accedi al sistema..</a>
 	</section>
 	<section id="search-prod">
-		<a href="main/search_prod.jsp">Ricerca prodotti</a>
+		<a href="/vviser/gpr/RicercaPubblicaProdotto.jsp">Ricerca prodotti</a>
 	</section>
 	<section id="documenti">
 		<a href="main/doc.jsp">Documenti</a>
