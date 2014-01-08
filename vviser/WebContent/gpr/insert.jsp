@@ -16,11 +16,6 @@
 <link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 table{padding-top:5%;}
-legend{color:ORANGERED;}
-fieldset{border:5px solid ORANGERED;font-size:10pt;}
-div.centro{text-align:center;}
-td{font-weight:bold;}
-td.color{color:orangered;}
 </style>
 <script type="text/javascript">
 function controlla()

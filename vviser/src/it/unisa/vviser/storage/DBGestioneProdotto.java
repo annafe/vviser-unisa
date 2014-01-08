@@ -218,7 +218,6 @@ public class DBGestioneProdotto
 	 */
 	public void sottomettiAlMIUR(String proprietario,String isbn)throws SQLException
 	{
-		System.out.println("Entro");
 		Connection conn=null;
 		PreparedStatement st=null;
 		String query;
@@ -893,8 +892,6 @@ public class DBGestioneProdotto
 			query="UPDATE "+DBNames.TABLE_COLLABORAZIONI+" SET "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1 "
 					+"WHERE "+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"='"+isb_prodotto+"' AND "
 					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+collaboratore+"'";
-			
-			System.out.println(query);
 			st=conn.prepareStatement(query);
 			st.executeUpdate();
 			conn.commit();
@@ -1292,9 +1289,7 @@ public class DBGestioneProdotto
             DBConnectionPool.releaseConnection(conn);
         }
 	}
-	
-	
-	//Sto modificando
+
 	/**
 	 *Metodo che permette di visualizzare tutti i prodotti personali(proprietario)
 	 *che sono in bozza
