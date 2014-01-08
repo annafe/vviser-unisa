@@ -12,8 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
 <style>
-table{overflow:auto;
-	padding-top:5%;}
+table{padding-top:5%;}
 	th{color:ORANGERED;}
 	td{text-align:center;}
 </style>

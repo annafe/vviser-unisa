@@ -30,6 +30,8 @@ function controlla()
 	    return false;
 }
 </script>
+<style type="text/css">
+</style>
 </head>
 <body>
 
@@ -51,6 +53,7 @@ else
 
 <form method="post" action="../ConvalidaProdottoServlet" name="modulo" onsubmit="return controlla();">
 <table>
+<caption>Convalida prodotto</caption>
 <tr>
 <th>&nbsp;</th>
 <th>Titolo</th>
@@ -60,7 +63,6 @@ else
 <%
 	for(int i=0;i<l.size();i++)
 	{
-		out.println("ciao");
 		%>
 		<tr>
 		<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id='"+i+"' value='"+l.get(i).getIsbn()+"' /></td>");
@@ -70,7 +72,7 @@ else
 	}
 %>
 <tr>
-<td colspan="3"><input type="submit" value=" Invia "></td>
+<td colspan="4"><div class="centro"><input type="submit" value=" Convalida " class="pulsante"></div></td>
 </tr>
 </table>
 </form>

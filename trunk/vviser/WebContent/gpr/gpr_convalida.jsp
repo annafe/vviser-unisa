@@ -8,6 +8,8 @@
 	<title>VViSeR</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
+	<style type="text/css">
+	</style>
 </head>
 
 <body>

@@ -143,3 +143,9 @@ a:hover {cursor:pointer;
 	color:blue;}  /* mouse over link */
 a:active {color:blue;
 	text-decoration:none;}  /* selected link */
+
+div.centro{text-align:center;}
+td{font-weight:bold;}
+td.color{color:orangered;}
+legend{color:ORANGERED;}
+fieldset{border:5px solid ORANGERED;font-size:10pt;}
