@@ -12,15 +12,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
 <style>
-table{margin:0 auto;
+table{overflow:auto;
 	padding-top:5%;}
+	th{color:ORANGERED;}
+	td{text-align:center;}
 </style>
 </head>
 <body>
 <table>
  	<tr>
+ 	<th>ISBN</th>
  	<th>TITOLO</th>
  	<th>DESCRIZIONE</th>
+ 	<th>TIPOLOGIA</th>
+ 	<th>NOTE</th>
  	<th>STATO</th>
  	</tr>
 		<% 	
@@ -32,8 +37,11 @@ table{margin:0 auto;
 			{
 				%>
 				<tr>
+				<% out.println("<td><a href='gpr_dettaglio_prod.jsp?isbn="+l.get(i).getIsbn()+"'>"+l.get(i).getIsbn()+"</a></td>"); %>
 					<td><%out.println(l.get(i).getTitolo());%></td>
 					<td><%out.println(l.get(i).getDescrizioneContenuti());%></td>
+					<td><%out.println(l.get(i).getTipologia());%></td>
+					<td><%out.println(l.get(i).getNote());%></td>
 					<td>In bozza</td>
 				</tr>
 				<% 

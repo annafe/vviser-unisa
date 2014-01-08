@@ -10,6 +10,8 @@
 </head>
 <body>
 <p><a href="gpr_insert.jsp">Inserisci</a></p>
+<p><a href="gpr.jsp">Bozze</a></p>
+<p><a href="gpr.jsp">Convalida</a></p>
 <p>Altre..</p>
 </body>
 </html>
