@@ -34,7 +34,8 @@
 		position:absolute;
 		top:180px;
 		left:160px;
-		width:calc(100% - 160px);
+		width:calc(100% - 165px);
+		height:100px;
 	}
 	#risultati>table{
 		width:100%;
