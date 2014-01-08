@@ -105,7 +105,7 @@ public class RicercaPubblicaProdottoServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("results", pr);
-			request.getServletContext().getRequestDispatcher("/gpr/RicercaProdotto.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/gpr/risultatiRicerca.jsp").forward(request, response);
 			
 			
 		}
