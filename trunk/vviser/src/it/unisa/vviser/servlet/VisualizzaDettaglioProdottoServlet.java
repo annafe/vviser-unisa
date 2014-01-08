@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class VisualizzaDettaglioProdottoServlet
@@ -75,8 +76,15 @@ public class VisualizzaDettaglioProdottoServlet extends HttpServlet
 			PrintWriter out = response.getWriter();
 			
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gpr/VisualizzaDettagliProdotto.jsp");
-			rd.forward(request,response);
+			HttpSession session = request.getSession();
+			if(session.getAttribute("utente") != null){
+				RequestDispatcher rd = sc.getRequestDispatcher("/gpr/VisualizzaDettagliProdotto.jsp");
+				rd.forward(request,response);
+			}
+			else{
+				RequestDispatcher rd = sc.getRequestDispatcher("/gpr/VisualizzaDettagliPubblici.jsp");
+				rd.forward(request,response);
+			}
 		
 		}
 		catch (SQLException ex)
