@@ -92,7 +92,7 @@
 								}
 				    		%>
 				    	</select>	
-				    	<input type="submit"/>
+				    	<button type="submit"><img src="/vviser/images/search-icon.png" alt="Cerca"></button>
 					</div>
 					<div class="criterio" id="anni" style="display:none;">
 						<%
@@ -135,7 +135,7 @@
 				    			}
 			    			%>
 						</select>
-						<input type="submit"/>
+						<button type="submit"><img src="/vviser/images/search-icon.png" alt="Cerca"></button>
 					</div>	
 						
 					<div class="criterio" id="titolo_prodotto" style="display:none;">
@@ -148,7 +148,7 @@
 						<input type="text" name="titolo_prodotto" placeholder="Titolo prodotto"
 						<% if(text != null) out.print(" value=\""+text+"\" "); %>
 						/>
-						<input type="submit"/>
+						<button type="submit"><img src="/vviser/images/search-icon.png" alt="Cerca"></button>
 					</div>
 					
 					
@@ -162,7 +162,7 @@
 						<input type="text" name="titolo_rivista" placeholder="Titolo rivista"
 						<% if(text != null) out.print(" value=\""+text+"\" "); %>
 						/>
-						<input type="submit"/>
+						<button type="submit"><img src="/vviser/images/search-icon.png" alt="Cerca"></button>
 					</div>
 					
 					
@@ -176,7 +176,7 @@
 						<input type="text" name="issn_rivista" placeholder="ISSN rivista"
 						<% if(text != null) out.print(" value=\""+text+"\" "); %>
 						/>
-						<input type="submit"/>
+						<button type="submit"><img src="/vviser/images/search-icon.png" alt="Cerca"></button>
 					</div>
 					</td>
 			</tr>
