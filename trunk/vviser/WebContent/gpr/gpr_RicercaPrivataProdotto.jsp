@@ -63,8 +63,7 @@
 							%>
 	
 							<input type="radio" name="catalogo" value="pubblico"
-							<% if(catalogo.equals("pubblico")) out.print(" checked "); %>
-							>Pubblico
+							checked >Pubblico
 							<input type="radio" name="catalogo" value="personale"
 							<% if(catalogo.equals("personale")) out.print(" checked "); %>
 							>Personale
@@ -196,7 +195,7 @@
 					out.println("<td>");
 					out.println("<form action=\"/vviser/VisualizzaDettaglioProdottoServlet\" method=\"POST\">");
 					out.println("<input type=\"hidden\" name=\"isbn\" value=\""+p.getIsbn()+"\"/>");
-					out.println("<input type=\"submit\" value=\"Dettagli\"/>");
+					out.println("<input class=\"pulsante\" type=\"submit\" value=\"Dettagli\"/>");
 					out.println("</form></td></tr>");
 				}
 			}
