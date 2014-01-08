@@ -32,7 +32,7 @@
 	    	
 	    	<section id="gpr_content">
 		    	<!--  Pagina contenente il contenuto -->
-		    	<%@ include file="gpr_RicercaPubblicaProdotto.jsp" %>
+		    	<%@ include file="gpr_RicercaPrivataProdotto.jsp" %>
 	    	</section>
 	    	
 	    	<section id="gpr_fast_menu">
