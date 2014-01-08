@@ -11,7 +11,7 @@
 <body>
 <input type="button" value="Profilo" class="pulsante" onclick="document.location.href='../gu/gu.jsp';">
 		<input type="button" value="Prodotti" class="pulsante" onclick="document.location.href='../gpr/ituoiprodotti.jsp';">
-		<input type="button" value="Ricerca" class="pulsante" onclick="document.location.href='/vviser/gpr/RicercaProdotto.jsp';">
+		<input type="button" value="Ricerca" class="pulsante" onclick="document.location.href='/vviser/gpr/RicercaPrivataProdotto.jsp';">
 		<input type="button" value="Validazione" class="pulsante" onclick="document.location.href='./faq.jsp';">
 		<input type="button" value="Valutazione" class="pulsante" onclick="document.location.href='./altro.jsp';">
 		<input type="button" value="Miur" class="pulsante" onclick="document.location.href='./altro.jsp';">
