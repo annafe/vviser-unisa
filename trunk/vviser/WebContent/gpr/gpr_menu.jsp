@@ -13,7 +13,7 @@
 		<input type="button" value="Prodotti" class="pulsante" onclick="document.location.href='/vviser/gpr/ituoiprodotti.jsp';">
 		<input type="button" value="Ricerca" class="pulsante" onclick="document.location.href='/vviser/gpr/RicercaPrivataProdotto.jsp';">
 		<input type="button" value="Valutazione" class="pulsante" onclick="document.location.href='/vviser/altro.jsp';">
-		<input type="button" value="Miur" class="pulsante" onclick="document.location.href='gpr_miur.jsp';">
+		<input type="button" value="Miur" class="pulsante" onclick="document.location.href='/vviser/gpr/gpr_miur.jsp';">
 		<input type="button" value="Guida" class="pulsante" onclick="document.location.href='/vviser/altro.jsp';">
 		<input type="button" value="Logout" class="pulsante" onclick="document.location.href='/vviser/main/login.jsp';" style="background-color:tomato;">
 </body>
