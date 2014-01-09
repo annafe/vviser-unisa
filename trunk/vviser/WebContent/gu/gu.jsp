@@ -11,6 +11,10 @@
 </head>
 
 <body>
+<%
+/*@include file="/gu/header.jsp"; */
+%>
+
 <header id="container-header">
 <!--  contiene il logo  -->
 </header>	
