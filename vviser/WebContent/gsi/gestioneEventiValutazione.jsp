@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Gestione Eventi di Valutazione</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
+	<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
