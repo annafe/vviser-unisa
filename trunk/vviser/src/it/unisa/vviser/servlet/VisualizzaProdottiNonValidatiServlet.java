@@ -68,37 +68,27 @@ public class VisualizzaProdottiNonValidatiServlet extends HttpServlet {
 		 */
 		private void processRequest(HttpServletRequest request,HttpServletResponse response)
 		{
-			
-			
 			try
 			{
 				DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 				ArrayList<Prodotto> pr=gp.visualizzaProdotti();
 				request.setAttribute("listaprodotti",pr);
-				
-				try {
-					PrintWriter out = response.getWriter();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println("ciao");
-				/*ServletContext sc = getServletContext();
+				PrintWriter out = response.getWriter();
+				ServletContext sc = getServletContext();
 				RequestDispatcher rd = sc.getRequestDispatcher("../gva/visualizzaprodottivalidazionedipartimento.jsp");
-				try {
-					rd.forward(request,response);
-				} catch (ServletException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
-				
+				rd.forward(request,response);				
 			}
 			catch (SQLException ex)
 			{
 				ex.printStackTrace();
+			}
+			catch (ServletException e)
+			{
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
 			}
 		}
 
