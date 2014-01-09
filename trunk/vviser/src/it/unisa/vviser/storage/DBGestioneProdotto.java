@@ -82,7 +82,7 @@ public class DBGestioneProdotto
             		+DBNames.ATTR_PRODOTTO_NUMVOLUME+","
             		+DBNames.ATTR_PRODOTTO_TOTALEPAGINE+","
             		+DBNames.ATTR_PRODOTTO_DESCRIZIONECONTENUTI 
-            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            		+") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             st=conn.prepareStatement(query);
             st.setString(1,p.getIsbn());
