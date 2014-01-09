@@ -7,7 +7,8 @@
 <head>
     <title>VViSeR</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/stile.css" rel="stylesheet" type="text/css"/>
+
+<link href="/vviser/css/stile.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 body{height:620px;width:850px;}
 header#container-header{width:850px;}
@@ -32,7 +33,7 @@ section#profilo{width:850px;}
 </header>
 <section id="container-section">
 	<section id="login">
-		<a href="../gpr/gpr.jsp">Gestione Prodotto</a>
+		<a href="/vviser/gpr/gpr.jsp">Gestione Prodotto</a>
 	</section>
 	<section id="search-prod">
 		<a href="main/gva.jsp">Gestione Valutazione</a>
