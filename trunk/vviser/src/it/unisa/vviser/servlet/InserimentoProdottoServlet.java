@@ -80,7 +80,6 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String tipologia = request.getParameter("tipologia");
 		String note = request.getParameter("note");
 		String collaboratori[] = request.getParameterValues("collaboratori");
-		System.out.println("Inzio : "+request.getParameterValues("collaboratori"));
 		String descrizione = request.getParameter("descrizione");
 
 		String indirizzoweb = request.getParameter("indirizzoweb");
@@ -149,8 +148,8 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		}
 	
 		ServletContext sc = getServletContext();
-		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("/gpr/gpr_insert.jsp");
+		// ridirezione alla home dei prodotti
+		RequestDispatcher rd = sc.getRequestDispatcher("/gpr/gpr.jsp");
 		try
 		{
 			rd.forward(request,response);
