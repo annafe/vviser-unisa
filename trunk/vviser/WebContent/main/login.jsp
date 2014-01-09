@@ -55,9 +55,6 @@ function controlla()
 			<tr>
 				<td colspan="2"><div class="centro"><input type="submit" value=" Accedi.. " class="pulsante"><input type="reset" value=" Annulla " class="pulsante"></div></td>
 			</tr>
-			<tr>
-				<td colspan="2"><a href="#" style="color:yellowgreen;font-size:12pt;">Password dimenticata ?</a></td>
-			</tr>
 		</table>
 	</fieldset>
 	</form>
