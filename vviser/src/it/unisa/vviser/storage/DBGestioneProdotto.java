@@ -111,23 +111,26 @@ public class DBGestioneProdotto
             
             
             //Aggiungo un entry nella tabella collaborazioni per ogni utente indicato come coautore
-            StringTokenizer collaboratori = new StringTokenizer(p.getListaCollaboratori(),";");
+            System.out.println("p.getListaCollaboratori(); "+p.getListaCollaboratori());
+            if(p.getListaCollaboratori()==null)
+            	return;
             
-    		while (collaboratori.hasMoreElements())
-    		{
-    			query="INSERT INTO "+DBNames.TABLE_COLLABORAZIONI+" ("
-    					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+","
-    					+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+","
-    					+DBNames.ATTR_COLLABORAZIONI_PROPRIETARIO+","
-    					+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+") values (?,?,?,?)";
-    			 st=conn.prepareStatement(query);
-    	         st.setString(1,(String) collaboratori.nextElement());
-    	         st.setString(2,p.getIsbn());
-    	         st.setString(3,p.getProprietario());
-    	         st.setBoolean(4,false);
-    	         st.executeUpdate();
-    	         conn.commit();
-    		}
+            StringTokenizer collaboratori = new StringTokenizer(p.getListaCollaboratori(),";");
+	       	while (collaboratori.hasMoreElements())
+	    	{
+	    			query="INSERT INTO "+DBNames.TABLE_COLLABORAZIONI+" ("
+	    					+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+","
+	    					+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+","
+	    					+DBNames.ATTR_COLLABORAZIONI_PROPRIETARIO+","
+	    					+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+") values (?,?,?,?)";
+	    			 st=conn.prepareStatement(query);
+	    	         st.setString(1,(String) collaboratori.nextElement());
+	    	         st.setString(2,p.getIsbn());
+	    	         st.setString(3,p.getProprietario());
+	    	         st.setBoolean(4,false);
+	    	         st.executeUpdate();
+	    	         conn.commit();
+            }
 		}
 		finally 
         {
