@@ -4,7 +4,7 @@
     Author: Antonio De Piano
 --%>
     <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
-<%@ page import="it.unisa.vviser.entity.Prodotto"%>
+<%@ page import="it.unisa.vviser.entity.*"%>
 <%@ page import="java.util.*"%>
 <%@page import="it.vviser.common.CommonMethod"%>
 <html>
@@ -18,20 +18,26 @@ table{padding-top:5%;}
 </style>
 </head>
 <body>
-<table>
- 	<tr>
- 	<th>ISBN</th>
- 	<th>TITOLO</th>
- 	<th>DESCRIZIONE</th>
- 	<th>TIPOLOGIA</th>
- 	<th>NOTE</th>
- 	<th>STATO</th>
- 	</tr>
-		<% 	
+<% 	
 			DBGestioneProdotto dbGpr = new DBGestioneProdotto();
-			//Utente currentUser = (Utente) session.getAttribute("utente");
-			//List<Prodotto> l = dbGpr.visualizzaProdottiPersonali(currentUser.getEmail());
-			List<Prodotto> l = dbGpr.visualizzaProdottiInBozza("deufemia@unisa.it");
+			Utente currentUser = (Utente) session.getAttribute("utente");
+			List<Prodotto> l = dbGpr.visualizzaProdottiPersonali(currentUser.getEmail());
+			if(l.isEmpty())
+				out.println("Non ci sono prodotti");
+			else
+			{
+				%>
+				<table>
+			 	<tr>
+			 	<th>ISBN</th>
+			 	<th>TITOLO</th>
+			 	<th>DESCRIZIONE</th>
+			 	<th>TIPOLOGIA</th>
+			 	<th>NOTE</th>
+			 	<th>STATO</th>
+			 	</tr>
+ 		<%
+			//List<Prodotto> l = dbGpr.visualizzaProdottiInBozza("deufemia@unisa.it");
 			for (int i=0; i<l.size(); i++)
 			{
 				%>
@@ -47,5 +53,6 @@ table{padding-top:5%;}
 			}
 		%>
 </table>
+<% } %>
 </body>
 </html>
