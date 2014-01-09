@@ -99,12 +99,15 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			
 			prod.setIndirizzoWeb(indirizzoweb);
 			prod.setAnnoPubblicazione(CommonMethod.stringToDate(dataPubblicazione));
-			if(aPagina!=null)
+			if(!aPagina.equals(""))
 				prod.setApagina(Integer.parseInt(aPagina));
 			else
 				prod.setApagina(0);
 			prod.setBozza(false);
-			prod.setDaPagina(Integer.parseInt(daPagina));
+			if(!daPagina.equals(""))
+				prod.setDaPagina(Integer.parseInt(daPagina));
+			else
+				prod.setDaPagina(0);
 			prod.setDescrizioneContenuti(descrizione);
 			prod.setCodiceDOI(codiceDoi);
 			prod.setIsbn(isbn);
@@ -112,29 +115,37 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			prod.setTitolo(titolo);
 			prod.setEditore(editore);
 			prod.setDiffusione(diffusione);
-			for(int i=0;i<collaboratori.length;i++)
+			if(collaboratori!=null)
 			{
-				prod.setListaCollaboratori(collaboratori[i]);
+				System.out.println("Collaboratori= "+collaboratori.length);
+				for(int i=0;i<collaboratori.length;i++)
+				{
+					prod.setListaCollaboratori(collaboratori[i]);
+				}
 			}
-			prod.setNumVolume(Integer.parseInt(num_volume));
+			if(!num_volume.equals(""))
+				prod.setNumVolume(Integer.parseInt(num_volume));
+			else
+				prod.setNumVolume(0);
 			prod.setParoleChiavi(key);
 			prod.setNote(note);
 			prod.setStato("NonValidato");
-			
-			
 			prod.setProprietario(currentUser.getEmail());
 			prod.setFormatoPubblicazione(formatoPubblicazione);
-			prod.setTotalePagine(Integer.parseInt(totalePagine));
+			if(!totalePagine.equals(""))
+				prod.setTotalePagine(Integer.parseInt(totalePagine));
+			else
+				prod.setTotalePagine(0);
 			this.gprodotto.insertProdotto(prod);
 		}
 		catch (SQLException ex)
 		{
 			ex.printStackTrace();
 		}
-	/*
+	
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti i prodotti
-		RequestDispatcher rd = sc.getRequestDispatcher("../ituoiprodotti.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/gpr/gpr_insert.jsp");
 		try
 		{
 			rd.forward(request,response);
@@ -147,6 +158,5 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		*/
 	}
 }
