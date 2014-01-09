@@ -64,8 +64,6 @@ public class DBGestioneValidazione {
 					+" AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_EMAIL+"="+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
 					+" AND "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_BOZZA+"=0"
 					+" AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"='INFORMATICA'";
-			System.out.println(query);
-			System.out.println("ciao");
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
