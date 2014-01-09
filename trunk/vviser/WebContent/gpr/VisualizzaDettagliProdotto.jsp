@@ -9,7 +9,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
 </head>
-vv
+
 <body>
 
 <header id="container-header">
@@ -30,7 +30,7 @@ vv
 
     <section id="section-main">
 	    	
-	    	<section id="gpr_content">
+	    	<section id="gpr_content" style="overflow=hidden;">
 		    	<!--  Pagina contenente il contenuto -->
 		    	<%@ include file="VisualizzaDettagliProdottoMain.jsp" %>
 	    	</section>
