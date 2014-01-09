@@ -40,7 +40,7 @@ function controlla()
 	</nav>
 </header>
 <section id="container-section">
-	<form method="GET" action="../LoginServlet" name="ControlloLogin" onsubmit="return controlla();">
+	<form method="POST" action="../LoginServlet" name="ControlloLogin" onsubmit="return controlla();">
 	<fieldset>
 		<legend>Accedi</legend>
 		<table>
