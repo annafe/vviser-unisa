@@ -4,6 +4,7 @@
     Author: Angiuoli Salvatore
 --%>
 <%@page import="it.unisa.vviser.entity.*"%>
+<%@page import="it.unisa.vviser.storage.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.*"%>
 <%@page import="javax.servlet.*"%>
@@ -33,11 +34,11 @@
 <body>
 
 <%
-	ArrayList<Prodotto> prodotti=new ArrayList<Prodotto>();
-	prodotti=(ArrayList<Prodotto>)request.getAttribute("listaprodotti");
-    
-    
-   
+
+DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
+ArrayList<Prodotto> prodotti=gp.visualizzaProdotti();
+
+  
 %>
 <form id="mod1" action="../ValidazioneDipartimentoServlet" method="POST" onsubmit="return controlla();">
     <table>
