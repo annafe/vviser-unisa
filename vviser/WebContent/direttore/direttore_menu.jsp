@@ -7,10 +7,8 @@
 </head>
 <body>
 <input type="button" value="Profilo" class="pulsante" onclick="document.location.href='../index.jsp';">
-		<input type="button" value="Prodotti" class="pulsante" onclick="document.location.href='../gpr/ituoiprodotti.jsp';">
-		<input type="button" value="Ricerca" class="pulsante" onclick="document.location.href='../gpr/presentazione.jsp';">
-		<input type="button" value="Valutazione" class="pulsante" onclick="document.location.href='./altro.jsp';">
-		<input type="button" value="Altri campi per direttore" class="pulsante" onclick="document.location.href='./altro.jsp';">
+		<input type="button" value="Prodotti da validare" class="pulsante" onclick="document.location.href='../gpr/ituoiprodotti.jsp';">
 		<input type="button" value="Guida" class="pulsante" onclick="document.location.href='./altro.jsp';">
+		<input type="button" value="Logout" class="pulsante" onclick="document.location.href='../main/login.jsp';" style="background-color:tomato;">
 </body>
 </html>

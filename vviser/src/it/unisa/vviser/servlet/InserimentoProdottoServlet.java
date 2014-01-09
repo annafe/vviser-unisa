@@ -99,7 +99,10 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			
 			prod.setIndirizzoWeb(indirizzoweb);
 			prod.setAnnoPubblicazione(CommonMethod.stringToDate(dataPubblicazione));
-			prod.setApagina(Integer.parseInt(aPagina));
+			if(aPagina!=null)
+				prod.setApagina(Integer.parseInt(aPagina));
+			else
+				prod.setApagina(0);
 			prod.setBozza(false);
 			prod.setDaPagina(Integer.parseInt(daPagina));
 			prod.setDescrizioneContenuti(descrizione);

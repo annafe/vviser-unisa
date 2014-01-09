@@ -13,6 +13,5 @@
 <p><a href="gpr.jsp">Bozze</a></p>
 <p><a href="gpr_convalida.jsp">Lista collaborazioni</a></p>
 <p><a href="gpr_miur.jsp">Invia al miur</a></p>
-<p>Altre..</p>
 </body>
 </html>
