@@ -313,7 +313,7 @@ public class Prodotto
 		if(this.listaCollaboratori!=null)
 			this.listaCollaboratori+=listaCollaboratori+";";
 		else
-			this.listaCollaboratori=listaCollaboratori+";";
+			this.listaCollaboratori=listaCollaboratori;
 	}
 	
 	/**

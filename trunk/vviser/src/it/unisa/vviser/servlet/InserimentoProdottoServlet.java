@@ -80,6 +80,7 @@ public class InserimentoProdottoServlet extends HttpServlet {
 		String tipologia = request.getParameter("tipologia");
 		String note = request.getParameter("note");
 		String collaboratori[] = request.getParameterValues("collaboratori");
+		System.out.println("Inzio : "+request.getParameterValues("collaboratori"));
 		String descrizione = request.getParameter("descrizione");
 
 		String indirizzoweb = request.getParameter("indirizzoweb");
@@ -115,14 +116,18 @@ public class InserimentoProdottoServlet extends HttpServlet {
 			prod.setTitolo(titolo);
 			prod.setEditore(editore);
 			prod.setDiffusione(diffusione);
-			if(collaboratori!=null)
+			if(collaboratori==null)
 			{
-				System.out.println("Collaboratori= "+collaboratori.length);
+				prod.setListaCollaboratori(null);
+			}
+			else
+			{
 				for(int i=0;i<collaboratori.length;i++)
 				{
-					prod.setListaCollaboratori(collaboratori[i]);
+						prod.setListaCollaboratori(collaboratori[i]);
 				}
 			}
+			
 			if(!num_volume.equals(""))
 				prod.setNumVolume(Integer.parseInt(num_volume));
 			else
