@@ -15,7 +15,6 @@
 notifiche
 </section>
 <section id="direttore_home">
-home direttore
 </section>
 <section id="nav_direttore_menu">
 menù per navigare tra prodotti
