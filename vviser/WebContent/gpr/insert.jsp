@@ -20,24 +20,19 @@ table{padding-top:5%;}
 <script type="text/javascript">
 function controlla()
 {
-	/*var f = document.modulo;
-	if(((f.isbn.value == "" || f.titolo.value=="")|| f.data.value=="" ) || f.tipologia.value=="")
+	var f = document.modulo;
+	if(f.isbn.value!="" && f.titolo.value!="" && f.data.value!="" && f.tipologia.value!="")
 	{
-		alert("Attenzione\n alcuni campi non sono stati compilati")
-		f.isbn.focus();
-		return false;
+		return true;
 	}
-	return true;
-*/
-return true;
+	alert("Attenzione\n alcuni campi non sono stati compilati")
+	f.isbn.focus();
+	return false;
 }
 </script>
 </head>
 <body>
 
-<% 
-/*@include file="../gu/header.jsp" */
-%>
 	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
 	<fieldset>
 		<legend>Prodotto</legend>

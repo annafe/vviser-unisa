@@ -111,7 +111,6 @@ public class DBGestioneProdotto
             
             
             //Aggiungo un entry nella tabella collaborazioni per ogni utente indicato come coautore
-            System.out.println("p.getListaCollaboratori(); "+p.getListaCollaboratori());
             if(p.getListaCollaboratori()==null)
             	return;
             
