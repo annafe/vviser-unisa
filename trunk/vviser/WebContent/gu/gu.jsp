@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
 <header id="container-header">
 <!--  contiene il logo  -->
 </header>	
