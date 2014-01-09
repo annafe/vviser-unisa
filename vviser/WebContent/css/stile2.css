@@ -4,6 +4,7 @@
 	top:0%;
 	background-color:SEAGREEN;
 	height:25px;
+	z-index:1;
 }
 
 .navigation ul{	
@@ -23,16 +24,20 @@
 }
 
 #searchBox{
-	position:absolute; 
-	top:7%; 
+	position:relative; 
+	top:30px; 
 	width:80%; 
-	left:5%;
+	left:10%;
 }
 
 #risultati{
-	position:absolute; 
-	top:40%; 
+	position:relative; 
+	top:5px; 
 	width:80%; 
 	left:5%;
 }
 
+#modifyTable{
+	position:relative;
+	top:10%;
+}
