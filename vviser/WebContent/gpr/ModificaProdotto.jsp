@@ -37,7 +37,7 @@
 		    	</table>		    	
 	    	</section>
 	    	
-	    	<section id="gpr_fast_menu">
+	    	<section id="gpr_fast_menu" style="overflow:scroll;">
 	    	<%@ include file="gpr_fast_menu.jsp" %>
     		</section>
     
