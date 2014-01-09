@@ -11,7 +11,7 @@
 <style type="text/css">
 body{color:white;}
 legend{color:ORANGERED;}
-fieldset{border:5px solid ORANGERED;}
+fieldset{border:5px solid ORANGERED; height:180px;}
 table{color:YELLOWGREEN;}
 section#container-section{
 	margin-top:15px;}
