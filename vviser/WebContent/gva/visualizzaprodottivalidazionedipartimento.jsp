@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%-- 
     Author: Angiuoli Salvatore
 --%>
@@ -7,12 +9,9 @@
 <%@page import="java.io.*"%>
 <%@page import="javax.servlet.*"%>
 <%@page import="org.json.JSONObject"%>
-<%@ page session="true"%>
-<!DOCTYPE html>
-
 <html>
 <head>
-    <meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Seleziona prodotti</title>
     <script type="text/javascript">
     	function controlla()
