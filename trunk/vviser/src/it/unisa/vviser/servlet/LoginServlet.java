@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet{
      */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 	
 	/**
@@ -66,7 +66,12 @@ public class LoginServlet extends HttpServlet{
 					return;
 				}
 				else{
+
+					
 					request.getServletContext().getRequestDispatcher("/gu/gu.jsp").forward(request, response);
+
+					request.getServletContext().getRequestDispatcher("/gu/gu.jsp").forward(request, response);
+
 					return;
 				}
 			}
