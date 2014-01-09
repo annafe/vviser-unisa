@@ -71,7 +71,7 @@ public class DBGestioneValidazione {
     		while(ris.next())
 			{
     			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
-    					,CommonMethod.stringToDate(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)
+    					,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE))
     					,ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE),
         				ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
