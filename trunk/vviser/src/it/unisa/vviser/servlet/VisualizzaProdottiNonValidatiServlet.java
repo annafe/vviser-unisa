@@ -75,7 +75,7 @@ public class VisualizzaProdottiNonValidatiServlet extends HttpServlet {
 				request.setAttribute("listaprodotti",pr);
 				PrintWriter out = response.getWriter();
 				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("../gva/visualizzaprodottivalidazionedipartimento.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/gva/visualizzaprodottivalidazionedipartimento.jsp");
 				rd.forward(request,response);				
 			}
 			catch (SQLException ex)
