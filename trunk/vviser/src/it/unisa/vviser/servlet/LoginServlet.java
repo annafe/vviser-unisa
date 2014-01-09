@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet{
 					
 					request.getServletContext().getRequestDispatcher("/gu/gu.jsp").forward(request, response);
 
-					request.getServletContext().getRequestDispatcher("/gu/gu.jsp").forward(request, response);
+
 
 					return;
 				}
