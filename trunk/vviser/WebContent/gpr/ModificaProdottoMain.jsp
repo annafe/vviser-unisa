@@ -99,7 +99,9 @@
 							<table border=0>
 								<tr>
 									<td><input type="button" onclick="checkSubmit()" value="Modifica"/></form></td>
-									<td><form action="/vviser/gpr/ituoiprodotti.jsp" method="POST"><input type="submit" value="Annulla"/></form></td>
+									<form action="/vviser/gpr/ituoiprodotti.jsp" method="POST">
+									<td><input type="submit" value="Annulla"/></td>
+									</form>
 								</tr>
 							</table>	
 						</td></tr>
