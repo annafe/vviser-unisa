@@ -32,6 +32,12 @@ function controlla()
 	    return false;
 }
 </script>
+<style type="text/css">
+table{padding-top:5%;}
+fieldset{width:50%;font-size:12px;}
+	th{color:ORANGERED;}
+	td{text-align:center;}
+</style>
 </head>
 <body>
 <% 
@@ -39,9 +45,9 @@ function controlla()
 %>
 <%
 DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
-//Utente currentUser = (Utente) session.getAttribute("utente");
-//ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR(currentUser.getEmail());
-ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR("deufemia@unisa.it");
+Utente currentUser = (Utente) session.getAttribute("utente");
+ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR(currentUser.getEmail());
+//ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR("deufemia@unisa.it");
 if(l.isEmpty())
 {
 	%>
@@ -52,29 +58,43 @@ else
 {
 	%>
 		<form method="post" action="../SottomettiMIURServlet" name="modulo" onsubmit="return controlla();">
-	<table>
-	<tr>
-	<th>&nbsp;</th>
-	<th>Titolo</th>
-	<th>Descrizione</th>
-	<th>Stato</th>
-	</tr>
+		<fieldset>
+			<legend>Convalida prodotti</legend>
+				<table>
+				<tr>
+				<th>&nbsp;</th>
+				<th>ISBN</th>
+				<th>TITOLO</th>
+				<th>DESCRIZIONE</th>
+				<th>TIPOLOGIA</th>
+				<th>NOTE</th>
+				<th>STATO</th>
+				</tr>
 	<%
 	for(int i=0;i<l.size();i++)
 	{
 		%>
 		<tr>
 		<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id='"+i+"' value='"+l.get(i).getIsbn()+"' /></td>");
-	     %>      
-		<td><% out.print(l.get(i).getTitolo()); %></td><td><% out.print(l.get(i).getDescrizioneContenuti()); %></td><td> <% out.print(l.get(i).getStato()); %></td></tr>
+	     %>
+	     <td><% out.print(l.get(i).getIsbn()); %></td>
+		<td><% out.print(l.get(i).getTitolo()); %></td>
+		<td><% out.print(l.get(i).getDescrizioneContenuti()); %></td>
+		<td><% out.print(l.get(i).getTipologia()); %></td>
+		<td><% out.print(l.get(i).getNote()); %></td>
+		<td> <% out.print(l.get(i).getStato()); %></td>
+		</tr>
 		<%
 	}
 	%>
 	<tr>
-	<td colspan="3"><input type="submit" value=" Invia "></td>
+	<td colspan="7"><div class="centro"><input type="submit" value=" Invia " class="pulsante"></div></td>
 	</tr>
 	</table>
+	
+	</fieldset>
 	</form>
+	
 	<%
 	}%>
 </body>

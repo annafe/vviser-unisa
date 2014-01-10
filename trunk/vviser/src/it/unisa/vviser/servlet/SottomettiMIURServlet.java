@@ -88,10 +88,9 @@ public class SottomettiMIURServlet extends HttpServlet {
 			}
 			
 		}
-/*
 		ServletContext sc = getServletContext();
 		// ridirezione
-		RequestDispatcher rd = sc.getRequestDispatcher("../SottomettiMIUR.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/gpr/gpr_miur.jsp");
 		try
 		{
 			rd.forward(request,response);
@@ -103,6 +102,6 @@ public class SottomettiMIURServlet extends HttpServlet {
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}*/
+		}
 	}
 }
