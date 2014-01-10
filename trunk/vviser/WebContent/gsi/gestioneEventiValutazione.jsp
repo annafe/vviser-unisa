@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <title>Gestione Eventi di Valutazione</title>
@@ -22,7 +21,7 @@
 <section id="container-section">
 
 	<section id="section-menu"> 
-		<!-- Pagina contenente le funzionalità -->
+		<!-- Pagina contenente le funzionalitÃ  -->
 	
 			<form id="form1" action="VisualizzaListaEventiValutazioneServlet" method="POST">
 				<button type="submit" name="sel">Mostra Eventi</button>
