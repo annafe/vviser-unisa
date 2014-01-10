@@ -39,7 +39,7 @@
 							<a href="/vviser/gpr/gpr.jsp">Gestione prodotti</a>
 						</li>
 						<li>
-							>> Prodotti
+							>> I miei prodotti personali
 						</li>
 					</ul>
 				</nav>
