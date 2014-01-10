@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-table{padding-top:5%;}
+fieldset{width:20%;}
 </style>
 <script type="text/javascript">
 function controlla()
@@ -36,7 +36,7 @@ function controlla()
 	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
 	<fieldset>
 		<legend>Prodotto</legend>
-		<table>
+		<table border>
 			<tr>
 				<td class="color">ISBN*</td>
 				<td><input type="text" name="isbn" size="20" class="testo"></td>
