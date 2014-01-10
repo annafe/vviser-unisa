@@ -34,7 +34,7 @@ function controlla()
 </script>
 <style type="text/css">
 table{padding-top:5%;}
-fieldset{width:50%;font-size:12px;}
+fieldset{width:60%;}
 	th{color:ORANGERED;}
 	td{text-align:center;}
 </style>
@@ -59,7 +59,7 @@ else
 	%>
 		<form method="post" action="../SottomettiMIURServlet" name="modulo" onsubmit="return controlla();">
 		<fieldset>
-			<legend>Convalida prodotti</legend>
+			<legend>Sottometti al MIUR</legend>
 				<table>
 				<tr>
 				<th>&nbsp;</th>

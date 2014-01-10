@@ -131,7 +131,8 @@ section#gpr_fast_menu{
 	top:0%;
 }
 
-table{margin:0 auto;}
+table{margin:0 auto;
+font-size:11pt;}
 
 a:link {color:blue;
 text-decoration:none;
@@ -148,4 +149,4 @@ div.centro{text-align:center;}
 td{font-weight:bold;}
 td.color{color:orangered;}
 legend{color:ORANGERED;}
-fieldset{border:5px solid ORANGERED;font-size:10pt;margin:0 auto;margin-top:5%;}
+fieldset{border:5px solid ORANGERED;font-size:12pt;margin:0 auto;margin-top:5%;}
