@@ -26,7 +26,7 @@ import org.junit.Test;
 public class TestDBEventiValutazione {
 	private DBEventiValutazione dbEventiValutazione;
 	private EventoValutazione eventoValutazione;
-	private List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
+	
 
 	/**
 	 * @throws java.lang.Exception
@@ -147,6 +147,7 @@ public class TestDBEventiValutazione {
 	 */
 	@Test
 	public final void testVisualizzaEventi() throws SQLException {
+		List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
 		dbEventiValutazione.addEvento(eventoValutazione);
 		toReturn =dbEventiValutazione.visualizzaEventi();
 		if (toReturn==null)	fail("Not yet implemented");
@@ -157,26 +158,47 @@ public class TestDBEventiValutazione {
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#visualizzaEventiPerNome(it.unisa.vviser.entity.EventoValutazione)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testVisualizzaEventiPerNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testVisualizzaEventiPerNome() throws SQLException {
+		List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
+		dbEventiValutazione.addEvento(eventoValutazione);
+		toReturn =dbEventiValutazione.visualizzaEventiPerNome(eventoValutazione);
+		if (toReturn==null)	fail("Not yet implemented");
+		assertFalse(toReturn==null);
+		assertTrue("ok", !(toReturn==null));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#visualizzaEventiPerScadenza(it.unisa.vviser.entity.EventoValutazione)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testVisualizzaEventiPerScadenza() {
-		fail("Not yet implemented"); // TODO
+	public final void testVisualizzaEventiPerScadenza() throws SQLException {
+		List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
+		dbEventiValutazione.addEvento(eventoValutazione);
+		toReturn =dbEventiValutazione.visualizzaEventiPerScadenza(eventoValutazione);
+		if (toReturn==null)	fail("Not yet implemented");
+		assertFalse(toReturn==null);
+		assertTrue("ok", !(toReturn==null));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#visualizzaEventiPerDataFine(it.unisa.vviser.entity.EventoValutazione)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testVisualizzaEventiPerDataFine() {
-		fail("Not yet implemented"); // TODO
+	public final void testVisualizzaEventiPerDataFine() throws SQLException {
+		List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
+		dbEventiValutazione.addEvento(eventoValutazione);
+		toReturn =dbEventiValutazione.visualizzaEventiPerDataFine(eventoValutazione);
+		if (toReturn==null)	fail("Not yet implemented");
+		assertFalse(toReturn==null);
+		assertTrue("ok", !(toReturn==null));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
