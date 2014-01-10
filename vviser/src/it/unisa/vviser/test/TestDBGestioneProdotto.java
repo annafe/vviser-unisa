@@ -72,17 +72,6 @@ public class TestDBGestioneProdotto {
 	}
 
 	@Test
-	public final void testDBGestioneProdotto() throws SQLException {
-		
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetInstance() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
 	public final void testInsertProdotto() throws SQLException {
 		dbGestioneProdotto.insertProdotto(prodotto);
 		prodotto=dbGestioneProdotto.ricercaProdottoISBN("1234567890qwerty");
