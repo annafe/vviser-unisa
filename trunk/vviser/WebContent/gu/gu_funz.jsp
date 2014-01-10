@@ -9,6 +9,6 @@
 <title></title>
 </head>
 <body>
-<p>funzionalità più comuni</p>
+<p>Modifica profilo</p>
 </body>
 </html>
