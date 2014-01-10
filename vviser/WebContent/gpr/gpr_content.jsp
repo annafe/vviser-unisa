@@ -42,7 +42,7 @@ table{padding-top:5%;}
 			{
 				%>
 				<tr>
-				<% out.println("<td><a href='gpr_dettaglio_prod.jsp?isbn="+l.get(i).getIsbn()+"'>"+l.get(i).getIsbn()+"</a></td>"); %>
+				<% out.println("<td><a href='../VisualizzaDettaglioProdottoServlet?isbn="+l.get(i).getIsbn()+"'>"+l.get(i).getIsbn()+"</a></td>"); %>
 					<td><%out.println(l.get(i).getTitolo());%></td>
 					<td><%out.println(l.get(i).getDescrizioneContenuti());%></td>
 					<td><%out.println(l.get(i).getTipologia());%></td>
