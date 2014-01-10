@@ -33,6 +33,7 @@ function controlla()
 </script>
 <style type="text/css">
 
+fieldset{width:60%;}
 	th{color:ORANGERED;}
 	td{text-align:center;}
 table{padding-top:3%;}
@@ -59,8 +60,9 @@ else
 %>
 
 <form method="post" action="../ConvalidaProdottoServlet" name="modulo" onsubmit="return controlla();">
+<fieldset>
+<legend>Convalida prodotto</legend>
 <table>
-<caption>Convalida prodotto</caption>
 <tr>
 <th>&nbsp;</th>
 <th>ISBN</th>
@@ -90,6 +92,7 @@ else
 <td colspan="7"><div class="centro"><input type="submit" value=" Convalida " class="pulsante"></div></td>
 </tr>
 </table>
+</fieldset>
 </form>
 <%
 }%>
