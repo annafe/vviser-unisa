@@ -11,11 +11,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
-<style>
-table{padding-top:5%;}
-	th{color:ORANGERED;}
-	td{text-align:center;}
-	fieldset{width:20%;}
+
+<style type="text/css">
+	fieldset{width:20%;align:center;}
 </style>
 </head>
 <body>
