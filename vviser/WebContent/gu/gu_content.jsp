@@ -11,9 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
-
 <style type="text/css">
-	fieldset{width:20%;align:center;}
+	fieldset{width:20%;text-align:center;}
 </style>
 </head>
 <body>
