@@ -7,7 +7,8 @@
 <head>
 	<title>VViSeR</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
+	<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
+	<link href="/vviser/css/stile2.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -31,6 +32,16 @@
     <section id="section-main">
 	    	
 	    	<section id="gpr_content">
+	    	<nav class="navigation">
+					<ul>
+						<li>
+							<a href="/vviser/gpr/gpr.jsp">Gestione prodotti</a>
+						</li>
+						<li>
+							>> Sottometti i prodotti al MIUR
+						</li>
+					</ul>
+				</nav>
 		    	<!--  Pagina contenente il contenuto -->
 		    	<%@ include file="SottomettiMIUR.jsp" %>
 	    	</section>

@@ -13,7 +13,9 @@
 <head>
     <title>VViSeR</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
+<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
+<link href="/vviser/css/stile2.css" rel="stylesheet" type="text/css"/>
+
 <script type="text/javascript">
 function controlla()
 {
@@ -41,7 +43,11 @@ DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
 //ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR(currentUser.getEmail());
 ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR("deufemia@unisa.it");
 if(l.isEmpty())
-	out.println("Non ci sono prodotti");
+{
+	%>
+	<p>Non ci sono prodotti</p>
+	<%
+}
 else
 {
 	%>
