@@ -10,9 +10,9 @@
 </head>
 <body>
 <p><a href="gpr_insert.jsp">Inserisci</a></p>
-<p><a href="gpr.jsp">Bozze</a></p>
+<p><a href="gpr.jsp">Prodotti in bozze</a></p>
 <p><a href="gpr_convalida.jsp">Lista collaborazioni</a></p>
-<p><a href="gpr_miur.jsp">I miei prodotti</a></p>
+<p><a href="ituoiprodotti.jsp">I miei prodotti</a></p>
 <p><a href="gpr_miur.jsp">Invia al miur</a></p>
 <p><a href="gpr_miur.jsp">Catalogo personale</a></p>
 <p><a href="gpr_miur.jsp">Catalogo pubblico</a></p>

@@ -13,7 +13,8 @@
 <head>
     <title>VViSeR</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/stile1.css" rel="stylesheet" type="text/css"/>
+<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
+<link href="/vviser/css/stile2.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
 function controlla()
 {
@@ -31,6 +32,10 @@ function controlla()
 }
 </script>
 <style type="text/css">
+
+	th{color:ORANGERED;}
+	td{text-align:center;}
+table{padding-top:3%;}
 </style>
 </head>
 <body>
@@ -45,7 +50,9 @@ DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
 ArrayList<Prodotto> l=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato("adinolfi@unisa.it");
 if(l.isEmpty())
 {
-	out.println("Non ci sono prodotti");
+	%>
+	<p>Non ci sono prodotti</p>
+	<%
 }
 else
 {
@@ -56,9 +63,12 @@ else
 <caption>Convalida prodotto</caption>
 <tr>
 <th>&nbsp;</th>
-<th>Titolo</th>
-<th>Descrizione</th>
-<th>Stato</th>
+<th>ISBN</th>
+<th>TITOLO</th>
+<th>DESCRIZIONE</th>
+<th>TIPOLOGIA</th>
+<th>NOTE</th>
+<th>STATO</th>
 </tr>
 <%
 	for(int i=0;i<l.size();i++)
@@ -66,13 +76,18 @@ else
 		%>
 		<tr>
 		<% out.println("<td><input type=\"checkbox\" name=\"selProd\" id='"+i+"' value='"+l.get(i).getIsbn()+"' /></td>");
-	     %>      
-		<td><% out.print(l.get(i).getTitolo()); %></td><td><% out.print(l.get(i).getDescrizioneContenuti()); %></td><td> <% out.print(l.get(i).getStato()); %></td></tr>
+	     %>
+	     <td><% out.print(l.get(i).getIsbn()); %></td>      
+		<td><% out.print(l.get(i).getTitolo()); %></td>
+		<td><% out.print(l.get(i).getDescrizioneContenuti()); %></td>
+		<td><% out.print(l.get(i).getTipologia()); %></td>
+		<td><% out.print(l.get(i).getNote()); %></td>
+		<td> <% out.print(l.get(i).getStato()); %></td></tr>
 		<%
 	}
 %>
 <tr>
-<td colspan="4"><div class="centro"><input type="submit" value=" Convalida " class="pulsante"></div></td>
+<td colspan="7"><div class="centro"><input type="submit" value=" Convalida " class="pulsante"></div></td>
 </tr>
 </table>
 </form>

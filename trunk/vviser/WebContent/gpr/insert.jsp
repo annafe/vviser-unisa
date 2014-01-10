@@ -14,6 +14,8 @@
 <title>VViSeR</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
+
+<link href="/vviser/css/stile2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 fieldset{width:20%;}
 </style>
@@ -36,7 +38,7 @@ function controlla()
 	<form method="GET" action="../InserimentoProdottoServlet" name="modulo" onsubmit="return controlla();">
 	<fieldset>
 		<legend>Prodotto</legend>
-		<table border>
+		<table>
 			<tr>
 				<td class="color">ISBN*</td>
 				<td><input type="text" name="isbn" size="20" class="testo"></td>

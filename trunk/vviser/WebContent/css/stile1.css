@@ -148,4 +148,4 @@ div.centro{text-align:center;}
 td{font-weight:bold;}
 td.color{color:orangered;}
 legend{color:ORANGERED;}
-fieldset{border:5px solid ORANGERED;font-size:10pt;}
+fieldset{border:5px solid ORANGERED;font-size:10pt;margin:0 auto;margin-top:5%;}
