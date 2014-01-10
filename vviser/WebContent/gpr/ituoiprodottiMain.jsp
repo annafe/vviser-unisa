@@ -30,7 +30,7 @@
  
  <style type="text/css">
 table{padding-top:5%;}
-fieldset{width:30%;}
+fieldset{width:50%;}
 td{text-align:center;}
 </style>
 </head>
