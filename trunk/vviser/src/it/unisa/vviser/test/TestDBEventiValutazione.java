@@ -5,6 +5,14 @@ package it.unisa.vviser.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import it.unisa.vviser.entity.EventoValutazione;
+import it.unisa.vviser.storage.DBEventiValutazione;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,6 +24,9 @@ import org.junit.Test;
  *
  */
 public class TestDBEventiValutazione {
+	private DBEventiValutazione dbEventiValutazione;
+	private EventoValutazione eventoValutazione;
+	private List<EventoValutazione> toReturn = new ArrayList<EventoValutazione>();
 
 	/**
 	 * @throws java.lang.Exception
@@ -36,6 +47,14 @@ public class TestDBEventiValutazione {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		dbEventiValutazione= new DBEventiValutazione();
+		eventoValutazione =new EventoValutazione();
+		eventoValutazione.setID(99);
+		eventoValutazione.setNomeEvento("test");
+		eventoValutazione.setNumeroPubblicazioni(99);
+		eventoValutazione.setScadenza(new GregorianCalendar(2014,12,23));
+		eventoValutazione.setDataInizio(new GregorianCalendar(2014,01,01));
+		eventoValutazione.setDataFine(new GregorianCalendar(2014,12,23));
 	}
 
 	/**
@@ -46,83 +65,94 @@ public class TestDBEventiValutazione {
 	}
 
 	/**
-	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#DBEventiValutazione()}.
-	 */
-	@Test
-	public final void testDBEventiValutazione() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#getInstance()}.
-	 */
-	@Test
-	public final void testGetInstance() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#addEvento(it.unisa.vviser.entity.EventoValutazione)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testAddEvento() {
-		fail("Not yet implemented"); // TODO
+	public final void testAddEvento() throws SQLException {
+		assertTrue(dbEventiValutazione.addEvento(eventoValutazione));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#modifyNomeEventoByID(int, java.lang.String)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testModifyNomeEventoByID() {
-		fail("Not yet implemented"); // TODO
+	public final void testModifyNomeEventoByID() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.modifyNomeEventoByID(Integer.toString(eventoValutazione.getID()), "test2"));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#modifyDataFineEventoByNome(java.lang.String, java.lang.String)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testModifyDataFineEventoByNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testModifyDataFineEventoByNome() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.modifyDataFineEventoByNome(eventoValutazione.getNomeEvento(), "test2"));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
+		
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#modifyScadenzaByNome(java.lang.String, java.util.GregorianCalendar)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testModifyScadenzaByNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testModifyScadenzaByNome() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.modifyScadenzaByNome(eventoValutazione.getNomeEvento(), new GregorianCalendar(2014,11,23)));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#modifyNumPubblicazioniByNome(int, java.lang.String)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testModifyNumPubblicazioniByNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testModifyNumPubblicazioniByNome() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.modifyNumPubblicazioniByNome(88, eventoValutazione.getNomeEvento()));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#modifyDataInizioByNome(java.util.GregorianCalendar, java.lang.String)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testModifyDataInizioByNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testModifyDataInizioByNome() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.modifyDataInizioByNome( new GregorianCalendar(2014,01,01), eventoValutazione.getNomeEvento()));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#modifyDataFineByNome(java.util.GregorianCalendar, java.lang.String)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testModifyDataFineByNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testModifyDataFineByNome() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.modifyDataFineByNome( new GregorianCalendar(2014,12,01), eventoValutazione.getNomeEvento()));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#visualizzaEventi()}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testVisualizzaEventi() {
-		fail("Not yet implemented"); // TODO
+	public final void testVisualizzaEventi() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		toReturn =dbEventiValutazione.visualizzaEventi();
+		if (toReturn==null)	fail("Not yet implemented");
+		assertFalse(toReturn==null);
+		assertTrue("ok", !(toReturn==null));
+		dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	/**
@@ -151,18 +181,22 @@ public class TestDBEventiValutazione {
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#deleteEventoByID(it.unisa.vviser.entity.EventoValutazione)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testDeleteEventoByID() {
-		fail("Not yet implemented"); // TODO
+	public final void testDeleteEventoByID() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.deleteEventoByID(eventoValutazione));
 	}
 
 	/**
 	 * Test method for {@link it.unisa.vviser.storage.DBEventiValutazione#deleteEventoByNome(java.lang.String)}.
+	 * @throws SQLException 
 	 */
 	@Test
-	public final void testDeleteEventoByNome() {
-		fail("Not yet implemented"); // TODO
+	public final void testDeleteEventoByNome() throws SQLException {
+		dbEventiValutazione.addEvento(eventoValutazione);
+		assertTrue(dbEventiValutazione.deleteEventoByNome(eventoValutazione.getNomeEvento()));
 	}
 
 	/**
@@ -170,7 +204,7 @@ public class TestDBEventiValutazione {
 	 */
 	@Test
 	public final void testInvioNotificaConflitto() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); // TODO il metodo non restituisce elementi per il confronto
 	}
 
 	/**
@@ -178,103 +212,9 @@ public class TestDBEventiValutazione {
 	 */
 	@Test
 	public final void testProdottiInStatoBozza() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); // TODO metodo vuoto
 	}
 
-	/**
-	 * Test method for {@link java.lang.Object#Object()}.
-	 */
-	@Test
-	public final void testObject() {
-		fail("Not yet implemented"); // TODO
-	}
 
-	/**
-	 * Test method for {@link java.lang.Object#getClass()}.
-	 */
-	@Test
-	public final void testGetClass() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#hashCode()}.
-	 */
-	@Test
-	public final void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#equals(java.lang.Object)}.
-	 */
-	@Test
-	public final void testEquals() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#clone()}.
-	 */
-	@Test
-	public final void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#toString()}.
-	 */
-	@Test
-	public final void testToString() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#notify()}.
-	 */
-	@Test
-	public final void testNotify() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#notifyAll()}.
-	 */
-	@Test
-	public final void testNotifyAll() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#wait(long)}.
-	 */
-	@Test
-	public final void testWaitLong() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#wait(long, int)}.
-	 */
-	@Test
-	public final void testWaitLongInt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#wait()}.
-	 */
-	@Test
-	public final void testWait() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#finalize()}.
-	 */
-	@Test
-	public final void testFinalize() {
-		fail("Not yet implemented"); // TODO
-	}
 
 }
