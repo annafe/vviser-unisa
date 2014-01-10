@@ -2,6 +2,12 @@ package it.unisa.vviser.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import it.unisa.vviser.entity.Prodotto;
+import it.unisa.vviser.storage.DBGestioneValidazione;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestDBGestioneValidazione { 
+	private DBGestioneValidazione dbGestioneValidazione;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -32,13 +39,26 @@ public class TestDBGestioneValidazione {
 	}
 
 	@Test
-	public final void testVisualizzaProdotti() {
-		fail("Not yet implemented"); // TODO
+	public final void testVisualizzaProdotti() throws SQLException {
+		ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+		//dbGestioneValidazione..addEvento(eventoValutazione);
+		listProdotto =dbGestioneValidazione.visualizzaProdotti();
+		if (listProdotto==null)	fail("Not yet implemented");
+		assertFalse(listProdotto==null);
+		assertTrue("ok", !(listProdotto==null));
+		//dbEventiValutazione.deleteEventoByID(eventoValutazione);
+		
 	}
 
 	@Test
-	public final void testVisualizzaProdottivalidatiDipartimento() {
-		fail("Not yet implemented"); // TODO
+	public final void testVisualizzaProdottivalidatiDipartimento() throws SQLException {
+		ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
+		//dbGestioneValidazione..addEvento(eventoValutazione);
+		listProdotto =dbGestioneValidazione.visualizzaProdottivalidatiDipartimento();
+		if (listProdotto==null)	fail("Not yet implemented");
+		assertFalse(listProdotto==null);
+		assertTrue("ok", !(listProdotto==null));
+		//dbEventiValutazione.deleteEventoByID(eventoValutazione);
 	}
 
 	@Test
@@ -56,64 +76,5 @@ public class TestDBGestioneValidazione {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
-	public final void testObject() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetClass() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testEquals() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testToString() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testNotify() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testNotifyAll() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWaitLong() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWaitLongInt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testWait() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testFinalize() {
-		fail("Not yet implemented"); // TODO
-	}
 
 }
