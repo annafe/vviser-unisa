@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 
-@WebServlet("/VisualizzaModificaEventoValutazioneServlet")
+//@WebServlet("/VisualizzaModificaEventoValutazioneServlet")
 public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DBEventiValutazione manager;
@@ -73,7 +73,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 			request.setAttribute("eventoSelezionato", evento);
 			
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaModificaDettagliEvento.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("vviser/gsi/visualizzaModificaDettagliEvento.jsp");
 			rd.forward(request,response);
 		}
 		else if (azioneRimuovi != null && azioneModifica==null){
