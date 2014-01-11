@@ -42,7 +42,7 @@
 							>> <a href="/vviser/gpr/ituoiprodotti.jsp">I miei prodotti</a>
 						</li>
 						<li>
-							>> Modifica
+							>> Modifica prodotto
 						</li>
 					</ul>
 				</nav>

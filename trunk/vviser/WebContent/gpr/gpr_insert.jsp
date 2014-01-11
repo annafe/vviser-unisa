@@ -35,7 +35,7 @@
 	    	<nav class="navigation">
 					<ul>
 						<li>
-							<a href="/vviser/gpr/gpr.jsp">Gestione prodotti</a>
+							<a href="/vviser/gpr/ituoiprodotti.jsp">I miei prodotti</a>
 						</li>
 						<li>
 							>> Inserisci prodotto
