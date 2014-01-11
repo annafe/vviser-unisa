@@ -55,6 +55,7 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 		String da = request.getParameter("dataInizio");
 		String a = request.getParameter("dataFine");
 		
+		ServletContext sc = getServletContext();
 		ArrayList<EventoValutazione> lista = null;
 		
 		EventoValutazione e = new EventoValutazione(nome, num, scadenza, da, a);
@@ -63,11 +64,13 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 			lista = (ArrayList<EventoValutazione>) eventiValutazioneManager.visualizzaEventi();
 		} catch (SQLException ex){
 			ex.printStackTrace();
+			RequestDispatcher reqd = sc.getRequestDispatcher("/vviser/gsi/error.jsp");
+			reqd.forward(request, response);
 		}
 		
 		request.setAttribute("listaEventi", lista);
 		
-		ServletContext sc = getServletContext();
+//		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
 		RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaEventi.jsp");
 		rd.forward(request,response);
