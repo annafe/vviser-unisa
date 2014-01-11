@@ -15,6 +15,7 @@
 		<input type="button" value="Eventi di Valutazione" class="pulsante" onclick="document.location.href='/vviser/gsi/gestioneEventiValutazione.jsp';">
 		<input type="button" value="Dipartimenti" class="pulsante" onclick="document.location.href='/vviser/gsi/gestioneDipartimenti.jsp';">
 		<input type="button" value="Invio Notifiche" class="pulsante" onclick="document.location.href='/vviser/gsi/gestioneInvioNotifiche.jsp';">
+		<input type="button" value="Logout" class="pulsante" onclick="document.location.href='/vviser/main/login.jsp';" style="background-color:tomato;">
 <!-- 
 </body>
 </html>
