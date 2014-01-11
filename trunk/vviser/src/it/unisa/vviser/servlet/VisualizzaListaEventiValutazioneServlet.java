@@ -3,8 +3,6 @@
     Author: Maria Vittoria Coda
  */
 
-// CIAO MICHELE!
-
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.EventoValutazione;
