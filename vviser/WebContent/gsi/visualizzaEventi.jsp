@@ -7,12 +7,12 @@
     
 <%@ page session="true"%>
 <%@page import="it.unisa.vviser.entity.*"%>
+<%@page import="it.unisa.vviser.storage.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.*"%>
 
 
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,9 +39,13 @@ function funz(e){
 </head>
 <body>
 
-<%
+<%--
 	ArrayList<EventoValutazione> lista=new ArrayList<EventoValutazione>();
 	lista=(ArrayList<EventoValutazione>) request.getAttribute("listaEventi");
+--%>
+<%
+	DBEventiValutazione gestore = DBEventiValutazione.getInstance();
+	ArrayList<EventoValutazione> lista = (ArrayList<EventoValutazione>) gestore.visualizzaEventi();
 %>
 
 
