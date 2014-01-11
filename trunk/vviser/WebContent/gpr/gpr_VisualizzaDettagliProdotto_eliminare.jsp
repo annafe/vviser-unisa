@@ -1,4 +1,8 @@
-<!-- ROMANO SIMONE -->
+<!-- ROMANO SIMONE
+	ANTONIO DE PIANO
+	-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
 <%@ page import="it.unisa.vviser.entity.Prodotto"%>
 <%@ page import="it.vviser.common.*"%>
