@@ -33,7 +33,9 @@
 
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalità -->
-		<%@ include file="gsi_funz.jsp" %>
+		<%--@ include file="gsi_funz.jsp" --%>
+				<p><a href="/vviser/gsi/visualizzaEventi.jsp">Visualizza Eventi</a></p>
+		<p><a href="/vviser/gsi/home_amministratore.jsp">Homepage</a></p>
     </section>
 
     <section id="section-main">
