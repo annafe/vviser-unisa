@@ -10,12 +10,14 @@
 <%@page import="java.io.*"%>
 
 <form action="InserisciNuovoEventoServlet" method="POST">
-		<label>Nome evento:</label><input type="text" name="nomeEvento"></input><br>
-		<label>Numero pubblicazioni:</label><input type="text" value="numPubb"></input><br>
-		<label>Scadenza:</label><input type="date" value="scadenza"></input><br>
-		<label>Data Inizio:</label><input type="date" value="dataInizio"></input><br>
-		<label>Data Fine:</label><input type="date" value="dataFine"></input><br>
+		<table>
+		<tr><td><label>Nome evento:</label></td><td><input type="text" name="nomeEvento"></input><td></tr>
+		<tr><td><label>Numero pubblicazioni:</label></td><td><input type="text" name="numPubb" placeholder="numero pubblicazioni"></input><td></tr>
+		<tr><td><label>Scadenza:</label></td><td><input type="date" name="scadenza"></input><td></tr>
+		<tr><td><label>Data Inizio:</label></td><td><input type="date" name="dataInizio"></input><td></tr>
+		<tr><td><label>Data Fine:</label></td><td><input type="date" name="dataFine"></input><td></tr>
 		
-		<input type="submit" name="creaEvento" value="Crea evento"></input>
-		<input type="reset" value="Resetta"></input>
+		<tr><td><input type="submit" name="creaEvento" value="Crea evento"></input></td>
+		<td><input type="reset" value="Resetta"></input></td></tr>
+		</table>
 	</form>
