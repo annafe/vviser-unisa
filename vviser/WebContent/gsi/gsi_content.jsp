@@ -1,6 +1,8 @@
    <%-- 
-    Author: Antonio De Piano
+    Author: Maria Vittoria Coda
 --%>
+<%@ page import="it.unisa.vviser.storage.*"%>
+<%@ page import="it.unisa.vviser.entity.*"%>
 <!-- 
 <html>
 <head>
@@ -9,7 +11,11 @@
 </head>
 <body>
  -->
-Benvenuto nome e cognome<br/>
+ <% Utente currentUser = (Utente) session.getAttribute("utente"); %>
+Benvenuto 
+<% out.println(currentUser.getNome()); %>
+<% out.println(currentUser.getCognome()); %>
+<br/>
 seleziona una funzionalità per iniziare
 <!-- 
 </body>
