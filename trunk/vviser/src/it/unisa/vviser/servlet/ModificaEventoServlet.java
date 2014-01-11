@@ -1,5 +1,11 @@
 package it.unisa.vviser.servlet;
 
+/**
+ * 
+ * @author Maria Vittoria Coda
+ *
+ */
+
 import it.unisa.vviser.storage.DBEventiValutazione;
 
 import java.io.IOException;
