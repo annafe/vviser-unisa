@@ -1,4 +1,9 @@
-<!-- ROMANO SIMONE -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!--
+	 ROMANO SIMONE
+	ANTONIO DE PIANO
+	-->
 <%@page import="it.unisa.vviser.storage.DBProdottiValutazione"%>
 <%@page import="it.vviser.common.CommonMethod"%>
 <%@ page import="it.unisa.vviser.storage.DBGestioneProdotto"%>
@@ -8,7 +13,10 @@
 <%@ page import="it.unisa.vviser.entity.Utente"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.logging.Logger"%>
-
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
 <script type="text/javascript">
 	function checkSubmit(){
 		form = document.getElementById("formModifica");
@@ -25,7 +33,11 @@
  		form.submit();
 	}
 </script>
-
+<style type="text/css">
+td.x{text-align:center;}
+</style>
+</head>
+<body>
  <% 
  	//check permission
  	Prodotto product = null;
@@ -37,6 +49,7 @@
 	 	proprietario = request.getParameter("proprietario");
 	 	tipologia = request.getParameter("tipologia");
 	 	dataDiPubblicazione = request.getParameter("annoDiPubblicazione");
+	 	System.out.println("titolo:"+titolo+" proprietario:"+proprietario+" tipologia:"+tipologia+" dataDiPubblicazione:"+dataDiPubblicazione);
 	 	product = new DBGestioneProdotto().ricercaProdottoPerTitoloProprietarioAnnoTipologia(titolo, proprietario, dataDiPubblicazione, tipologia);
 		if (product==null){
 			request.setAttribute("error", "Prodotto non presente nel Database");
@@ -46,14 +59,14 @@
 	 	 if (!(user.getEmail().equals(product.getProprietario()))){
 			request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
 			if(!response.isCommitted()){	//header can alredy forward response
-				request.getRequestDispatcher("/main/login.jsp").forward(request, response);	
+				request.getRequestDispatcher("/vviser/main/login.jsp").forward(request, response);	
 				return;		
 			}
 	 	} 
  	}catch(Exception e){
 		 request.setAttribute("error", "Sessione non settata");
 		if(!response.isCommitted()){	//header can alredy forward response
-			request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
+			request.getRequestDispatcher("/vviser/gu/login.jsp").forward(request, response);	
 			return;		
 		} 
  	}
@@ -86,7 +99,7 @@
 				<tr><th align="right">Da pagina:</th><td><input type="text" name="daPagina" value="<%out.print(product.getDaPagina());%>"/></td></tr>
 				<tr><th align="right">A pagina:</th><td><input type="text" name="aPagina" value="<%out.print(product.getApagina());%>"/></td></tr>
 				<tr><th align="right">Totale pagine:</th><td><input type="text" name="totalePagine" value="<%out.print(product.getTotalePagine());%>"/></td></tr>
-				<tr><th align="right">Volume n°:</th><td><input type="text" name="num_volume" value="<%out.print(product.getNumVolume());%>"/></td></tr>
+				<tr><th align="right">Volume nÂ°:</th><td><input type="text" name="num_volume" value="<%out.print(product.getNumVolume());%>"/></td></tr>
 				<tr><th align="right">Codice DOI:</th><td><input type="text" name="doi" value="<%out.print(product.getCodiceDOI());%>"/></td></tr>
 				<tr><th align="right">Diffusione:</th><td><input type="text" name="diffusione" maxlength="20" value="<%out.print(product.getDiffusione());%>"/></td></tr>
 				<tr><th align="right">Descrizione:</th><td><textarea name="descrizione" maxlength="100" rows="4" cols="25"><%out.print(product.getDescrizioneContenuti());%></textarea></td></td></tr>
@@ -95,16 +108,13 @@
 				<tr><th align="right">Parole chiave:</th><td><input type="text" name="key" value="<%out.print(product.getParoleChiavi());%>"/></td></tr>
 				<tr><th align="right">Editore:</th><td><input type="text" name="editore" value="<%out.print(product.getEditore());%>"/></td></tr>
 				<tr><th align="right">Codice ISBN:</th><td><input type="text" name="isbn" maxlength="13" value="<%out.print(product.getIsbn());%>"/></td></tr>
-				<tr><td></td><td>
-							<table border=0>
-								<tr>
-									<td><input type="button" onclick="checkSubmit()" value="Modifica"/></form></td>
-									<form action="/vviser/gpr/ituoiprodotti.jsp" method="POST">
-									<td><input type="submit" value="Annulla"/></td>
-									</form>
+				<tr>
+				<td colspan="2"><div class="centro"><input type="button" onclick="checkSubmit()" value="Modifica" class="pulsante" />
+									<input type="submit" value="Annulla" class="pulsante"  formaction="/vviser/gpr/ituoiprodotti.jsp"/></div>
+									</td>
 								</tr>
-							</table>	
-						</td></tr>
-			</table>
+							</table>
 		</fieldset>
 	</form>
+	</body>
+	</html>

@@ -41,8 +41,9 @@ table{padding-top:5%;}
 			for (int i=0; i<l.size(); i++)
 			{
 				%>
-				<tr>
-				<% out.println("<td><a href='../VisualizzaDettaglioProdottoServlet?isbn="+l.get(i).getIsbn()+"'>"+l.get(i).getIsbn()+"</a></td>"); %>
+				<tr>	
+				<% out.println("<td><a href='/vviser/gpr/ModificaProdottoDiretta.jsp?titolo="+l.get(i).getTitolo()+"&proprietario="+l.get(i).getProprietario()+
+				"&annoDiPubblicazione="+CommonMethod.dateToString(l.get(i).getAnnoPubblicazione())+"&tipologia="+l.get(i).getTipologia()+"'>"+l.get(i).getIsbn()+"</a></td>"); %>
 					<td><%out.println(l.get(i).getTitolo());%></td>
 					<td><%out.println(l.get(i).getDescrizioneContenuti());%></td>
 					<td><%out.println(l.get(i).getTipologia());%></td>
