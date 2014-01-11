@@ -23,10 +23,10 @@
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalitÃ  -->
 	
-			<form id="form1" action="/vviser/VisualizzaListaEventiValutazioneServlet" method="POST">
+			<form id="form1" action="/vviser/gsi/VisualizzaListaEventiValutazioneServlet" method="POST">
 				<button type="submit" name="sel">Mostra Eventi</button>
 			</form>
-			<form id="form2" action="/vviser/InserisciNuovoEventoValutazione" method="POST">
+			<form id="form2" action="/vviser/gsi/InserisciNuovoEventoValutazione" method="POST">
 				<button type="submit" name="sel">Aggiungi Nuovo Evento</button>
 			</form>
     </section>
