@@ -24,7 +24,7 @@
 
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalitÃ  -->
-	
+			<p><a href="/vviser/gsi/VisualizzaEventiValutazioneServlet">Mostra eventi</a></p>
 			<form id="form1" action="/vviser/VisualizzaListaEventiValutazioneServlet" method="POST">
 				<button type="submit" name="sel">Mostra Eventi</button>
 			</form>
