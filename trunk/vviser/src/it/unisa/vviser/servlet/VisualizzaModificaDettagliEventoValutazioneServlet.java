@@ -73,7 +73,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 			request.setAttribute("eventoSelezionato", evento);
 			
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("vviser/gsi/visualizzaModificaDettagliEvento.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaModificaDettagliEvento.jsp");
 			rd.forward(request,response);
 		}
 		else if (azioneRimuovi != null && azioneModifica==null){
@@ -83,7 +83,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 				e2.printStackTrace();
 			}
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaEventi.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaEventi.jsp");
 			rd.forward(request,response);
 		}
 	}
