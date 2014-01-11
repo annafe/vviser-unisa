@@ -213,4 +213,23 @@
     <servlet-name>VisualizzaListaEventiValutazioneServlet</servlet-name>
     <url-pattern>/VisualizzaListaEventiValutazioneServlet</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+     <servlet-name>ModificaEventoServlet</servlet-name>
+     <servlet-class>it.unisa.vviser.servlet.ModificaEventoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificaEventoServlet</servlet-name>
+    <url-pattern>/ModificaEventoServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>VisualizzaModificaDettagliEventoValutazioneServlet</servlet-name>
+     <servlet-class>it.unisa.vviser.servlet.VisualizzaModificaDettagliEventoValutazioneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VisualizzaModificaDettagliEventoValutazioneServlet</servlet-name>
+    <url-pattern>/VisualizzaModificaDettagliEventoValutazioneServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
