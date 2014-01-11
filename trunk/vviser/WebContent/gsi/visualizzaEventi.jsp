@@ -12,32 +12,19 @@
 <%@page import="java.io.*"%>
 
 
-    
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Lista eventi</title>
-
 <script type="text/javascript">
 function funz(e){
-
-	
 	//questo dovrebbe essere un metodo per linkare ad una servlet tramite javascript
 	document.location.href = '${pageContext.request.contextPath}/visualizzaModificaDettagliEventoValutazioneServlet';
-	
 <%--	
 	EventoValutazione evt = new EventoValutazione(nome,num,scad,da,a);
 	<%-- NON SO COME SETTARE NELLA request LO SPECIFICO EVENTO SELEZIONATO
 	request.setAttribute("eventoSel", evt);
 --%>	
-
 //	document.location.href = 'VisualizzaModificaDettagliEventoValutazione';
-
 }
-
 </script>
-</head>
-<body>
+
 
 <%--
 	ArrayList<EventoValutazione> lista=new ArrayList<EventoValutazione>();
@@ -76,6 +63,3 @@ function funz(e){
 	</tbody>
 </table>
 
-
-</body>
-</html>
