@@ -66,7 +66,7 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 		
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
-		RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaEventi.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaEventi.jsp");
 		rd.forward(request,response);
 	}
 
