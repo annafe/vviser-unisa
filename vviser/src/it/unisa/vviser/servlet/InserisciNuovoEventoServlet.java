@@ -1,3 +1,6 @@
+/**
+ * Author: Maria Vittoria Coda
+ */
 package it.unisa.vviser.servlet;
 
 import it.unisa.vviser.entity.EventoValutazione;
