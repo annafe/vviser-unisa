@@ -40,9 +40,9 @@ function funz(e){
 	<thead>
 	<tr colspan=3>Lista eventi di valutazione</tr>
 		<tr>
-			<th></th>
-			<th>ID</th>
 			<th>Nome</th>
+			<th>Data Inizio</th>
+			<th>Data Fine</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -50,13 +50,18 @@ function funz(e){
 		for (int i=0; i<lista.size(); i++){
 			EventoValutazione e=lista.get(i);
 			
-			out.println("<tr><form name=\"formVisualizza\" action\"visualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
+			out.println("<tr>");
+			
+			//out.println("<form name=\"formVisualizza\" action\"visualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
 			//out.println("<td name=\"idEvento\">"+e.getID()+"</td>");
 			out.println("<td name=\"nomeEvento\">"+e.getNomeEvento()+"</td>");
 			out.println("<td name=\"datainizio\">"+e.getDataInizio()+"</td>");
 			out.println("<td name=\"datafine\">"+e.getDataFine()+"</td>");
-			out.println("<td><input type=\"submit\" name=\"modificaEvento\" value=\"Modifica\"/></td>");
-			out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"Rimuovi\"/></td>");
+			//out.println("<td><input type=\"submit\" name=\"modificaEvento\" value=\"Modifica\"/></td>");
+			//out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"Rimuovi\"/></td>");
+			out.println("<td><input type=\"button\" name=\"modificaEvento\" value=\"Modifica\" href=\"visualizzaModificaDettagliEventoValutazioneServlet\"/></td>");
+			out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"href=\"visualizzaModificaDettagliEventoValutazioneServlet\"\"/></td>");
+			
 			out.println("</tr>");
 		}
 	%>	
