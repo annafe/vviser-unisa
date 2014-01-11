@@ -90,6 +90,10 @@ public class EventoValutazione {
 	public GregorianCalendar getDataInizio() {
 		return dataInizio;
 	}
+	
+//	public String getDataInizio() {
+//		return dataInizio.get(Calendar.YEAR)+"/"+scadenza.get(Calendar.MONTH)+"/"+scadenza.get(Calendar.DAY_OF_MONTH);
+//	}
 
 	/**
 	 * modifica la data di inizio del periodo di validita' dei prodotti che possono essere sottomessi a valutazione 
