@@ -40,15 +40,10 @@ table{padding-top:3%;}
 </style>
 </head>
 <body>
-
-<% 
-/*@include file="../gu/header.jsp" */
-%>
 <%
 DBGestioneProdotto dbgp=DBGestioneProdotto.getInstance();
-//Utente currentUser = (Utente) session.getAttribute("utente");
-//currentUser.getEmail();
-ArrayList<Prodotto> l=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato("adinolfi@unisa.it");
+Utente currentUser = (Utente) session.getAttribute("utente");
+ArrayList<Prodotto> l=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato(currentUser.getEmail());
 if(l.isEmpty())
 {
 	%>

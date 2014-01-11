@@ -14,7 +14,6 @@
 <title>VViSeR</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
-
 <link href="/vviser/css/stile2.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 fieldset{width:20%;}
