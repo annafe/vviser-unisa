@@ -213,4 +213,13 @@
     <servlet-name>VisualizzaListaEventiValutazioneServlet</servlet-name>
     <url-pattern>/VisualizzaListaEventiValutazioneServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>InserisciNuovoEventoeServlet</servlet-name>
+     <servlet-class>it.unisa.vviser.servlet.InserisciNuovoEventoeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InserisciNuovoEventoeServlet</servlet-name>
+    <url-pattern>/InserisciNuovoEventoeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
