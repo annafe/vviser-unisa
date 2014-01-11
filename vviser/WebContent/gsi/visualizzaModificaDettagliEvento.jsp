@@ -1,32 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%-- 
+    Author: Maria Vittoria Coda
+--%>
 <%@page import="it.unisa.vviser.entity.*"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dettagli evento selezionato</title>
-
+<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
 </head>
+
 <body>
 
-<%
-EventoValutazione e = (EventoValutazione) request.getAttribute("eventoSelezionato");
-%>
+<header id="container-header">
+<!--  contiene il logo  -->
+</header>	
 
-<form action="ModificaEventoServlet" method="post">
-<table>
-<tr><th>ID</th><td><input type="text" name="id" value=<%=e.getID()%> readonly></td></tr>
-<tr><th>Nome</th><td><input type="text" name="eventoName" value=<%=e.getNomeEvento()%>></td></tr>
-<tr><th>Num. pubblicazioni</th><td><input type="text" name="eventoNumPubb" value=<%=e.getNumeroPubblicazioni() %>></td></tr>
-<tr><th>Scadenza</th><td><input type="text" name="eventoScadenza" value=<%=e.getScadenza() %>></td></tr>
-<tr><th>Periodo: da</th><td><input type="text" name="eventoDataInizio" value=<%=e.getDataInizio() %>></td></tr>
-<tr><th>Periodo: a</th><td><input type="text" name="eventoDataFine" value=<%=e.getDataFine() %>></td></tr>
-</table>
-</form>
-<input type="submit" value="Conferma modifiche"/>
+<nav>
+		<!-- Pagina contenente i bottoni del menu -->
+		<%@ include file="gsi_menu.jsp" %>
+</nav>
 
+<section id="container-section">
+
+	<section id="section-menu"> 
+		<!-- Pagina contenente le funzionalità -->
+		<%//@ include file="gsi_funz.jsp" %>
+					<p><a href="/vviser/gsi/visualizzaListaEventi.jsp">Mostra eventi</a></p>
+			<form id="form1" action="/vviser/VisualizzaListaEventiValutazioneServlet" method="POST">
+				<button type="submit" name="sel">Mostra Eventi</button>
+			</form>
+			<form id="form2" action="/vviser/InserisciNuovoEventoValutazione" method="POST">
+				<button type="submit" name="sel">Aggiungi Nuovo Evento</button>
+			</form>
+    </section>
+
+    <section id="section-main">
+    	<!--  Pagina contenente il contenuto -->
+    	<%@ include file="dettagliEvento.jsp" %>
+    </section>
+
+</section>
+
+<footer id="container-footer">
+		<!--  Pagina contenete il messaggio da inglobare nel footer -->
+		<%@ include file="../layout/footer.jsp" %>
+</footer>
 
 </body>
 </html>
