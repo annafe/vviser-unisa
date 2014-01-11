@@ -26,10 +26,10 @@
 		<!-- Pagina contenente le funzionalitÃ  -->
 		<!-- <p><a href="/vviser/gsi/VisualizzaEventiValutazioneServlet">Mostra eventi</a></p>  -->	
 			<p><a href="/vviser/gsi/visualizzaListaEventi.jsp">Mostra eventi</a></p>
-			<form id="form1" action="/vviser/VisualizzaListaEventiValutazioneServlet" method="POST">
+			<form id="form1" action="/vviser/gsi/VisualizzaListaEventiValutazioneServlet" method="POST">
 				<button type="submit" name="sel">Mostra Eventi</button>
 			</form>
-			<form id="form2" action="/vviser/InserisciNuovoEventoValutazione" method="POST">
+			<form id="form2" action="/vviser/gsi/InserisciNuovoEventoValutazione" method="POST">
 				<button type="submit" name="sel">Aggiungi Nuovo Evento</button>
 			</form>
     </section>
@@ -40,9 +40,6 @@
     </section>
 
 </section>
-
-
-
 
 
 <footer id="container-footer">
