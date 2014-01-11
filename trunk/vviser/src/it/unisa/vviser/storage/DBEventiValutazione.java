@@ -380,7 +380,7 @@ public class DBEventiValutazione {
 				inizio = creaData(rs.getString("daData"));
 				fine = creaData(rs.getString("aData"));
 				
-				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
 				toReturn.add(evento);
 			}
 		}
@@ -415,7 +415,7 @@ public class DBEventiValutazione {
 				inizio = creaData(rs.getString("daData"));
 				fine = creaData(rs.getString("aData"));
 				
-				toReturn = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+				toReturn = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
 			}
 		}	
 		finally{
@@ -444,7 +444,7 @@ public class DBEventiValutazione {
 				inizio = creaData(rs.getString("daData"));
 				fine = creaData(rs.getString("aData"));
 				
-				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
 				toReturn.add(evento);
 			}
 		}	
@@ -474,7 +474,7 @@ public class DBEventiValutazione {
 				inizio = creaData(rs.getString("daData"));
 				fine = creaData(rs.getString("aData"));
 				
-				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
 				toReturn.add(evento);
 			}
 		}	
@@ -504,7 +504,7 @@ public class DBEventiValutazione {
 				inizio = creaData(rs.getString("daData"));
 				fine = creaData(rs.getString("aData"));
 				
-				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroPubblicazioni"), scadenza, inizio, fine);			
+				EventoValutazione evento = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
 				toReturn.add(evento);
 			}
 		}	
