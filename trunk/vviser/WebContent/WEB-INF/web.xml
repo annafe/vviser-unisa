@@ -205,4 +205,12 @@
     <servlet-name>RicercaPrivataProdottoServlet</servlet-name>
     <url-pattern>/RicercaPrivataProdottoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+     <servlet-name>VisualizzaListaEventiValutazioneServlet</servlet-name>
+    <servlet-class>it.unisa.vviser.servlet.VisualizzaListaEventiValutazioneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VisualizzaListaEventiValutazioneServlet</servlet-name>
+    <url-pattern>/VisualizzaListaEventiValutazioneServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
