@@ -215,11 +215,11 @@
   </servlet-mapping>
   
   <servlet>
-     <servlet-name>InserisciNuovoEventoeServlet</servlet-name>
-     <servlet-class>it.unisa.vviser.servlet.InserisciNuovoEventoeServlet</servlet-class>
+     <servlet-name>InserisciNuovoEventoServlet</servlet-name>
+     <servlet-class>it.unisa.vviser.servlet.InserisciNuovoEventoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>InserisciNuovoEventoeServlet</servlet-name>
-    <url-pattern>/InserisciNuovoEventoeServlet</url-pattern>
+    <servlet-name>InserisciNuovoEventoServlet</servlet-name>
+    <url-pattern>/InserisciNuovoEventoServlet</url-pattern>
   </servlet-mapping>
 </web-app>
