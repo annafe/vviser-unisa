@@ -11,22 +11,42 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Inserisci un nuovo evento di valutazione</title>
+	<title>Inserisci un nuovo evento di valutazione</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
 </head>
+
 <body>
-	<form action="InserisciNuovoEventoServlet" method="POST">
-		<label>Nome evento:</label><input type="text" name="nomeEvento"></input><br>
-		<label>Numero pubblicazioni:</label><input type="text" value="numPubb"></input><br>
-		<label>Scadenza:</label><input type="date" value="scadenza"></input><br>
-		<label>Data Inizio:</label><input type="date" value="dataInizio"></input><br>
-		<label>Data Fine:</label><input type="date" value="dataFine"></input><br>
-		
-		<input type="submit" name="creaEvento" value="Crea evento"></input>
-		<input type="reset" value="Resetta"></input>
-	</form>
+
+<header id="container-header">
+<!--  contiene il logo  -->
+</header>	
+
+<nav>
+		<!-- Pagina contenente i bottoni del menu -->
+		<%@ include file="gsi_menu.jsp" %>
+</nav>
+
+<section id="container-section">
+
+	<section id="section-menu"> 
+		<!-- Pagina contenente le funzionalità -->
+		<%@ include file="gsi_funz.jsp" %>
+    </section>
+
+    <section id="section-main">
+    	<!--  Pagina contenente il contenuto -->
+    	<%@ include file="insertEvento.jsp" %>
+    </section>
+
+</section>
+
+<footer id="container-footer">
+		<!--  Pagina contenete il messaggio da inglobare nel footer -->
+		<%@ include file="../layout/footer.jsp" %>
+</footer>
+
 </body>
 </html>
