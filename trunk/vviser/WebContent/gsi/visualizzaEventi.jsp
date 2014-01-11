@@ -8,6 +8,7 @@
 <%@ page session="true"%>
 <%@page import="it.unisa.vviser.entity.*"%>
 <%@page import="it.unisa.vviser.storage.*"%>
+<%@page import="it.vviser.common.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.*"%>
 
@@ -52,16 +53,16 @@ function funz(e){
 			
 			out.println("<tr>");
 			
-			//out.println("<form name=\"formVisualizza\" action\"visualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
+			out.println("<form name=\"formVisualizza\" action=\"visualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
 			//out.println("<td name=\"idEvento\">"+e.getID()+"</td>");
 			out.println("<td name=\"nomeEvento\">"+e.getNomeEvento()+"</td>");
-			out.println("<td name=\"datainizio\">"+e.getDataInizio()+"</td>");
-			out.println("<td name=\"datafine\">"+e.getDataFine()+"</td>");
-			//out.println("<td><input type=\"submit\" name=\"modificaEvento\" value=\"Modifica\"/></td>");
-			//out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"Rimuovi\"/></td>");
-			out.println("<td><input type=\"button\" name=\"modificaEvento\" value=\"Modifica\" href=\"visualizzaModificaDettagliEventoValutazioneServlet\"/></td>");
-			out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"href=\"visualizzaModificaDettagliEventoValutazioneServlet\"\"/></td>");
-			
+			out.println("<td name=\"datainizio\">"+CommonMethod.dateToString(e.getDataInizio())+"</td>");
+			out.println("<td name=\"datafine\">"+CommonMethod.dateToString(e.getDataFine())+"</td>");
+			out.println("<td><input type=\"submit\" name=\"modificaEvento\" value=\"Modifica\"/></td>");
+			out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"Rimuovi\"/></td>");
+		//	out.println("<td><input type=\"button\" name=\"modificaEvento\" value=\"Modifica\" href=\"visualizzaModificaDettagliEventoValutazioneServlet\"/></td>");
+		//	out.println("<td><input type=\"submit\" name=\"rimuoviEvento\" value=\"Rimuovi\" href=\"visualizzaModificaDettagliEventoValutazioneServlet\"\"/></td>");
+			out.println("</form>");
 			out.println("</tr>");
 		}
 	%>	
