@@ -64,7 +64,7 @@ public class VisualizzaListaEventiValutazioneServlet extends HttpServlet {
 		request.setAttribute("eventi", listaEventi);
 		
 		ServletContext sc = getServletContext();
-		RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaEventi.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaEventi.jsp");
 		rd.forward(request,response);
 	}
 
