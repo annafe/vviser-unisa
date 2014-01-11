@@ -149,40 +149,40 @@
     <servlet-name>InserimentoProdottoServlet</servlet-name>
     <url-pattern>/InserimentoProdottoServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
-  <servlet-name>ValidazioneDipartimentoServlet</servlet-name>
+  <servlet>
+    <servlet-name>ValidazioneDipartimentoServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.ValidazioneDipartimentoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ValidazioneDipartimentoServlet</servlet-name>
     <url-pattern>/ValidazioneDipartimentoServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
-  <servlet-name>VisualizzaProdottiNonValidatiServlet</servlet-name>
+  <servlet>
+    <servlet-name>VisualizzaProdottiNonValidatiServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.VisualizzaProdottiNonValidatiServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>VisualizzaProdottiNonValidatiServlet</servlet-name>
     <url-pattern>/VisualizzaProdottiNonValidatiServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
-  <servlet-name>VisualizzaProdottiValidatiDipartimentoServlet</servlet-name>
+  <servlet>
+    <servlet-name>VisualizzaProdottiValidatiDipartimentoServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.VisualizzaProdottiValidatiDipartimentoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>VisualizzaProdottiValidatiDipartimentoServlet</servlet-name>
     <url-pattern>/VisualizzaProdottiValidatiDipartimentoServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
-   <servlet-name>InvioNotificaValidazioneServlet</servlet-name>
+  <servlet>
+    <servlet-name>InvioNotificaValidazioneServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.InvioNotificaValidazioneServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>InvioNotificaValidazioneServlet</servlet-name>
     <url-pattern>/InvioNotificaValidazioneServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
-     <servlet-name>ValidazioneAreaScientificaServlet</servlet-name>
+  <servlet>
+    <servlet-name>ValidazioneAreaScientificaServlet</servlet-name>
     <servlet-class>it.unisa.vviser.servlet.ValidazioneAreaScientificaServlet</servlet-class>
   </servlet>
   <servlet-mapping>
