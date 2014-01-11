@@ -8,6 +8,7 @@
 	<title>VViSeR</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
+	<link href="/vviser/css/stile2.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -30,7 +31,20 @@
 
     <section id="section-main">
 	    	
-	    	<section id="gpr_content" style="overflow=hidden;">
+	    	<section id="gpr_content">
+	    	<nav class="navigation">
+					<ul>
+						<li>
+							<a href="/vviser/gpr/gpr.jsp">Gestione prodotti</a>
+						</li>
+						<li>
+							>><a href="/vviser/gpr/ituoiprodotti.jsp"> I miei prodotti</a>
+						</li>
+						<li>
+							>> Visualizza dettaglio prodotti
+						</li>
+					</ul>
+				</nav>
 		    	<!--  Pagina contenente il contenuto -->
 		    	<%@ include file="VisualizzaDettagliProdottoMain.jsp" %>
 	    	</section>
