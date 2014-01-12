@@ -28,7 +28,7 @@
 		<%@ include file="/gsi/gsi_funz.jsp" %>
     </section>
 
-    <section id="section-main">
+    <section id="section-main" style="overflow:scroll;">
     	<!--  Pagina contenente il contenuto -->
     	<%@ include file="adminMain.jsp" %>
     </section>
