@@ -23,7 +23,7 @@
 	 if (!(admin.getTipologia().equalsIgnoreCase("amministratore"))){
 		request.setAttribute("error", "Non hai i permessi per effettuare l'operazione");
 		if(!response.isCommitted()){	//header can alredy forward response
-			request.getRequestDispatcher("/gu/login.jsp").forward(request, response);	
+			request.getRequestDispatcher("/gu/error.jsp").forward(request, response);	
 			return;		
 		}
 	 }
