@@ -12,3 +12,6 @@
 </body>
 </html>
  -->
+ 
+ 
+<p><a href="/vviser/gu/NewAccount.jsp">Nuovo utente</a></p>
