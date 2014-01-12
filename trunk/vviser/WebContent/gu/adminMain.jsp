@@ -43,5 +43,3 @@
 			}
 		%>
 </table>
-
-<a href="/vviser/gu/insertAccount.jsp">Inserisci Account</a>
