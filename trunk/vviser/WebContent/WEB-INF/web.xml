@@ -232,4 +232,13 @@
     <url-pattern>/VisualizzaModificaDettagliEventoValutazioneServlet</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+     <servlet-name>InserisciNuovoEventoServlet</servlet-name>
+     <servlet-class>it.unisa.vviser.servlet.InserisciNuovoEventoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InserisciNuovoEventoServlet</servlet-name>
+    <url-pattern>/InserisciNuovoEventoServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
