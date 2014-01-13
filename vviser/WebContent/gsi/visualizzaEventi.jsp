@@ -16,12 +16,8 @@
 <script type="text/javascript">
 function funz(e){
 	//questo dovrebbe essere un metodo per linkare ad una servlet tramite javascript
-	document.location.href = '${pageContext.request.contextPath}/visualizzaModificaDettagliEventoValutazioneServlet';
-<%--	
-	EventoValutazione evt = new EventoValutazione(nome,num,scad,da,a);
-	<%-- NON SO COME SETTARE NELLA request LO SPECIFICO EVENTO SELEZIONATO
-	request.setAttribute("eventoSel", evt);
---%>	
+	document.location.href = '${pageContext.request.contextPath}/VisualizzaModificaDettagliEventoValutazioneServlet';
+	
 //	document.location.href = 'VisualizzaModificaDettagliEventoValutazione';
 }
 </script>
