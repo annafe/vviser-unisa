@@ -83,7 +83,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 				e2.printStackTrace();
 			}
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaEventi.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaListaEventi.jsp");
 			rd.forward(request,response);
 		}
 	}
