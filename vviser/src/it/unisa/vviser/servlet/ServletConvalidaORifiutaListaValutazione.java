@@ -46,7 +46,11 @@ public class ServletConvalidaORifiutaListaValutazione extends HttpServlet {
 			HttpSession s=request.getSession();
 			ListaProdottiValutazione listaProdottiValutazione=(ListaProdottiValutazione)s.getAttribute("listaProdottiValutazione");
 			String bloccato=(String)request.getParameter("bloccato");
+			System.out.println(bloccato);
 			prodottiValutazioneManager.convalidaORifiutaListaProdottiValutazione(listaProdottiValutazione,bloccato);
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gsva.jsp");
+			rd.forward(request,response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -10,7 +10,9 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -163,7 +165,11 @@ public class ServletModificaProdottiValutazione extends HttpServlet {
 		
 		
 		if(!modificato1 && modificato2 && !modificato3)
-			System.out.println("non hai apportato alcuna modifica");
+		{
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gNessunaModifica.jsp");
+			rd.forward(request,response);
+		}
 		else
 		{
 			try {
@@ -172,6 +178,9 @@ public class ServletModificaProdottiValutazione extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gsva.jsp");
+			rd.forward(request,response);
 		}
 
 }

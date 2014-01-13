@@ -87,7 +87,7 @@ public class ServletSelezioneModifica extends HttpServlet {
 				request.setAttribute("listaValutazione", listaProdottiValutazione);
 				request.setAttribute("prodottiNonSottomessi", prodottiNonSottomessi);
 				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/modificaLista.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gModificaLista.jsp");
 				rd.forward(request,response);
 				
 			} catch (SQLException e) {
@@ -97,7 +97,7 @@ public class ServletSelezioneModifica extends HttpServlet {
 			catch (NotAvailableProdottiPerValutazioneException e) 
 			{
 				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaProdottiPerSottomissioneImpossibile.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/gsva/visualizzaProdottiPerSottomissioneImpossibile.jsp");
 				rd.forward(request,response);
 			}
 			
