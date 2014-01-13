@@ -29,16 +29,19 @@
 
 <form id="mod" action="ServletVisualizzaProdotti" method="POST">
 	<button type="submit" id="butSot" name="butSot">Sottometti Prodotti a Valutazione</button>
-</form>
+	<button type="submit" id="butVP" name="butVP" formaction="ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</button>
+	<button type="submit" id="butVT" name="butVT" formaction="ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</button>
+</form> 
 
-<form id="mod2" action="ServletVerificaListeVisualizza" method="POST">
+
+<!--  <form id="mod2" action="ServletVerificaListeVisualizza" method="POST">
 	
 	<button type="submit" id="butVP" name="butVP">Visualizza Prodotti Valutazione Personali</button>
 </form>
 
 <form id="mod3" action="ServletListaUtentiValutazione" method="POST">
 	<button type="submit" id="butVT" name="butVT">Visualizza Prodotti Valutazione Utenti</button>
-</form>
+</form>-->
 <script type="text/javascript">
 	controlShowButton();
 </script>
