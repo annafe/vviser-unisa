@@ -96,8 +96,8 @@ public class DBGestioneValidazione {
 		}
 		finally 
         {
-            st.close();
-            DBConnectionPool.releaseConnection(conn);
+          st.close();
+           DBConnectionPool.releaseConnection(conn);
         }
 	}
 	
