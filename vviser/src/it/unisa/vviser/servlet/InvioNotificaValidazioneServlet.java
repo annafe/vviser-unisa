@@ -94,10 +94,10 @@ public class InvioNotificaValidazioneServlet extends HttpServlet {
 					// ridirezione alla pagina inziale delle gestione validazione
 					RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazionedipartimento.jsp");
 			}
-			if(currentUser.getTipologia().equals("membroDelComitatoDiAreaDidattica"))
+			if(currentUser.getTipologia().equals("../home_direttore.jsp"))
 			{
 				// ridirezione alla pagina inziale delle gestione validazione
-				RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazioneareascientifica.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("../home:area.jsp");
 			}
 		}
 		catch (SQLException ex)
