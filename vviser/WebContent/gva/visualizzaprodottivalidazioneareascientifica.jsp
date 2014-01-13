@@ -41,7 +41,7 @@ ArrayList<Prodotto> prodotti=gp.visualizzaProdotti();
 
   
 %>
-<form id="mod1" action="../ValidazioneDipartimentoServlet" method="POST" onsubmit="return controlla();">
+<form id="mod1" action="../ValidazioneAreaScientificaServlet" method="POST" onsubmit="return controlla();">
     <table>
         <tr>
             <th colspan="2">Seleziona Prodotti</th>    
