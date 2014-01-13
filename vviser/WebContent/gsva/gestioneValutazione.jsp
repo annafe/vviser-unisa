@@ -1,5 +1,6 @@
 <%-- 
     Author: Giuseppe Sabato
+    jsp da eliminare
 --%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@page import="it.unisa.vviser.entity.*"%>
