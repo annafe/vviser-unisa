@@ -65,7 +65,7 @@
 				</tr>
 				<tr><td>Comune di nascita:</td><td><input type="text" name="comunedinascita" required/></td></tr>
 				<tr><td>Provincia di nascita:</td><td><input type="text" name="provinciadinascita" 
-						pattern="[a-z A-Z][a-z A-Z]" size="2" required/></td></tr>
+						pattern="[a-zA-Z][a-zA-Z]" size="2" required/></td></tr>
 				<tr><td>Codice Fiscale:</td><td><input type="text" name="codicefiscale" 
 						pattern="[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]"
 						size="16" required/></td></tr>
