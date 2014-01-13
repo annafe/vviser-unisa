@@ -65,7 +65,7 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 		} catch (SQLException ex){
 			ex.printStackTrace();
 			RequestDispatcher reqd = sc.getRequestDispatcher("/vviser/gsi/error.jsp");
-			reqd.forward(request, response);
+			reqd.forward(request, response); return;
 		}
 		
 		request.setAttribute("listaEventi", lista);
@@ -73,7 +73,9 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 //		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
 		RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaListaEventi.jsp");
+		
 		rd.forward(request,response);
+		return;
 	}
 
 }
