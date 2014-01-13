@@ -214,7 +214,7 @@
     <url-pattern>/VisualizzaListaEventiValutazioneServlet</url-pattern>
   </servlet-mapping>
   
-    <servlet>
+ <servlet>
      <servlet-name>ModificaEventoServlet</servlet-name>
      <servlet-class>it.unisa.vviser.servlet.ModificaEventoServlet</servlet-class>
   </servlet>
