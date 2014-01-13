@@ -54,7 +54,7 @@ function funz(e){
 			out.println("<tr>");
 			
 			out.println("<form name=\"formVisualizza\" action=\"../VisualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
-			//out.println("<td name=\"idEvento\">"+e.getID()+"</td>");
+			out.println("<td hidden name=\"idEvento\" value=\""+e.getID()+"\">"+e.getID()+"</td>");
 			out.println("<td name=\"nomeEvento\">"+e.getNomeEvento()+"</td>");
 			out.println("<td name=\"datainizio\">"+CommonMethod.dateToString(e.getDataInizio())+"</td>");
 			out.println("<td name=\"datafine\">"+CommonMethod.dateToString(e.getDataFine())+"</td>");
