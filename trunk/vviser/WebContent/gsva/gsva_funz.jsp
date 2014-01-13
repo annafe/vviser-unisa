@@ -21,9 +21,9 @@
 </head>
 <body>
 
-<p><a id="lnkSot" href="../ServletVisualizzaProdotti">Visualizza Prodotti Valutazione Personali</a></p>
-<p><a id="lnkVP" href="../ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</a></p>
-<p><a id="lnkVT" href="../ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</a></p>
+<p><a id="lnkSot" href="/vviser/ServletVisualizzaProdotti">Visualizza Prodotti Valutazione Personali</a></p>
+<p><a id="lnkVP" href="/vviser/ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</a></p>
+<p><a id="lnkVT" href="/vviser/ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</a></p>
 
 <script type="text/javascript">
 	controlShowLink();

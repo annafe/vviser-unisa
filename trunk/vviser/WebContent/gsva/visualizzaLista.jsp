@@ -36,7 +36,7 @@
     	}
     	function setActionModSuggerimento()
     	{
-    		document.getElementById("formMod").action="ServletSuggerimentoListaValutazione";
+    		document.getElementById("formMod").action="../ServletSuggerimentoListaValutazione";
     	}
     	
     	//Mostra le funzionalita' a seconda del tipo di utente
@@ -121,7 +121,7 @@
 	
 %>
 
-<form id="formMod" action="ServletSelezioneModifica" method="POST">
+<form id="formMod" action="../ServletSelezioneModifica" method="POST">
 	<table>
 		<tr>
 			<th colspan="2">Lista prodotti sottomessi a valutazione</th>
@@ -173,25 +173,25 @@
 	<script type="text/javascript">
 		evidConflitti();
 	</script>
-	<button type="submit" id="buttMod" name="buttMod" hidden>Modifica</button>
+	<button type="submit" id="buttMod" name="buttMod" class="pulsante" hidden>Modifica</button>
 	<script type="text/javascript">
 		buttonModify();
 	</script>
-	<button type="submit" id="buttis" name="buttis" onclick="setActionModSuggerimento()" hidden>Inserisci Suggerimento</button>
-	<button type="submit" id="buttms" name="buttms" onclick="setActionModSuggerimento()" hidden>Modifica Suggerimento</button>
+	<button type="submit" id="buttis" name="buttis" onclick="setActionModSuggerimento()" class="pulsante" hidden>Inserisci Suggerimento</button>
+	<button type="submit" id="buttms" name="buttms" onclick="setActionModSuggerimento()" class="pulsante" hidden>Modifica Suggerimento</button>
 	<script type="text/javascript">
 		buttonSuggestion();
 	</script>
 </form>
 
-<form id="formMod1" action="ServletConvalidaORifiutaListaValutazione" method="POST">
+<form id="formMod1" action="../ServletConvalidaORifiutaListaValutazione" method="POST">
 	<input type="text" name="bloccato" value="si" hidden />
-	<button type="submit" id="buttConv" name="buttConv" hidden>Convalida Lista</button>
+	<button type="submit" id="buttConv" name="buttConv" class="pulsante" hidden>Convalida Lista</button>
 </form>
 
-<form id="formMod2" action="ServletConvalidaORifiutaListaValutazione" method="POST">
+<form id="formMod2" action="../ServletConvalidaORifiutaListaValutazione" method="POST">
 	<input type="text" name="bloccato" value="no" hidden />
-	<button type="submit" id="buttRif" name="buttRif" hidden>Rifiuta Lista</button>
+	<button type="submit" id="buttRif" name="buttRif" class="pulsante" hidden>Rifiuta Lista</button>
 </form>
 
 <script type="text/javascript">
