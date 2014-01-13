@@ -44,12 +44,6 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		
 		
 		try 
 		{
@@ -88,11 +82,14 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaProdottiPerSottomissioneImpossibile.jsp");
 			rd.forward(request,response);
 		}
+        
+    }
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 		
 		
-		
-		
-		
+	
 	}
 
 }

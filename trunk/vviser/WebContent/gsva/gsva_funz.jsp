@@ -11,6 +11,8 @@
 <body>
 <!--  inserire i bottini che hai fatto nella vecchia jsp -->
 
-<p><a href="/vviser/gpr/ituoiprodotti.jsp">I miei prodotti</a></p>
+<p><a href="../ServletVisualizzaProdotti">Sottometti Prodotti a Valutazione</a></p>
+<p><a href="../">Visualizza Prodotti Valutazione Personali</a></p>
+<p><a href="../">Visualizza Prodotti Valutazione Utenti</a></p>
 </body>
 </html>

@@ -43,7 +43,7 @@
 					</ul>
 				</nav>
 		    	<!--  Pagina contenente il contenuto -->
-		    	<%@ include file="gestioneValutazione.jsp" %>
+		    	<!--%@ include file="gestioneValutazione.jsp" %-->
 	    	</section>
 	    	
 	    	<section id="gpr_fast_menu">
