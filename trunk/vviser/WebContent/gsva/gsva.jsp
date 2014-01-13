@@ -19,7 +19,8 @@
 	HttpSession s= request.getSession();
 	s.setAttribute("sessEmail",utente.getEmail());
 	String tipoUtente=utente.getTipologia();
-	out.println("<input type=\"text\" id=\"tipoNasc\" value="+tipoUtente+" hidden />");
+	s.setAttribute("sessTipoUtente", tipoUtente);
+	//out.println("<input type=\"text\" id=\"tipoNasc\" value="+tipoUtente+" hidden />");
 	
 %>
 <header id="container-header">
@@ -36,6 +37,7 @@
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalità -->
 		<%@ include file="gsva_funz.jsp" %>
+		
     </section>
 
     <section id="section-main">

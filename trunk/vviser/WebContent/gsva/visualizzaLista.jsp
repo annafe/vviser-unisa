@@ -36,7 +36,7 @@
     	}
     	function setActionModSuggerimento()
     	{
-    		document.getElementById("formMod").action="../ServletSuggerimentoListaValutazione";
+    		document.getElementById("formMod").action="/vviser/ServletSuggerimentoListaValutazione";
     	}
     	
     	//Mostra le funzionalita' a seconda del tipo di utente
@@ -121,7 +121,7 @@
 	
 %>
 
-<form id="formMod" action="../ServletSelezioneModifica" method="POST">
+<form id="formMod" action="/vviser/ServletSelezioneModifica" method="POST">
 	<table>
 		<tr>
 			<th colspan="2">Lista prodotti sottomessi a valutazione</th>
@@ -184,12 +184,12 @@
 	</script>
 </form>
 
-<form id="formMod1" action="../ServletConvalidaORifiutaListaValutazione" method="POST">
+<form id="formMod1" action="/vviser/ServletConvalidaORifiutaListaValutazione" method="POST">
 	<input type="text" name="bloccato" value="si" hidden />
 	<button type="submit" id="buttConv" name="buttConv" class="pulsante" hidden>Convalida Lista</button>
 </form>
 
-<form id="formMod2" action="../ServletConvalidaORifiutaListaValutazione" method="POST">
+<form id="formMod2" action="/vviser/ServletConvalidaORifiutaListaValutazione" method="POST">
 	<input type="text" name="bloccato" value="no" hidden />
 	<button type="submit" id="buttRif" name="buttRif" class="pulsante" hidden>Rifiuta Lista</button>
 </form>
