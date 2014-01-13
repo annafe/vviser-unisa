@@ -245,8 +245,8 @@ public class DBGestioneValidazione {
 			{
 				conn=DBConnectionPool.getConnection();
 				query="UPDATE "+DBNames.TABLE_PRODOTTO
-						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"="+"ValidatoComitatoArea"
-						+"WHERE"+DBNames.ATTR_PRODOTTO_ISBN+"="+isbn;
+						+" SET "+DBNames.ATTR_PRODOTTO_STATO+"='ValidatoComitatoArea'"
+						+" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"='"+isbn+"'";
 				
 				
 				st=conn.prepareStatement(query);
