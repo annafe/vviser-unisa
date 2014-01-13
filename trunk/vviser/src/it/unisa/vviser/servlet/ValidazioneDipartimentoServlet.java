@@ -68,20 +68,35 @@ public class ValidazioneDipartimentoServlet extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) {
-		String isbn = request.getParameter("isbn");
-		DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 		
-		try
-		{
-			gp.VALIDATODIPARTIMENTO(isbn);
+			String[] isbn = request.getParameterValues("selProd");
+			DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 			
+			for(int i=0;i<isbn.length;i++)
+			{
+				try
+				{
+					gp.VALIDATODIPARTIMENTO(isbn[i]);
+				}
+				catch (SQLException ex)
+				{
+					ex.printStackTrace();
+				}
+			}
 			ServletContext sc = getServletContext();
-			// ridirezione alla pagina inziale delle gestione validazione
-			RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazionedipartimento.jsp");
-		}
-		catch (SQLException ex)
-		{
-			ex.printStackTrace();
+			// ridirezione
+			RequestDispatcher rd = sc.getRequestDispatcher("/direttore/home_direttore.jsp");
+			try
+			{
+				rd.forward(request,response);
+			}
+			catch (ServletException e)
+			{
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
-}
