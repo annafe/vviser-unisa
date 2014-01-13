@@ -63,7 +63,7 @@ public class DBEventiValutazione {
 				" VALUES ('"+e.getNomeEvento()+"','"+e.getNumeroPubblicazioni()+
 				"','"+CommonMethod.dateToString(e.getDataInizio())+"','"+CommonMethod.dateToString(e.getDataFine())+"','"+e.getScadenza()+"');";
 			
-			System.out.println(queryParam);
+			//System.out.println(queryParam);
 			
 			pstm = conn.prepareStatement(queryParam);
 			int toR = pstm.executeUpdate();
