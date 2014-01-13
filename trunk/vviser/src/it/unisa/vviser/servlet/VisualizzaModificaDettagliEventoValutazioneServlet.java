@@ -75,6 +75,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaModificaDettagliEvento.jsp");
 			rd.forward(request,response);
+			return;
 		}
 		else if (azioneRimuovi != null && azioneModifica==null){
 			try{
@@ -85,6 +86,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaListaEventi.jsp");
 			rd.forward(request,response);
+			return;
 		}
 	}
 
