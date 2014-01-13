@@ -18,7 +18,7 @@
 	}
 </script>
 <style>
-table{padding-top:5%;}
+table{padding-top:10%;}
 	th{color:ORANGERED;}
 	td{text-align:center;}
 </style>
@@ -32,7 +32,7 @@ table{padding-top:5%;}
 	out.println("<input type=\"text\" id=\"tipoNasc\" value="+tipoUtente+" hidden />");
 %>
 
-<form id="mod" action="ServletVisualizzaProdotti" method="POST">
+<form id="mod" action="../ServletVisualizzaProdotti" method="POST">
 	<button type="submit" id="butSot" name="butSot">Sottometti Prodotti a Valutazione</button>
 	<button type="submit" id="butVP" name="butVP" formaction="ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</button>
 	<button type="submit" id="butVT" name="butVT" formaction="ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</button>
