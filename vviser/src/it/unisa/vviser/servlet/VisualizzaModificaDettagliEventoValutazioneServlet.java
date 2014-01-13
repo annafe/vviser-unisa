@@ -55,18 +55,18 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String s=(String) request.getParameter("idEvento");
-		System.out.println(s);
+	//	System.out.println(s);
 		int id = Integer.parseInt(s);
 	//	String nome = (String) request.getParameter("nomeEvento");
 		
-		String azioneModifica = (String) request.getParameter("modificaEvento"); System.out.println(azioneModifica);
-		String azioneRimuovi = (String) request.getParameter("rimuoviEvento"); System.out.println(azioneRimuovi);
+		String azioneModifica = (String) request.getParameter("modificaEvento"); 
+		String azioneRimuovi = (String) request.getParameter("rimuoviEvento"); 
 		
 		EventoValutazione evento=null;
 		
 		try {
 			evento = (EventoValutazione) this.manager.visualizzaEventoPerId(id);
-			System.out.println("Ha eseguito la query: ");
+			//System.out.println("Ha eseguito la query: ");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
