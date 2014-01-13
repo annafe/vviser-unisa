@@ -25,7 +25,7 @@
 	s.setAttribute("visualizza","tutti");
 %>
 
-<form id="ssl" action="ServletVerificaListeVisualizza" method="POST">
+<form id="ssl" action="/vviser/ServletVerificaListeVisualizza" method="GET">
 	<table>
 		<tr>
 			<th colspan="3">Scegli un Utente</th>
@@ -47,7 +47,7 @@
 			
 		%>
 	</table>
-	<button type="submit" name="invia">Conferma</button>
+	<button class="pulsante" type="submit" name="invia">Conferma</button>
 </form>
 </body>
 </html>

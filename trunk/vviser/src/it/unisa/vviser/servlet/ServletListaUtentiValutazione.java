@@ -46,7 +46,7 @@ public class ServletListaUtentiValutazione extends HttpServlet {
 			
 			request.setAttribute("listaUtenti", utenti);
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/selezionaUtenteValutazione.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gSelezionaUtenteValutazione.jsp");
 			rd.forward(request,response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

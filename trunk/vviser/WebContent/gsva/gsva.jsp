@@ -44,10 +44,10 @@
 	    	<nav class="navigation">
 					<ul>
 						<li>
-							<a href="/vviser/gpr/gpr.jsp">Gestione Valutazione</a>
+							<a href="/vviser/gsva/gsva.jsp">Gestione Valutazione</a>
 						</li>
 						<li>
-							>>fhfffghhh
+						
 						</li>
 					</ul>
 				</nav>

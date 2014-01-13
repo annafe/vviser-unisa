@@ -72,7 +72,7 @@ public class ServletSelezionaListe extends HttpServlet {
 			
 			request.setAttribute("lista", listaProdottiValutazione);
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaLista.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gVisualizzaLista.jsp");
 			rd.forward(request,response);
 			
 		

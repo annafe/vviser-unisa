@@ -79,7 +79,7 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 				
 				request.setAttribute("liste", listeProdottiValutazione);
 				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/gsva/selezListe.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gSelezListe.jsp");
 				rd.forward(request,response);
 			}
 			else
@@ -95,7 +95,7 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 					}
 					request.setAttribute("lista", listeProdottiValutazione.get(0));
 					ServletContext sc = getServletContext();
-					RequestDispatcher rd = sc.getRequestDispatcher("/gsva/visualizzaListaG.jsp");
+					RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gVisualizzaLista.jsp");
 					rd.forward(request,response);
 				}
 			}

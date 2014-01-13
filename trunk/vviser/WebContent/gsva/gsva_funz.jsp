@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<p><a id="lnkSot" href="/vviser/ServletVisualizzaProdotti">Visualizza Prodotti Valutazione Personali</a></p>
+<p><a id="lnkSot" href="/vviser/ServletVisualizzaProdotti">Sottometti Prodotti a Valutazione</a></p>
 <p><a id="lnkVP" href="/vviser/ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</a></p>
 <p><a id="lnkVT" href="/vviser/ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</a></p>
 

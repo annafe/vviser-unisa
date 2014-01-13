@@ -23,7 +23,7 @@
 	listeProdottiValutazione=(ArrayList<ListaProdottiValutazione>)request.getAttribute("liste");
 	
 %>
-<form id="f1" action="ServletSelezionaListe" method="POST">
+<form id="f1" action="/vviser/ServletSelezionaListe" method="POST">
 	<table>
 		<tr>
 			<th colspan="2">Scegli una lista</th>

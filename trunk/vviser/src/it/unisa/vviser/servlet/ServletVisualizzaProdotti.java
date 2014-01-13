@@ -73,7 +73,7 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/sottomissioneImpossibile.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gSottomissioneImpossibile.jsp");
 			rd.forward(request,response); 
 		}
 		catch (NotAvailableProdottiPerValutazioneException e) 
