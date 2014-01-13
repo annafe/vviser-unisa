@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ModificaEventoServlet
  */
-//@WebServlet("/ModificaEventoServlet")
+@WebServlet("/ModificaEventoServlet")
 public class ModificaEventoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DBEventiValutazione manager;
@@ -52,6 +52,7 @@ public class ModificaEventoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
+		System.out.println();
 		String nome = request.getParameter("eventoName");
 		String num = request.getParameter("eventoNumPubb");
 		String scad = request.getParameter("eventoScadenza");
