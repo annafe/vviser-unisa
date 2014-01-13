@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_01.html">TestRegistrazioneAccount_01</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_02.html">TestRegistrazioneAccount_02</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_03.html">TestRegistrazioneAccount_03</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_04.html">TestRegistrazioneAccount_04</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_05.html">TestRegistrazioneAccount_05</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_06.html">TestRegistrazioneAccount_06</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_07.html">TestRegistrazioneAccount_07</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_08.html">TestRegistrazioneAccount_08</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_09.html">TestRegistrazioneAccount_09</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_10.html">TestRegistrazioneAccount_10</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_11.html">TestRegistrazioneAccount_11</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_12.html">TestRegistrazioneAccount_12</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_13.html">TestRegistrazioneAccount_13</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_14.html">TestRegistrazioneAccount_14</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_15.html">TestRegistrazioneAccount_15</a></td></tr>
+<tr><td><a href="TestRegistrazioneAccount_16.html">TestRegistrazioneAccount_16</a></td></tr>
+</tbody></table>
+</body>
+</html>
