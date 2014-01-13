@@ -18,6 +18,7 @@
  		if(document.getElementById("nome").value=="" ||
  			document.getElementById("cognome").value=="" ||
  			document.getElementById("email").value=="" ||
+ 			/^\s*$/.test(document.getElementById("email").value) ||
  			document.getElementById("password").value=="" ||
  			document.getElementById("repeatPassword").value==""){
  			alert("Compila i campi obbligatori!");
