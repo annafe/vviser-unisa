@@ -92,12 +92,12 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>ServletRifiutaListaValutazione</servlet-name>
-      <servlet-class>it.unisa.vviser.servlet.ServletRifiutaListaValutazione</servlet-class>
+      <servlet-name>ServletConvalidaORifiutaListaValutazione</servlet-name>
+      <servlet-class>it.unisa.vviser.servlet.ServletConvalidaORifiutaListaValutazione</servlet-class>
     </servlet>
 	<servlet-mapping>
-        <servlet-name>ServletRifiutaListaValutazione</servlet-name>
-        <url-pattern>/ServletRifiutaListaValutazione</url-pattern>
+        <servlet-name>ServletConvalidaORifiutaListaValutazione</servlet-name>
+        <url-pattern>/ServletConvalidaORifiutaListaValutazione</url-pattern>
     </servlet-mapping>
     
     <servlet>
