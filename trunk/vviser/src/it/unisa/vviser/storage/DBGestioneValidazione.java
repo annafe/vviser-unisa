@@ -123,19 +123,21 @@ public class DBGestioneValidazione {
 			ArrayList<Prodotto> listProdotto=new ArrayList<Prodotto>();
 			conn = DBConnectionPool.getConnection();
 			
+			
 			query="SELECT *"
-					+ " FROM " +DBNames.TABLE_PRODOTTO
-					+ " WHERE "+DBNames.ATTR_PRODOTTO_STATO+"=ValidatoDipartimento"
-					+"' AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_EMAIL+"='"+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
-					+"' AND "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_BOZZA+"=0"
-					+"' AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"='INFORMATICA"+"'";
+					+ " FROM " +DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_UTENTE
+					+ " WHERE "+DBNames.ATTR_PRODOTTO_STATO+"='ValidatoDipartimento'"
+					+" AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_EMAIL+"="+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_EMAILPROPRIETARIO
+					+" AND "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_BOZZA+"=0"
+					+" AND "+DBNames.TABLE_UTENTE+"."+DBNames.ATTR_UTENTE_DIPARTIMENTO_NOME+"='INFORMATICA'";
+			
 			
             st=conn.createStatement();
     		ris=st.executeQuery(query);
     		while(ris.next())
 			{
     			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
-    					,CommonMethod.stringToDate(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE)
+    					,CommonMethod.stringToDate(ris.getString(DBNames.ATTR_PRODOTTO_ANNOPUBBLICAZIONE))
     					,ris.getString(DBNames.ATTR_PRODOTTO_FORMATOPUBBLICAZIONE),
         				ris.getString(DBNames.ATTR_PRODOTTO_CODICEDOI),ris.getString(DBNames.ATTR_PRODOTTO_DIFFUSIONE)
         				,ris.getString(DBNames.ATTR_PRODOTTO_NOTE),ris.getString(DBNames.ATTR_PRODOTTO_STATO)
