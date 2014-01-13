@@ -71,21 +71,31 @@ public class ValidazioneAreaScientificaServlet extends HttpServlet {
 		String[] isbn = request.getParameterValues("selProd");
 		DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 		
-		try
+		for(int i=0;i<isbn.length;i++)
 		{
-			for(int i=0;i<isbn.length;i++)
+			try
 			{
-				System.out.println(isbn[i]);
 				gp.ValidatoAreaScientifica(isbn[i]);
 			}
-			
-			ServletContext sc = getServletContext();
-			// ridirezione alla pagina inziale delle gestione validazione
-			RequestDispatcher rd = sc.getRequestDispatcher("./areascientifica/home_area.jsp");
+			catch (SQLException ex)
+			{
+				ex.printStackTrace();
+			}
 		}
-		catch (SQLException ex)
+		ServletContext sc = getServletContext();
+		// ridirezione
+		RequestDispatcher rd = sc.getRequestDispatcher("/areascientifica/home_area.jsp");
+		try
 		{
-			ex.printStackTrace();
+			rd.forward(request,response);
+		}
+		catch (ServletException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 }
