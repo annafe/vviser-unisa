@@ -54,7 +54,9 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt((String)request.getAttribute("idEvento"));
+		String s=(String) request.getAttribute("idEvento");
+		System.out.println(s);
+		int id = Integer.parseInt(s);
 		String nome = (String) request.getAttribute("nomeEvento");
 		
 		String azioneModifica = (String) request.getAttribute("modificaEvento");
@@ -67,7 +69,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		
+	
 		
 		if (azioneModifica != null && azioneRimuovi==null){
 			request.setAttribute("eventoSelezionato", evento);
