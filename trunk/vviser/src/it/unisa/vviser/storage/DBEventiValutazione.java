@@ -68,7 +68,8 @@ public class DBEventiValutazione {
 			pstm = conn.prepareStatement(queryParam);
 			int toR = pstm.executeUpdate();
 			conn.commit();
-			System.out.println("Righe modificate dalla query: "+toR);
+			
+			//System.out.println("Righe modificate dalla query: "+toR);
 			if (toR == 1)
 				return true;
 			else return false;
@@ -122,6 +123,7 @@ public class DBEventiValutazione {
 			
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet toR = pstm.executeQuery();
+			conn.commit();
 			if (toR!=null)
 				return true;
 			else return false;
@@ -146,8 +148,9 @@ public class DBEventiValutazione {
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+prevNome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR > 0)
 				return true;
 			else return false;
 		}finally{
@@ -172,8 +175,9 @@ public class DBEventiValutazione {
 			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR > 0)
 				return true;
 			else return false;
 		}finally{
@@ -198,8 +202,9 @@ public class DBEventiValutazione {
 			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -223,8 +228,9 @@ public class DBEventiValutazione {
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -249,8 +255,9 @@ public class DBEventiValutazione {
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -274,8 +281,9 @@ public class DBEventiValutazione {
 						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -301,8 +309,9 @@ public class DBEventiValutazione {
 						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -326,8 +335,9 @@ public class DBEventiValutazione {
 						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -352,8 +362,9 @@ public class DBEventiValutazione {
 						" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
@@ -376,6 +387,7 @@ public class DBEventiValutazione {
 			String queryParam = "SELECT * FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+";";
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet rs = pstm.executeQuery();
+			conn.commit();
 			
 			while (rs.next()){
 				GregorianCalendar scadenza, inizio, fine;
@@ -411,6 +423,7 @@ public class DBEventiValutazione {
 		
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet rs = pstm.executeQuery();
+			conn.commit();
 			
 			while (rs.next()){
 				GregorianCalendar scadenza, inizio, fine;
@@ -440,6 +453,7 @@ public class DBEventiValutazione {
 		
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet rs = pstm.executeQuery();
+			conn.commit();
 			
 			while (rs.next()){
 				GregorianCalendar scadenza, inizio, fine;
@@ -470,6 +484,7 @@ public class DBEventiValutazione {
 		try{
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet rs = pstm.executeQuery();
+			conn.commit();
 			
 			while (rs.next()){
 				GregorianCalendar scadenza, inizio, fine;
@@ -500,6 +515,7 @@ public class DBEventiValutazione {
 		try{
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet rs = pstm.executeQuery();
+			conn.commit();
 			
 			while (rs.next()){
 				GregorianCalendar scadenza, inizio, fine;
@@ -538,8 +554,9 @@ public class DBEventiValutazione {
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+e.getID()+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			if (toR>0)
 				return true;
 			else return false;
 			}finally{
@@ -561,8 +578,10 @@ public class DBEventiValutazione {
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			conn.commit();
+			
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
