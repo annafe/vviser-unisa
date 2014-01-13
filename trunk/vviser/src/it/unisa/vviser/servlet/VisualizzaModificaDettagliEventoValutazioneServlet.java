@@ -54,10 +54,10 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String s=(String) request.getAttribute("idEvento");
+		String s=(String) request.getParameter("idEvento");
 		System.out.println(s);
 		int id = Integer.parseInt(s);
-		String nome = (String) request.getAttribute("nomeEvento");
+	//	String nome = (String) request.getParameter("nomeEvento");
 		
 		String azioneModifica = (String) request.getAttribute("modificaEvento");
 		String azioneRimuovi = (String) request.getAttribute("rimuoviEvento");
@@ -65,7 +65,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 		EventoValutazione evento=null;
 		
 		try {
-			evento = (EventoValutazione) this.manager.visualizzaEventoPerId(id, nome);
+			evento = (EventoValutazione) this.manager.visualizzaEventoPerId(id);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
