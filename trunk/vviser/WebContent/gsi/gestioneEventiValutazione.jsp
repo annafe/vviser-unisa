@@ -23,7 +23,7 @@
 <section id="container-section">
 
 	<section id="section-menu"> 
-		<!-- Pagina contenente le funzionalitÃ  -->
+		<!-- Pagina contenente le funzionalita  -->
 			<%@ include file="gestioneEventiValutazione_content.jsp" %>
     </section>
 
