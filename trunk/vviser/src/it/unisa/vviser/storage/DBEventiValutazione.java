@@ -61,7 +61,9 @@ public class DBEventiValutazione {
 				DBNames.ATTR_EVENTOVALUTAZIONE_DADATA+","+ DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+","+
 				DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA+") "+
 				" VALUES ("+e.getNomeEvento()+","+e.getNumeroPubblicazioni()+
-				","+e.getDataInizio()+","+e.getDataFine()+","+e.getScadenza()+";";
+				","+CommonMethod.dateToString(e.getDataInizio())+","+CommonMethod.dateToString(e.getDataFine())+","+e.getScadenza()+";";
+			
+			System.out.println(queryParam);
 			
 			pstm = conn.prepareStatement(queryParam);
 			ResultSet toR = pstm.executeQuery();
