@@ -17,7 +17,7 @@
 EventoValutazione e = (EventoValutazione) request.getAttribute("eventoSelezionato");
 %>
 
-<form action="../ModificaEventoServlet" method="post">
+<form action="../ModificaEventoServlet" method="POST">
 <table>
 <tr><th>ID</th><td><input type="text" name="id" value=<%=e.getID()%> readonly></td></tr>
 <tr><th>Nome</th><td><input type="text" name="eventoName" value=<%=e.getNomeEvento()%>></td></tr>
