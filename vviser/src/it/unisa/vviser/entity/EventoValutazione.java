@@ -58,7 +58,7 @@ public class EventoValutazione {
 	 * @return la durata dell'evento
 	 */
 	public String getScadenza(){
-		return this.scadenza.get(Calendar.YEAR)+"/"+scadenza.get(Calendar.MONTH)+"/"+scadenza.get(Calendar.DAY_OF_MONTH);
+		return CommonMethod.dateToString(scadenza);
 	}
 	
 	/**
