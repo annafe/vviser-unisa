@@ -1,9 +1,10 @@
+<%-- 
+    Author: Giuseppe Sabato
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="it.unisa.vviser.entity.*"%>
-   <%-- 
-    Author: Antonio De Piano
---%>
+   
 <html>
 <head>
 	<title>VViSeR</title>
@@ -43,10 +44,10 @@
 	    	<nav class="navigation">
 					<ul>
 						<li>
-							<a href="/vviser/gpr/gpr.jsp">Gestione prodotti</a>
+							<a href="/vviser/gpr/gpr.jsp">Gestione Valutazione</a>
 						</li>
 						<li>
-							>> Prodotti in bozze
+							>>fhfffghhh
 						</li>
 					</ul>
 				</nav>
