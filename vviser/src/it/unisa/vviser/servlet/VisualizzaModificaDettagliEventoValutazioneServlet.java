@@ -59,13 +59,14 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 		int id = Integer.parseInt(s);
 	//	String nome = (String) request.getParameter("nomeEvento");
 		
-		String azioneModifica = (String) request.getAttribute("modificaEvento");
-		String azioneRimuovi = (String) request.getAttribute("rimuoviEvento");
+		String azioneModifica = (String) request.getParameter("modificaEvento"); System.out.println(azioneModifica);
+		String azioneRimuovi = (String) request.getParameter("rimuoviEvento"); System.out.println(azioneRimuovi);
 		
 		EventoValutazione evento=null;
 		
 		try {
 			evento = (EventoValutazione) this.manager.visualizzaEventoPerId(id);
+			System.out.println("Ha eseguito la query: ");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
@@ -75,7 +76,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 			request.setAttribute("eventoSelezionato", evento);
 			
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaModificaDettagliEvento.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaModificaDettagliEvento.jsp");
 			rd.forward(request,response);
 			return;
 		}
@@ -86,10 +87,15 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 				e2.printStackTrace();
 			}
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaListaEventi.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaListaEventi.jsp");
 			rd.forward(request,response);
 			return;
 		}
+		
+		else 
+			System.out.println("HELP");
+			
+		}
 	}
 
-}
+
