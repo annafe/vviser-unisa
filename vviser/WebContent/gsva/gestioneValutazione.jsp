@@ -17,6 +17,11 @@
 			document.getElementById("butVT").hidden=true;	
 	}
 </script>
+<style>
+table{padding-top:5%;}
+	th{color:ORANGERED;}
+	td{text-align:center;}
+</style>
 </head>
 <body>
 <%@include file="/gu/header.jsp" %>
