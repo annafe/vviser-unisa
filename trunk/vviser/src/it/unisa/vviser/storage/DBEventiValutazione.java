@@ -122,9 +122,9 @@ public class DBEventiValutazione {
 				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
+			int toR = pstm.executeUpdate();
 			conn.commit();
-			if (toR!=null)
+			if (toR>0)
 				return true;
 			else return false;
 		}finally{
