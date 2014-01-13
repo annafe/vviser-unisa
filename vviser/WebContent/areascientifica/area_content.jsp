@@ -16,7 +16,7 @@ notifiche
 </section>
 <section id="direttore_home">
 	
-    	<%@ include file="../gva/visualizzaprodottivalidazionedipartimento.jsp" %>
+    	<%@ include file="../gva/visualizzaprodottivalidazioneareascientifica.jsp" %>
 </section>
 <section id="nav_direttore_menu">
 menù per navigare tra prodotti
