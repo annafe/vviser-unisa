@@ -118,10 +118,11 @@ public class DBEventiValutazione {
 		
 		try{
 			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-				" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+
-				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
+				" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = '"+nome+"'"+
+				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = '"+id+"';";
 			
 			pstm = conn.prepareStatement(queryParam);
+			System.out.println(queryParam);
 			int toR = pstm.executeUpdate();
 			conn.commit();
 			if (toR>0)
