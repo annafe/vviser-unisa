@@ -414,14 +414,15 @@ public class DBEventiValutazione {
 	 * @return evento che ha id e nome specificati
 	 * @throws SQLException
 	 */
-	public EventoValutazione visualizzaEventoPerId(int id, String nomeEvento) throws SQLException{
+	public EventoValutazione visualizzaEventoPerId(int id) throws SQLException{
         EventoValutazione toReturn=null;
 		conn=DBConnectionPool.getConnection();
 		try{
 		String queryParam = "SELECT * FROM "+DBNames.TABLE_EVENTOVALUTAZIONE+
-					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+ "AND "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+"="+nomeEvento+";";
+					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 		
 			pstm = conn.prepareStatement(queryParam);
+			System.out.println(queryParam);
 			ResultSet rs = pstm.executeQuery();
 			conn.commit();
 			
