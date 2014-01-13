@@ -422,7 +422,7 @@ public class DBEventiValutazione {
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 		
 			pstm = conn.prepareStatement(queryParam);
-			System.out.println(queryParam);
+			//System.out.println(queryParam);
 			ResultSet rs = pstm.executeQuery();
 			conn.commit();
 			
@@ -433,7 +433,7 @@ public class DBEventiValutazione {
 				inizio = creaData(rs.getString("daData"));
 				fine = creaData(rs.getString("aData"));
 				
-				toReturn = new EventoValutazione(rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
+				toReturn = new EventoValutazione(rs.getInt("ID"), rs.getString("nome"), rs.getInt("numeroDiPubblicazioni"), scadenza, inizio, fine);			
 			}
 		}	
 		finally{
