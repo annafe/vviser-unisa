@@ -63,7 +63,7 @@ ArrayList<Prodotto> prodotti=gp.visualizzaProdottivalidatiDipartimento();
         %>
     </table>
     <button type="submit" name="sottometti">Validazione</button>
-    <button type="submit" name="sottometti" formaction="../InvioNotificaValidazioneServlet">Notifica</button>
+    <button type="submit" name="Notifica" formaction="../gva/invionotificaarea.jsp">Notifica</button>
 </form>
 
 
