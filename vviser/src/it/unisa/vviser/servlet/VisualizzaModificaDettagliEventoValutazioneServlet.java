@@ -93,7 +93,7 @@ public class VisualizzaModificaDettagliEventoValutazioneServlet extends HttpServ
 		}
 		
 		else 
-			System.out.println("HELP");
+			System.out.println("");
 			
 		}
 	}
