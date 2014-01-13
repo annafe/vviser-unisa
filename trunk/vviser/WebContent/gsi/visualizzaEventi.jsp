@@ -41,6 +41,7 @@ function funz(e){
 	<thead>
 	<tr colspan=3>Lista eventi di valutazione</tr>
 		<tr>
+			<th></th>
 			<th>Nome</th>
 			<th>Data Inizio</th>
 			<th>Data Fine</th>
@@ -52,9 +53,9 @@ function funz(e){
 			EventoValutazione e=lista.get(i);
 			
 			out.println("<tr>");
-			out.println("<td><input hidden name=\"idEvento\" value=\""+e.getID()+"\"></td>");
-			out.println("<form name=\"formVisualizza\" action=\"../VisualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
 			
+			out.println("<form name=\"formVisualizza\" action=\"../VisualizzaModificaDettagliEventoValutazioneServlet\" method=\"POST\">");
+			out.println("<td><input hidden name=\"idEvento\" value=\""+e.getID()+"\"></td>");
 			out.println("<td name=\"nomeEvento\">"+e.getNomeEvento()+"</td>");
 			out.println("<td name=\"datainizio\">"+CommonMethod.dateToString(e.getDataInizio())+"</td>");
 			out.println("<td name=\"datafine\">"+CommonMethod.dateToString(e.getDataFine())+"</td>");
