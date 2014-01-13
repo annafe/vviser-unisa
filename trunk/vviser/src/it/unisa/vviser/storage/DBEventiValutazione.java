@@ -67,6 +67,7 @@ public class DBEventiValutazione {
 			
 			pstm = conn.prepareStatement(queryParam);
 			int toR = pstm.executeUpdate();
+			conn.commit();
 			System.out.println("Righe modificate dalla query: "+toR);
 			if (toR == 1)
 				return true;
