@@ -68,6 +68,7 @@ public class ModificaEventoServlet extends HttpServlet {
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
 		RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaEventi.jsp");
 		rd.forward(request,response);
+		return;
 	}
 
 }
