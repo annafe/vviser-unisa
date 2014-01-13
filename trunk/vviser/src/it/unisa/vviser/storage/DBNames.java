@@ -42,7 +42,7 @@ public final class DBNames {
 	public static final String ATTR_EVENTOVALUTAZIONE_ID="id";
 	public static final String ATTR_EVENTOVALUTAZIONE_NOME="nome";
 	public static final String ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI="numeroDiPubblicazioni";
-	public static final String ATTR_EVENTOVALUTAZIONE_DADATA="daDAta";
+	public static final String ATTR_EVENTOVALUTAZIONE_DADATA="daData";
 	public static final String ATTR_EVENTOVALUTAZIONE_ADATA="aData";
 	public static final String ATTR_EVENTOVALUTAZIONE_SCADENZA="scadenza";
 	
