@@ -86,6 +86,9 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 		try 
 		{
 			prodottiValutazioneManager.sottomettiListaProdottiValutazione(prodottiValutazione, emailUtente);
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gsva.jsp");
+			rd.forward(request,response); 
 		} 
 		catch (SQLException e) 
 		{

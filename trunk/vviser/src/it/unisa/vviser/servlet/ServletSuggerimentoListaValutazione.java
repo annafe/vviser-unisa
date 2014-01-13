@@ -46,6 +46,9 @@ public class ServletSuggerimentoListaValutazione extends HttpServlet {
 			ListaProdottiValutazione listaProdottiValutazione=(ListaProdottiValutazione)s.getAttribute("listaProdottiValutazione");
 			String suggestion=request.getParameter("sugg");
 			prodottiValutazioneManager.settaSuggerimentoListaValutazione(listaProdottiValutazione, suggestion);
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gsva.jsp");
+			rd.forward(request,response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

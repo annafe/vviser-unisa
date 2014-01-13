@@ -111,7 +111,7 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 		catch (NotFoundListeValutazioneException e) 
 		{
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/visualizzaImpossibile.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gVisualizzaImpossibile.jsp");
 			rd.forward(request,response);
 		}
         
