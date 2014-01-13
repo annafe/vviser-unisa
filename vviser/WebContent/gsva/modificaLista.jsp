@@ -132,7 +132,7 @@
 			
 		%>
 	</table>
-	<button type="submit" name="modifica">Conferma</button>
+	<button class="pulsante" type="submit" name="modifica">Conferma</button>
 </form>
 
 

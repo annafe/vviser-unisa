@@ -45,12 +45,12 @@
 							<a href="/vviser/gsva/gsva.jsp">Gestione Valutazione</a>
 						</li>
 						<li>
-							>>Visualizza Prodotti Valutazione
+							>>Modifica Lista
 						</li>
 					</ul>
 				</nav>
 		    	<!--  Pagina contenente il contenuto -->
-		    	<%@ include file="visualizzaLista.jsp" %>
+		    	<%@ include file="modificaLista.jsp" %>
 	    	</section>
 	    	
 	    	<section id="gpr_fast_menu">

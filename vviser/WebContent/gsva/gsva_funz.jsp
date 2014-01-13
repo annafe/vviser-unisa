@@ -20,6 +20,13 @@
 </script>
 </head>
 <body>
+<%
+	
+	HttpSession s1= request.getSession();
+	s1.getAttribute("sessTipoUtente");
+	String tpu=(String)s1.getAttribute("sessTipoUtente");
+	out.println("<input type=\"text\" id=\"tipoNasc\" value="+tpu+" hidden />");
+%>
 
 <p><a id="lnkSot" href="/vviser/ServletVisualizzaProdotti">Sottometti Prodotti a Valutazione</a></p>
 <p><a id="lnkVP" href="/vviser/ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</a></p>

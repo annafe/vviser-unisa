@@ -54,7 +54,7 @@
     
     out.println("<input id=\"tn\" type=\"text\" value="+numProdMax+" hidden/>");
 %>
-<form id="mod1" action="ServletInsertProdottiValutazione" method="POST">
+<form id="mod1" action="/vviser/ServletInsertProdottiValutazione" method="POST">
     <table>
         <tr>
             <th colspan="3">Seleziona Prodotti</th>    
@@ -78,7 +78,7 @@
         
         %>
     </table>
-    <button type="submit" name="sottometti">Sottometti</button>
+    <button class="pulsante" type="submit" name="sottometti">Sottometti</button>
 </form>
 
 
