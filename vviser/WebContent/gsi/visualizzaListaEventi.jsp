@@ -35,15 +35,7 @@
 
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalitÃ  -->
-<!-- 			<p><a href="/vviser/gsi/VisualizzaEventiValutazioneServlet">Mostra eventi</a></p>  -->
-			
-<!-- 			<form id="form1" action="/vviser/VisualizzaListaEventiValutazioneServlet" method="POST"> 
-				<button type="submit" name="sel">Mostra Eventi</button> 
-			</form>  -->
-			
-			<form id="form2" action="/vviser/InserisciNuovoEventoValutazione" method="POST">
-				<button type="submit" name="sel">Aggiungi Nuovo Evento</button>
-			</form>
+		<%@ include file="gestioneEventiValutazione_content.jsp" %>
     </section>
 
     <section id="section-main">
