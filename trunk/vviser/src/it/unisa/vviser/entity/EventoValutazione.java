@@ -39,6 +39,15 @@ public class EventoValutazione {
 		this.dataFine=CommonMethod.stringToDate(dataFine);
 	}
 	
+	public EventoValutazione(int id,String nomeEvento, int numeroPubblicazioni, GregorianCalendar scadenza, GregorianCalendar dataInizio, GregorianCalendar dataFine){
+		this.ID = id;
+		this.nomeEvento = nomeEvento;
+		this.numeroPubblicazioni = numeroPubblicazioni;
+		this.scadenza = scadenza;
+		this.dataInizio=dataInizio;
+		this.dataFine=dataFine;
+	}
+	
 	/**
 	 * restituisce il nome dell'evento
 	 * @return nome dell'evento
