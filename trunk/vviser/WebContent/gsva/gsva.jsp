@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="it.unisa.vviser.entity.*"%>
    <%-- 
     Author: Antonio De Piano
 --%>
@@ -12,7 +13,14 @@
 </head>
 
 <body>
-
+<%
+	Utente utente = (Utente) session.getAttribute("utente");
+	HttpSession s= request.getSession();
+	s.setAttribute("sessEmail",utente.getEmail());
+	String tipoUtente=utente.getTipologia();
+	out.println("<input type=\"text\" id=\"tipoNasc\" value="+tipoUtente+" hidden />");
+	
+%>
 <header id="container-header">
 <!--  contiene il logo  -->
 </header>	

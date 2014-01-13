@@ -41,12 +41,6 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		
 		
 		try 
 		{
@@ -85,7 +79,7 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 				
 				request.setAttribute("liste", listeProdottiValutazione);
 				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/selezListe.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/gsva/selezListe.jsp");
 				rd.forward(request,response);
 			}
 			else
@@ -101,7 +95,7 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 					}
 					request.setAttribute("lista", listeProdottiValutazione.get(0));
 					ServletContext sc = getServletContext();
-					RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaLista.jsp");
+					RequestDispatcher rd = sc.getRequestDispatcher("/gsva/visualizzaLista.jsp");
 					rd.forward(request,response);
 				}
 			}
@@ -117,9 +111,17 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 		catch (NotFoundListeValutazioneException e) 
 		{
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaImpossibile.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/visualizzaImpossibile.jsp");
 			rd.forward(request,response);
 		}
+        
+    }
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+		
+		
+		
 	}
 
 }
