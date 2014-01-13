@@ -346,7 +346,6 @@ public class DBGestioneProdotto
 	public ArrayList<Prodotto> visualizzaProdottiProprietarioCoautore(String utente)throws SQLException
 	{
 		Statement st=null;
-		Statement st1=null;
 		ResultSet ris=null;
 		String query;
 		Connection conn=null;
@@ -378,13 +377,18 @@ public class DBGestioneProdotto
 			}
     		
     		//Ora prendo i prodotti dove sono indicato come coautore e ho confermato
-    		query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
+    		/*query="SELECT * FROM "+DBNames.TABLE_PRODOTTO+","+DBNames.TABLE_COLLABORAZIONI
             		+" WHERE "+DBNames.TABLE_PRODOTTO+"."+DBNames.ATTR_PRODOTTO_ISBN+"='"+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"'"
             		+" AND "+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"='"+utente+"' AND "
-            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1";
+            		+DBNames.TABLE_COLLABORAZIONI+"."+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1";*/
+    		query="SELECT *"
+    				+" FROM "+DBNames.TABLE_COLLABORAZIONI+","
+    				+DBNames.TABLE_PRODOTTO
+            		+" WHERE "+DBNames.ATTR_COLLABORAZIONI_COLLABORATORE+"="+"'"+utente+"'"+" AND "+DBNames.ATTR_COLLABORAZIONI_CONVALIDATO+"=1"
+            		+" and "+DBNames.ATTR_COLLABORAZIONI_PRODOTTO_ISBN+"="+DBNames.ATTR_PRODOTTO_ISBN;
             
-            st1=conn.createStatement();
-    		ris=st1.executeQuery(query);
+            st=conn.createStatement();
+    		ris=st.executeQuery(query);
     		while(ris.next())
 			{
     			Prodotto p=new Prodotto(ris.getString(DBNames.ATTR_PRODOTTO_ISBN),ris.getString(DBNames.ATTR_PRODOTTO_TITOLO)
@@ -405,7 +409,7 @@ public class DBGestioneProdotto
 		finally 
         {
             st.close();
-            st1.close();
+            
             DBConnectionPool.releaseConnection(conn);
         }
 	}
@@ -733,7 +737,7 @@ public class DBGestioneProdotto
 	
 	/**
 	 * Metodo che permette di ricercare i prodotti in base al titolo della rivista
-	 * @param titoloRivista titolo della rivista su cui è pubblicato il prodotto
+	 * @param titoloRivista titolo della rivista su cui e' pubblicato il prodotto
 	 * @return lista prodotti
 	 * @throws SQLException
 	 */
@@ -878,7 +882,7 @@ public class DBGestioneProdotto
 	}
 	
 	/**
-	 * Metodo che permette a un ricercatore di convalidare un prodotto quando è indicato come coautore 
+	 * Metodo che permette a un ricercatore di convalidare un prodotto quando e' indicato come coautore 
 	 * @param collaboratore del prodotto
 	 * @param isb_prodotto del prodotto
 	 * @throws SQLException
@@ -906,7 +910,7 @@ public class DBGestioneProdotto
 	}
 
 	/**Dati titolo, proprietario, anno e tipologia, restituisce
-	 * il prodotto relativo o "null" se il prodotto non è presente nel DataBase.
+	 * il prodotto relativo o "null" se il prodotto non e' presente nel DataBase.
 	 * @author Romano Simone 0512101343
 	 * @param titolo
 	 * @param proprietario
@@ -1142,7 +1146,7 @@ public class DBGestioneProdotto
 	
 	/**
 	 * Metodo che permette di ricercare i prodotti nel catalogo personale in base al titolo della rivista
-	 * @param titoloRivista titolo della rivista su cui è pubblicato il prodotto
+	 * @param titoloRivista titolo della rivista su cui e' pubblicato il prodotto
 	 * @param u utente proprietario del catalogo su cui effettuare la ricerca
 	 * @return lista prodotti
 	 * @throws SQLException
