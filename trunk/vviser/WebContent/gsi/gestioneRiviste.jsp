@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>Gestione Eventi di Valutazione</title>
+<title>Gestione Riviste</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link href="/vviser/css/stile1.css" rel="stylesheet" type="text/css"/>
 </head>
