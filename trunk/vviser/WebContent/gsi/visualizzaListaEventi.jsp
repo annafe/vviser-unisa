@@ -35,7 +35,7 @@
 
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalitÃ  -->
-		<%@ include file="gestioneEventiValutazione_content.jsp" %>
+		<%@ include file="gestioneEventiValutazione_funz.jsp" %>
     </section>
 
     <section id="section-main">
