@@ -60,7 +60,8 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 		
 		EventoValutazione e = new EventoValutazione(nome, num, scadenza, da, a);
 		try{
-			eventiValutazioneManager.addEvento(e);
+			boolean resp = eventiValutazioneManager.addEvento(e);
+			System.out.println("Risultato  query: "+resp);
 			lista = (ArrayList<EventoValutazione>) eventiValutazioneManager.visualizzaEventi();
 		} catch (SQLException ex){
 			ex.printStackTrace();
@@ -72,7 +73,7 @@ public class InserisciNuovoEventoServlet extends HttpServlet {
 		
 //		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
-		RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaListaEventi.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaListaEventi.jsp");
 		
 		rd.forward(request,response);
 		return;
