@@ -172,7 +172,7 @@ public class DBEventiValutazione {
 		conn = DBConnectionPool.getConnection();
 		try{
 			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-			" SET scadenza = "+scadenza.toString()+
+			" SET scadenza = "+CommonMethod.dateToString(scadenza)+
 			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+" = "+nome+";";
 			
 			pstm = conn.prepareStatement(queryParam);
@@ -199,7 +199,7 @@ public class DBEventiValutazione {
 		GregorianCalendar scad = CommonMethod.stringToDate(scadenza);
 		try{
 			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-			" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA +" = "+scad.get(Calendar.YEAR)+"/"+scad.get(Calendar.MONTH)+"/"+scad.get(Calendar.DAY_OF_MONTH)+
+			" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA +" = "+scad.get(Calendar.YEAR)+"-"+scad.get(Calendar.MONTH)+"-"+scad.get(Calendar.DAY_OF_MONTH)+
 			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
@@ -251,7 +251,7 @@ public class DBEventiValutazione {
 		conn = DBConnectionPool.getConnection();
 		
 		try{
-			String queryParam = "UPDATE "+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+
+			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
 					" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+" = "+num+
 					" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
