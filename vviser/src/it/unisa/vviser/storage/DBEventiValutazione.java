@@ -57,17 +57,18 @@ public class DBEventiValutazione {
 		
 		try{
 			String queryParam = "INSERT INTO "+ DBNames.TABLE_EVENTOVALUTAZIONE+
-				"("+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+","+	DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+","+
+				" ("+DBNames.ATTR_EVENTOVALUTAZIONE_NOME+","+	DBNames.ATTR_EVENTOVALUTAZIONE_NUMERODIPUBBLICAZIONI+","+
 				DBNames.ATTR_EVENTOVALUTAZIONE_DADATA+","+ DBNames.ATTR_EVENTOVALUTAZIONE_ADATA+","+
 				DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA+") "+
-				" VALUES ("+e.getNomeEvento()+","+e.getNumeroPubblicazioni()+
-				","+CommonMethod.dateToString(e.getDataInizio())+","+CommonMethod.dateToString(e.getDataFine())+","+e.getScadenza()+";";
+				" VALUES ('"+e.getNomeEvento()+"','"+e.getNumeroPubblicazioni()+
+				"','"+CommonMethod.dateToString(e.getDataInizio())+"','"+CommonMethod.dateToString(e.getDataFine())+"','"+e.getScadenza()+"');";
 			
 			System.out.println(queryParam);
 			
 			pstm = conn.prepareStatement(queryParam);
-			ResultSet toR = pstm.executeQuery();
-			if (toR!=null)
+			int toR = pstm.executeUpdate();
+			System.out.println("Righe modificate dalla query: "+toR);
+			if (toR == 1)
 				return true;
 			else return false;
 		}finally{
