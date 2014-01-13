@@ -29,7 +29,7 @@
 
     <section id="section-main">
     	<!--  Pagina contenente il contenuto -->
-    	<%@ include file="gsi_content.jsp" %>
+    	<%@ include file="inAllestimento.jsp" %>
     </section>
 
 </section>
