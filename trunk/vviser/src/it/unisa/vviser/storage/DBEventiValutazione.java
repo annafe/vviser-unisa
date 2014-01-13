@@ -122,7 +122,7 @@ public class DBEventiValutazione {
 				" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = '"+id+"';";
 			
 			pstm = conn.prepareStatement(queryParam);
-			System.out.println(queryParam);
+			//System.out.println(queryParam);
 			int toR = pstm.executeUpdate();
 			conn.commit();
 			if (toR>0)
@@ -199,7 +199,7 @@ public class DBEventiValutazione {
 		GregorianCalendar scad = CommonMethod.stringToDate(scadenza);
 		try{
 			String queryParam = "UPDATE "+DBNames.TABLE_EVENTOVALUTAZIONE+
-			" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA +" = "+scad.get(Calendar.YEAR)+"-"+scad.get(Calendar.MONTH)+"-"+scad.get(Calendar.DAY_OF_MONTH)+
+			" SET "+DBNames.ATTR_EVENTOVALUTAZIONE_SCADENZA +" = "+CommonMethod.dateToString(scad)+
 			" WHERE "+DBNames.ATTR_EVENTOVALUTAZIONE_ID+" = "+id+";";
 			
 			pstm = conn.prepareStatement(queryParam);
