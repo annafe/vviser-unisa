@@ -9,7 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.*"%>
 
-<form action="InserisciNuovoEventoServlet" method="POST">
+<form action="../InserisciNuovoEventoServlet" method="POST">
 		<table>
 		<tr><td><label>Nome evento:</label></td><td><input type="text" name="nomeEvento" required></input><td></tr>
 		<tr><td><label>Numero pubblicazioni:</label></td><td><input type="text" name="numPubb" placeholder="numero pubblicazioni" required></input><td></tr>
