@@ -66,7 +66,7 @@ public class ModificaEventoServlet extends HttpServlet {
 		
 		ServletContext sc = getServletContext();
 		// ridirezione alla pagina con la lista di tutti gli eventi di valutazione
-		RequestDispatcher rd = sc.getRequestDispatcher("/vviser/gsi/visualizzaEventi.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/gsi/visualizzaListaEventi.jsp");
 		rd.forward(request,response);
 		return;
 	}
