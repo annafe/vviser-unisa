@@ -26,6 +26,6 @@ EventoValutazione e = (EventoValutazione) request.getAttribute("eventoSelezionat
 <tr><th>Periodo: da</th><td><input type="text" name="eventoDataInizio" value=<%=CommonMethod.dateToString(e.getDataInizio()) %>></td></tr>
 <tr><th>Periodo: a</th><td><input type="text" name="eventoDataFine" value=<%=CommonMethod.dateToString(e.getDataFine())%>></td></tr>
 </table>
-</form>
-<input type="submit" value="Conferma modifiche"/>
 
+<input type="submit" class="pulsanti" value="Conferma modifiche"/>
+</form>
