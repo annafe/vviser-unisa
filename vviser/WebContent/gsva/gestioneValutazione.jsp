@@ -34,8 +34,8 @@ table{padding-top:10%;}
 
 <form id="mod" action="../ServletVisualizzaProdotti" method="POST">
 	<button type="submit" id="butSot" name="butSot">Sottometti Prodotti a Valutazione</button>
-	<button type="submit" id="butVP" name="butVP" formaction="ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</button>
-	<button type="submit" id="butVT" name="butVT" formaction="ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</button>
+	<button type="submit" id="butVP" name="butVP" formaction="../ServletVerificaListeVisualizza">Visualizza Prodotti Valutazione Personali</button>
+	<button type="submit" id="butVT" name="butVT" formaction="../ServletListaUtentiValutazione">Visualizza Prodotti Valutazione Utenti</button>
 </form> 
 
 
