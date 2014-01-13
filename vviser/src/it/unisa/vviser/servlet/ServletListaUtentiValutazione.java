@@ -36,6 +36,22 @@ public class ServletListaUtentiValutazione extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		
+		try
+		{
+			HttpSession s = request.getSession();
+			String emailUtente=(String)s.getAttribute("sessEmail");
+			ArrayList<Utente> utenti=new ArrayList<Utente>();
+			utenti=prodottiValutazioneManager.showListaUtenti(emailUtente);
+			
+			request.setAttribute("listaUtenti", utenti);
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/selezionaUtenteValutazione.jsp");
+			rd.forward(request,response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
     }
 	
@@ -43,23 +59,6 @@ public class ServletListaUtentiValutazione extends HttpServlet {
             throws ServletException, IOException {
 		
 		
-			try
-			{
-				HttpSession s = request.getSession();
-				String emailUtente=(String)s.getAttribute("sessEmail");
-				ArrayList<Utente> utenti=new ArrayList<Utente>();
-				utenti=prodottiValutazioneManager.showListaUtenti(emailUtente);
-				
-				request.setAttribute("listaUtenti", utenti);
-				ServletContext sc = getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/selezionaUtenteValutazione.jsp");
-				rd.forward(request,response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
 		
 	}
 

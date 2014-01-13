@@ -60,7 +60,7 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 			request.setAttribute("prod", prodottiFiltrati);//
 			
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/selezProdotti.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/selezProdotti.jsp");
 			rd.forward(request,response); 
 			
 		} catch (SQLException e)
@@ -79,14 +79,17 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 		catch (NotAvailableProdottiPerValutazioneException e) 
 		{
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/visualizzaProdottiPerSottomissioneImpossibile.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/visualizzaProdottiPerSottomissioneImpossibile.jsp");
 			rd.forward(request,response);
 		}
+		
+		
         
     }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		
 		
 		
 	
