@@ -112,7 +112,7 @@
 				out.println("<tr>");
 					out.println("<td><input type=\"checkbox\" id="+idC+" name=\"cbmd\" value="+prodottiValutazione.get(i).toString()+" checked onclick=\"deselezionaProdottiValutazione(this)\" /></td>");
 					out.println("<td>"+prodottiValutazione.get(i).getTitle()+"</td>");
-					out.println("<td><input type=\"text\" id="+idTp+" value="+prodottiValutazione.get(i).getPriority()+" pattern=\"[1-5]{1}\" name=\"pri\" /></td>");
+					out.println("<td><input type=\"text\" id="+idTp+" value="+prodottiValutazione.get(i).getPriority()+" pattern=\"[0-5]{1}\" name=\"pri\" /></td>");
 					out.println("<td><input type=\"text\" id="+idTh+" value="+prodottiValutazione.get(i).toString()+" name=\"desel\" disabled hidden /></td>");//hidden per contenere i prod. val. deselezionati
 				out.println("</tr>");
 			}
