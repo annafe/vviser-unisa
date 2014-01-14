@@ -82,7 +82,7 @@
             out.println("<td>"+prodotti.get(i).getTitolo()+"</td>");
             String idInput="t"+i;
             //System.out.println(idInput);
-            out.println("<td><input id="+idInput+" type=\"text\" name=\"priorita\" pattern=\"[1-5]{1}\" disabled=\"true\" /></td>");
+            out.println("<td><input id="+idInput+" type=\"text\" name=\"priorita\" pattern=\"[0-5]{1}\" disabled=\"true\" /></td>");
         out.println("<tr>");
         }
         
