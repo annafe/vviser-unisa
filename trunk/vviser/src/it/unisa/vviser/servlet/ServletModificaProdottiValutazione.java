@@ -179,7 +179,7 @@ public class ServletModificaProdottiValutazione extends HttpServlet {
 				e.printStackTrace();
 			}
 			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gsva.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gNotificaModifica.jsp");
 			rd.forward(request,response);
 		}
 
