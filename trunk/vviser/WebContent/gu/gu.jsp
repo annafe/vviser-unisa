@@ -41,7 +41,6 @@
 	    	<section id="gpr_fast_menu">
 	    	<%@ include file="gu_fast_menu.jsp" %>
     		</section>
-    
     </section>
 
 </section>

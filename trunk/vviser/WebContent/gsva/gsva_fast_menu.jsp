@@ -9,6 +9,5 @@
 <title></title>
 </head>
 <body>
-<p>men&ugrave; rapido</p>
 </body>
 </html>
