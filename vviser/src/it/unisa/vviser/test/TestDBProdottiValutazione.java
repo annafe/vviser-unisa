@@ -48,8 +48,9 @@ public class TestDBProdottiValutazione {
 	}
 
 	@Test
-	public void testShowProdottiVal() {
+	public void testShowProdottiVal() throws SQLException {
 		ListaProdottiValutazione showProdottiVal=new ListaProdottiValutazione();
+		int idEvento = 0;
 		showProdottiVal =dbProdottiValutazione.showProdottiVal(emailUtente, idEvento);
 		if (showProdottiVal==null)	fail("Not yet implemented");
 		assertFalse(showProdottiVal==null);
