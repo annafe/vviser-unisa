@@ -75,18 +75,17 @@ public class InvioNotificaValidazioneServlet extends HttpServlet {
 		DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 		DBGestioneProdotto gpr=DBGestioneProdotto.getInstance();
 		
-		String[] checkProduct=request.getParameterValues("selProd");
+		String checkProduct=request.getParameter("isbn");
 		HttpSession s = request.getSession();
 		Utente currentUser=(Utente)s.getAttribute("utente");
 		
+		System.out.println(checkProduct);
+		System.out.println(currentUser.getEmail());
 		try
 		{
-			for(int i=0;i<checkProduct.length;i++)
-			{
-				Prodotto p=gpr.ricercaProdottoISBN(checkProduct[i]);
-				gp.invionotifica(messaggio,p.getProprietario(),currentUser.getEmail(),"messaggio");
-				
-			}
+			Prodotto p=gpr.ricercaProdottoISBN(checkProduct);
+			System.out.println(p.getProprietario());
+			gp.invionotifica(messaggio,p.getProprietario(),currentUser.getEmail(),"messaggio");
 			ServletContext sc = getServletContext();
 			
 			if(currentUser.getTipologia().equals("direttoreDiDipartimento"))
