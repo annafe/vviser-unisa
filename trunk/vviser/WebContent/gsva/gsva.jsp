@@ -36,7 +36,7 @@
 
 	<section id="section-menu"> 
 		<!-- Pagina contenente le funzionalità -->
-		<%@ include file="gsva_funz.jsp" %>
+		<%@ include file="/gsva/gsva_funz.jsp" %>
 		
     </section>
 
