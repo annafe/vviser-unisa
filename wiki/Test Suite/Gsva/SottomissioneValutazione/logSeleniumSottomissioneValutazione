@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-suite">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>.failed {color: red; background-color: #ffcccc;}.passed {color: black; background-color: #ccffcc;}.done {color: black; background-color: #eeffee;}</style>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite Results</b></td></tr>
+<tr class="passed"><td><a href="#test0">TF_TestSottomissioneValutazione_01</a></td></tr>
+<tr class="passed"><td><a href="#test1">TestSottomissioneValutazione_03</a></td></tr>
+<tr class="passed"><td><a href="#test2">TestSottomissioneValutazione_05</a></td></tr>
+<tr class="passed"><td><a href="#test3">TestSottomissioneValutazione_02</a></td></tr>
+<tr class="passed"><td><a href="#test4">TestSottomissioneValutazione_04</a></td></tr>
+
+</tbody></table>
+<a name="test0" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TF_TestSottomissioneValutazione_01</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>deprisco@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>dep</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=lnkSot</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=bsp</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertAlert</td>
+	<td>Nessun prodotto selezionato !</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test1" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TestSottomissioneValutazione_03</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>deprisco@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>dep</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=lnkSot</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=1</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=t1</td>
+	<td>-2</td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=bsp</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ServletVisualizzaProdotti</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test2" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TestSottomissioneValutazione_05</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>deprisco@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>dep</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=lnkSot</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=0</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=t0</td>
+	<td>6</td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=bsp</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ServletVisualizzaProdotti</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test3" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TestSottomissioneValutazione_02</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>deprisco@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>dep</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=lnkSot</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=0</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=bsp</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ServletInsertProdottiValutazione</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=#gpr_content &gt; p</td>
+	<td>Lista di prodotti sottomessa a valutazione con successo!</td>
+</tr>
+
+</tbody></table>
+<a name="test4" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TestSottomissioneValutazione_04</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>negro@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>neg</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=lnkSot</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=0</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=t0</td>
+	<td>1</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>id=bsp</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ServletInsertProdottiValutazione</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=#gpr_content &gt; p</td>
+	<td>Lista di prodotti sottomessa a valutazione con successo!</td>
+</tr>
+
+</tbody></table>
+
+</body></html>

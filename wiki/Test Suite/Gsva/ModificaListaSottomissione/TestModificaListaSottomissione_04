@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/vviser/" />
+<title>TestModificaListaSottomissione_04</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TestModificaListaSottomissione_04</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>distasi@unisa.it</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>ricdist</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=lnkVP</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=buttMod</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=cb1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prcb1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=modifica</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ServletModificaProdottiValutazione</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#gpr_content &gt; p</td>
+	<td>Lista modificata con successo!</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

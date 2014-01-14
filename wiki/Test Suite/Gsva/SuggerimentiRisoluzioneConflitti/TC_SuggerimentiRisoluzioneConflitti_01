@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/vviser/" />
+<title>TC_SuggerimentiRisoluzioneConflitti_01</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TC_SuggerimentiRisoluzioneConflitti_01</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>mtucci@unisa.it</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>mautucci</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Gestione Valutazione']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=lnkVT</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='utente'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=invia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=sugg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=buttms</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertAlert</td>
+	<td>Nessun suggerimento inserito o modificato !</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
