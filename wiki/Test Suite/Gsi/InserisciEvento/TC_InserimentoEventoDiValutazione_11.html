@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/vviser/" />
+<title>TC_InserimentoEventoDiValutazione_11</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_11</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Inserisci nuovo eventi</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=nomeEvento</td>
+	<td>VQR ricerca</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=numPubb</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=dataInizio</td>
+	<td>2008-01-01</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=dataFine</td>
+	<td>2012-01-01</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=scadenza</td>
+	<td>2014-01-01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=creaEvento</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
