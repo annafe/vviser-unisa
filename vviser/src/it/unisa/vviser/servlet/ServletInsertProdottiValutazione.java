@@ -59,7 +59,7 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 		HttpSession s = request.getSession();
 		String emailUtente=(String)s.getAttribute("sessEmail");//recupero l'email utente settato nella sessione
         
-		System.out.println(checkProduct.length);
+		
 		for(int i=0;i<checkProduct.length;i++)
 		{
 			ProdottoValutazione prodottoValutazione=new ProdottoValutazione();
