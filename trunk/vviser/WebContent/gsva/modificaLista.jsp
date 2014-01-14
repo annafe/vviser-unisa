@@ -126,7 +126,7 @@
 				out.println("<tr>");
 					out.println("<td><input type=\"checkbox\" id="+idCr+" value="+prodotti.get(i).getIsbnTitleProdotto()+" name=\"cb\" onclick=\"selezionaProdotti(this)\" /></td>");
 					out.println("<td>"+prodotti.get(i).getTitolo()+"</td>");
-					out.println("<td><input type=\"text\" id="+idPr+" name=\"newPri\" disabled=\"true\" /></td>");
+					out.println("<td><input type=\"text\" id="+idPr+" pattern=\"[0-5]{1}\" name=\"newPri\" disabled=\"true\" /></td>");
 				out.println("</tr>");
 			}
 			
