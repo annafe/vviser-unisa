@@ -128,7 +128,7 @@
 		</tr>
 		<tr>
 			<th>Note</th>
-			<td><input type="text" id="sugg" name="sugg" value="<%out.println(listaProdottiValutazione.getSuggestion()); %>" /></td>
+			<td><input type="text" id="sugg" name="sugg" maxlength="500" value="<%out.println(listaProdottiValutazione.getSuggestion()); %>" /></td>
 		</tr>
 		<tr>
 			<th>Titolo</th>
