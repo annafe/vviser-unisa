@@ -42,6 +42,16 @@
     		
 
     	}
+    	
+    	//controllo che venga selezionato almeno un prodotto
+    	function controlMin()
+    	{
+    		if(i==0)
+    		{
+    			alert("Nessun prodotto selezionato !");
+    			document.getElementById("bsp").type="reset";
+    		}
+    	}
     </script>
 </head>
 
@@ -78,7 +88,7 @@
         
         %>
     </table>
-    <button class="pulsante" type="submit" name="sottometti">Sottometti</button>
+    <button id="bsp" class="pulsante" type="submit" name="sottometti" onclick="controlMin()" >Sottometti</button>
 </form>
 
 
