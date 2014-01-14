@@ -20,11 +20,11 @@ EventoValutazione e = (EventoValutazione) request.getAttribute("eventoSelezionat
 <form action="ModificaEventoServlet" method="POST">
 <table>
 <tr><th>ID</th><td><input type="text" name="id" value=<%=e.getID()%> readonly></td></tr>
-<tr><th>Nome</th><td><input type="text" name="eventoName" value=<%=e.getNomeEvento()%>></td></tr>
-<tr><th>Num. pubblicazioni</th><td><input type="text" name="eventoNumPubb" value=<%=e.getNumeroPubblicazioni() %>></td></tr>
+<tr><th>Nome</th><td><input type="text" name="eventoName" value=<%=e.getNomeEvento()%> required></td></tr>
+<tr><th>Num. pubblicazioni</th><td><input type="text" name="eventoNumPubb" value=<%=e.getNumeroPubblicazioni() %> required ></td></tr>
 <tr><th>Scadenza</th><td><input type="text" name="eventoScadenza" value=<%=e.getScadenza() %>></td></tr>
-<tr><th>Periodo: da</th><td><input type="text" name="eventoDataInizio" value=<%=CommonMethod.dateToString(e.getDataInizio()) %>></td></tr>
-<tr><th>Periodo: a</th><td><input type="text" name="eventoDataFine" value=<%=CommonMethod.dateToString(e.getDataFine())%>></td></tr>
+<tr><th>Periodo: da</th><td><input type="text" name="eventoDataInizio" value=<%=CommonMethod.dateToString(e.getDataInizio()) %> required></td></tr>
+<tr><th>Periodo: a</th><td><input type="text" name="eventoDataFine" value=<%=CommonMethod.dateToString(e.getDataFine())%> required></td></tr>
 </table>
 
 <input type="submit" class="pulsanti" value="Conferma modifiche"/>
