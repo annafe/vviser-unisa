@@ -65,6 +65,14 @@ public class LoginServlet extends HttpServlet{
 					request.getServletContext().getRequestDispatcher("/gsi/home_amministratore.jsp").forward(request, response);
 					return;
 				}
+				if(utente.getTipologia().equalsIgnoreCase("direttoreDiDipartimento")){
+					request.getServletContext().getRequestDispatcher("/direttore/home_direttore.jsp").forward(request, response);
+					return;
+				}
+				if(utente.getTipologia().equalsIgnoreCase("membroDelComitatoDiAreaDidattica")){
+					request.getServletContext().getRequestDispatcher("/areascientifica/home_area.jsp").forward(request, response);
+					return;
+				}
 				else{
 
 					
