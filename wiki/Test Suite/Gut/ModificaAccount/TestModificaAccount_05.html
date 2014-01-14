@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/vviser/" />
-<title>TestModificaAccount_02</title>
+<title>TestModificaAccount_05</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">TestModificaAccount_02</td></tr>
+<tr><td rowspan="1" colspan="3">TestModificaAccount_05</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -49,7 +49,17 @@
 <tr>
 	<td>type</td>
 	<td>id=email</td>
-	<td>adinolfi.unisa.it</td>
+	<td>rr@r.it</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>peppeegwfgfhgfshgfgfsdgfydkjsfgsjdfgkjsgfkjhsdgfjkksgdfhjsdgfsgfkjsdghfjgsjfgkjsdfgjhsdgfhjsdgfhjsgfjhsgjfgsdjkfgd</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=repeatPassword</td>
+	<td>peppeegwfgfhgfshgfgfsdgfydkjsfgsjdfgkjsgfkjhsdgfjkksgdfhjsdgfsgfkjsdghfjgsjfgkjsdfgjhsdgfhjsdgfhjsgfjhsgjfgsdjkfgd</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -58,13 +68,8 @@
 </tr>
 <tr>
 	<td>assertTextNotPresent</td>
-	<td>//section[@id='section-main']/table/tbody/tr[2]/td[3]</td>
-	<td>adinolfi.unisa.it</td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
+	<td>http://localhost:8080/vviser/ModifyAccountServlet</td>
+	<td>rr@r.it</td>
 </tr>
 
 </tbody></table>

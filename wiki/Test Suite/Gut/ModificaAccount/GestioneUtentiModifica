@@ -8,8 +8,14 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="TestInserimentoUtenteDiProva.html">TestInserimentoUtenteDiProva</a></td></tr>
 <tr><td><a href="TestModificaAccount_01.html">TestModificaAccount_01</a></td></tr>
 <tr><td><a href="TestModificaAccount_02.html">TestModificaAccount_02</a></td></tr>
+<tr><td><a href="TestModificaAccount_03.html">TestModificaAccount_03</a></td></tr>
+<tr><td><a href="TestModificaAccount_04.html">TestModificaAccount_04</a></td></tr>
+<tr><td><a href="TestModificaAccount_05.html">TestModificaAccount_05</a></td></tr>
+<tr><td><a href="TestModificaAccount_06.html">TestModificaAccount_06</a></td></tr>
+<tr><td><a href="TestModificaAccount_07.html">TestModificaAccount_07</a></td></tr>
 </tbody></table>
 </body>
 </html>
