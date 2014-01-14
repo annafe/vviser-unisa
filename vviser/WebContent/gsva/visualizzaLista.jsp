@@ -36,7 +36,18 @@
     	}
     	function setActionModSuggerimento()
     	{
-    		document.getElementById("formMod").action="/vviser/ServletSuggerimentoListaValutazione";
+    		document.getElementById("buttis").type="submit";
+    		document.getElementById("buttms").type="submit";
+    		if (document.getElementById("sugg").value=="" || document.getElementById("sugg").value=="null")
+    		{
+    			alert("Nessun suggerimento inserito o modificato !");
+    			document.getElementById("buttis").type="button";
+        		document.getElementById("buttms").type="button";
+    		}
+    		else
+    		{
+    			document.getElementById("formMod").action="/vviser/ServletSuggerimentoListaValutazione";
+    		}
     	}
     	
     	//Mostra le funzionalita' a seconda del tipo di utente
