@@ -30,6 +30,7 @@
 
     <section id="section-main">
     	<!--  Pagina contenente il contenuto -->
+    	<form id="mod1" action="../areascientifica/home_area.jsp" method="POST" onsubmit="return controlla();">
     	<table>
         <tr>
             <th colspan="2">Seleziona Prodotti</th>    
@@ -38,8 +39,16 @@
         	<th>Spunta</th>
             <th>elenco della notifica</th>  
         </tr>
-        
+    
+    
+    
+       
         <% 
+        
+        
+        String[] p= request.getParameterValues("selProd");
+        
+        
         
         out.println("<tr>");
             out.println("<td><input type=\"checkbox\"' value='"+"errore lessicale"+"' /></td>");
@@ -50,9 +59,13 @@
       out.println("<td><input type=\"checkbox\"' value='"+"errore rivista"+"' /></td>");
         out.println("<td>"+"errore rivista"+"</td>");
     out.println("<tr>");
-        
+    
+    
         %>
     </table>
+    <button type="submit" name="Sottometti">Annulla</button>
+    <button type="submit" name="invia" formaction="../InvioNotificaValidazioneServlet">Notifica</button>
+        
     </section>
 
 </section>
