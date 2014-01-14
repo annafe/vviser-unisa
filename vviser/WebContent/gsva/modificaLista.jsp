@@ -88,7 +88,7 @@
 	n=document.getElementById("npHidd").value;
 </script>
 
-<form id="fsm" action="ServletModificaProdottiValutazione" method="POST">
+<form id="fsm" action="/vviser/ServletModificaProdottiValutazione" method="POST">
 	<table>
 		<tr>
 			<th colspan="3">Modifica Lista</th>
