@@ -9,7 +9,6 @@
 <title></title>
 </head>
 <body>
-<p>Modifica informazioni</p>
-<p>Altre funz</p>
+<p>Validazione</p>
 </body>
 </html>
