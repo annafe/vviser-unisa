@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 
 /**
  * 
- * @author Anna
+ * @author Maria Vittoria Coda
  *
  */
 
