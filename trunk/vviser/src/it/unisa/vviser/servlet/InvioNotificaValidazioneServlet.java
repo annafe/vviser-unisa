@@ -80,10 +80,12 @@ public class InvioNotificaValidazioneServlet extends HttpServlet {
 		Utente currentUser=(Utente)s.getAttribute("utente");
 		
 		System.out.println(checkProduct);
+		System.out.println("loggato");
 		System.out.println(currentUser.getEmail());
 		try
 		{
 			Prodotto p=gpr.ricercaProdottoISBN(checkProduct);
+			System.out.println("proprietario");
 			System.out.println(p.getProprietario());
 			gp.invionotifica(messaggio,p.getProprietario(),currentUser.getEmail(),"messaggio");
 			ServletContext sc = getServletContext();
