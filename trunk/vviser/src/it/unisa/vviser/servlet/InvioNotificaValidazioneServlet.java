@@ -79,27 +79,63 @@ public class InvioNotificaValidazioneServlet extends HttpServlet {
 		HttpSession s = request.getSession();
 		Utente currentUser=(Utente)s.getAttribute("utente");
 		
-		System.out.println(checkProduct);
-		System.out.println("loggato");
-		System.out.println(currentUser.getEmail());
+		//System.out.println(checkProduct);
+		//System.out.println("loggato");
+		//System.out.println(currentUser.getEmail());
 		try
 		{
 			Prodotto p=gpr.ricercaProdottoISBN(checkProduct);
-			System.out.println("proprietario");
-			System.out.println(p.getProprietario());
+			//System.out.println("proprietario");
+			//System.out.println(p.getProprietario());
 			gp.invionotifica(messaggio,p.getProprietario(),currentUser.getEmail(),"messaggio");
+			gp.Spostainbozza(checkProduct);
 			ServletContext sc = getServletContext();
 			
 			if(currentUser.getTipologia().equals("direttoreDiDipartimento"))
 			{
-					// ridirezione alla pagina inziale delle gestione validazione
-					RequestDispatcher rd = sc.getRequestDispatcher("../visualizzaprodottivalidazionedipartimento.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/direttore/home_direttore.jsp");
+				try
+				{
+					rd.forward(request,response);
+				}
+				catch (ServletException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 			}
-			if(currentUser.getTipologia().equals("../home_direttore.jsp"))
+			if(currentUser.getTipologia().equals("membroDelComitatoDiAreaDidattica"))
 			{
-				// ridirezione alla pagina inziale delle gestione validazione
-				RequestDispatcher rd = sc.getRequestDispatcher("../home:area.jsp");
+				RequestDispatcher rd = sc.getRequestDispatcher("/direttore/home_direttore.jsp");
+				try
+				{
+					rd.forward(request,response);
+				}
+				catch (ServletException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+				
+			
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 		catch (SQLException ex)
 		{
