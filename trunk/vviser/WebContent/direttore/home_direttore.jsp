@@ -18,7 +18,7 @@
 
 <nav>
 		<!-- Pagina contenente i bottoni del menu -->
-		<%@ include file="direttore_menu.jsp" %>
+		<%@ include file="../gu/gu_menu.jsp" %>
 </nav>
 
 <section id="container-section">
@@ -30,7 +30,22 @@
 
     <section id="section-main">
     	<!--  Pagina contenente il contenuto -->
+    	<%
+    	Utente utente = (Utente) session.getAttribute("utente");
+    	String tipoUtente=utente.getTipologia();
+    	if(tipoUtente.equalsIgnoreCase("direttoreDiDipartimento"))
+    	{			
+    	%>
     	<%@ include file="direttore_content.jsp" %>
+    	<%}
+    	else if (tipoUtente.equalsIgnoreCase("membroDelComitatoDiAreaDidattica"))
+    	{%>
+    <%@ include file="../areascientifica/area_content.jsp" %>
+    <%}
+    else 
+    	{%>
+    <%@ include file="../error.jsp" %>
+    <%} %>
     </section>
 
 </section>

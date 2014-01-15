@@ -22,7 +22,7 @@
 
     		    for (var i = 0; i < len; i++)
     		    {
-    		        if (chk[i].type === 'checkbox' && chk[i].checked==true)
+    		        if (chk[i].type === 'radio' && chk[i].checked==true)
     		        {
     		        	return true;
     		        }
@@ -54,7 +54,7 @@ ArrayList<Prodotto> prodotti=gp.visualizzaProdottivalidatiDipartimento();
         for(int i=0;i<prodotti.size();i++)
         {
         out.println("<tr>");
-            out.println("<td><input type=\"checkbox\" name=\"selProd\" id='"+i+"' value='"+prodotti.get(i).getIsbn()+"' /></td>");
+            out.println("<td><input type=\"radio\" name=\"selProd\" id='"+i+"' value='"+prodotti.get(i).getIsbn()+"' /></td>");
             out.println("<td>"+prodotti.get(i).getTitolo()+"</td>");
         
         out.println("<tr>");
