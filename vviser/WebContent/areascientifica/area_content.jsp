@@ -9,17 +9,15 @@
 <title></title>
 </head>
 <body>
-<section id="profilo">Nome e cognome
+<section id="profilo">
 </section>
 <section id="notifiche">
-notifiche
 </section>
 <section id="direttore_home">
 	
     	<%@ include file="../gva/visualizzaprodottivalidazioneareascientifica.jsp" %>
 </section>
 <section id="nav_direttore_menu">
-menù per navigare tra prodotti
 </section>
 </body>
 </html>
