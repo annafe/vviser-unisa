@@ -44,7 +44,8 @@ td{text-align:center;}
 		<% 	
 			DBGestioneProdotto dbGpr = new DBGestioneProdotto();
 			Utente currentUser = (Utente) session.getAttribute("utente");
-			List<Prodotto> l = dbGpr.visualizzaProdottiPersonali(currentUser.getEmail());
+			List<Prodotto> l = dbGpr.visualizzaProdottiProprietarioCoautore(currentUser.getEmail());
+			//List<Prodotto> l = dbGpr.visualizzaProdottiPersonali(currentUser.getEmail());
 			for (int i=0; i<l.size(); i++){
 				%><tr><td><%out.println(l.get(i).getTitolo());%></td>
 				<td><!-- form dettagli -->
