@@ -50,7 +50,7 @@ ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR(currentU
 //ArrayList<Prodotto> l = dbgp.visualizzaProdottiProprietarioCoautoreMIUR("deufemia@unisa.it");
 if(l.isEmpty())
 {
-	%>
+	%><p>&nbsp;</p>
 	<p>Non ci sono prodotti</p>
 	<%
 }

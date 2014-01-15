@@ -46,7 +46,7 @@ Utente currentUser = (Utente) session.getAttribute("utente");
 ArrayList<Prodotto> l=dbgp.ricercaProdottiDoveSonoIndicatoCoautoreENonHoAncoraConvalidato(currentUser.getEmail());
 if(l.isEmpty())
 {
-	%>
+	%><p>&nbsp;</p>
 	<p>Non ci sono prodotti</p>
 	<%
 }
