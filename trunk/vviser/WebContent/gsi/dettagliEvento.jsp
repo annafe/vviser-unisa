@@ -20,7 +20,7 @@ EventoValutazione e = (EventoValutazione) request.getAttribute("eventoSelezionat
 <script>
 function hasWhiteSpace(s) {
 	val = s.value;
-	  if (val.indexOf(' ') >= 0){
+	  if (val.indexOf(' ') == 0){
 		  alert("Insere dati validi!");
 		  s.value = "";
 	  }
