@@ -190,6 +190,7 @@ public class DBGestioneValidazione {
 					
 			
 			st=conn.prepareStatement(query);
+			st.setString(1,null);
 			st.setString(2,oggetto);
 			st.setString(3,"nonletto");
 			st.setString(4,messaggio);
@@ -258,6 +259,30 @@ public class DBGestioneValidazione {
 				st.close();
 				DBConnectionPool.releaseConnection(conn);
 			}
+		}
 
+		/**metodo che permette di spostare il prodotto in bozza*/
+		public void Spostainbozza(String isbn) throws SQLException
+		{
+			Connection conn=null;
+			PreparedStatement st=null;
+			String query;
+			try
+			{
+				conn=DBConnectionPool.getConnection();
+				query="UPDATE "+DBNames.TABLE_PRODOTTO
+						+" SET "+DBNames.ATTR_PRODOTTO_BOZZA+"='1'"
+						+" WHERE "+DBNames.ATTR_PRODOTTO_ISBN+"='"+isbn+"'";
+				
+				
+				st=conn.prepareStatement(query);
+				st.executeUpdate();
+				conn.commit();
+			}
+			finally
+			{
+				st.close();
+				DBConnectionPool.releaseConnection(conn);
+			}
 }
 }
