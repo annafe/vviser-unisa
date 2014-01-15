@@ -22,6 +22,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
@@ -39,16 +49,11 @@
 <tr>
 	<td>type</td>
 	<td>name=titolo_prodotto</td>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>css=#titolo_prodotto &gt; button[type=&quot;submit&quot;]</td>
-	<td></td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td>http://localhost:8080/vviser/gpr/RicercaPrivataProdotto.jsp</td>
 	<td></td>
 </tr>
 

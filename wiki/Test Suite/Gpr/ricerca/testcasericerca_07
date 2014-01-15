@@ -22,6 +22,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
@@ -39,12 +49,12 @@
 <tr>
 	<td>select</td>
 	<td>name=da</td>
-	<td>label=2013</td>
+	<td>label=2012</td>
 </tr>
 <tr>
 	<td>select</td>
 	<td>name=a</td>
-	<td>label=2013</td>
+	<td>label=2012</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>

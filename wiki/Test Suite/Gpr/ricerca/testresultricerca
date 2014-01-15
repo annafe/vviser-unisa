@@ -8,278 +8,363 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite Results</b></td></tr>
-<tr class=""><td><a href="#test0">testcasericerca_01</a></td></tr>
-<tr class=""><td><a href="#test1">testcasericerca_02</a></td></tr>
-<tr class=""><td><a href="#test2">testcasericerca_05</a></td></tr>
-<tr class=""><td><a href="#test3">testcasericerca_06</a></td></tr>
-<tr class=""><td><a href="#test4">testcasericerca_07</a></td></tr>
-<tr class=""><td><a href="#test5">testcasericerca_08</a></td></tr>
-<tr class=""><td><a href="#test6">testcasericerca_09</a></td></tr>
+<tr class="failed"><td><a href="#test0">testcasericerca_01</a></td></tr>
+<tr class="passed"><td><a href="#test1">testcasericerca_02</a></td></tr>
+<tr class="failed"><td><a href="#test2">testcasericerca_05</a></td></tr>
+<tr class="failed"><td><a href="#test3">testcasericerca_06</a></td></tr>
+<tr class="done"><td><a href="#test4">testcasericerca_07</a></td></tr>
+<tr class="failed"><td><a href="#test5">testcasericerca_08</a></td></tr>
+<tr class="done"><td><a href="#test6">testcasericerca_09</a></td></tr>
 
 </tbody></table>
-<a name="test0" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_01</td></tr></thead><tbody><tr class="">
+<a name="test0" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_01</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>link=Accedi al sistema..</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>//input[@value='Ricerca Prodotti']</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>click</td>
 	<td>xpath=(//input[@name='tipo_ricerca'])[2]</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>type</td>
 	<td>name=titolo_prodotto</td>
-	<td>Inverse analysis the laser forming process by c</td>
+	<td>An aggregation heuristic for large scale p-median </td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=#titolo_prodotto &gt; button[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
+<tr class="failed">
+	<td>assertTextPresent</td>
+	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td>titolo non valido</td>
+</tr>
 
 </tbody></table>
-<a name="test1" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_02</td></tr></thead><tbody><tr class="">
+<a name="test1" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_02</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>link=Accedi al sistema..</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>//input[@value='Ricerca Prodotti']</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>click</td>
 	<td>xpath=(//input[@name='tipo_ricerca'])[2]</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>type</td>
 	<td>name=titolo_prodotto</td>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
-<tr class="">
-	<td>clickAndWait</td>
-	<td>css=#titolo_prodotto &gt; button[type=&quot;submit&quot;]</td>
-	<td></td>
-</tr>
-<tr class="">
+<tr class="passed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td>http://localhost:8080/vviser/gpr/RicercaPrivataProdotto.jsp</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test2" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_05</td></tr></thead><tbody><tr class="">
+<a name="test2" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_05</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>link=Accedi al sistema..</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>//input[@value='Ricerca Prodotti']</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>click</td>
 	<td>xpath=(//input[@name='tipo_ricerca'])[5]</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=#anni &gt; button[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="passed">
 	<td>assertLocation</td>
 	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
 	<td></td>
 </tr>
+<tr class="failed">
+	<td>assertTextPresent</td>
+	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td>anno non selezionato</td>
+</tr>
 
 </tbody></table>
-<a name="test3" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_06</td></tr></thead><tbody><tr class="">
+<a name="test3" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_06</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>link=Accedi al sistema..</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>//input[@value='Ricerca Prodotti']</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>click</td>
 	<td>xpath=(//input[@name='tipo_ricerca'])[5]</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=#anni &gt; button[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
-<tr class="">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test4" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_07</td></tr></thead><tbody><tr class="">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="">
-	<td>clickAndWait</td>
-	<td>//input[@value='Ricerca Prodotti']</td>
-	<td></td>
-</tr>
-<tr class="">
-	<td>click</td>
-	<td>xpath=(//input[@name='tipo_ricerca'])[5]</td>
-	<td></td>
-</tr>
-<tr class="">
+<tr class="done">
 	<td>select</td>
 	<td>name=da</td>
-	<td>label=2013</td>
+	<td>label=2014</td>
 </tr>
-<tr class="">
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertTextPresent</td>
+	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td>data non selezionata</td>
+</tr>
+
+</tbody></table>
+<a name="test4" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_07</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Ricerca Prodotti']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//input[@name='tipo_ricerca'])[5]</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>select</td>
+	<td>name=da</td>
+	<td>label=2012</td>
+</tr>
+<tr class="done">
 	<td>select</td>
 	<td>name=a</td>
-	<td>label=2013</td>
+	<td>label=2012</td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=#anni &gt; button[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test5" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_08</td></tr></thead><tbody><tr class="">
+<a name="test5" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_08</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>link=Accedi al sistema..</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>//input[@value='Ricerca Prodotti']</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>click</td>
 	<td>name=tipo_ricerca</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=button[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
-<tr class="">
-	<td>assertLocation</td>
+<tr class="failed">
+	<td>assertTextPresent</td>
 	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
-	<td></td>
+	<td>tipologia non selezionata</td>
 </tr>
 
 </tbody></table>
-<a name="test6" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_09</td></tr></thead><tbody><tr class="">
+<a name="test6" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">testcasericerca_09</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>link=Accedi al sistema..</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>robdep@unisa.it</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>rdeprisco</td>
+</tr>
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>//input[@value='Ricerca Prodotti']</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>click</td>
 	<td>name=tipo_ricerca</td>
 	<td></td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>select</td>
 	<td>name=tipologia</td>
-	<td>label=prodottoArchitettoni</td>
+	<td>label=tesiDiDottorando</td>
 </tr>
-<tr class="">
+<tr class="done">
 	<td>clickAndWait</td>
 	<td>css=button[type=&quot;submit&quot;]</td>
 	<td></td>

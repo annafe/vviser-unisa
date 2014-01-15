@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/" />
-<title>testcasericerca_06</title>
+<title>testcaseInserimento_02</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">testcasericerca_06</td></tr>
+<tr><td rowspan="1" colspan="3">testcaseInserimento_02</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -38,33 +38,38 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//input[@value='Ricerca Prodotti']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>xpath=(//input[@name='tipo_ricerca'])[5]</td>
+	<td>//input[@value='Gestione Prodotti']</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>css=#anni &gt; button[type=&quot;submit&quot;]</td>
+	<td>link=Inserisci prodotto</td>
 	<td></td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>name=da</td>
-	<td>label=2014</td>
+	<td>type</td>
+	<td>name=isbn</td>
+	<td>43213</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=titolo</td>
+	<td>jhfjkdsh</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=data</td>
+	<td>2012-12-12</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
 </tr>
 <tr>
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
+	<td>http://localhost:8080/vviser/gpr/gpr_insert.jsp</td>
 	<td></td>
-</tr>
-<tr>
-	<td>assertTextPresent</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
-	<td>data non selezionata</td>
 </tr>
 
 </tbody></table>
