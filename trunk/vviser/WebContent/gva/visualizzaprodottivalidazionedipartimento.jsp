@@ -35,6 +35,7 @@
 
 <%
 
+;
 DBGestioneValidazione gp=DBGestioneValidazione.getInstance();
 ArrayList<Prodotto> prodotti=gp.visualizzaProdotti();
 

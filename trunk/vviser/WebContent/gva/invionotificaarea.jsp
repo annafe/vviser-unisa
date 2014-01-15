@@ -30,7 +30,7 @@
 
     <section id="section-main">
     	<!--  Pagina contenente il contenuto -->
-    	<form id="mod1" action="../areascientifica/home_area.jsp" method="POST" onsubmit="return controlla();">
+    	<form id="mod1" action="/vviser/areascientifica/home_area.jsp" method="POST" onsubmit="return controlla();">
     	<table>
         <tr>
             <th colspan="2">Seleziona Prodotti</th>    
@@ -47,18 +47,18 @@
         
         
         String[] p= request.getParameterValues("selProd");
+
         
         out.println("<tr>");
         out.println("<td colspan=\"2\"><input type=\"text\"' value='"+p[0]+"' name=\"isbn\" /></td></tr>");
         
-        
         out.println("<tr>");
-            out.println("<td><input type=\"radio\"' value='"+"errore lessicale"+"' /></td>");
+            out.println("<td><input type=\"radio\"' value='"+"errore lessicale"+"' name=\"messaggio\"></td>");
             out.println("<td>"+"errore lessicale"+"</td>");
         out.println("<tr>");
         
         out.println("<tr>");
-      out.println("<td><input type=\"radio\"' value='"+"errore rivista"+"' /></td>");
+      out.println("<td><input type=\"radio\"' value='"+"errore rivista"+"' name=\"messaggio\"></td>");
         out.println("<td>"+"errore rivista"+"</td>");
     out.println("<tr>");
     
