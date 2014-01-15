@@ -18,7 +18,7 @@
 
 <nav>
 		<!-- Pagina contenente i bottoni del menu -->
-		<%@ include file="../direttore/direttore_menu.jsp" %>
+		<%@ include file="../gu/gu_menu.jsp" %>
 </nav>
 
 <section id="container-section">
