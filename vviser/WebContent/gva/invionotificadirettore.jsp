@@ -30,7 +30,7 @@
 
     <section id="section-main">
     	<!--  Pagina contenente il contenuto -->
-    	<form id="mod1" action="../direttore/home_direttore.jsp" method="POST" onsubmit="return controlla();">
+    	<form id="mod1" action="/vviser/direttore/home_direttore.jsp" method="POST" onsubmit="return controlla();">
     	<table>
         <tr>
             <th colspan="2">Seleziona Prodotti</th>    
