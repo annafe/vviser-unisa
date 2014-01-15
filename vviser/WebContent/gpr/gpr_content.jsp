@@ -23,7 +23,7 @@ table{padding-top:5%;}
 			Utente currentUser = (Utente) session.getAttribute("utente");
 			List<Prodotto> l = dbGpr.visualizzaProdottiPersonali(currentUser.getEmail());
 			if(l.isEmpty())
-				out.println("Non ci sono prodotti");
+				out.println("<p></p><p>Non ci sono prodotti</p>");
 			else
 			{
 				%>
