@@ -6,6 +6,7 @@ import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.exception.NotAvailableProdottiPerValutazioneException;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
+import it.unisa.vviser.storage.FacadeValutazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private DBGestioneProdotto prodottiManager;
-	private DBProdottiValutazione prodottiValutazioneManager;
+	private FacadeValutazione prodottiValutazioneManager;
 
 	public void init(ServletConfig config) throws ServletException
 	{

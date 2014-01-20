@@ -4,6 +4,7 @@ import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.entity.Utente;
 import it.unisa.vviser.storage.DBProdottiValutazione;
+import it.unisa.vviser.storage.FacadeValutazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ import org.json.JSONObject;
 public class ServletSelezionaListe extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private DBProdottiValutazione prodottiValutazioneManager;
+	private FacadeValutazione prodottiValutazioneManager;
 
 	public void init(ServletConfig config) throws ServletException
 	{
