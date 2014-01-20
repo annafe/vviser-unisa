@@ -6,8 +6,7 @@ import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.exception.NotAvailableProdottiPerValutazioneException;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
-import it.unisa.vviser.storage.FacadeProdotto;
-import it.unisa.vviser.storage.FacadeValutazione;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
