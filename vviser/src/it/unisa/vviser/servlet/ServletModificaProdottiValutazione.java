@@ -32,7 +32,7 @@ public class ServletModificaProdottiValutazione extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private PrintWriter out;
-	private FacadeValutazione prodottiValutazioneManager;
+	private DBProdottiValutazione prodottiValutazioneManager;
 	
 	public void init(ServletConfig config) throws ServletException
 	{
