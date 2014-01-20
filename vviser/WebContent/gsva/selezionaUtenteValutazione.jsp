@@ -25,7 +25,7 @@
 	s.setAttribute("visualizza","tutti");
 %>
 
-<form id="ssl" action="/vviser/ServletVerificaListeVisualizza" method="GET">
+<form id="ssl" action="/vviser/ServletVerificaListeVisualizza" method="POST">
 	<table>
 		<tr>
 			<th colspan="3">Scegli un Utente</th>
