@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:8080/" />
-<title>tetcaseIinserimento_nuovoProdotto</title>
+<title>testcasemodificaprodotto_nuovoProdotto</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">tetcaseIinserimento_nuovoProdotto</td></tr>
+<tr><td rowspan="1" colspan="3">testcasemodificaprodotto_nuovoProdotto</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -43,32 +43,37 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Inserisci prodotto</td>
+	<td>link=I miei prodotti</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Modifica']</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>name=isbn</td>
-	<td>123123123</td>
+	<td>name=descrizione</td>
+	<td>modifica descrizione nuovo prodotto</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>name=titolo</td>
-	<td>nuovo inserimento</td>
+	<td>name=note</td>
+	<td>modifica note nuovo prodotto</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>name=data</td>
-	<td>2014-01-15</td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>name=tipologia</td>
-	<td>label=articoloSuRivista</td>
+	<td>name=indirizzoweb</td>
+	<td>www.nuovoprodotto.it</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=form &gt; input.pulsante</td>
 	<td></td>
 </tr>
 </tbody></table>
