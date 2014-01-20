@@ -97,7 +97,10 @@ public class ProdottoValutazione {
 		JSONObject obj = new JSONObject();
 		try {
 			obj.put("isbn",getIsbn());
-			obj.put("titolo",getTitle());
+			String t=getTitle();
+			t=t.replace(" ", "_");
+			//System.out.println(t);
+			obj.put("titolo",t);
 			obj.put("priorita",getPriority());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
