@@ -4,6 +4,7 @@ import it.unisa.vviser.entity.ListaProdottiValutazione;
 import it.unisa.vviser.entity.ProdottoValutazione;
 import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.storage.DBProdottiValutazione;
+import it.unisa.vviser.storage.FacadeValutazione;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +35,7 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private PrintWriter out;
-	private DBProdottiValutazione prodottiValutazioneManager;
+	private FacadeValutazione prodottiValutazioneManager;
 	
 	public void init(ServletConfig config) throws ServletException
 	{
