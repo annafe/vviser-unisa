@@ -43,6 +43,6 @@ public interface FacadeValutazione {
 	
 	public ArrayList<ProdottoValutazione> getProdottiValutazioneInConflitto(String emailUtente, int idEvento) throws SQLException;
 	
-	
+	public ArrayList<Prodotto> visualizzaProdottiProprietarioCoautore(String utente)throws SQLException;
 	
 }
