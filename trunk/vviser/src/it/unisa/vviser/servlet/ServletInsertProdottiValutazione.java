@@ -35,12 +35,12 @@ public class ServletInsertProdottiValutazione extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private PrintWriter out;
-	private DBProdottiValutazione prodottiValutazioneManager;
+	private FacadeValutazione prodottiValutazioneManager;
 	
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
-		prodottiValutazioneManager=DBProdottiValutazione.getInstance();
+		prodottiValutazioneManager=new FacadeValutazione();
 	}
 	
 	

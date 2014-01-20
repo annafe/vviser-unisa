@@ -26,12 +26,12 @@ import javax.servlet.http.HttpSession;
 public class ServletListaUtentiValutazione extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private DBProdottiValutazione prodottiValutazioneManager;
+	private FacadeValutazione prodottiValutazioneManager;
 
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
-		prodottiValutazioneManager=DBProdottiValutazione.getInstance();
+		prodottiValutazioneManager=new FacadeValutazione();
 	}
 	
 	
