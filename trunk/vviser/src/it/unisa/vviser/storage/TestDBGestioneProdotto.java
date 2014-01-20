@@ -22,7 +22,7 @@ public class TestDBGestioneProdotto {
 	@Test
 	public void test() throws SQLException {
 		toTest = new DBGestioneProdotto();
-		product = toTest.ricercaProdottoPerTitoloProprietarioAnnoTipologia("matematica23", "mr@gmail.com", "2013,12,28", "Rivista");
+		product = toTest.ricercaProdottoPerTitoloProprietarioAnnoTipologia("test prodotto", "adinolfi@unisa.it", "2014-01-15", "altroMinesteriale");
 		if (product==null)	fail("Not yet implemented");
 		assertFalse(product==null);
 		assertTrue("ok", !(product==null));

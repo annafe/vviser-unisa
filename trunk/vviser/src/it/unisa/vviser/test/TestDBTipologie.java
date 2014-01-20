@@ -33,11 +33,6 @@ public class TestDBTipologie {
 	}
 
 	@Test
-	public final void testGetInstance() {
-		assertTrue(dbTipologie.getInstance() != null);
-	}
-
-	@Test
 	public final void testGetTipologie() throws SQLException {
 		assertTrue(dbTipologie.getTipologie() != null);//il la classe DBTipologie non possiede un metodo setTipologie, l'unico modo per controllare il suo funzionamento
 		//è quello di controllare se la chiamate restituisce un oggetto null, va però previsto nella classe DBTipologie l'assegnazione del null all'arraylist
