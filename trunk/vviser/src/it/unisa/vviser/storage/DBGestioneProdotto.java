@@ -22,7 +22,7 @@ import it.vviser.common.CommonMethod;
  * @author Romano Simone 0512101343
  *
  */
-public class DBGestioneProdotto
+public class DBGestioneProdotto implements FacadeProdotto
 {
 	private static DBGestioneProdotto manager;
 	
