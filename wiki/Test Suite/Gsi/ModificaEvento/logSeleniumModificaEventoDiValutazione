@@ -8,22 +8,24 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite Results</b></td></tr>
-<tr class="passed"><td><a href="#test0">TC_InserimentoEventoDiValutazione_01</a></td></tr>
-<tr class="passed"><td><a href="#test1">TC_InserimentoEventoDiValutazione_02</a></td></tr>
-<tr class="passed"><td><a href="#test2">TC_InserimentoEventoDiValutazione_03</a></td></tr>
-<tr class="passed"><td><a href="#test3">TC_InserimentoEventoDiValutazione_04</a></td></tr>
-<tr class="passed"><td><a href="#test4">TC_InserimentoEventoDiValutazione_05</a></td></tr>
-<tr class="passed"><td><a href="#test5">TC_InserimentoEventoDiValutazione_08</a></td></tr>
-<tr class="passed"><td><a href="#test6">TC_InserimentoEventoDiValutazione_09</a></td></tr>
-<tr class="passed"><td><a href="#test7">TC_InserimentoEventoDiValutazione_10</a></td></tr>
-<tr class="failed"><td><a href="#test8">TC_InserimentoEventoDiValutazione_11</a></td></tr>
-<tr class="failed"><td><a href="#test9">TC_InserimentoEventoDiValutazione_12</a></td></tr>
-<tr class="passed"><td><a href="#test10">TC_InserimentoEventoDiValutazione_13</a></td></tr>
-<tr class="failed"><td><a href="#test11">TC_InserimentoEventoDiValutazione_14</a></td></tr>
-<tr class="passed"><td><a href="#test12">TC_InserimentoEventoDiValutazione_15</a></td></tr>
+<tr class="passed"><td><a href="#test0">TC_ModificaEventoDiValutazione_01</a></td></tr>
+<tr class="failed"><td><a href="#test1">TC_ModificaEventoDiValutazione_02</a></td></tr>
+<tr class="failed"><td><a href="#test2">TC_ModificaEventoDiValutazione_03</a></td></tr>
+<tr class="failed"><td><a href="#test3">TC_ModificaEventoDiValutazione_04</a></td></tr>
+<tr class="passed"><td><a href="#test4">TC_ModificaEventoDiValutazione_05</a></td></tr>
+<tr class="failed"><td><a href="#test5">TC_ModificaEventoDiValutazione_06</a></td></tr>
+<tr class="passed"><td><a href="#test6">TC_ModificaEventoDiValutazione_07</a></td></tr>
+<tr class="failed"><td><a href="#test7">TC_ModificaEventoDiValutazione_08</a></td></tr>
+<tr class="failed"><td><a href="#test8">TC_ModificaEventoDiValutazione_09</a></td></tr>
+<tr class="passed"><td><a href="#test9">TC_ModificaEventoDiValutazione_10</a></td></tr>
+<tr class="failed"><td><a href="#test10">TC_ModificaEventoDiValutazione_11</a></td></tr>
+<tr class="failed"><td><a href="#test11">TC_ModificaEventoDiValutazione_12</a></td></tr>
+<tr class="passed"><td><a href="#test12">TC_ModificaEventoDiValutazione_13</a></td></tr>
+<tr class="failed"><td><a href="#test13">TC_ModificaEventoDiValutazione_14</a></td></tr>
+<tr class="passed"><td><a href="#test14">TC_ModificaEventoDiValutazione_15</a></td></tr>
 
 </tbody></table>
-<a name="test0" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_01</td></tr></thead><tbody><tr class="done">
+<a name="test0" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_01</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
@@ -55,84 +57,37 @@
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>name=eventoName</td>
+	<td> </td>
 </tr>
 <tr class="done">
 	<td>click</td>
-	<td>name=creaEvento</td>
+	<td>css=input.pulsanti</td>
 	<td></td>
 </tr>
 <tr class="passed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test1" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_02</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@mail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test2" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_03</td></tr></thead><tbody><tr class="done">
+<a name="test1" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_02</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
@@ -164,419 +119,32 @@
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca scient.</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>-1</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test3" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_04</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
+	<td>link=Mostra eventi</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
+	<td>name=modificaEvento</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
+	<td>name=eventoName</td>
+	<td>aaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>11111111111111</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test4" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_05</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test5" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_08</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2015-01-01</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test6" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_09</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2015-01-01</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test7" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_10</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr class="done">
-	<td>click</td>
-	<td>name=creaEvento</td>
-	<td></td>
-</tr>
-<tr class="passed">
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
-	<td></td>
-</tr>
-
-</tbody></table>
-<a name="test8" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_11</td></tr></thead><tbody><tr class="done">
-	<td>open</td>
-	<td>/vviser/</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Accedi al sistema..</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=email</td>
-	<td>desantis11@gmail.com</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=password</td>
-	<td>ndesantis</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>//input[@value='Eventi di Valutazione']</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
-	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2012-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=scadenza</td>
-	<td>2014-01-01</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>name=creaEvento</td>
+	<td>css=input.pulsanti</td>
 	<td></td>
 </tr>
 <tr class="failed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test9" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_12</td></tr></thead><tbody><tr class="done">
+<a name="test2" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_03</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
@@ -608,47 +176,32 @@
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2012-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=scadenza</td>
-	<td>2014-01-14</td>
+	<td>name=eventoNumPubb</td>
+	<td>-3</td>
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>name=creaEvento</td>
+	<td>css=input.pulsanti</td>
 	<td></td>
 </tr>
 <tr class="failed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test10" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_13</td></tr></thead><tbody><tr class="done">
+<a name="test3" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_04</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
@@ -680,42 +233,89 @@
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
+	<td>name=eventoNumPubb</td>
+	<td>1111111111111111111111111</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test4" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_05</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoNumPubb</td>
+	<td></td>
 </tr>
 <tr class="done">
 	<td>click</td>
-	<td>name=creaEvento</td>
+	<td>css=input.pulsanti</td>
 	<td></td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2012-01-01</td>
 </tr>
 <tr class="passed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test11" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_14</td></tr></thead><tbody><tr class="done">
+<a name="test5" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_06</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
@@ -747,47 +347,37 @@
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>VQR ricerca</td>
+	<td>name=eventoNumPubb</td>
+	<td>4</td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2012-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=scadenza</td>
-	<td>2015-01-01</td>
+	<td>name=eventoDataInizio</td>
+	<td>2015-1-1</td>
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>name=creaEvento</td>
+	<td>css=input.pulsanti</td>
 	<td></td>
 </tr>
 <tr class="failed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gsi/inserisciNuovoEvento.jsp</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
 	<td></td>
 </tr>
 
 </tbody></table>
-<a name="test12" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_InserimentoEventoDiValutazione_15</td></tr></thead><tbody><tr class="done">
+<a name="test6" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_07</td></tr></thead><tbody><tr class="done">
 	<td>open</td>
 	<td>/vviser/</td>
 	<td></td>
@@ -819,42 +409,533 @@
 </tr>
 <tr class="done">
 	<td>clickAndWait</td>
-	<td>link=Inserisci nuovo eventi</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
 	<td></td>
 </tr>
 <tr class="done">
 	<td>type</td>
-	<td>name=nomeEvento</td>
-	<td>Valut. Ricerca</td>
+	<td>name=eventoDataInizio</td>
+	<td> </td>
 </tr>
 <tr class="done">
-	<td>type</td>
-	<td>name=numPubb</td>
-	<td>5</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataInizio</td>
-	<td>2008-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=dataFine</td>
-	<td>2012-01-01</td>
-</tr>
-<tr class="done">
-	<td>type</td>
-	<td>name=scadenza</td>
-	<td>2015-01-01</td>
-</tr>
-<tr class="done">
-	<td>clickAndWait</td>
-	<td>name=creaEvento</td>
+	<td>click</td>
+	<td>css=input.pulsanti</td>
 	<td></td>
 </tr>
 <tr class="passed">
 	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/InserisciNuovoEventoServlet</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test7" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_08</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataFine</td>
+	<td>2015-1-1</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test8" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_09</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataFine</td>
+	<td>2006-1-1</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test9" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_10</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoName</td>
+	<td>VQR</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoNumPubb</td>
+	<td>5</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataFine</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test10" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_11</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoName</td>
+	<td>VQR</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataInizio</td>
+	<td>2009-2-1</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataFine</td>
+	<td>2011-2-1</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoScadenza</td>
+	<td>2013-2-2</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test11" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_12</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoName</td>
+	<td>VQR</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataInizio</td>
+	<td>2009-2-1</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataFine</td>
+	<td>2011-2-1</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoScadenza</td>
+	<td>2014-1-14</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test12" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_13</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoName</td>
+	<td>VQR</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataInizio</td>
+	<td>2009-2-1</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoDataFine</td>
+	<td>2011-2-1</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoScadenza</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test13" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_14</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="failed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/VisualizzaModificaDettagliEventoValutazioneServlet</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+<a name="test14" /><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC_ModificaEventoDiValutazione_15</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>/vviser/</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Accedi al sistema..</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=email</td>
+	<td>desantis11@gmail.com</td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=password</td>
+	<td>ndesantis</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>//input[@value='Eventi di Valutazione']</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>link=Mostra eventi</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>name=modificaEvento</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>name=eventoName</td>
+	<td>vqr</td>
+</tr>
+<tr class="done">
+	<td>clickAndWait</td>
+	<td>css=input.pulsanti</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ModificaEventoServlet</td>
 	<td></td>
 </tr>
 

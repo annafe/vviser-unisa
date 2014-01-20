@@ -57,11 +57,15 @@
 	<td></td>
 </tr>
 <tr>
-	<td>assertTextPresent</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
-	<td>titolo non valido</td>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
 </tr>
-
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='risultati']/table/tbody/tr/td[2]</td>
+	<td>An aggregation heuristic for large scale p-median</td>
+</tr>
 </tbody></table>
 </body>
 </html>

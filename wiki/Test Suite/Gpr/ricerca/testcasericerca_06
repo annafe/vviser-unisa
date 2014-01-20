@@ -61,12 +61,6 @@
 	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
 	<td></td>
 </tr>
-<tr>
-	<td>assertTextPresent</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
-	<td>data non selezionata</td>
-</tr>
-
 </tbody></table>
 </body>
 </html>

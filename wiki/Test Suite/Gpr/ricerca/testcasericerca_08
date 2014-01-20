@@ -51,12 +51,6 @@
 	<td>css=button[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
-<tr>
-	<td>assertTextPresent</td>
-	<td>http://localhost:8080/vviser/RicercaPrivataProdottoServlet</td>
-	<td>tipologia non selezionata</td>
-</tr>
-
 </tbody></table>
 </body>
 </html>

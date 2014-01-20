@@ -57,21 +57,20 @@
 	<td>fd</td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>css=div.centro &gt; input.pulsante</td>
-	<td></td>
-</tr>
-<tr>
 	<td>type</td>
 	<td>id=data</td>
 	<td>2013-11-11</td>
 </tr>
 <tr>
-	<td>assertLocation</td>
-	<td>http://localhost:8080/vviser/gpr/ModificaProdotto.jsp</td>
+	<td>clickAndWait</td>
+	<td>css=div.centro &gt; input.pulsante</td>
 	<td></td>
 </tr>
-
+<tr>
+	<td>assertLocation</td>
+	<td>http://localhost:8080/vviser/ModificaProdottoServlet</td>
+	<td></td>
+</tr>
 </tbody></table>
 </body>
 </html>

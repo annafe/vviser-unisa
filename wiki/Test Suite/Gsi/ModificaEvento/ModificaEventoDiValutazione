@@ -8,7 +8,6 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="InsertEvento.html">InsertEvento</a></td></tr>
 <tr><td><a href="TC_ModificaEventoDiValutazione_01.html">TC_ModificaEventoDiValutazione_01</a></td></tr>
 <tr><td><a href="TC_ModificaEventoDiValutazione_02.html">TC_ModificaEventoDiValutazione_02</a></td></tr>
 <tr><td><a href="TC_ModificaEventoDiValutazione_03.html">TC_ModificaEventoDiValutazione_03</a></td></tr>
