@@ -470,7 +470,10 @@ public class Prodotto
 		JSONObject obj = new JSONObject();
 		try {
 			obj.put("isbn",getIsbn());
-			obj.put("titolo",getTitolo());
+			String t=getTitolo();
+			t=t.replace(" ", "_");
+			//System.out.println(t);
+			obj.put("titolo",t);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
