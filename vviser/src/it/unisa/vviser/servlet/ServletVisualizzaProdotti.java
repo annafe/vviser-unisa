@@ -6,7 +6,7 @@ import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.exception.NotAvailableProdottiPerValutazioneException;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
-
+import it.unisa.vviser.storage.FacadeValutazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,14 +32,13 @@ import javax.servlet.http.HttpSession;
 public class ServletVisualizzaProdotti extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private DBGestioneProdotto prodottiManager;
-	private DBProdottiValutazione prodottiValutazioneManager;
+	private FacadeValutazione prodottiValutazioneManager;
 
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
-		prodottiManager=DBGestioneProdotto.getInstance();
-		prodottiValutazioneManager=DBProdottiValutazione.getInstance();
+		
+		prodottiValutazioneManager=new FacadeValutazione();
 	}
 	
 	
@@ -63,7 +62,7 @@ public class ServletVisualizzaProdotti extends HttpServlet {
 			EventoValutazione evento=prodottiValutazioneManager.getEventoValutazione(emailUtente);
 			
 			int numeroProdottiMax=evento.getNumeroPubblicazioni();
-			ArrayList<Prodotto> prodotti=prodottiManager.visualizzaProdottiProprietarioCoautore(emailUtente);
+			ArrayList<Prodotto> prodotti=prodottiValutazioneManager.visualizzaProdottiProprietarioCoautore(emailUtente);
 			ArrayList<Prodotto> prodottiFiltrati=prodottiValutazioneManager.prodottiFiltrati(evento, prodotti);
 			
 			request.setAttribute("numProdMax", numeroProdottiMax);

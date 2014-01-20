@@ -8,7 +8,7 @@ import it.unisa.vviser.exception.InsertProdottiValutazioneException;
 import it.unisa.vviser.exception.NotAvailableProdottiPerValutazioneException;
 import it.unisa.vviser.storage.DBGestioneProdotto;
 import it.unisa.vviser.storage.DBProdottiValutazione;
-
+import it.unisa.vviser.storage.FacadeValutazione;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,14 +31,14 @@ import javax.servlet.http.HttpSession;
 public class ServletSelezioneModifica extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private DBProdottiValutazione prodottiValutazioneManager;
-	private DBGestioneProdotto prodottiManager;
+	private FacadeValutazione prodottiValutazioneManager;
+	
 
 	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
-		prodottiValutazioneManager=DBProdottiValutazione.getInstance();
-		prodottiManager=DBGestioneProdotto.getInstance();
+		prodottiValutazioneManager=new FacadeValutazione();
+		
 	}
 	
 	
@@ -60,7 +60,7 @@ public class ServletSelezioneModifica extends HttpServlet {
 				ListaProdottiValutazione listaProdottiValutazione=(ListaProdottiValutazione)s.getAttribute("listaProdottiValutazione");
 				EventoValutazione evento=prodottiValutazioneManager.ottieniEventoValutazione(listaProdottiValutazione.getIdEventoValutazione());
 				s.setAttribute("evento", evento);//setto l'evento di valutazione
-				ArrayList<Prodotto> prodotti=prodottiManager.visualizzaProdottiProprietarioCoautore(emailUtente);
+				ArrayList<Prodotto> prodotti=prodottiValutazioneManager.visualizzaProdottiProprietarioCoautore(emailUtente);
 				ArrayList<Prodotto> prodottiFiltrati=prodottiValutazioneManager.prodottiFiltrati(evento, prodotti);
 				ArrayList<Prodotto> prodottiNonSottomessi=new ArrayList<Prodotto>();
 				
