@@ -20,58 +20,63 @@ public class FacadeValutazione {
 	
 	public void sottomettiListaProdottiValutazione(ArrayList<ProdottoValutazione> prodottiValutazione,String emailUtente) throws SQLException,InsertProdottiValutazioneException
 	{
-		
+		this.prodottiValutazione.sottomettiListaProdottiValutazione(prodottiValutazione, emailUtente);
 	}
 	
 	public ListaProdottiValutazione showProdottiVal(String emailUtente,int idEvento) throws SQLException
 	{
-		return prodottiValutazione.showProdottiVal(emailUtente, idEvento);
+		return this.prodottiValutazione.showProdottiVal(emailUtente, idEvento);
 	}
 	
 	public ArrayList<Utente> showListaUtenti(String emailUtente) throws SQLException
 	{
-		return prodottiValutazione.showListaUtenti(emailUtente);
+		return this.prodottiValutazione.showListaUtenti(emailUtente);
 	}
 	
 	public void modifyProdottiValutazione(ArrayList<ProdottoValutazione> newProdottiSottomessi,ArrayList<ProdottoValutazione> oldProdottiSottomessi,ArrayList<ProdottoValutazione> oldProdottiSottomessiUpdate,String emailUtente,int idEvento) throws SQLException
 	{
-		prodottiValutazione.modifyProdottiValutazione(newProdottiSottomessi, oldProdottiSottomessi, oldProdottiSottomessiUpdate, emailUtente, idEvento);
+		this.prodottiValutazione.modifyProdottiValutazione(newProdottiSottomessi, oldProdottiSottomessi, oldProdottiSottomessiUpdate, emailUtente, idEvento);
 	}
 	
 	public ArrayList<ListaProdottiValutazione> getListeProdottiValutazione(String emailUtente) throws SQLException,NotFoundListeValutazioneException
 	{
-		return prodottiValutazione.getListeProdottiValutazione(emailUtente);
+		return this.prodottiValutazione.getListeProdottiValutazione(emailUtente);
 	}
 	
 	public EventoValutazione getEventoValutazione(String emailUtente) throws SQLException,InsertProdottiValutazioneException
 	{
-		return prodottiValutazione.getEventoValutazione(emailUtente);
+		return this.prodottiValutazione.getEventoValutazione(emailUtente);
 	}
 	
 	public ArrayList<Prodotto> prodottiFiltrati(EventoValutazione evento, ArrayList<Prodotto> prodotti) throws NotAvailableProdottiPerValutazioneException
 	{
-		return prodottiValutazione.prodottiFiltrati(evento, prodotti);
+		return this.prodottiValutazione.prodottiFiltrati(evento, prodotti);
 	}
 	
 	public EventoValutazione ottieniEventoValutazione(int idEvento) throws SQLException
 	{
-		return prodottiValutazione.ottieniEventoValutazione(idEvento);
+		return this.prodottiValutazione.ottieniEventoValutazione(idEvento);
 	}
 	
 	
 	public void convalidaORifiutaListaProdottiValutazione(ListaProdottiValutazione listaProdottiValutazione, String bloccato) throws SQLException
 	{
-		prodottiValutazione.convalidaORifiutaListaProdottiValutazione(listaProdottiValutazione, bloccato);
+		this.prodottiValutazione.convalidaORifiutaListaProdottiValutazione(listaProdottiValutazione, bloccato);
 	}
 	
 	public void settaSuggerimentoListaValutazione(ListaProdottiValutazione listaProdottiValutazione,String suggestion)throws SQLException
 	{
-		prodottiValutazione.settaSuggerimentoListaValutazione(listaProdottiValutazione, suggestion);
+		this.prodottiValutazione.settaSuggerimentoListaValutazione(listaProdottiValutazione, suggestion);
 	}
 	
 	public ArrayList<ProdottoValutazione> getProdottiValutazioneInConflitto(String emailUtente, int idEvento) throws SQLException
 	{
-		return prodottiValutazione.getProdottiValutazioneInConflitto(emailUtente, idEvento);
+		return this.prodottiValutazione.getProdottiValutazioneInConflitto(emailUtente, idEvento);
+	}
+	
+	public ArrayList<Prodotto> visualizzaProdottiProprietarioCoautore(String utente)throws SQLException
+	{
+		return this.prodotto.visualizzaProdottiProprietarioCoautore(utente);
 	}
 
 }
