@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class ServletListaUtentiValutazione extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private FacadeValutazione prodottiValutazioneManager;
+	private DBProdottiValutazione prodottiValutazioneManager;
 
 	public void init(ServletConfig config) throws ServletException
 	{
