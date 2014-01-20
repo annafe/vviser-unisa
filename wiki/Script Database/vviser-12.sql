@@ -5,7 +5,7 @@ use vviser;
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 20 gen, 2014 at 10:14 AM
+-- Generato il: 20 gen, 2014 at 04:41 PM
 -- Versione MySQL: 5.1.44
 -- Versione PHP: 5.3.1
 
@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS `collaborazioni` (
 -- Dump dei dati per la tabella `collaborazioni`
 --
 
+INSERT INTO `collaborazioni` (`collaboratore`, `prodotto_isbn`, `proprietario`, `convalidato`) VALUES
+('robdep@unisa.it', '1284673284239', 'deufemia@unisa.it', 1);
 
 -- --------------------------------------------------------
 
@@ -191,9 +193,9 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
 --
 
 INSERT INTO `prodotto` (`isbn`, `titolo`, `annoPubblicazione`, `formatoPubblicazione`, `codiceDoi`, `diffusione`, `listacollaboratori`, `descrizionecontenuti`, `indirizzoweb`, `parolechiavi`, `editore`, `numvolume`, `totalepagine`, `dapagina`, `apagina`, `note`, `stato`, `bozza`, `tipologia`, `email_proprietario`) VALUES
-('1284673284239', 'An asynchronous covert channel using spam', '2013-11-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 1, 'tesiDiDottorando', 'deufemia@unisa.it'),
+('1284673284239', 'An asynchronous covert channel using spam', '2013-12-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 1, 'tesiDiDottorando', 'deufemia@unisa.it'),
 ('1657482300835', 'Finite Element Dynamic Analysis of Anisotropic ela', '2013-12-10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ValidatoDipartimento', 0, 'articoloSuRivista', 'robdep@unisa.it'),
-('1726365549221', 'Innovative approaches for security of small artefa', '2013-03-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 1, 'articoloSuLibro', 'deufemia@unisa.it'),
+('1726365549221', 'Innovative approaches for security of small artefa', '2013-12-11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 1, 'articoloSuLibro', 'deufemia@unisa.it'),
 ('1784003895123', 'Biomechanics of traumatic brain injury', '2013-08-19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 1, 'articoloSuRivista', 'deufemia@unisa.it'),
 ('1844234301235', 'Degree-Optimal Routing for P2P Systems', '2009-11-04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Valutato', 0, 'articoloSuRivista', 'alberto@unisa.it'),
 ('2736456738291', 'Integrated design and control of plantwide systems', '2012-06-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ValidatoComitatoArea', 0, 'articoloSuLibro', 'alberto@unisa.it'),
@@ -202,7 +204,7 @@ INSERT INTO `prodotto` (`isbn`, `titolo`, `annoPubblicazione`, `formatoPubblicaz
 ('2843763632467', 'The Labeled Maximum Matching Problem', '2012-04-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 0, 'monografie', 'alberto@unisa.it'),
 ('6672819385476', 'Development and Evaluation of a Virtual Campus on ', '2013-06-17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Valutato', 0, 'articoloSuLibro', 'robdep@unisa.it'),
 ('7432642372849', 'Cheating Immune Threshold Visual Secret Sharing', '2013-10-14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 0, 'proceedings', 'alberto@unisa.it'),
-('7643537883211', 'Limit cycles in nonlinear excitation of clusters o', '2013-08-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ValidatoDipartimento', 0, 'articoloSuLibro', 'deufemia@unisa.it'),
+('7643537883211', 'Limit cycles in nonlinear excitation of clusters o', '2014-01-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ValidatoDipartimento', 0, 'articoloSuLibro', 'deufemia@unisa.it'),
 ('8217312381929', 'An aggregation heuristic for large scale p-median ', '2014-01-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Valutato', 0, 'proceedings', 'robdep@unisa.it'),
 ('8432843274237', 'Construction of the EF-based Runge-Kutta methods r', '2013-12-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NonValidato', 0, 'monografie', 'robdep@unisa.it');
 
