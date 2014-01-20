@@ -37,6 +37,13 @@ public class ServletListaUtentiValutazione extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
+		
+        
+    }
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+		
 		try
 		{
 			HttpSession s = request.getSession();
@@ -52,11 +59,6 @@ public class ServletListaUtentiValutazione extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-    }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 		
 		
 		

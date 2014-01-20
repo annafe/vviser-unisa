@@ -42,6 +42,13 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
+		
+        
+    }
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+		
 		try 
 		{
 			HttpSession s = request.getSession();
@@ -114,11 +121,6 @@ public class ServletVerificaListeVisualizza extends HttpServlet {
 			RequestDispatcher rd = sc.getRequestDispatcher("/gsva/gVisualizzaImpossibile.jsp");
 			rd.forward(request,response);
 		}
-        
-    }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 		
 		
 		
