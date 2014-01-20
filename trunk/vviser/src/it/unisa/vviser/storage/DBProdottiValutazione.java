@@ -24,7 +24,7 @@ import it.vviser.common.CommonMethod;
  * @author Giuseppe Sabato
  *
  */
-public class DBProdottiValutazione {
+public class DBProdottiValutazione implements FacadeValutazione {
 	
 	private static DBProdottiValutazione manager;
 	
